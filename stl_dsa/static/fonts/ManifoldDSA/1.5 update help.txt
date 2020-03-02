@@ -1,0 +1,13 @@
+Manifold DSA will occasionally be updated with new features and bug fixes.
+
+To make sure you have the newest version (currently Manifold DSA 1.5) installed:
+
+1. Uninstall and delete the current version, if the font is already installed. On Mac, use Font Book; on Windows, use the Fonts folder.
+
+2. Reboot your machine.
+
+3. Install the new version as usual.
+
+If you encounter any strange behavior, ugly glyphs, or missing features, let us know so we can address the issues.
+
+Thank you, and enjoy!

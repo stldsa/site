@@ -84,13 +84,14 @@ THIRD_PARTY_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
-    'modelcluster',
     'taggit',
+    'modelcluster',
 ]
 
 LOCAL_APPS = [
     "stl_dsa.users.apps.UsersConfig",
     # Your stuff: custom apps go here
+    'events',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

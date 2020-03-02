@@ -1,4 +1,4 @@
-{% load static wagtailuserbar %}
+{% load static wagtailuserbar i18n %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -19,24 +19,22 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
+        <link href="{% static 'css/project.css' %}" rel="stylesheet">
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
-        <style>
-        @font-face {
-            font-family: 'ManifoldDSA-Bold';
-            src: local('ManifoldDSA-Bold'),
-                url('{% static "fonts/OTF/ManifoldDSA-Bold.otf" %}') format('opentype');
-        }
-        </style>
     </head>
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ec1f27;">
-            <a class="navbar-brand" href="/home">
+        <!-- <div class='container'>
+            <div class='row'>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4  text-center brand-logo" style="max-height: 120;"><a class="cbx-title" href="https://stldsa.org"><img src="{% static 'images/DSA_header.png' %}"></a></div>
+            </div>
+        </div> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
                 <img src="{% static 'images/logo.png' %}"  height="60" class="d-inline-block" alt="">
-                STL DSA
+                St Louis DSA
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,30 +43,58 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="{% url 'events' %}">Events</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    Our Work
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Committees/Working Groups</a>
+                    <a class="dropdown-item" href="#">Priorities</a>
+                    <!-- <div class="dropdown-divider"></div> -->
+                    <a class="dropdown-item" href="#">Resolutions</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    About Us
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Who We Are</a>
+                    <a class="dropdown-item" href="#">FAQ</a>
+                    </div>
                 </li>
+                {% if request.user.is_authenticated %}
+                  <li class="nav-item">
+                    {# URL provided by django-allauth/account/urls.py #}
+                    <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Stuff" %}</a>
+                  </li>
+                  <li class="nav-item">
+                    {# URL provided by django-allauth/account/urls.py #}
+                    <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Log Off" %}</a>
+                  </li>
+                {% else %}
+                <li class="nav-item">
+                    {# URL provided by django-allauth/account/urls.py #}
+                    <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+                  </li>
+                  <li class="nav-item">
+                    {# URL provided by django-allauth/account/urls.py #}
+                    <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
+                  </li>
+                {% endif %}
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
                 </form>
             </div>
         </nav>
-        {% block content %}{% endblock %}
+        <div class='container'>
+            {% block content %}
+            {% endblock %}
+        </div>
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/stldsa.js' %}"></script>

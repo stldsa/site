@@ -20,6 +20,7 @@ urlpatterns = [
     # User management
     path("users/", include("stl_dsa.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+    path('events/', include('events.urls')),
     # Your stuff: custom urls includes go here
     re_path(r'^cms/', include(wagtailadmin_urls)),
     re_path(r'^documents/', include(wagtaildocs_urls)),
