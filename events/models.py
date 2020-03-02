@@ -5,7 +5,7 @@ class Event(models.Model):
     title = models.CharField(max_length=100)
     date = models.DateField()
     start_time = models.TimeField()
-    end_time = models.TimeField(blank=True)
+    end_time = models.TimeField(null=True, blank=True)
     address = models.CharField(max_length=30)
     city = models.CharField(max_length=30)
     state = models.CharField(max_length=2)

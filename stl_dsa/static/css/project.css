@@ -15,10 +15,7 @@
 @font-face {
   font-family: 'ManifoldDSA';
   src: 
-       /* url('../fonts/Kingthings_Typewriter_2.ttf') format("truetype"), */
        url('../fonts/ManifoldDSA/OTF/ManifoldDSA-Regular.otf');
-       /* url('../fonts/Kingthings_Typewriter_2.woff') format('woff'), */
-       /* url('../fonts/Kingthings_Typewriter_2.woff2') format("woff2"); */
 }
 
 body{
