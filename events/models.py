@@ -11,7 +11,7 @@ class Event(models.Model):
     state = models.CharField(max_length=2)
     zip = models.IntegerField()
     description = models.TextField()
-    actionnetwork_link = models.URLField()
+    actionnetwork_url = models.URLField()
 
     def __str__(self):
         return self.title + ' ' + str(self.date)

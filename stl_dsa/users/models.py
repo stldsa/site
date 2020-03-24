@@ -9,6 +9,7 @@ class User(AbstractUser):
 
     # First Name and Last Name do not cover name patterns
     # around the globe.
+    username = models.CharField(null=True, blank=True, max_length=150)
     first_name = models.CharField(null=True, blank=True, max_length=30)
     last_name = models.CharField(null=True, blank=True, max_length=30)
     def get_absolute_url(self):

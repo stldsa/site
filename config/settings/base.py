@@ -1,7 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
-
+import os
 import environ
 
 ROOT_DIR = (
@@ -285,12 +285,13 @@ ACCOUNT_USERNAME_REQUIRED = False
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "stl_dsa.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "stl_dsa.users.adapters.MyAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = "stl_dsa.users.adapters.SocialAccountAdapter"
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_FORMS = {'signup': 'stl_dsa.users.forms.SignUpForm'}
+ACCOUNT_USER_DISPLAY = lambda user: user.get_full_name()
 # django-reset-framework
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
@@ -304,3 +305,4 @@ REST_FRAMEWORK = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 WAGTAIL_SITE_NAME = 'St Louis DSA'
+ACTIONNETWORK_API_KEY = os.environ['ACTIONNETWORK_API_KEY']
