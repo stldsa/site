@@ -94,6 +94,7 @@ LOCAL_APPS = [
     'home',
     'events',
     'committees',
+    'phonenumber_field',
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -289,6 +290,7 @@ ACCOUNT_ADAPTER = "stl_dsa.users.adapters.AccountAdapter"
 SOCIALACCOUNT_ADAPTER = "stl_dsa.users.adapters.SocialAccountAdapter"
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_FORMS = {'signup': 'stl_dsa.users.forms.SignUpForm'}
 # django-reset-framework
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
