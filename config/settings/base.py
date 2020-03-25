@@ -306,3 +306,4 @@ REST_FRAMEWORK = {
 # ------------------------------------------------------------------------------
 WAGTAIL_SITE_NAME = 'St Louis DSA'
 ACTIONNETWORK_API_KEY = os.environ['ACTIONNETWORK_API_KEY']
+SILENCED_SYSTEM_CHECKS = ["auth.W004"]
