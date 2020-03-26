@@ -2,5 +2,19 @@
 
 {% block content %}
 {{ page.banner_title }}
-Hello World
+<div style='text-align: center'>
+<h2>We are the St Louis Democratic Socialists of America</h2>
+
+<h4>Our Mission:</h4>
+
+<h6>Create a more equitable world by establishing socialism as a political force</h6>
+
+ 
+
+<h4>We Believe:</h4>
+
+<h6>Our governments and economy should operate, through social ownership, for the benefit of all</h6>
+
+<a href="{% url 'account_signup' %}">Sign Up</a> or <a href="{% url 'account_login' %}">Log In</a> today!
+</div>
 {% endblock %}

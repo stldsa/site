@@ -5,8 +5,8 @@
 <ul>
 {% for event in upcoming_events %}
     <li style="list-style-type:none;">
-        <h3><a href={{ event.actionnetwork_url }}>{{ event.title }}</a></h3>
-        <h4>{{ event.date|date }} | {{ event.start_time }}</h4>
+        <h3>{{ event.title }}</h3>
+        <h4>{{ event.date|date }} | {{ event.start_time }} | <a href={{ event.actionnetwork_url }}>RSVP</a></a></h4>
         <p>{{ event.description|safe }}</p>
     </li>
 {% empty %}
