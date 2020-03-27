@@ -13,6 +13,13 @@ Website for the St Louis chapter of the Democratic Socialists of America
 
 :License: MIT
 
+Setting Up Your Local Environment
+---------------------------------
+
+1) Make sure you have postgresql install and ``CREATE DATABASE stl_dsa (note the underscore)``
+2) Create a virtualenv (I use virtualenv wrapper) and cd into the virtual environment.
+3) run ``pip install -r requirements/local.txt``
+4) run ``python manage.py runserver``
 
 Settings
 --------
