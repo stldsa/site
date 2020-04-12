@@ -8,7 +8,8 @@ from django.dispatch import receiver
 
 class Person(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL)
-    name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
     email = models.EmailField()
     phone = PhoneNumberField()
 
@@ -21,8 +22,14 @@ class Person(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.person.save()
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
 class Committee(models.Model):
     name = models.CharField(max_length=30)
+    slug = models.CharField(max_length=10, null=True)
     leader = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name='committee_leader')
     people = models.ManyToManyField(Person, related_name='committee_member')
 
+    def __str__(self):
+        return self.name

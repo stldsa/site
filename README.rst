@@ -17,7 +17,7 @@ Setting Up Your Local Environment
 ---------------------------------
 
 1) Make sure you have postgresql installed and in psql run  ``CREATE DATABASE stl_dsa`` (note the underscore)
-2) Create a virtualenv (I use virtualenv wrapper) and cd into the virtual environment. Python version must be 3.7 or higher.
+2) Create a virtualenv (I use virtualenv wrapper) and cd into the virtual environment. Python version must be 3.7 or higher. To specify a python version with virtualenvwrapper, use ``mkvirtualenv -p [path/to/python/version] [name-of-environment]``
 3) ``pip install -r requirements/local.txt``
 4) ``python manage.py makemigrations``
 5) ``python manage.py migrate``
