@@ -13,14 +13,14 @@ class Person(models.Model):
     email = models.EmailField()
     phone = PhoneNumberField()
 
-    # @receiver(post_save, sender=User)
-    # def create_user_profile(sender, instance, created, **kwargs):
-    #     if created:
-    #         Person.objects.create(user=instance)
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Person.objects.create(user=instance)
 
-    # @receiver(post_save, sender=User)
-    # def save_user_profile(sender, instance, **kwargs):
-    #     instance.person.save()
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.person.save()
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
