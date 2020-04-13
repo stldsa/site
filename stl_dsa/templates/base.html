@@ -1,4 +1,5 @@
 {% load static wagtailuserbar i18n %}
+{% load wagtailcore_tags %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -48,8 +49,8 @@
                     About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'news' %}">News and Updates</a>
-                    <a class="dropdown-item" href="{% url 'bylaws' %}">Chapter Bylaws</a>
+                    <a class="dropdown-item" href="{% slugurl 'news' %}">News and Updates</a>
+                    <a class="dropdown-item" href="{% slugurl 'bylaws' %}">Chapter Bylaws</a>
                     <a class="dropdown-item" href="#">Who We Are</a>
                     <a class="dropdown-item" href="#">FAQ</a>
                     </div>
