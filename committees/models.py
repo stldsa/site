@@ -36,8 +36,8 @@ class Committee(models.Model):
     description = models.TextField()
     slug = models.CharField(max_length=10, null=True)
     formation_type = models.CharField(max_length=2, choices=FORMATION_CHOICES, default='')
-    leader = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name='committee_leader')
-    people = models.ManyToManyField(Person, related_name='committee_member')
+    leader = models.ForeignKey(Person, null=True, blank=True, on_delete=models.SET_NULL, related_name='committee_leader')
+    people = models.ManyToManyField(Person, related_name='committee_member', blank=True)
 
     def __str__(self):
         return self.name # + ' ' + self.get_formation_type_display
