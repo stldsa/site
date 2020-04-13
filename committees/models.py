@@ -25,6 +25,10 @@ class Person(models.Model):
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 
+    @property
+    def anonymous_name(self):
+        return self.first_name + ' ' + self.last_name[:1] + '.'
+
 class Committee(models.Model):
     COMMITTEE = 'C'
     WORKING_GROUP = 'WG'

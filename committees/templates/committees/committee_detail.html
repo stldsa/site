@@ -3,6 +3,9 @@
 {% block content %}
 
 <h2>{{ committee.name }} {{ committee.get_formation_type_display }}</h2>
-<p><h4>Current Chair:</h4> {{ committee.leader }}</p>
-<p><h4>Description:</h4></p>
+<div class='container'><h4>Current Chair:</h4> 
+    <p>{{ committee.leader.anonymous_name }} | {{ committee.leader.email }}</p>
+    <h4>Description:</h4>
+    <p>{{ committee.description }}</p>
+</div>
 {% endblock %}
