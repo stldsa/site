@@ -13,4 +13,4 @@ class User(AbstractUser):
     first_name = models.CharField(null=True, blank=True, max_length=30)
     last_name = models.CharField(null=True, blank=True, max_length=30)
     def get_absolute_url(self):
-        return reverse("users:detail", kwargs={"username": self.username})
+        return reverse("users:detail", kwargs={"id": self.pk})
