@@ -14,10 +14,82 @@
 
 @font-face {
   font-family: 'ManifoldDSA';
-  src: 
-       url('../fonts/ManifoldDSA/OTF/ManifoldDSA-Regular.otf');
+  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ManifoldDSA';
+  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-Bold.otf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ManifoldDSA';
+  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-BoldItalic.otf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ManifoldDSA';
+  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-DemiBold.otf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ManifoldDSA';
+  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-DemiBoldItalic.otf');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ManifoldDSA';
+  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-ExtraBold.otf');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ManifoldDSA';
+  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-ExtraBoldItalic.otf');
+  font-weight: 800;
+  font-style: italic;
 }
 
 body{
   font-family: 'ManifoldDSA';
+}
+
+h1,h2,h3,h4,a{
+  color:#EC1F27
+}
+
+h1{ 
+  font-weight:800; 
+}
+
+h2{ 
+  font-weight:bold 
+}
+
+h3, h4{
+  font-weight:600;
+}
+
+b{
+  font-weight:bolder;
+}
+
+.content{
+  padding-top: 20px;
+}
+
+.dropdown-header{
+  font-weight: bold;
+  color:#EC1F27;
 }

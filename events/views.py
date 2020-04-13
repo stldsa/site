@@ -11,7 +11,6 @@ def event_list(request):
     response = requests.get('https://actionnetwork.org/api/v2/events/', headers = {'OSDI-API-Token': settings.ACTIONNETWORK_API_KEY})
     events_json = response.json()
     events = events_json['_embedded']['osdi:events']
-    print(events)
     upcoming_events = []
     for event in events:
         info = {}
