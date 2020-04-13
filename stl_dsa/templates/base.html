@@ -48,8 +48,8 @@
                     About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="news">News and Updates</a>
-                    <a class="dropdown-item" href="bylaws">Chapter Bylaws</a>
+                    <a class="dropdown-item" href="{% url 'news' %}">News and Updates</a>
+                    <a class="dropdown-item" href="{% url 'bylaws' %}">Chapter Bylaws</a>
                     <a class="dropdown-item" href="#">Who We Are</a>
                     <a class="dropdown-item" href="#">FAQ</a>
                     </div>
@@ -68,15 +68,15 @@
                     <a class="dropdown-item" href="#">Socialist Night School</a>
                     <a class="dropdown-item" href="#">COVID-19 Response</a>
                     <div class="dropdown-header">Working Groups</div>
-                    <a class="dropdown-item" href="committees/crimjust">Criminal Justice</a>
-                    <a class="dropdown-item" href="committees/electoral">Electoral</a>
-                    <a class="dropdown-item" href="committees/h4a">Healthcare</a>
+                    <a class="dropdown-item" href="{% url 'committees/crimjust' %}">Criminal Justice</a>
+                    <a class="dropdown-item" href="{% url 'committees/electoral' %}">Electoral</a>
+                    <a class="dropdown-item" href="{% url 'committees/h4a' %}">Healthcare</a>
                     <a class="dropdown-item" href="#">Labor</a>
-                    <a class="dropdown-item" href="committees/socfem">Socialist Feminists</a>
+                    <a class="dropdown-item" href="{% url 'committees/socfem' %}">Socialist Feminists</a>
                     <div class="dropdown-header">Committees</div>
-                    <a class="dropdown-item" href="committees/comms">Communications</a>
-                    <a class="dropdown-item" href="committees/community">Community</a>
-                    <a class="dropdown-item" href="committees/technology">Tech</a>
+                    <a class="dropdown-item" href="{% url 'committees/comms' %}">Communications</a>
+                    <a class="dropdown-item" href="{% url 'committees/community' %}">Community</a>
+                    <a class="dropdown-item" href="{% url 'committees/tech' %}">Tech</a>
                 </li>
                 {% if request.user.is_authenticated %}
                   <li class="nav-item">
