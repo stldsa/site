@@ -33,6 +33,7 @@ class Committee(models.Model):
         (WORKING_GROUP, 'Working Group'),
     ]
     name = models.CharField(max_length=30)
+    description = models.TextField()
     slug = models.CharField(max_length=10, null=True)
     formation_type = models.CharField(max_length=2, choices=FORMATION_CHOICES, default='')
     leader = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name='committee_leader')
