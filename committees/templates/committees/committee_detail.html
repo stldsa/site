@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>{{ committee.name }}</h1>
+<h1>{{ committee.name }} {{ committee.get_formation_type_display }}</h1>
 <p>Current Chair: {{ committee.leader }}</p>
 
 {% endblock %}

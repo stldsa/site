@@ -26,10 +26,17 @@ class Person(models.Model):
         return self.first_name + ' ' + self.last_name
 
 class Committee(models.Model):
+    COMMITTEE = 'C'
+    WORKING_GROUP = 'WG'
+    FORMATION_CHOICES = [
+        (COMMITTEE, 'Committee'),
+        (WORKING_GROUP, 'Working Group'),
+    ]
     name = models.CharField(max_length=30)
     slug = models.CharField(max_length=10, null=True)
+    formation_type = models.CharField(max_length=2, choices=FORMATION_CHOICES, default='')
     leader = models.ForeignKey(Person, null=True, on_delete=models.SET_NULL, related_name='committee_leader')
     people = models.ManyToManyField(Person, related_name='committee_member')
 
     def __str__(self):
-        return self.name
+        return self.name # + ' ' + self.get_formation_type_display
