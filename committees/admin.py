@@ -1,6 +1,17 @@
 from django.contrib import admin
-from .models import Committee, Person
+from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
+from .models import CommitteePage, Person
+
+class CommitteeAdmin(ModelAdmin):
+    model = CommitteePage
+    menu_label = "Committees"
+    menu_order = 300
+    add_to_settings_menu = False
+    exclude_from_explorer = False
+    # list_display = ('name','formation_type')
+
+modeladmin_register(CommitteeAdmin)
 
 # Register your models here.
-admin.site.register(Person)
-admin.site.register(Committee)
+# admin.site.register(Person)
+# admin.site.register(Committee)

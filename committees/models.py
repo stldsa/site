@@ -3,6 +3,11 @@ from stl_dsa.users.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from wagtail.core.models import Page
+from wagtail.core.fields import RichTextField
+from wagtail.snippets.models import register_snippet
+from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.search import index
 
 # Create your models here.
 
@@ -29,19 +34,62 @@ class Person(models.Model):
     def anonymous_name(self):
         return self.first_name + ' ' + self.last_name[:1] + '.'
 
-class Committee(models.Model):
+# class Committee(models.Model):
+#     COMMITTEE = 'C'
+#     WORKING_GROUP = 'WG'
+#     FORMATION_CHOICES = [
+#         (COMMITTEE, 'Committee'),
+#         (WORKING_GROUP, 'Working Group'),
+#     ]
+#     name = models.CharField(max_length=30)
+#     # description = models.TextField()
+#     slug = models.CharField(max_length=10, null=True)
+#     formation_type = models.CharField(max_length=2, choices=FORMATION_CHOICES, default='')
+#     leader = models.ForeignKey(Person, null=True, blank=True, on_delete=models.SET_NULL, related_name='committee_leader')
+#     people = models.ManyToManyField(Person, related_name='committee_member', blank=True)
+    
+#     panels = [
+#         FieldPanel('description'),
+#     ]
+
+#     def __str__(self):
+#         return self.name # + ' ' + self.get_formation_type_display
+
+
+
+class CommitteePage(Page):
+    parent_page_types = ['CommitteesPage']
+    subpage_types = []
+
     COMMITTEE = 'C'
     WORKING_GROUP = 'WG'
     FORMATION_CHOICES = [
         (COMMITTEE, 'Committee'),
         (WORKING_GROUP, 'Working Group'),
     ]
+
     name = models.CharField(max_length=30)
-    description = models.TextField()
-    slug = models.CharField(max_length=10, null=True)
+    description = RichTextField()
     formation_type = models.CharField(max_length=2, choices=FORMATION_CHOICES, default='')
     leader = models.ForeignKey(Person, null=True, blank=True, on_delete=models.SET_NULL, related_name='committee_leader')
     people = models.ManyToManyField(Person, related_name='committee_member', blank=True)
+    
 
-    def __str__(self):
-        return self.name # + ' ' + self.get_formation_type_display
+    search_fields = Page.search_fields + [
+        index.SearchField('description')
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('name'),
+        FieldPanel('description'),
+        FieldPanel('formation_type'),
+        FieldPanel('leader'),
+    ]
+
+class CommitteesPage(Page):
+    def get_context(self, request):
+        # Update context to include only published posts, ordered by reverse-chron
+        context = super().get_context(request)
+        committees = CommitteePage.objects.all().order_by('title')
+        context['committees'] = committees
+        return context

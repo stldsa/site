@@ -4,8 +4,8 @@
 {% block body_class %}template-homepage{% endblock %} -->
 
 {% block content %}
-    <div style='text-align:center;'>
-        <h2>{{ page.banner_title }}</h2>
+    <div class='mw-50 border border-danger container' style='text-align:center;'>
+        <h2><span>{{ page.banner_title }}</span></h2>
         <div class='container'>{{ page.body|richtext }}</div>
     </div>
     <h2 class="my-4">A Message from the Co-Chairs:</h2>

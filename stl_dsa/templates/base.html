@@ -51,33 +51,36 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/news">News and Updates</a>
                     <a class="dropdown-item" href="/bylaws">Chapter Bylaws</a>
-                    <a class="dropdown-item" href="#">Who We Are</a>
-                    <a class="dropdown-item" href="#">FAQ</a>
+                    <a class="dropdown-item" href="/resources">Resources</a>
+                    <a class="dropdown-item" href="/ec">Executive Committee</a>
+                    <div class="dropdown-header">Chapter Priorities</div>
+                    <a class="dropdown-item" href="#">Anti-Privatization</a>
+                    <a class="dropdown-item" href="#">Healthcare for All</a>
+                    <a class="dropdown-item" href="#">Socialist Night School</a>
+                    <a class="dropdown-item" href="#">COVID-19 Response</a>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'events' %}">Events</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="/formations" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     The Work
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <div class="dropdown-header">Chapter Priorities</div>
-                    <a class="dropdown-item" href="#">Anti-Privatization</a>
-                    <a class="dropdown-item" href="#">Healthcare for All</a>
-                    <a class="dropdown-item" href="#">Socialist Night School</a>
-                    <a class="dropdown-item" href="#">COVID-19 Response</a>
                     <div class="dropdown-header">Working Groups</div>
-                    <a class="dropdown-item" href="/committees/crimjust">Criminal Justice</a>
-                    <a class="dropdown-item" href="/committees/electoral">Electoral</a>
-                    <a class="dropdown-item" href="/committees/h4a' %}">Healthcare</a>
+                    <a class="dropdown-item" href="/formations/cjr">Criminal Justice</a>
+                    <a class="dropdown-item" href="/formations/electoral">Electoral</a>
+                    <a class="dropdown-item" href="/formations/h4a">Healthcare</a>
                     <a class="dropdown-item" href="#">Labor</a>
-                    <a class="dropdown-item" href="/committees/socfem' %}">Socialist Feminists</a>
+                    <a class="dropdown-item" href="/formations/socfem'">Socialist Feminists</a>
                     <div class="dropdown-header">Committees</div>
-                    <a class="dropdown-item" href="/committees/comms' %}">Communications</a>
-                    <a class="dropdown-item" href="/committees/community' %}">Community</a>
-                    <a class="dropdown-item" href="/committees/tech' %}">Tech</a>
+                    <a class="dropdown-item" href="/formations/comms">Communications</a>
+                    <a class="dropdown-item" href="/formations/community">Community</a>
+                    <a class="dropdown-item" href="/formations/tech">Tech</a>
+                    <div class="dropdown-header">Caucuses</div>
+                    <a class="dropdown-item" href="/formations/afrosoc">Afro-Socialists & Socialists of Color</a>
+                    
                 </li>
                 {% if request.user.is_authenticated %}
                   <li class="nav-item">
@@ -103,6 +106,7 @@
                 <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
                 <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
                 <!-- </form> -->
+                <img src="{% static 'images/DSA_header.png' %}"  height="70" class="d-inline-block" alt="">
             </div>
         </nav>
         <div class='container'>

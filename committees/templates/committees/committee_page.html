@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<h2>{{ page.committee.name }} {{ page.committee.get_formation_type_display }}</h2>
+<div class='container'><h4>Current Chair:</h4> 
+    <p>{{ page.committee.leader.anonymous_name }} | {{ page.committee.leader.email }}</p>
+    <h4>Description:</h4>
+    <p>{{ page.description|richtext }}</p>
+</div>
+
+{% endblock %}

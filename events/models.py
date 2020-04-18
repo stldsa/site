@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 from django.db import models
-from committees.models import Committee
+from committees.models import CommitteePage
 
 # Create your models here.
 
@@ -18,7 +18,7 @@ class Event(models.Model):
     city = models.CharField(max_length=30, null=True, blank=True)
     state = models.CharField(max_length=2, null=True, blank=True)
     zip = models.IntegerField(null=True, blank=True)
-    formation = models.ForeignKey(Committee, null=True, on_delete=models.CASCADE, blank=True)
+    formation = models.ForeignKey(CommitteePage, null=True, on_delete=models.CASCADE, blank=True)
     actionnetwork_url = models.URLField()
     actionnetwork_id = models.CharField(max_length=50)
 

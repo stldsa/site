@@ -74,10 +74,19 @@ h1{
 }
 
 h2{ 
-  font-weight:bold 
+  font-weight:bold;
+}
+
+h2 span{
+  background-color: #EC1F27;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  text-shadow: -1px 2px #7B7879
 }
 
 h3, h4{
+  margin-top:20px;
   font-weight:600;
 }
 
@@ -86,6 +95,7 @@ b{
 }
 
 .content{
+  margin-top: 96px;
   padding-top: 20px;
 }
 
@@ -94,6 +104,31 @@ b{
   color:#EC1F27;
 }
 
+nav{
+  z-index:9999;
+}
+
 .nav-item{
   font-weight:bold;
+}
+
+.navbar-brand h1{
+  vertical-align:middle;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+/* p{
+  display: inline-block;
+} */
+
+.content .container{
+
+  background-color: #E9E8E8;
+  border-radius: 20px;
+  padding-bottom: 10px;
 }
