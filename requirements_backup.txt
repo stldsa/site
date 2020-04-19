@@ -120,7 +120,7 @@ Unidecode==1.1.1
 uritemplate==3.0.1
 urllib3==1.25.8
 virtualenv==20.0.13
-wagtail==2.8
+wagtail==2.8.1
 wcwidth==0.1.9
 webencodings==0.5.1
 Werkzeug==0.16.1
