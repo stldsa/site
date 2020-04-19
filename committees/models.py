@@ -84,7 +84,8 @@ class CommitteePage(Page):
         FieldPanel('name'),
         FieldPanel('description'),
         FieldPanel('formation_type'),
-        FieldPanel('leader'),
+        FieldPanel('leader_name'),
+        FieldPanel('email')
     ]
 
 class CommitteesPage(Page):
