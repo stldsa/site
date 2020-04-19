@@ -11,6 +11,7 @@
 
     {% for post in blogpages %}
         <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+        <h5>{{ post.specific.date|date }}</h5>
         {{ post.specific.message }}
         {{ post.specific.body|richtext }}
     {% endfor %}
