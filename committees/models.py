@@ -13,9 +13,6 @@ from wagtail.search import index
 
 class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField()
     phone = PhoneNumberField(null=True, blank=True)
 
     @receiver(post_save, sender=User)
@@ -28,11 +25,11 @@ class Person(models.Model):
         instance.person.save()
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return self.user.first_name + ' ' + self.user.last_name
 
     @property
     def anonymous_name(self):
-        return self.first_name + ' ' + self.last_name[:1] + '.'
+        return self.user.first_name + ' ' + self.user.last_name[:1] + '.'
 
 # class Committee(models.Model):
 #     COMMITTEE = 'C'
