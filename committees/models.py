@@ -58,17 +58,21 @@ class CommitteePage(Page):
     parent_page_types = ['CommitteesPage']
     subpage_types = []
 
-    COMMITTEE = 'C'
+    COMMITTEE = 'CT'
     WORKING_GROUP = 'WG'
+    CAUCUS = 'CU'
     FORMATION_CHOICES = [
         (COMMITTEE, 'Committee'),
         (WORKING_GROUP, 'Working Group'),
+        (CAUCUS, 'Caucus'),
     ]
 
     name = models.CharField(max_length=30)
     description = RichTextField()
     formation_type = models.CharField(max_length=2, choices=FORMATION_CHOICES, default='')
     leader = models.ForeignKey(Person, null=True, blank=True, on_delete=models.SET_NULL, related_name='committee_leader')
+    leader_name = models.CharField(max_length=30)
+    email = models.EmailField()
     people = models.ManyToManyField(Person, related_name='committee_member', blank=True)
     
 
