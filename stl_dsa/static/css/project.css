@@ -77,12 +77,15 @@ h2{
   font-weight:bold;
 }
 
-h2 span{
+.bgred h2{
+  display: inline-block;
   background-color: #EC1F27;
   color: white;
   border-radius: 10px;
   padding: 10px;
-  text-shadow: -1px 2px #7B7879
+  text-shadow: -1px 2px #7B7879;
+  border: 1px solid black;
+  margin:auto;
 }
 
 h3, h4{
@@ -131,4 +134,8 @@ nav{
   background-color: #E9E8E8;
   border-radius: 20px;
   padding-bottom: 10px;
+}
+
+.box{
+  display:inline-block;
 }

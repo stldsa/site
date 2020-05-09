@@ -4,10 +4,11 @@
 {% block body_class %}template-homepage{% endblock %} -->
 
 {% block content %}
-    <div class='mw-50 border border-danger container' style='text-align:center;'>
-        <h2><span>{{ page.banner_title }}</span></h2>
+    <div class='col-md-auto container border border-danger d-block' style='text-align:center;'>
+        <div class='bgred'><h2>{{ page.banner_title }}</h2></div>
         <div class='container'>{{ page.body|richtext }}</div>
     </div>
+  
     <h2 class="my-4">A Message from the Co-Chairs:</h2>
     
       <!-- Portfolio Item Row -->
