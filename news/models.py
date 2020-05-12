@@ -1,8 +1,9 @@
 from django.db import models
 from wagtail.search import index
+from wagtail.core import blocks
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 
 
 class NewsIndexPage(Page):
@@ -35,6 +36,9 @@ class NewsPage(Page):
 
 class InfoPage(Page):
     body = RichTextField(blank=True)
+    additional_content = StreamField([
+        ('embed', blocks.RawHTMLBlock())
+    ], null=True, blank=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
@@ -42,4 +46,5 @@ class InfoPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full"),
+        StreamFieldPanel('additional_content')
     ]
