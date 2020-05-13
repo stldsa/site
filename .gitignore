@@ -286,4 +286,4 @@ stl_dsa/media/
 
 .env
 .envs/*
-!.envs/.local/
+# !.envs/.local/
