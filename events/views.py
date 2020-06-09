@@ -21,6 +21,7 @@ def update_events():
 
         tz = pytz.timezone('America/Chicago')
         chicago_now = datetime.now(tz)
+        APICalls.objects.all().delete()
         APICalls(datetime=chicago_now).save()
         events_json = response.json()
         events += events_json['_embedded']['osdi:events']
