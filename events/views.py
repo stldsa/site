@@ -14,7 +14,7 @@ def update_events():
     for key in settings.ACTIONNETWORK_API_KEYS:
         response = requests.get(
             'https://actionnetwork.org/api/v2/events/', 
-            # params = {'filter': f'modified_date gt \'{last_api_call}\''},
+            params = {'filter': f'modified_date gt \'{last_api_call}\''},
             headers = {'OSDI-API-Token': key},
         )
         tz = pytz.timezone('America/Chicago')
