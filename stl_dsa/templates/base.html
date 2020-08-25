@@ -84,7 +84,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/join_donate">Join/Donate</a>
                 </li>
-                {% if request.user.is_authenticated %}
+                <!-- {% if request.user.is_authenticated %}
                   <li class="nav-item">
                     {# URL provided by django-allauth/account/urls.py #}
                     <a class="nav-link" href="{% url 'users:detail' request.user.id  %}">{% trans "My Stuff" %}</a>
@@ -102,7 +102,7 @@
                     {# URL provided by django-allauth/account/urls.py #}
                     <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
                   </li>
-                {% endif %}
+                {% endif %} -->
                 </ul>
                 <!-- <form class="form-inline my-2 my-lg-0"> -->
                 <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
