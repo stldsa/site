@@ -41,6 +41,6 @@ class EventList(ListView):
 
     def get_queryset(self):
         update_events()
-        return Event.objects.filter(date__gte=datetime.today().date()).reverse()
+        return Event.objects.filter(date__gte=datetime.today().date()).order_by('date')
 
 event_list = EventList.as_view()

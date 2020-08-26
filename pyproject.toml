@@ -20,6 +20,7 @@ argon2-cffi = "^20.1.0"
 [tool.poetry.dev-dependencies]
 django-debug-toolbar = "^2.2"
 psycopg2-binary = "^2.8.5"
+pylint = "^2.6.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
