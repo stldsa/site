@@ -4,50 +4,55 @@
 {% block body_class %}template-homepage{% endblock %} -->
 
 {% block content %}
-    <div class='col-md-auto container border border-danger d-block' style='text-align:center;'>
-        <div class='bgred'><h2>{{ page.banner_title }}</h2></div>
-        <div class='container'>{{ page.body|richtext }}</div>
-    </div>
-  
-    <h2 class="my-4">A Message from the Co-Chairs:</h2>
-    <h3>{{ update.title }}</h3>
-      <!-- Portfolio Item Row -->
-      <div class="row">
-    
-        <div class="col-md-8">
-          {{ update.body|richtext }}
-        </div>
-    
-        <div class="col-md-4">
-          <h3 class="my-3">Chapter Priorities</h3>
-          <p>Our chapter has passed some resolutions establishing certain chapter priorities. </p>
-          <ul>
-            <li>Anti-Privatization</li>
-            <li>Medicaid Expansion and Universal Healthcare</li>
-            <li>Socialist Night School</li>
-            <li>COVID-19 Response</li>
-          </ul>
-          <p>If you're new to DSA, please sign up to help in one or more using <a href='https://airtable.com/shrhSj4AITFuwcOj0'>this form.</a></p>
-        </div>
-    
-      </div>
-      <!-- /.row -->
-      <link href='https://actionnetwork.org/css/style-embed-v3.css' rel='stylesheet' type='text/css' />
-      <script src='https://actionnetwork.org/widgets/v3/form/stay-up-to-date-with-stl-dsa?format=js&source=widget'></script>
-      <div id='can-form-area-stay-up-to-date-with-stl-dsa' style='width: 100%'><!-- this div is the target for our HTML insertion --></div>
-      <!-- Related Projects Row -->
-      <h2 class="my-4">Upcoming Events:</h2>
-      
-      <div class="row">
-        {% for event in events %}
-        <div class="col-md-3 col-sm-6 mb-4">
-            <a href='{{ event.actionnetwork_url }}'>
-                <h4>{{ event.title }}</h4>
-            </a>
-            <p>{{ event.date|date }} | {{ event.start_time }} | <b><a href={{ event.actionnetwork_url }}>RSVP</a></b></p>
-        </div>
-        {% endfor %}
-    
-      </div>
-      <!-- /.row -->
+<div class='col-md-auto container border border-danger d-block' style='text-align:center;'>
+  <div class='bgred'>
+    <h2>{{ page.banner_title }}</h2>
+  </div>
+  <div class='container'>{{ page.body|richtext }}</div>
+</div>
+
+<h2 class="my-4">A Message from the Co-Chairs:</h2>
+<h3>{{ update.title }}</h3>
+<!-- Portfolio Item Row -->
+<div class="row">
+
+  <div class="col-md-8">
+    {{ update.body|richtext }}
+  </div>
+
+  <div class="col-md-4">
+    <h3 class="my-3">Chapter Priorities</h3>
+    <p>Our chapter has passed some resolutions establishing certain chapter priorities. </p>
+    <ul>
+      <li>Strengthening STL DSA's Membership Base</li>
+      <li>Continuing socialist education with the Socialist Night School</li>
+      <li>Emphasizing our commitment to Protect Public Ownership</li>
+      <li>Committing to defeat Amendment 3 on the November ballot</li>
+    </ul>
+    <p>If you're new to DSA, please sign up to help in one or more using <a
+        href='https://airtable.com/shrhSj4AITFuwcOj0'>this form.</a></p>
+  </div>
+
+</div>
+<!-- /.row -->
+<link href='https://actionnetwork.org/css/style-embed-v3.css' rel='stylesheet' type='text/css' />
+<script src='https://actionnetwork.org/widgets/v3/form/stay-up-to-date-with-stl-dsa?format=js&source=widget'></script>
+<div id='can-form-area-stay-up-to-date-with-stl-dsa' style='width: 100%'>
+  <!-- this div is the target for our HTML insertion -->
+</div>
+<!-- Related Projects Row -->
+<h2 class="my-4">Upcoming Events:</h2>
+
+<div class="row">
+  {% for event in events %}
+  <div class="col-md-3 col-sm-6 mb-4">
+    <a href='{{ event.actionnetwork_url }}'>
+      <h4>{{ event.title }}</h4>
+    </a>
+    <p>{{ event.date|date }} | {{ event.start_time }} | <b><a href={{ event.actionnetwork_url }}>RSVP</a></b></p>
+  </div>
+  {% endfor %}
+
+</div>
+<!-- /.row -->
 {% endblock %}
