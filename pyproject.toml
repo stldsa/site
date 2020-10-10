@@ -17,6 +17,7 @@ wagtail = "^2.9"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "^4.0.0"}
 argon2-cffi = "^20.1.0"
 environ = "^1.0"
+selenium = "^3.141.0"
 
 [tool.poetry.dev-dependencies]
 django-debug-toolbar = "^2.2"
