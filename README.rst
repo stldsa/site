@@ -24,7 +24,8 @@ Prerequisites
 Setting Up Your Local Environment
 ---------------------------------
 
-* ``poetry init``
+* ``poetry init`` to initialize virtual environment
+* ``poetry shell`` to open your virtual environment shell
 
 Initialize Database
 -------------------
