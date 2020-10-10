@@ -41,9 +41,7 @@ LOCALE_PATHS = [ROOT_DIR.path("locale")]
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = {
-    "default": env.db("DATABASE_URL", default="postgres:///stl_dsa")
-}
+DATABASES = {"default": env.db("DATABASE_URL", default="postgres:///stl_dsa")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # URLS
@@ -72,30 +70,31 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework",
-    'wagtail.contrib.forms',
-    'wagtail.contrib.redirects',
-    'wagtail.contrib.modeladmin',
-    'wagtail.embeds',
-    'wagtail.sites',
-    'wagtail.users',
-    'wagtail.snippets',
-    'wagtail.documents',
-    'wagtail.images',
-    'wagtail.search',
-    'wagtail.admin',
-    'wagtail.core',
-    'taggit',
-    'modelcluster',
+    "rest_framework.authtoken",
+    "wagtail.contrib.forms",
+    "wagtail.contrib.redirects",
+    "wagtail.contrib.modeladmin",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail.core",
+    "taggit",
+    "modelcluster",
 ]
 
 LOCAL_APPS = [
     "stl_dsa.users.apps.UsersConfig",
     # Your stuff: custom apps go here
-    'home',
-    'events',
-    'committees',
-    'phonenumber_field',
-    'news'
+    "home",
+    "events",
+    "committees",
+    "phonenumber_field",
+    "news",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -153,8 +152,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'wagtail.core.middleware.SiteMiddleware',
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    "wagtail.core.middleware.SiteMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 # STATIC
@@ -291,7 +290,7 @@ ACCOUNT_ADAPTER = "stl_dsa.users.adapters.MyAccountAdapter"
 SOCIALACCOUNT_ADAPTER = "stl_dsa.users.adapters.SocialAccountAdapter"
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_FORMS = {'signup': 'stl_dsa.users.forms.SignUpForm'}
+ACCOUNT_FORMS = {"signup": "stl_dsa.users.forms.SignUpForm"}
 ACCOUNT_USER_DISPLAY = lambda user: user.get_full_name()
 # django-reset-framework
 # -------------------------------------------------------------------------------
@@ -305,6 +304,6 @@ REST_FRAMEWORK = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
-WAGTAIL_SITE_NAME = 'St Louis DSA'
-ACTIONNETWORK_API_KEYS = json.loads(os.environ.get('ACTIONNETWORK_API_KEYS',"[]"))
+WAGTAIL_SITE_NAME = "St Louis DSA"
+ACTIONNETWORK_API_KEYS = json.loads(os.environ.get("ACTIONNETWORK_API_KEYS", "[]"))
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
