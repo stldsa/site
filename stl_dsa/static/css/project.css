@@ -81,9 +81,8 @@ h2{
   display: inline-block;
   background-color: #EC1F27;
   color: white;
-  border-radius: 10px;
+  border-radius: 1px;
   padding: 10px;
-  text-shadow: -1px 2px #7B7879;
   border: 1px solid black;
   margin:auto;
 }
@@ -131,8 +130,8 @@ nav{
 
 .content .container{
 
-  background-color: #E9E8E8;
-  border-radius: 20px;
+  background-color: white;
+  border-radius: 2px;
   padding-bottom: 10px;
 }
 
