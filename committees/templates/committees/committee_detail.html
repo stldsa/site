@@ -3,9 +3,17 @@
 {% block content %}
 
 <h2>{{ committee.name }} {{ committee.get_formation_type_display }}</h2>
-<div class='container'><h4>Current Chair:</h4> 
-    <p>{{ committee.leader.anonymous_name }} | {{ committee.leader.email }}</p>
-    <h4>Description:</h4>
-    <p>{{ committee.description }}</p>
+<div class='container'>
+    <div class="row">
+        <div class="col-sm">
+            <h4>Current Chair:</h4>
+            <p>{{ committee.leader.anonymous_name }} | {{ committee.leader.email }}</p>
+            <h4>Description:</h4>
+            <p>{{ committee.description }}</p>
+        </div>
+        <div class="col-sm">
+            <h1>Placeholder</h1>
+        </div>
+    </div>
 </div>
 {% endblock %}
