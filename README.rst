@@ -15,7 +15,7 @@ Website for the St Louis chapter of the Democratic Socialists of America
 
 Prerequisites
 -------------
-* python 3.8+
+* python 3.8.5 (I suggest pyenv to manage python versions)
 * poetry_ dependency manager
 * postgresql
 
