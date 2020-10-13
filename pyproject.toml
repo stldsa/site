@@ -20,6 +20,7 @@ environ = "^1.0"
 selenium = "^3.141.0"
 wagtailmenus = "^3.0.2"
 django-anymail = "^8.1"
+psycopg2 = "^2.8.6"
 
 [tool.poetry.dev-dependencies]
 django-debug-toolbar = "^2.2"
