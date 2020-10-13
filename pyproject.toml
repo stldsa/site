@@ -19,6 +19,7 @@ argon2-cffi = "^20.1.0"
 environ = "^1.0"
 selenium = "^3.141.0"
 wagtailmenus = "^3.0.2"
+django-anymail = "^8.1"
 
 [tool.poetry.dev-dependencies]
 django-debug-toolbar = "^2.2"

@@ -178,6 +178,21 @@ requests = "*"
 requests-oauthlib = ">=0.3.0"
 
 [[package]]
+name = "django-anymail"
+version = "8.1"
+description = "Django email integration for Amazon SES, Mailgun, Mailjet, Postmark, SendGrid, SendinBlue, SparkPost and other transactional ESPs"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+django = ">=2.0"
+requests = ">=2.4.3"
+
+[package.extras]
+amazon_ses = ["boto3"]
+
+[[package]]
 name = "django-cogwheels"
 version = "0.3"
 description = "A consistent, user-friendly solution for adding app-specific settings your Django package, reusable app or framework."
@@ -734,7 +749,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.8.5"
-content-hash = "4ce3ac8bf0a4e8b922ac753f1ef51911963566409d6fa8b2166ff1d26b091735"
+content-hash = "9fc2f137b5aee77ee8696111a4d4426dcb04be0e0ad1f6dcd452de3b8b456454"
 
 [metadata.files]
 appdirs = [
@@ -843,6 +858,10 @@ django = [
 ]
 django-allauth = [
     {file = "django-allauth-0.42.0.tar.gz", hash = "sha256:f17209410b7f87da0a84639fd79d3771b596a6d3fc1a8e48ce50dabc7f441d30"},
+]
+django-anymail = [
+    {file = "django-anymail-8.1.tar.gz", hash = "sha256:0c3e56a339a37e654b7511572564fe0949f4fbb12c072761c9e35cfc49cb4dc1"},
+    {file = "django_anymail-8.1-py3-none-any.whl", hash = "sha256:0301f2ea1dde7840e5276a5e2d1ca2a56fd558e2b71800e89ca895c18aa3c615"},
 ]
 django-cogwheels = [
     {file = "django-cogwheels-0.3.tar.gz", hash = "sha256:848a4d9f2c96c582a4a4f2e7c276dfd95ab3905748cae13bb7c4b365a6717e94"},
