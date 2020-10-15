@@ -11,6 +11,7 @@ from wagtail.search import index
 
 # Create your models here.
 
+
 class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
     phone = PhoneNumberField(null=True, blank=True)
@@ -25,75 +26,63 @@ class Person(models.Model):
         instance.person.save()
 
     def __str__(self):
-        return self.user.first_name + ' ' + self.user.last_name
+        return self.user.first_name + " " + self.user.last_name
 
     @property
     def anonymous_name(self):
-        return self.user.first_name + ' ' + self.user.last_name[:1] + '.'
-
-# class Committee(models.Model):
-#     COMMITTEE = 'C'
-#     WORKING_GROUP = 'WG'
-#     FORMATION_CHOICES = [
-#         (COMMITTEE, 'Committee'),
-#         (WORKING_GROUP, 'Working Group'),
-#     ]
-#     name = models.CharField(max_length=30)
-#     # description = models.TextField()
-#     slug = models.CharField(max_length=10, null=True)
-#     formation_type = models.CharField(max_length=2, choices=FORMATION_CHOICES, default='')
-#     leader = models.ForeignKey(Person, null=True, blank=True, on_delete=models.SET_NULL, related_name='committee_leader')
-#     people = models.ManyToManyField(Person, related_name='committee_member', blank=True)
-    
-#     panels = [
-#         FieldPanel('description'),
-#     ]
-
-#     def __str__(self):
-#         return self.name # + ' ' + self.get_formation_type_display
-
+        return self.user.first_name + " " + self.user.last_name[:1] + "."
 
 
 class CommitteePage(Page):
-    parent_page_types = ['CommitteesPage']
+    parent_page_types = ["CommitteesPage"]
     subpage_types = []
 
-    COMMITTEE = 'CT'
-    WORKING_GROUP = 'WG'
-    CAUCUS = 'CU'
+    COMMITTEE = "CT"
+    WORKING_GROUP = "WG"
+    CAUCUS = "CU"
+    PRIORITY = "PR"
     FORMATION_CHOICES = [
-        (COMMITTEE, 'Committee'),
-        (WORKING_GROUP, 'Working Group'),
-        (CAUCUS, 'Caucus'),
+        (COMMITTEE, "Committee"),
+        (WORKING_GROUP, "Working Group"),
+        (CAUCUS, "Caucus"),
+        (PRIORITY, "Priority"),
     ]
 
     name = models.CharField(max_length=30)
     description = RichTextField()
-    formation_type = models.CharField(max_length=2, choices=FORMATION_CHOICES, default='')
-    leader = models.ForeignKey(Person, null=True, blank=True, on_delete=models.SET_NULL, related_name='committee_leader')
+    formation_type = models.CharField(
+        max_length=2, choices=FORMATION_CHOICES, default=""
+    )
+    leader = models.ForeignKey(
+        Person,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="committee_leader",
+    )
     leader_name = models.CharField(max_length=30)
     email = models.EmailField()
-    people = models.ManyToManyField(Person, related_name='committee_member', blank=True)
-    
+    people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
+    api_key = models.CharField(max_length=32)
 
-    search_fields = Page.search_fields + [
-        index.SearchField('description')
-    ]
+    search_fields = Page.search_fields + [index.SearchField("description")]
 
     content_panels = Page.content_panels + [
-        FieldPanel('name'),
-        FieldPanel('description'),
-        FieldPanel('formation_type'),
-        FieldPanel('leader_name'),
-        FieldPanel('email')
+        FieldPanel("name"),
+        FieldPanel("description"),
+        FieldPanel("formation_type"),
+        FieldPanel("leader_name"),
+        FieldPanel("email"),
     ]
+
 
 class CommitteesPage(Page):
     parent_page_types = []
-    subpage_types = ['CommitteePage']
+    subpage_types = ["CommitteePage"]
+
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
-        committees = CommitteePage.objects.all().order_by('title')
-        context['committees'] = committees
+        committees = CommitteePage.objects.all().order_by("title")
+        context["committees"] = committees
         return context
