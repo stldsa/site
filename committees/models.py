@@ -63,7 +63,7 @@ class CommitteePage(Page):
     leader_name = models.CharField(max_length=30)
     email = models.EmailField()
     people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
-    api_key = models.CharField(max_length=32)
+    api_key = models.CharField(max_length=32, null=True, blank=True)
 
     search_fields = Page.search_fields + [index.SearchField("description")]
 
