@@ -152,6 +152,7 @@
         </div>
     </div>
 
+
     {# Global javascript #}
     <script type="text/javascript" src="{% static 'js/stldsa.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -167,6 +168,12 @@
     {% block extra_js %}
     {# Override this in templates to add extra javascript #}
     {% endblock %}
+
+    <footer>
+        <div class="container">
+            <p>© St Louis DSA - <a href="mailto:info@stldsa.org">info@stldsa.org</a></p>
+        </div>
+    </footer>
 
 </body>
 

@@ -13,109 +13,114 @@
 }
 
 @font-face {
-  font-family: 'ManifoldDSA';
-  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-Regular.otf');
+  font-family: "ManifoldDSA";
+  src: url("../fonts/ManifoldDSA/OTF/ManifoldDSA-Regular.otf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ManifoldDSA';
-  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-Bold.otf');
+  font-family: "ManifoldDSA";
+  src: url("../fonts/ManifoldDSA/OTF/ManifoldDSA-Bold.otf");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ManifoldDSA';
-  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-BoldItalic.otf');
+  font-family: "ManifoldDSA";
+  src: url("../fonts/ManifoldDSA/OTF/ManifoldDSA-BoldItalic.otf");
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'ManifoldDSA';
-  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-DemiBold.otf');
+  font-family: "ManifoldDSA";
+  src: url("../fonts/ManifoldDSA/OTF/ManifoldDSA-DemiBold.otf");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ManifoldDSA';
-  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-DemiBoldItalic.otf');
+  font-family: "ManifoldDSA";
+  src: url("../fonts/ManifoldDSA/OTF/ManifoldDSA-DemiBoldItalic.otf");
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'ManifoldDSA';
-  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-ExtraBold.otf');
+  font-family: "ManifoldDSA";
+  src: url("../fonts/ManifoldDSA/OTF/ManifoldDSA-ExtraBold.otf");
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ManifoldDSA';
-  src: url('../fonts/ManifoldDSA/OTF/ManifoldDSA-ExtraBoldItalic.otf');
+  font-family: "ManifoldDSA";
+  src: url("../fonts/ManifoldDSA/OTF/ManifoldDSA-ExtraBoldItalic.otf");
   font-weight: 800;
   font-style: italic;
 }
 
-body{
-  font-family: 'ManifoldDSA';
+body {
+  font-family: "ManifoldDSA";
 }
 
-h1,h2,h3,h4,a{
-  color:#EC1F27
+h1,
+h2,
+h3,
+h4,
+a {
+  color: #ec1f27;
 }
 
-h1{ 
-  font-weight:800; 
+h1 {
+  font-weight: 800;
 }
 
-h2{ 
-  font-weight:bold;
+h2 {
+  font-weight: bold;
 }
 
-.bgred h2{
+.bgred h2 {
   display: inline-block;
-  background-color: #EC1F27;
+  background-color: #ec1f27;
   color: white;
   border-radius: 1px;
   padding: 10px;
   border: 1px solid black;
-  margin:auto;
+  margin: auto;
 }
 
-h3, h4{
-  margin-top:20px;
-  font-weight:600;
+h3,
+h4 {
+  margin-top: 20px;
+  font-weight: 600;
 }
 
-b{
-  font-weight:bolder;
+b {
+  font-weight: bolder;
 }
 
-.content{
+.content {
   margin-top: 96px;
   padding-top: 20px;
 }
 
-.dropdown-header{
+.dropdown-header {
   font-weight: bold;
-  color:#EC1F27;
+  color: #ec1f27;
 }
 
-nav{
-  z-index:9999;
+nav {
+  z-index: 9999;
 }
 
-.nav-item{
-  font-weight:bold;
+.nav-item {
+  font-weight: bold;
 }
 
-.navbar-brand h1{
-  vertical-align:middle;
+.navbar-brand h1 {
+  vertical-align: middle;
 }
 
 .navbar {
@@ -128,13 +133,16 @@ nav{
   display: inline-block;
 } */
 
-.content .container{
-
+.content .container {
   background-color: white;
   border-radius: 2px;
   padding-bottom: 10px;
 }
 
-.box{
-  display:inline-block;
+.box {
+  display: inline-block;
+}
+
+.footer {
+  background-color: lightgray;
 }
