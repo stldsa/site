@@ -1,3 +1,4 @@
+import requests
 from django.db import models
 from stl_dsa.users.models import User
 from phonenumber_field.modelfields import PhoneNumberField
@@ -64,7 +65,7 @@ class CommitteePage(Page):
     email = models.EmailField()
     people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
     api_key = models.CharField(max_length=32, null=True, blank=True)
-    sign_up_embed_code = models.TextField(null=True, blank=True)
+    sign_up_form_endpoint = models.TextField(null=True, blank=True)
 
     search_fields = Page.search_fields + [index.SearchField("description")]
 
@@ -75,6 +76,18 @@ class CommitteePage(Page):
         FieldPanel("leader_name"),
         FieldPanel("email"),
     ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        embeds = requests.get(
+            f"{self.sign_up_form_endpoint}/embed",
+            headers={"OSDI-API-Token": self.api_key},
+        ).json()
+        embed_code = embeds["embed_standard_default_styles"]
+        print(embed_code)
+        context["embed_code"] = embed_code
+        print(context)
+        return context
 
 
 class CommitteesPage(Page):
