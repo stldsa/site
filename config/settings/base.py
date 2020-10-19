@@ -71,6 +71,7 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     "rest_framework.authtoken",
+    "home",  # home app before wagtail.admin overrides admin template
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.modeladmin",
@@ -90,7 +91,6 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "stl_dsa.users.apps.UsersConfig",
     # Your stuff: custom apps go here
-    "home",
     "events",
     "committees",
     "phonenumber_field",

@@ -17,7 +17,8 @@
   <div class="col-md-8">
 
     <h2 class="my-4">A Message from the Executive Committee:</h2>
-    <h3>{{ update.title }} - {{ update.date|date:"M j, Y" }}</h3>
+    <h3>{{ update.title }}</h3>
+    <h5>Posted:{{ update.date|date:"M j, Y" }}</h5>
     {{ update.body|richtext }}
 
     <h2>Upcoming Events:</h2>
