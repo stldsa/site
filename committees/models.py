@@ -64,6 +64,7 @@ class CommitteePage(Page):
     email = models.EmailField()
     people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
     api_key = models.CharField(max_length=32, null=True, blank=True)
+    sign_up_embed_code = models.TextField(null=True, blank=True)
 
     search_fields = Page.search_fields + [index.SearchField("description")]
 
