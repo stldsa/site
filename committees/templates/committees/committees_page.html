@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Committees</h2>
+    <h2>Formations</h2>
     <ul>
         {% for committee in committees %}
             <li><a href="{{ committee.slug }}">{{ committee.title }}</a></li>

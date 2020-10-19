@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 from django.db import models
 from stl_dsa.users.models import User
 from phonenumber_field.modelfields import PhoneNumberField
@@ -86,6 +87,24 @@ class CommitteePage(Page):
         ).json()
         embed_code = embeds["embed_standard_layout_only_styles"]
         context["embed_code"] = embed_code
+
+        events_response = requests.get(
+            "https://actionnetwork.org/api/v2/events",
+            headers={"OSDI-API-Token": self.api_key},
+        ).json()
+        events_list = events_response["_embedded"]["osdi:events"]
+        upcoming_events = []
+        for event in events_list:
+            event_date = datetime.fromisoformat(event["start_date"][:-1]).date()
+            if event_date >= datetime.now().date():
+                print(event)
+                event["date"] = event_date
+                event["start_time"] = datetime.fromisoformat(
+                    event["start_date"][:-1]
+                ).time()
+                upcoming_events.append(event)
+        context["upcoming_events"] = upcoming_events
+
         return context
 
 
