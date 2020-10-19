@@ -75,6 +75,7 @@ class CommitteePage(Page):
         FieldPanel("formation_type"),
         FieldPanel("leader_name"),
         FieldPanel("email"),
+        FieldPanel("sign_up_form_endpoint"),
     ]
 
     def get_context(self, request):
@@ -83,7 +84,7 @@ class CommitteePage(Page):
             f"{self.sign_up_form_endpoint}/embed",
             headers={"OSDI-API-Token": self.api_key},
         ).json()
-        embed_code = embeds["embed_standard_default_styles"]
+        embed_code = embeds["embed_standard_layout_only_styles"]
         print(embed_code)
         context["embed_code"] = embed_code
         print(context)
