@@ -85,9 +85,7 @@ class CommitteePage(Page):
             headers={"OSDI-API-Token": self.api_key},
         ).json()
         embed_code = embeds["embed_standard_layout_only_styles"]
-        print(embed_code)
         context["embed_code"] = embed_code
-        print(context)
         return context
 
 
