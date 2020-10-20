@@ -18,7 +18,7 @@
 
     <h2 class="my-4">A Message from the Executive Committee:</h2>
     <h3>{{ update.title }}</h3>
-    <h5>Posted:{{ update.date|date:"M j, Y" }}</h5>
+    <h5>Posted: {{ update.date|date:"M j, Y" }}</h5>
     {{ update.body|richtext }}
 
     <h2>Upcoming Events:</h2>
@@ -27,7 +27,7 @@
       <a href='{{ event.actionnetwork_url }}'>
         <h4>{{ event.title }}</h4>
       </a>
-      <p>{{ event.date|date }} | {{ event.start_time }} | <b><a href={{ event.actionnetwork_url }}>RSVP</a></b></p>
+      <p>{{ event.date|date:"D, M j" }} | {{ event.start_time }} | <b><a href={{ event.actionnetwork_url }}>RSVP</a></b></p>
     </div>
     {% endfor %}
   </div>

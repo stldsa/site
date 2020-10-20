@@ -18,7 +18,7 @@
                         <a href='{{ event.browser_url }}'>
                             <h4>{{ event.title }}</h4>
                         </a>
-                        <p>{{ event.date|date }} | {{ event.start_time }} | <b><a href={{ event.browser_url }}>RSVP</a></b></p>
+                        <p>{{ event.date|date:"D, M j" }} | {{ event.start_time }} | <b><a href={{ event.browser_url }}>RSVP</a></b></p>
                     {% endfor %}
                 {% else %}
                     <p>No events posted.</p>
