@@ -96,8 +96,7 @@ class CommitteePage(Page):
         upcoming_events = []
         for event in events_list:
             event_date = datetime.fromisoformat(event["start_date"][:-1]).date()
-            if event_date >= datetime.now().date():
-                print(event)
+            if event_date >= datetime.now().date() and event["status"] == "confirmed":
                 event["date"] = event_date
                 event["start_time"] = datetime.fromisoformat(
                     event["start_date"][:-1]
