@@ -356,14 +356,6 @@ lxml = ["lxml (>=4.2.0,<5)"]
 testing = ["tox (>=2.3.1)", "markov_draftjs (0.1.1)", "memory-profiler (0.47)", "psutil (5.4.1)", "coverage (>=4.1.0)", "flake8 (>=3.2.0)", "isort (4.2.5)", "beautifulsoup4 (>=4.4.1,<5)", "html5lib (>=0.999,<=1.0.1)", "lxml (>=4.2.0,<5)"]
 
 [[package]]
-name = "environ"
-version = "1.0"
-description = "Stack Based Globals Management"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "gunicorn"
 version = "20.0.4"
 description = "WSGI HTTP Server for UNIX"
@@ -794,7 +786,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.8.6"
-content-hash = "ca296bcb559cb3da57e8f3774c3207a1a7ad8ecbfd2e44e5d47cc16ef034c412"
+content-hash = "92dcad592dc8ee418f2a62851190615a941b228b258fb4195fc985dab5bbaabf"
 
 [metadata.files]
 appdirs = [
@@ -959,11 +951,6 @@ djangorestframework = [
 ]
 draftjs-exporter = [
     {file = "draftjs_exporter-2.1.7.tar.gz", hash = "sha256:5839cbc29d7bce2fb99837a404ca40c3a07313f2a20e2700de7ad6aa9a9a18fb"},
-]
-environ = [
-    {file = "environ-1.0.linux-i686.tar.gz", hash = "sha256:9266e62dd8004f3bf181b24c97aa129844e7e7ec87bf3ed06ef3888293212011"},
-    {file = "environ-1.0.tar.gz", hash = "sha256:4df7f1dfeb7d1c988d2e19a8bd5d547a526e0400aeb35adf732032472f35dcb0"},
-    {file = "environ-1.0.win32.exe", hash = "sha256:052ded34331655b9c7982abd5681a066b9aaf9adf33b3412c7e842ce959e40b0"},
 ]
 gunicorn = [
     {file = "gunicorn-20.0.4-py2.py3-none-any.whl", hash = "sha256:cd4a810dd51bf497552cf3f863b575dabd73d6ad6a91075b65936b151cbf4f9c"},

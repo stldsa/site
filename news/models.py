@@ -51,3 +51,17 @@ class InfoPage(Page):
         FieldPanel("body", classname="full"),
         StreamFieldPanel("additional_content"),
     ]
+
+
+class DocumentPage(Page):
+    document = StreamField(
+        [
+            (
+                "h1",
+                blocks.StreamBlock([("h2", blocks.TextBlock())]),
+            ),
+            ("p", blocks.TextBlock()),
+        ]
+    )
+
+    content_panels = Page.content_panels + [StreamFieldPanel("document")]
