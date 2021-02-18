@@ -9,24 +9,24 @@ User = get_user_model()
 
 class UserFactory(django.DjangoModelFactory):
 
-    username = faker.email()
+    email = faker.email()
     first_name = faker.first_name()
     last_name = faker.last_name()
 
-    # @post_generation
-    # def password(self, create: bool, extracted: Sequence[Any], **kwargs):
-    #     password = (
-    #         extracted
-    #         if extracted
-    #         else faker.password(
-    #             length=42,
-    #             special_chars=True,
-    #             digits=True,
-    #             upper_case=True,
-    #             lower_case=True,
-    #         ).generate(extra_kwargs={})
-    #     )
-    #     self.set_password(password)
+    @post_generation
+    def password(self, create: bool, extracted: Sequence[Any], **kwargs):
+        password = (
+            extracted
+            if extracted
+            else faker.password(
+                length=42,
+                special_chars=True,
+                digits=True,
+                upper_case=True,
+                lower_case=True,
+            )
+        )
+        self.set_password(password)
 
     class Meta:
         model = User
