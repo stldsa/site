@@ -1,10 +1,10 @@
 from typing import Any, Sequence
-
-from stl_dsa.users.models import User
+from django.contrib.auth import get_user_model
 from factory import django, post_generation
 from faker import Faker
 
 faker = Faker()
+User = get_user_model()
 
 
 class UserFactory(django.DjangoModelFactory):
