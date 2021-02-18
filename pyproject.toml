@@ -41,3 +41,4 @@ minversion = "6.0"
 addopts = "-ra -q"
 DJANGO_SETTINGS_MODULE = "config.settings.local"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
+filterwarnings = "ignore::django.utils.deprecation.RemovedInDjango40Warning"
