@@ -15,7 +15,7 @@ class UserChangeForm(forms.UserChangeForm):
 class UserCreationForm(forms.UserCreationForm):
 
     error_message = forms.UserCreationForm.error_messages.update(
-        {"duplicate_username": _("This username has already been taken.")}
+        {"duplicate_username": _("This email is already in use.")}
     )
 
     class Meta(forms.UserCreationForm.Meta):
@@ -33,12 +33,6 @@ class UserCreationForm(forms.UserCreationForm):
 
 
 class SignUpForm(UserCreationForm):
-    first_name = CharField(max_length=30, required=True)
-    last_name = CharField(max_length=30, required=True)
-    email = EmailField(
-        max_length=254,
-    )
-
     class Meta:
         model = User
         fields = (
