@@ -12,30 +12,33 @@ class UserChangeForm(forms.UserChangeForm):
         model = User
 
 
-# class UserCreationForm(forms.UserCreationForm):
+class UserCreationForm(forms.UserCreationForm):
 
-#     error_message = forms.UserCreationForm.error_messages.update(
-#         {"duplicate_username": _("This username has already been taken.")}
-#     )
+    error_message = forms.UserCreationForm.error_messages.update(
+        {"duplicate_username": _("This email is already in use.")}
+    )
 
-#     class Meta(forms.UserCreationForm.Meta):
-#         model = User
+    class Meta(forms.UserCreationForm.Meta):
+        model = User
 
-#     def clean_username(self):
-#         username = self.cleaned_data["username"]
+    def clean_username(self):
+        username = self.cleaned_data["username"]
 
-#         try:
-#             User.objects.get(username=username)
-#         except User.DoesNotExist:
-#             return username
+        try:
+            User.objects.get(username=username)
+        except User.DoesNotExist:
+            return username
 
-#         raise ValidationError(self.error_messages["duplicate_username"])
+        raise ValidationError(self.error_messages["duplicate_username"])
+
 
 class SignUpForm(UserCreationForm):
-    first_name = CharField(max_length=30, required=True)
-    last_name = CharField(max_length=30, required=True)
-    email = EmailField(max_length=254,)
-
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'password1', 'password2', )
+        fields = (
+            "first_name",
+            "last_name",
+            "email",
+            "password1",
+            "password2",
+        )

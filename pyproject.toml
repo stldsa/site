@@ -5,7 +5,7 @@ description = "A Django + Wagtail based website for the St Louis Chapter of DSA"
 authors = ["Tyler Schlichenmeyer <tyler.schlichenmeyer@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "3.8.6"
+python = "3.9.0"
 Django = "^3.0.7"
 django-allauth = "^0.42.0"
 django-extensions = "^2.2.9"
@@ -28,7 +28,17 @@ django-debug-toolbar = "^2.2"
 psycopg2-binary = "^2.8.5"
 pylint = "^2.6.0"
 black = {version = "^20.8b1", allow-prereleases = true}
+pytest = "^6.2.2"
+pytest-django = "^4.1.0"
+factory-boy = "^3.2.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+DJANGO_SETTINGS_MODULE = "config.settings.local"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+filterwarnings = "ignore::django.utils.deprecation.RemovedInDjango40Warning"

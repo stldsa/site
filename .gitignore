@@ -287,3 +287,5 @@ stl_dsa/media/
 .env
 .envs/*
 # !.envs/.local/
+
+.vscode/*
