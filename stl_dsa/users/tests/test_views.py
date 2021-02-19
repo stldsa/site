@@ -23,18 +23,16 @@ class TestUserUpdateView:
 
         assert view.get_success_url() == f"/users/{user.id}/"
 
-    def test_get_object(self, user: User, rf):
+    def test_get_user_object(self, user: User, rf):
         view = UserUpdateView()
         request = rf.get("/fake-url/")
         request.user = user
-
         view.request = request
+        view_user = view.get_user_object()
+        assert view_user == user
 
-        assert view.get_object() == user
-
-    @pytest.mark.django_db
-    def test_user_membership(self, client, user):
-        pass
+    def test_membership_status_returned(self, client):
+        response = client.get("/user")
 
 
 class TestUserRedirectView:
