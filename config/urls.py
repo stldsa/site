@@ -20,13 +20,19 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     path("users/", include("stl_dsa.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    path('events/', include('events.urls')),
-    path('committees/', include('committees.urls')),
-    path('feed/podcast/', podcast_redirect),
-    re_path(r'^cms/', include(wagtailadmin_urls)),
-    re_path(r'^documents/', include(wagtaildocs_urls)),
-    re_path(r'^pages/', include(wagtail_urls)),
-    re_path(r'', include(wagtail_urls)),
+    path("events/", include("events.urls")),
+    path("committees/", include("committees.urls")),
+    path("feed/podcast/", podcast_redirect),
+    path("schedule/", include("schedule.urls")),
+    path(
+        "fullcalendar/",
+        TemplateView.as_view(template_name="fullcalendar.html"),
+        name="fullcalendar",
+    ),
+    re_path(r"^cms/", include(wagtailadmin_urls)),
+    re_path(r"^documents/", include(wagtaildocs_urls)),
+    re_path(r"^pages/", include(wagtail_urls)),
+    re_path(r"", include(wagtail_urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # API URLS
 urlpatterns += [

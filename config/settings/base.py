@@ -87,6 +87,8 @@ THIRD_PARTY_APPS = [
     "wagtail.core",
     "taggit",
     "modelcluster",
+    "schedule",
+    "djangobower",
 ]
 
 LOCAL_APPS = [
@@ -168,6 +170,7 @@ STATICFILES_DIRS = [str(APPS_DIR.path("static"))]
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "djangobower.finders.BowerFinder",
 ]
 
 # MEDIA
@@ -308,3 +311,5 @@ REST_FRAMEWORK = {
 WAGTAIL_SITE_NAME = "St Louis DSA"
 ACTIONNETWORK_API_KEYS = json.loads(os.environ.get("ACTIONNETWORK_API_KEYS", "[]"))
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
+BOWER_COMPONENTS_ROOT = str(ROOT_DIR.path("locale"))
+BOWER_INSTALLED_APPS = ("jquery", "jquery-ui", "bootstrap")
