@@ -82,6 +82,7 @@ THIRD_PARTY_APPS = [
     "wagtail.documents",
     "wagtail.images",
     "wagtail.search",
+    "wagtail.contrib.search_promotions",
     "wagtail.admin",
     "wagtail.core",
     "taggit",
