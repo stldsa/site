@@ -223,18 +223,6 @@ requests = ">=2.4.3"
 amazon_ses = ["boto3"]
 
 [[package]]
-name = "django-bower"
-version = "5.2.0"
-description = "Integrate django with bower"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-django = "*"
-six = "*"
-
-[[package]]
 name = "django-cogwheels"
 version = "0.3"
 description = "A consistent, user-friendly solution for adding app-specific settings your Django package, reusable app or framework."
@@ -974,7 +962,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.0"
-content-hash = "2f2e369492fc0557976256152c544cb626946ba6313de306886bcb06b87c3b83"
+content-hash = "cdc12fa682a58d8738001b547b2e3761ac4a8c81b8252543903125295da083d9"
 
 [metadata.files]
 anyascii = [
@@ -1099,10 +1087,6 @@ django-allauth = [
 django-anymail = [
     {file = "django-anymail-8.2.tar.gz", hash = "sha256:6381e04c41b2644e2d3ba2f95ee61ee3ee40cb6184506c52a363b9ddef0b098e"},
     {file = "django_anymail-8.2-py3-none-any.whl", hash = "sha256:e011c582e771ce3970480c10d1e129ac036ba773e37ec56780a79776534b2ba6"},
-]
-django-bower = [
-    {file = "django-bower-5.2.0.tar.gz", hash = "sha256:3ab5699b782d63d1aa8e5d61f9bdcdb8d29137e7ba6f19d094d566241afee0f2"},
-    {file = "django_bower-5.2.0-py2-none-any.whl", hash = "sha256:f1cf649842c0cb28f8aa28617e99fc7fb7773bac4e8886ee4e36962a38c99a6e"},
 ]
 django-cogwheels = [
     {file = "django-cogwheels-0.3.tar.gz", hash = "sha256:848a4d9f2c96c582a4a4f2e7c276dfd95ab3905748cae13bb7c4b365a6717e94"},
