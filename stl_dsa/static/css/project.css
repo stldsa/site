@@ -146,3 +146,24 @@ nav {
 .footer {
   background-color: lightgray;
 }
+
+.fc-event-time,
+.fc-event-title {
+  padding: 0 1px;
+  white-space: normal;
+}
+
+.fc-title {
+  white-space: normal;
+}
+
+.fc-daygrid-week-number {
+  position: absolute;
+  max-height: 40px;
+}
+
+.btn,
+.btn:disabled {
+  background-color: #ec1f27;
+  border-color: #ec1f27;
+}
