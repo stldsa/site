@@ -1,5 +1,3 @@
-import pytest
-import json
 from django.urls import reverse, resolve
 
 
@@ -13,12 +11,11 @@ def test_events_api_url_routed(events_api_response):
     assert events_api_response["content-type"] == "application/json"
 
 
-@pytest.mark.django_db
 def test_events_api_url_resolves():
     resolver = resolve("/api/events/")
     assert resolver.view_name == "events_api"
 
 
-@pytest.mark.django_db
-def test_get_returns_event_list(events_api_response):
-    event_list = json.loads(events_api_response.content.decode("utf8"))
+# @pytest.mark.django_db
+# def test_get_returns_event_list(events_api_response):
+#     event_list = json.loads(events_api_response.content.decode("utf8"))
