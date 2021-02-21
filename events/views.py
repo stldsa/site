@@ -5,8 +5,6 @@ from events.models import Event, APICalls
 from datetime import datetime
 from django.conf import settings
 
-# Create your views here.
-
 
 def update_events():
     last_api_call = APICalls.objects.order_by("-datetime")[0]
