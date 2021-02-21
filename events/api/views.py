@@ -6,10 +6,19 @@
 # from rest_framework import authentication, permissions
 import json
 from django.http import HttpResponse
+from datetime import datetime
 
 
 def list(request):
-    return HttpResponse(json.dumps([]), content_type="application/json")
+    events = [
+        {
+            "id": "event1",
+            "title": "title1",
+            "start": "2021-02-21",
+        },
+        {"id": "event2", "title": "title2"},
+    ]
+    return HttpResponse(json.dumps(events), content_type="application/json")
 
 
 # class ListEvents(APIView):

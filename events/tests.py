@@ -1,3 +1,4 @@
+import json
 from django.urls import reverse, resolve
 
 
@@ -16,6 +17,6 @@ def test_events_api_url_resolves():
     assert resolver.view_name == "events_api"
 
 
-# @pytest.mark.django_db
-# def test_get_returns_event_list(events_api_response):
-#     event_list = json.loads(events_api_response.content.decode("utf8"))
+def test_get_returns_event_list(events_api_response):
+    event_list = json.loads(events_api_response.content.decode("utf8"))
+    assert all([{"id", "title"} <= event.keys() for event in event_list])
