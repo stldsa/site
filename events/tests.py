@@ -1,7 +1,7 @@
 import json
 import pytest
+import action_network
 from django.urls import reverse, resolve
-from action_network import get_events
 
 
 def test_events_api_url_has_name():
@@ -25,6 +25,5 @@ def test_get_returns_event_list(events_api_response):
 
 
 @pytest.mark.vcr()
-def test_call_AN_events_endpoint():
-    response = get_events()
-    assert response.status_code == 200
+def test_get_action_network_events():
+    assert isinstance(action_network.get_events(), list)

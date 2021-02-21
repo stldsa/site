@@ -4,6 +4,7 @@ from django.views.generic.list import ListView
 from events.models import Event, APICalls
 from datetime import datetime
 from django.conf import settings
+from action_network import get_events
 
 
 def update_events():
@@ -11,11 +12,7 @@ def update_events():
     last_api_call = last_api_call.datetime.isoformat()
     events = []
     for key in settings.ACTIONNETWORK_API_KEYS:
-        response = requests.get(
-            "https://actionnetwork.org/api/v2/events/",
-            params={"filter": f"modified_date gt '{last_api_call}'"},
-            headers={"OSDI-API-Token": key},
-        )
+        response = get_events()
         tz = pytz.timezone("America/Chicago")
         chicago_now = datetime.now(tz)
         APICalls.objects.all().delete()

@@ -6,18 +6,17 @@
 # from rest_framework import authentication, permissions
 import json
 from django.http import HttpResponse
-from datetime import datetime
+from action_network import get_events
+
+
+def replace_id_key(event):
+    event["id"] = event.pop("identifiers")
+    return event
 
 
 def list(request):
-    events = [
-        {
-            "id": "event1",
-            "title": "title1",
-            "start": "2021-02-21",
-        },
-        {"id": "event2", "title": "title2"},
-    ]
+    events = get_events()
+    events = [replace_id_key(event) for event in events]
     return HttpResponse(json.dumps(events), content_type="application/json")
 
 
