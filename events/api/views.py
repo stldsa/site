@@ -11,6 +11,10 @@ from action_network import get_events
 
 def replace_id_key(event):
     event["id"] = event.pop("identifiers")
+    event["start"] = event.pop("start_date")
+    event = {
+        key: value for key, value in event.items() if key in ["id", "title", "start"]
+    }
     return event
 
 

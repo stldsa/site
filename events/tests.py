@@ -21,7 +21,7 @@ def test_events_api_url_resolves():
 
 def test_get_returns_event_list(events_api_response):
     event_list = json.loads(events_api_response.content.decode("utf8"))
-    assert all([{"id", "title"} <= event.keys() for event in event_list])
+    assert all([{"id", "title", "start"} == event.keys() for event in event_list])
 
 
 @pytest.mark.vcr()
