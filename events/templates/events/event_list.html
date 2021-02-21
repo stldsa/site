@@ -1,6 +1,22 @@
 {% extends "base.html" %}
-
+{% load i18n static %}
+{% block extra_css %}
+<link rel='stylesheet' type='text/css' href="{% static 'fullcalendar/lib/main.css' %}" />
+{% endblock %}
 {% block content %}
+<div id="calendar"></div>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: '/api/events'
+    });
+    calendar.render();
+  });
+
+</script>
 <h1>Upcoming Events:</h1>
 <ul>
 {% for event in upcoming_events %}
@@ -13,4 +29,7 @@
     <li>No upcoming events.</li>
 {% endfor %}
 </ul>
+{% endblock %}
+{% block extra_js %}
+<script type='text/javascript' src="{% static 'fullcalendar/lib/main.js' %}"></script>
 {% endblock %}
