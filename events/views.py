@@ -12,7 +12,7 @@ def update_events():
     last_api_call = last_api_call.datetime.isoformat()
     all_events = []
     for key in settings.ACTIONNETWORK_API_KEYS:
-        events = get_events()
+        events = get_events(key)
         tz = pytz.timezone("America/Chicago")
         chicago_now = datetime.now(tz)
         APICalls.objects.all().delete()

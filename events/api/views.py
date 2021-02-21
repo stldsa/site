@@ -7,6 +7,7 @@
 import json
 from django.http import HttpResponse
 from action_network import get_events
+from config.settings.local import ACTIONNETWORK_API_KEYS
 
 
 def replace_id_key(event):
@@ -19,9 +20,12 @@ def replace_id_key(event):
 
 
 def list(request):
-    events = get_events()
-    events = [replace_id_key(event) for event in events]
-    return HttpResponse(json.dumps(events), content_type="application/json")
+    all_events = []
+    for api_key in ACTIONNETWORK_API_KEYS:
+        events = get_events(api_key)
+        events = [replace_id_key(event) for event in events]
+        all_events += events
+    return HttpResponse(json.dumps(all_events), content_type="application/json")
 
 
 # class ListEvents(APIView):
