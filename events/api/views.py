@@ -4,11 +4,12 @@
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
 # from rest_framework import authentication, permissions
+import json
 from django.http import HttpResponse
 
 
 def list(request):
-    return HttpResponse(content_type="application/json")
+    return HttpResponse(json.dumps([]), content_type="application/json")
 
 
 # class ListEvents(APIView):
