@@ -2,6 +2,7 @@
 {% load i18n static %}
 {% block extra_css %}
 <link rel='stylesheet' type='text/css' href="{% static 'fullcalendar/lib/main.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'fullcalendar/fullcalendar-custom.css' %}" />
 {% endblock %}
 {% block content %}
 <div class="row">
@@ -12,6 +13,7 @@
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
+            height: 600,
             themeSystem: 'bootstrap',
             displayEventTime: false,
             eventColor: '#ec1f27',
@@ -21,18 +23,26 @@
                 dayGridMonth: {
                     type: 'month',
                     duration: { weeks: 3},
-                    buttonText: '4 Weeks',
+                    buttonText: 'Calendar View',
                     fixedWeekCount : false
+                },
+                listMonth:{
+                  buttonText: 'List View'
                 }
             },
-            events: '/api/events'
+            events: '/api/events',
+            headerToolbar: {
+              start: 'today prev,next',
+              center: 'title',
+              end: 'dayGridMonth,listMonth'
+            }
         });
         calendar.render();
       });
 
     </script>
     </div>
-  <div class='col'>
+  <!-- <div class='col'>
   <h1>Upcoming Events:</h1>
   <ul>
   {% for event in upcoming_events %}
@@ -46,7 +56,7 @@
   {% endfor %}
   </ul>
   </div>
-</div>
+</div> -->
 {% endblock %}
 {% block extra_js %}
 <script type='text/javascript' src="{% static 'fullcalendar/lib/main.js' %}"></script>
