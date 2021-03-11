@@ -1,8 +1,0 @@
-{
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true,
-    "python.formatting.provider": "black",
-    "python.venvPath": "~/.cache/pypoetry/virtualenvs",
-    "python.pythonPath": "/home/tyler/.cache/pypoetry/virtualenvs/stl-dsa-S3TaBRxw-py3.8/bin/python",
-}

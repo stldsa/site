@@ -15,7 +15,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -269,7 +268,6 @@ tags
 # Virtualenv
 [Bb]in
 [Ii]nclude
-[Ll]ib
 [Ll]ib64
 [Ss]cripts
 pyvenv.cfg
@@ -287,3 +285,6 @@ stl_dsa/media/
 .env
 .envs/*
 # !.envs/.local/
+
+.vscode/*
+.vscode_env/*

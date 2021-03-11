@@ -1,16 +1,72 @@
 {% extends "base.html" %}
-
+{% load i18n static %}
+{% block extra_css %}
+<link rel='stylesheet' type='text/css' href="{% static 'fullcalendar/lib/main.css' %}" />
+<link rel="stylesheet" type='text/css' href="{% static 'fullcalendar/fullcalendar-custom.css' %}" />
+{% endblock %}
 {% block content %}
-<h1>Upcoming Events:</h1>
-<ul>
-{% for event in upcoming_events %}
-    <li style="list-style-type:none;">
-        <h2>{{ event.title }}</h2>
-        <h4>{{ event.date|date }} | {{ event.start_time }} | <b><a href={{ event.actionnetwork_url }}>RSVP</a></b></h4>
-        <p>{{ event.description|safe }}</p>
-    </li>
-{% empty %}
-    <li>No upcoming events.</li>
-{% endfor %}
-</ul>
+<div class="row">
+  <div class="col">
+    <div id="calendar"></div>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            height: 600,
+            themeSystem: 'bootstrap',
+            displayEventTime: false,
+            eventColor: '#ec1f27',
+            eventDisplay: 'block',
+            timeZone: 'America/Chicago',
+            views: {
+                dayGridMonth: {
+                    type: 'month',
+                    duration: { weeks: 4},
+                    buttonText: 'Calendar View',
+                    fixedWeekCount : false
+                },
+                listMonth:{
+                  buttonText: 'List View',
+                  duration: { weeks: 4},
+                  fixedWeekCount: false
+                }
+            },
+            events: '/api/events',
+            headerToolbar: {
+              start: 'today prev,next',
+              center: 'title',
+              end: 'dayGridMonth,listMonth'
+            },
+            eventClick: function(info) {
+              info.jsEvent.preventDefault(); // don't let the browser navigate
+
+              if (info.event.url) {
+                window.open(info.event.url);
+              }
+            }
+        });
+        calendar.render();
+      });
+
+    </script>
+    </div>
+  <!-- <div class='col'>
+  <h1>Upcoming Events:</h1>
+  <ul>
+  {% for event in upcoming_events %}
+      <li style="list-style-type:none;">
+          <h2>{{ event.title }}</h2>
+          <h4>{{ event.date|date }} | {{ event.start_time }} | <b><a href={{ event.actionnetwork_url }}>RSVP</a></b></h4>
+          <p>{{ event.description|safe }}</p>
+      </li>
+  {% empty %}
+      <li>No upcoming events.</li>
+  {% endfor %}
+  </ul>
+  </div> -->
+</div>
+{% endblock %}
+{% block extra_js %}
+<script type='text/javascript' src="{% static 'fullcalendar/lib/main.js' %}"></script>
 {% endblock %}

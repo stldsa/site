@@ -82,10 +82,12 @@ THIRD_PARTY_APPS = [
     "wagtail.documents",
     "wagtail.images",
     "wagtail.search",
+    "wagtail.contrib.search_promotions",
     "wagtail.admin",
     "wagtail.core",
     "taggit",
     "modelcluster",
+    "schedule",
 ]
 
 LOCAL_APPS = [
@@ -291,6 +293,7 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_FORMS = {"signup": "stl_dsa.users.forms.SignUpForm"}
 ACCOUNT_USER_DISPLAY = lambda user: user.get_full_name()
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 # django-reset-framework
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/

@@ -4,26 +4,21 @@ from django.views.generic.list import ListView
 from events.models import Event, APICalls
 from datetime import datetime
 from django.conf import settings
-
-# Create your views here.
+from action_network import get_events
 
 
 def update_events():
     last_api_call = APICalls.objects.order_by("-datetime")[0]
     last_api_call = last_api_call.datetime.isoformat()
-    events = []
+    all_events = []
     for key in settings.ACTIONNETWORK_API_KEYS:
-        response = requests.get(
-            "https://actionnetwork.org/api/v2/events/",
-            params={"filter": f"modified_date gt '{last_api_call}'"},
-            headers={"OSDI-API-Token": key},
-        )
+        events = get_events(key)
+        print(events)
         tz = pytz.timezone("America/Chicago")
         chicago_now = datetime.now(tz)
         APICalls.objects.all().delete()
         APICalls(datetime=chicago_now).save()
-        events_json = response.json()
-        events += events_json["_embedded"]["osdi:events"]
+        all_events += events
     for event in events:
         obj, created = Event.objects.update_or_create(
             actionnetwork_id=event["identifiers"][0].split(":")[1],

@@ -146,3 +146,54 @@ nav {
 .footer {
   background-color: lightgray;
 }
+
+.fc-event-time,
+.fc-event-title {
+  padding: 0 1px;
+  white-space: normal;
+}
+
+.fc-title {
+  white-space: normal;
+}
+
+.fc-daygrid-week-number {
+  position: absolute;
+  max-height: 40px;
+}
+
+.btn,
+.btn:disabled {
+  background-color: #ec1f27;
+  border-color: #ec1f27;
+}
+
+.btn-primary .dropdown-toggle {
+  background-color: #ec1f27;
+  border-color: #ec1f27;
+}
+
+.fc-button .fc-button-inner:hover {
+  background-color: red;
+  color: #fff;
+}
+
+.fc-button.fc-state-active .fc-button-inner {
+  background-color: green;
+  color: #fff;
+}
+
+.fc-button .fc-button-inner {
+  background-color: #000;
+  color: #fff;
+}
+
+.calbox {
+  display: flex;,
+  flex-flow: column;
+  height: 100%;
+}
+
+.calbox .row.content {
+  flex: 1 1 auto;
+}
