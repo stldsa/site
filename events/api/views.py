@@ -13,7 +13,7 @@ from config.settings.local import ACTIONNETWORK_API_KEYS
 def replace_id_key(event):
     event["id"] = event.pop("identifiers")
     event["start"] = event.pop("start_date")
-    event["url"] = event["_links"]["self"]
+    event["url"] = event.pop("browser_url")
     event = {
         key: value
         for key, value in event.items()
