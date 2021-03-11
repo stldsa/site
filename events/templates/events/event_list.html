@@ -22,12 +22,14 @@
             views: {
                 dayGridMonth: {
                     type: 'month',
-                    duration: { weeks: 3},
+                    duration: { weeks: 4},
                     buttonText: 'Calendar View',
                     fixedWeekCount : false
                 },
                 listMonth:{
-                  buttonText: 'List View'
+                  buttonText: 'List View',
+                  duration: { weeks: 4},
+                  fixedWeekCount: false
                 }
             },
             events: '/api/events',
@@ -35,6 +37,13 @@
               start: 'today prev,next',
               center: 'title',
               end: 'dayGridMonth,listMonth'
+            },
+            eventClick: function(info) {
+              info.jsEvent.preventDefault(); // don't let the browser navigate
+
+              if (info.event.url) {
+                window.open(info.event.url);
+              }
             }
         });
         calendar.render();
