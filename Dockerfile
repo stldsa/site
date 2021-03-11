@@ -1,5 +1,5 @@
 # The base image we want to inherit from
-FROM python:3.9.0 AS development_build
+FROM python:3.9.1 AS development_build
 
 ARG DJANGO_ENV
 
@@ -33,9 +33,10 @@ RUN apt-get update \
 
 # set work directory
 WORKDIR /code
-COPY pyproject.toml poetry.lock /code/
+COPY pyproject.toml poetry.lock
 
+COPY . .
 # Install dependencies:
 RUN poetry install
 # copy project
-COPY . .
+CMD ["python", "manage.py", "runserver"]

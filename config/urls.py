@@ -14,7 +14,7 @@ from events.api import urls as events_api_urls
 
 
 urlpatterns = [
-    # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
@@ -25,7 +25,6 @@ urlpatterns = [
     path("events/", include("events.urls")),
     path("committees/", include("committees.urls")),
     path("feed/podcast/", podcast_redirect),
-    path("schedule/", include("schedule.urls")),
     path(
         "fullcalendar/",
         TemplateView.as_view(template_name="fullcalendar.html"),
