@@ -13,6 +13,10 @@ Website for the St Louis chapter of the Democratic Socialists of America
 
 :License: MIT
 
+Docker Setup
+------------
+If you would like to use Docker to set up the test environment, you may run `docker-compose up`. Message Tyler on Slack or at tech@stldsa.org for seed data.
+
 Prerequisites
 -------------
 * python 3.8.5 (I suggest pyenv to manage python versions)
