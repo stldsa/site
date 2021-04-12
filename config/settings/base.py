@@ -98,7 +98,7 @@ THIRD_PARTY_APPS = [
     "taggit",
     "modelcluster",
     "wagtailfontawesome",
-    "wagtail-blocks",
+    "wagtail_blocks",
 ]
 
 LOCAL_APPS = [
