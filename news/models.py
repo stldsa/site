@@ -3,6 +3,7 @@ from wagtail.search import index
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.blocks import BlockQuoteBlock
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_blocks.blocks import HeaderBlock
@@ -62,6 +63,7 @@ class DocumentPage(Page):
             ('header', HeaderBlock()),
             ('text', blocks.RichTextBlock()),
             ('image', ImageChooserBlock()),
+            ('quote', BlockQuoteBlock()),
             ('subsection', blocks.StreamBlock([
                 ('header', HeaderBlock()),
                 ('text', blocks.TextBlock()),
