@@ -42,7 +42,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-ra -q --driver Firefox"
+addopts = "-ra -q"
 DJANGO_SETTINGS_MODULE = "config.settings.local"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 filterwarnings = "ignore::django.utils.deprecation.RemovedInDjango40Warning"
