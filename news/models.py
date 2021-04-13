@@ -58,12 +58,18 @@ class InfoPage(Page):
 class DocumentPage(Page):
     date_published = models.DateField("Last Updated", blank=True, null=True)
     body = StreamField([
-        ('header', HeaderBlock()),
-        ('text', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('subsection', blocks.StreamBlock([
+        ('section', blocks.StreamBlock([
             ('header', HeaderBlock()),
-            ('text', blocks.TextBlock()),
+            ('text', blocks.RichTextBlock()),
+            ('image', ImageChooserBlock()),
+            ('subsection', blocks.StreamBlock([
+                ('header', HeaderBlock()),
+                ('text', blocks.TextBlock()),
+                ('subsubsection', blocks.StreamBlock([
+                    ('header', HeaderBlock()),
+                    ('text', blocks.TextBlock()),
+                ]))
+            ]))
         ]))
     ], blank=True)
 
