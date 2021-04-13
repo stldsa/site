@@ -25,9 +25,9 @@ django-redis = "^4.12.1"
 django-scheduler = "^0.9.3"
 wagtail-blocks = "^0.7.2"
 wagtailfontawesome = "^1.2.1"
+django-debug-toolbar = "^2.2"
 
 [tool.poetry.dev-dependencies]
-django-debug-toolbar = "^2.2"
 psycopg2-binary = "^2.8.5"
 pylint = "^2.6.0"
 black = {version = "^20.8b1", allow-prereleases = true}
