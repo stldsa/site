@@ -3,10 +3,9 @@ from wagtail.search import index
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.blocks import BlockQuoteBlock
+from wagtail.core.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail_blocks.blocks import HeaderBlock
 
 
 class NewsIndexPage(Page):
@@ -60,15 +59,15 @@ class DocumentPage(Page):
     date_published = models.DateField("Last Updated", blank=True, null=True)
     body = StreamField([
         ('section', blocks.StreamBlock([
-            ('header', HeaderBlock()),
+            ('header', CharBlock()),
             ('text', blocks.RichTextBlock()),
             ('image', ImageChooserBlock()),
             ('quote', BlockQuoteBlock()),
             ('subsection', blocks.StreamBlock([
-                ('header', HeaderBlock()),
+                ('header', CharBlock()),
                 ('text', blocks.TextBlock()),
                 ('subsubsection', blocks.StreamBlock([
-                    ('header', HeaderBlock()),
+                    ('header', CharBlock()),
                     ('text', blocks.TextBlock()),
                 ]))
             ]))
