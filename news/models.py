@@ -5,6 +5,7 @@ from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail_blocks.blocks import HeaderBlock
 
 
 class NewsIndexPage(Page):
@@ -57,13 +58,16 @@ class InfoPage(Page):
 class DocumentPage(Page):
     date_published = models.DateField("Last Updated", blank=True, null=True)
     body = StreamField([
-        ('heading', blocks.CharBlock(form_classname="full title")),
-        ('paragraph', blocks.RichTextBlock()),
+        ('header', HeaderBlock()),
+        ('text', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
+        ('subsection', blocks.StreamBlock([
+            ('header', HeaderBlock()),
+            ('text', blocks.TextBlock()),
+        ]))
     ], blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("date_published"),
         StreamFieldPanel("body")
     ]
-
