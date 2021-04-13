@@ -8,12 +8,20 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    networks:
+      - main
   web:
     build: .
+    stdin_open: true
+    tty: true
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
       - "8000:8000"
+    networks:
+      - main
     depends_on:
       - db
+networks:
+  main:

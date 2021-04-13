@@ -1,5 +1,5 @@
 # The base image we want to inherit from
-FROM python:3.9.1 AS development_build
+FROM python:3.9.2 AS development_build
 
 ARG DJANGO_ENV
 
