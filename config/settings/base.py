@@ -321,5 +321,5 @@ REST_FRAMEWORK = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 WAGTAIL_SITE_NAME = "St Louis DSA"
-ACTIONNETWORK_API_KEYS = json.loads(os.environ.get("ACTIONNETWORK_API_KEYS", "[]"))
+ACTIONNETWORK_API_KEYS = json.loads(os.environ.get("ACTIONNETWORK_API_KEYS", "{}"))
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
