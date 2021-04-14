@@ -22,7 +22,7 @@ class HomePage(Page):
     def get_context(self, request):
         context = super(HomePage, self).get_context(request)
         context["events"] = Event.objects.filter(
-            date__gte=datetime.today().date()
+            start__gte=datetime.today().date()
         ).order_by("date")[:4]
-        context["update"] = NewsPage.objects.all().order_by("-start")[0]
+        context["update"] = NewsPage.objects.all().order_by("-date")[0]
         return context
