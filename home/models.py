@@ -23,6 +23,6 @@ class HomePage(Page):
         context = super(HomePage, self).get_context(request)
         context["events"] = Event.objects.filter(
             start__gte=datetime.today().date()
-        ).order_by("date")[:4]
+        ).order_by("start")[:4]
         context["update"] = NewsPage.objects.all().order_by("-date")[0]
         return context
