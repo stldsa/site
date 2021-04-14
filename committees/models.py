@@ -1,3 +1,4 @@
+from django.db.models.fields import CharField
 import requests
 from datetime import datetime
 from django.db import models
@@ -33,6 +34,10 @@ class Person(models.Model):
     @property
     def anonymous_name(self):
         return self.user.first_name + " " + self.user.last_name[:1] + "."
+
+
+class Committee(models.Model):
+    name = CharField(max_length=255)
 
 
 class CommitteePage(Page):
@@ -116,4 +121,5 @@ class CommitteesPage(Page):
         context = super().get_context(request)
         committees = CommitteePage.objects.all().order_by("title")
         context["committees"] = committees
+
         return context

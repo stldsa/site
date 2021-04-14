@@ -43,13 +43,13 @@ LOCALE_PATHS = [ROOT_DIR.path("locale")]
 
 # DATABASES = {"default": env.db("DATABASE_URL", default="postgres:///stl_dsa")}
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db",
+        "PORT": 5432,
     }
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
@@ -108,6 +108,7 @@ LOCAL_APPS = [
     "committees",
     "phonenumber_field",
     "news",
+    "django_seed",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

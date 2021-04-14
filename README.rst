@@ -30,6 +30,7 @@ Setting Up Your Local Environment
 
 * ``poetry shell`` to open your virtual environment shell
 * ``poetry install`` to install dependencies within virtual environment
+note on black: if you are getting errors that black is not installed despite installing it via poetry, just install it via pip
 
 Initialize Database
 -------------------

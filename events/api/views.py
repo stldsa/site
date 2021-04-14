@@ -1,13 +1,10 @@
-# from django.http.response import HttpResponse
-# import requests
-# from django.contrib import auth
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework import authentication, permissions
+from events.api.serializers import EventSerializer
+from rest_framework import viewsets, permissions
 import json
 from django.http import HttpResponse
 from action_network import get_events
 from config.settings.local import ACTIONNETWORK_API_KEYS
+from events.models import Event
 
 
 def replace_id_key(event):
@@ -31,8 +28,9 @@ def list(request):
     return HttpResponse(json.dumps(all_events), content_type="application/json")
 
 
-# class ListEvents(APIView):
-#     # authentication_classes = [authentication.TokenAuthentication]
+class EventViewSet(viewsets.ReadOnlyModelViewSet):
+    # authentication_classes = [authentication.TokenAuthentication]
 
-#     def get(self, request, format=None):
-#         return Response()
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.IsAuthenticated]

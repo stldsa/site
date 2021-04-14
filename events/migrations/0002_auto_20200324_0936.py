@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events', '0001_initial'),
+        ("events", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='event',
-            old_name='actionnetwork_link',
-            new_name='actionnetwork_url',
+            model_name="event",
+            old_name="actionnetwork_link",
+            new_name="actionnetwork_url",
         ),
     ]

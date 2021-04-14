@@ -36,7 +36,6 @@ class EventList(ListView):
     context_object_name = "upcoming_events"
 
     def get_queryset(self):
-        update_events()
         return Event.objects.filter(date__gte=datetime.today().date()).order_by("date")
 
 

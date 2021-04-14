@@ -19,6 +19,8 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    environment:
+      - ACTIONNETWORK_API_KEYS
     networks:
       - main
     depends_on:
