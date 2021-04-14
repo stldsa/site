@@ -100,13 +100,8 @@ class CommitteePage(Page):
         events_list = events_response["_embedded"]["osdi:events"]
         upcoming_events = []
         for event in events_list:
-            event_date = datetime.fromisoformat(event["start_date"][:-1]).date()
-            if event_date >= datetime.now().date() and event["status"] == "confirmed":
-                event["date"] = event_date
-                event["start_time"] = datetime.fromisoformat(
-                    event["start_date"][:-1]
-                ).time()
-                upcoming_events.append(event)
+            event["start"] = datetime.fromisoformat(event["start_date"][:-1]).date()
+            upcoming_events.append(event)
         context["upcoming_events"] = upcoming_events
 
         return context

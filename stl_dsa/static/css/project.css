@@ -102,8 +102,8 @@ b {
 }
 
 .content {
-  margin-top: 96px;
-  padding-top: 20px;
+  margin-top: 5px;
+  padding-top: 5px;
 }
 
 .dropdown-header {
@@ -124,7 +124,6 @@ nav {
 }
 
 .navbar {
-  position: fixed;
   width: 100%;
   top: 0;
 }
@@ -173,13 +172,18 @@ nav {
   border-color: #ec1f27;
 }
 
+.fc-btn-active {
+  background-color: white;
+  border-color: #ec1f27;
+}
+
 .fc-button .fc-button-inner:hover {
   background-color: red;
   color: #fff;
 }
 
-.fc-button.fc-state-active .fc-button-inner {
-  background-color: green;
+.fc-button .fc-state-active .fc-button-inner {
+  background-color: maroon;
   color: #fff;
 }
 
@@ -189,11 +193,24 @@ nav {
 }
 
 .calbox {
-  display: flex;,
+  display: flex;
   flex-flow: column;
   height: 100%;
 }
 
 .calbox .row.content {
   flex: 1 1 auto;
+}
+
+@media (max-width: 767.98px) {
+  .fc .fc-toolbar.fc-header-toolbar {
+    display: block;
+    text-align: center;
+  }
+
+  .fc-header-toolbar .fc-toolbar-chunk {
+    display: block;
+    margin: 5px;
+    margin-bottom: 7px;
+  }
 }

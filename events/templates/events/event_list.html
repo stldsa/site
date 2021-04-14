@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% load i18n static %}
-{% block extra_css %}
+{% block fullcalendar_css %}
 <link rel='stylesheet' type='text/css' href="{% static 'fullcalendar/lib/main.css' %}" />
-<link rel="stylesheet" type='text/css' href="{% static 'fullcalendar/fullcalendar-custom.css' %}" />
 {% endblock %}
 {% block content %}
 <div class="row">
@@ -17,8 +16,8 @@
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            height: 600,
-            defaultView: window.mobilecheck() ? "listMonth" : "dayGridMonth",
+            height: 500,
+            initialView: window.mobilecheck() ? "listMonth" : "dayGridMonth",
             themeSystem: 'bootstrap',
             displayEventTime: false,
             eventColor: '#ec1f27',
@@ -39,9 +38,9 @@
             },
             events: '/api/events',
             headerToolbar: {
-              start: 'today prev,next',
+              start: 'dayGridMonth,listMonth',
               center: 'title',
-              end: 'dayGridMonth,listMonth'
+              end: 'prev,next'
             },
             eventClick: function(info) {
               info.jsEvent.preventDefault(); // don't let the browser navigate

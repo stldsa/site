@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from action_network import get_events
 from config.settings.local import ACTIONNETWORK_API_KEYS
 from events.models import Event
+from rest_framework.response import Response
 
 
 def replace_id_key(event):
@@ -29,8 +30,12 @@ def list(request):
 
 
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
-    # authentication_classes = [authentication.TokenAuthentication]
-
-    queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        start = self.request.query_params.get("start")
+        end = self.request.query_params.get("end")
+        tz = self.request.query_params.get("timeZone")
+        return Event.objects.filter(start__range=(start, end)).exclude(
+            title__icontains="members only"
+        )

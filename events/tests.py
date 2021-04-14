@@ -22,12 +22,6 @@ def test_events_api_url_resolves():
 def test_get_returns_event_list(admin_client):
     events_api_response = admin_client.get("/api/events/")
     event_list = json.loads(events_api_response.content.decode("utf8"))
-    print(event_list)
     assert all(
         [{"id", "title", "start", "url"} == event.keys() for event in event_list]
     )
-
-
-@pytest.mark.vcr()
-def test_get_action_network_events():
-    assert isinstance(action_network.get_events(ACTIONNETWORK_API_KEYS[0]), list)

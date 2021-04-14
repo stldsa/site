@@ -7,13 +7,12 @@ from committees.models import Committee, CommitteePage
 
 
 class APICalls(models.Model):
-    datetime = models.DateTimeField(default=datetime(1, 1, 1, 1, 1, 1))
+    datetime = models.DateTimeField(default=datetime(2, 1, 1, 1, 1, 2))
 
 
 class Event(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=255)
     description = models.TextField()
-    date = models.DateField()
     start = models.DateTimeField()
     end_time = models.TimeField(null=True, blank=True)
     address = models.CharField(max_length=30, null=True, blank=True)
@@ -23,8 +22,8 @@ class Event(models.Model):
     formation = models.ForeignKey(
         Committee, null=True, on_delete=models.CASCADE, blank=True
     )
-    actionnetwork_url = models.URLField()
-    actionnetwork_id = models.CharField(max_length=50)
+    url = models.URLField()
+    id = models.CharField(max_length=50, primary_key=True)
 
     def __str__(self):
-        return self.title + " " + str(self.date)
+        return self.title + " " + str(self.start)
