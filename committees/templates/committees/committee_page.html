@@ -12,7 +12,7 @@
             <h4>Description:</h4>
             <p>{{ page.description|richtext }}</p>
             <h4>Upcoming Events:</h4>
-            <div class='container'>
+            <!-- <div class='container'>
                 {% if upcoming_events %}
                     {% for event in upcoming_events %}
                         <a href='{{ event.browser_url }}'>
@@ -23,7 +23,7 @@
                 {% else %}
                     <p>No events posted.</p>
                 {% endif %}
-            </div>
+            </div> -->
         </div>
         <div class='col-6'>
             {{ embed_code|safe }}
