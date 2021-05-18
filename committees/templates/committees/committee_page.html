@@ -5,7 +5,7 @@
 
 <div class='container'>
     <div class='row'>
-        <div class='col-6'>
+        <div class='col-sm'>
             <h2>{{ page.name }} {{ page.get_formation_type_display }}</h2>
             <h4>Current Chair(s):</h4>
             <p>{{ page.leader_name }} | {{ page.email|urlize }}</p>
@@ -25,7 +25,7 @@
                 {% endif %}
             </div> -->
         </div>
-        <div class='col-6'>
+        <div class='col-sm'>
             {{ embed_code|safe }}
         </div>
     </div>
