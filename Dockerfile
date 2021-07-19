@@ -15,7 +15,8 @@ ENV DJANGO_ENV=${DJANGO_ENV} \
     # poetry:
     POETRY_VERSION=1.0.5 \
     POETRY_VIRTUALENVS_CREATE=false \
-    POETRY_CACHE_DIR='/var/cache/pypoetry'
+    POETRY_CACHE_DIR='/var/cache/pypoetry' \
+    DOCKER_SETTINGS_FILE='config.settings.docker'
 
 # System deps:
 RUN apt-get update \

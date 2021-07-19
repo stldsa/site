@@ -82,9 +82,7 @@ DEFAULT_FROM_EMAIL = env(
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = env(
-    "DJANGO_EMAIL_SUBJECT_PREFIX", default="[STL DSA]"
-)
+EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[STL DSA]")
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -146,5 +144,13 @@ LOGGING = {
             "handlers": ["console", "mail_admins"],
             "propagate": True,
         },
+    },
+}
+
+HAYSTACK_CONNECTIONS = {
+    "default": {
+        "ENGINE": "haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine",
+        "URL": "https://stldsa.org",
+        "INDEX_NAME": "haystack",
     },
 }

@@ -1,5 +1,6 @@
-import json
+import datetime
 import logging
+from faker import Faker
 from pathlib import Path
 
 from django.apps import apps
@@ -9,6 +10,9 @@ from django.core.files import File
 from django.core.management.base import BaseCommand
 from wagtail.core.models import Page
 from wagtail.images.models import Image
+from events.models import Event
+
+fake = Faker()
 
 User = get_user_model()
 
@@ -125,7 +129,7 @@ class Command(BaseCommand):
             # language=language_code,
             title="St Louis DSA",
             banner_title="We are the St. Louis Democratic Socialists of America!",
-            body="Lorem Ipsum blah blah blah",
+            body="<h3>Our Mission:</h3><p><b>Create a more equitable world by establishing socialism as a political force</b></p><h3>We Believe:</h3><p><b>Our government and economy should operate, through social ownership, for the benefit of all</b></p>"
             # draft_title=title,
             # slug=language_code,
             # hero_title=hero_title,
@@ -138,6 +142,30 @@ class Command(BaseCommand):
             # content_type=homepage_content_type,
         )
         root.add_child(instance=homepage)
+        site = Site(
+            hostname="localhost",
+            root_page=homepage,
+            is_default_site=True,
+            site_name="St Louis DSA",
+        )
+        site.save()
+        NewsIndexPage = apps.get_model("news.NewsIndexPage")
+        newsindexpage = NewsIndexPage(title="News", slug="news")
+        homepage.add_child(instance=newsindexpage)
+        NewsPage = apps.get_model("news.NewsPage")
+        newspage = NewsPage(
+            title="Today's News",
+            slug="1",
+            date=datetime.date.today(),
+            body=fake.paragraph(),
+        )
+        newsindexpage.add_child(instance=newspage)
+        future_event = Event(
+            title="Event Title",
+            description=fake.paragraph(),
+            start=fake.future_date(),
+        )
+        future_event.save()
 
     def _setup_contact_page(self):
         """Creates the contact page."""
@@ -178,10 +206,10 @@ class Command(BaseCommand):
         contact_page_de.english_link = contact_page_en
         contact_page_de.save()
 
-    def _setup_team_member_index(self):
+    def _setup_news_index(self):
         """Creates the language specific team member index pages."""
         HomePage = apps.get_model("cms.HomePage")
-        TeamMemberIndexPage = apps.get_model("cms.TeamMemberIndexPage")
+        TeamMemberIndexPage = apps.get_model("news.NewsIndexPage")
         ContentType = apps.get_model("contenttypes.ContentType")
         team_member_index_page_content_type = ContentType.objects.get(
             model="teammemberindexpage", app_label="cms"

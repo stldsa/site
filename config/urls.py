@@ -12,6 +12,8 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from events.api import urls as events_api_urls
 
+# from sphinxdoc import urls as sphinxdoc_urls
+
 
 urlpatterns = [
     # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -32,6 +34,7 @@ urlpatterns = [
     ),
     path("api/", include(events_api_urls)),
     path("auth-token/", obtain_auth_token),
+    # re_path(r"^docs/", include(sphinxdoc_urls)),
     re_path(r"^cms/", include(wagtailadmin_urls)),
     re_path(r"^documents/", include(wagtaildocs_urls)),
     re_path(r"^pages/", include(wagtail_urls)),

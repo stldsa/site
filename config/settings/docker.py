@@ -3,6 +3,19 @@ from .base import env
 
 # GENERAL
 # ------------------------------------------------------------------------------
+# DATABASES
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db",
+        "PORT": 5432,
+    }
+}
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
@@ -12,10 +25,6 @@ SECRET_KEY = env(
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
-
-# DATABASES
-# ------------------------------------------------------------------------------
-DATABASES = {"default": env.db("DATABASE_URL", default="postgres:///stl_dsa")}
 
 # CACHES
 # ------------------------------------------------------------------------------
