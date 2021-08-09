@@ -5,13 +5,13 @@
 
 <div class='container'>
     <div class='row'>
-        <div class='col-6'>
+        <div class='col-sm'>
             <h2>{{ page.name }} {{ page.get_formation_type_display }}</h2>
             <h4>Current Chair(s):</h4>
             <p>{{ page.leader_name }} | {{ page.email|urlize }}</p>
             <h4>Description:</h4>
             <p>{{ page.description|richtext }}</p>
-            <h4>Upcoming Events:</h4>
+            <!-- <h4>Upcoming Events:</h4>
             <div class='container'>
                 {% if upcoming_events %}
                     {% for event in upcoming_events %}
@@ -23,9 +23,9 @@
                 {% else %}
                     <p>No events posted.</p>
                 {% endif %}
-            </div>
+            </div> -->
         </div>
-        <div class='col-6'>
+        <div class='col-sm'>
             {{ embed_code|safe }}
         </div>
     </div>

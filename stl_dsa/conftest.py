@@ -7,7 +7,7 @@ from stl_dsa.users.tests.factories import UserFactory
 
 @pytest.fixture
 def firefox_options(firefox_options):
-    firefox_options.add_argument("--headless")
+    firefox_options.add_argument("-headless")
     return firefox_options
 
 

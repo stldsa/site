@@ -13,6 +13,13 @@ Website for the St Louis chapter of the Democratic Socialists of America
 
 :License: MIT
 
+
+
+Docker Setup
+------------
+To set up your environment using Docker, run ``docker-compose build`` which installs your dependencies. When complete, run ``docker-compose up -d`` to spin up your container, which provides endpoints for your local database and app server. The ``-d`` flag is optional and runs the container in **detached** mode which means that the container runs in the background and you may use the same terminal for the following commands. To execute a command in your container's environment, prefix your commands with ``docker-compose run web <your command here>``.  To get our application working, we need to initialize the database. ``docker-compose run web python manage.py migrate`` runs migrations, which establishes our database schema. ``docker-compose run web python manage.py seed-db`` then populates your local database with fake data needed for the site to work.  You can now view a functional copy of the website in your browser at ``localhost:8000``.
+
+
 Prerequisites
 -------------
 * python 3.8.5 (I suggest pyenv to manage python versions)
@@ -26,6 +33,7 @@ Setting Up Your Local Environment
 
 * ``poetry shell`` to open your virtual environment shell
 * ``poetry install`` to install dependencies within virtual environment
+note on black: if you are getting errors that black is not installed despite installing it via poetry, just install it via pip
 
 Initialize Database
 -------------------
@@ -105,7 +113,3 @@ Heroku
 See detailed `cookiecutter-django Heroku documentation`_.
 
 .. _`cookiecutter-django Heroku documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-on-heroku.html
-
-
-
-

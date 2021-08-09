@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events', '0006_auto_20200413_0201'),
+        ("events", "0006_auto_20200413_0201"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='event',
-            name='actionnetwork_id',
-            field=models.CharField(default='', max_length=50),
+            model_name="event",
+            name="actionnetwork_id",
+            field=models.CharField(default="", max_length=50),
             preserve_default=False,
         ),
     ]

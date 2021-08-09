@@ -1,3 +1,4 @@
+from django.db.models.fields import CharField
 import requests
 from datetime import datetime
 from django.db import models
@@ -33,6 +34,10 @@ class Person(models.Model):
     @property
     def anonymous_name(self):
         return self.user.first_name + " " + self.user.last_name[:1] + "."
+
+
+class Committee(models.Model):
+    name = CharField(max_length=255)
 
 
 class CommitteePage(Page):
@@ -95,13 +100,8 @@ class CommitteePage(Page):
         events_list = events_response["_embedded"]["osdi:events"]
         upcoming_events = []
         for event in events_list:
-            event_date = datetime.fromisoformat(event["start_date"][:-1]).date()
-            if event_date >= datetime.now().date() and event["status"] == "confirmed":
-                event["date"] = event_date
-                event["start_time"] = datetime.fromisoformat(
-                    event["start_date"][:-1]
-                ).time()
-                upcoming_events.append(event)
+            event["start"] = datetime.fromisoformat(event["start_date"][:-1]).date()
+            upcoming_events.append(event)
         context["upcoming_events"] = upcoming_events
 
         return context
@@ -116,4 +116,5 @@ class CommitteesPage(Page):
         context = super().get_context(request)
         committees = CommitteePage.objects.all().order_by("title")
         context["committees"] = committees
+
         return context

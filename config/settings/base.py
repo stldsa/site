@@ -37,12 +37,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
 LOCALE_PATHS = [ROOT_DIR.path("locale")]
 
-# DATABASES
-# ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
-
-DATABASES = {"default": env.db("DATABASE_URL", default="postgres:///stl_dsa")}
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # URLS
 # ------------------------------------------------------------------------------
@@ -82,10 +76,13 @@ THIRD_PARTY_APPS = [
     "wagtail.documents",
     "wagtail.images",
     "wagtail.search",
+    "wagtail.contrib.search_promotions",
     "wagtail.admin",
     "wagtail.core",
     "taggit",
     "modelcluster",
+    "wagtailfontawesome",
+    "wagtail_blocks",
 ]
 
 LOCAL_APPS = [
@@ -95,6 +92,7 @@ LOCAL_APPS = [
     "committees",
     "phonenumber_field",
     "news",
+    "django_seed",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -300,10 +298,12 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ),
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
 WAGTAIL_SITE_NAME = "St Louis DSA"
-ACTIONNETWORK_API_KEYS = json.loads(os.environ.get("ACTIONNETWORK_API_KEYS", "[]"))
+ACTIONNETWORK_API_KEYS = json.loads(os.environ.get("ACTIONNETWORK_API_KEYS", "{}"))
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
