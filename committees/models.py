@@ -19,6 +19,16 @@ class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
     phone = PhoneNumberField(null=True, blank=True)
 
+    class MembershipStatus(models.TextChoices):
+        ACTIVE = "Active"
+        IN_ARREARS = "In Arrears"
+        LAPSED = "LAPSED"
+        NONE = "None"
+
+    membership = models.TextField(
+        choices=MembershipStatus.choices, null=True, blank=True
+    )
+
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
@@ -67,7 +77,7 @@ class CommitteePage(Page):
         on_delete=models.SET_NULL,
         related_name="committee_leader",
     )
-    leader_name = models.CharField(max_length=30)
+    # leader_name = models.CharField(max_length=30)
     email = models.EmailField()
     people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
     api_key = models.CharField(max_length=32, null=True, blank=True)
@@ -79,7 +89,7 @@ class CommitteePage(Page):
         FieldPanel("name"),
         FieldPanel("description"),
         FieldPanel("formation_type"),
-        FieldPanel("leader_name"),
+        FieldPanel("leader"),
         FieldPanel("email"),
         FieldPanel("sign_up_form_endpoint"),
     ]
@@ -106,9 +116,14 @@ class CommitteePage(Page):
 
         return context
 
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
+
 
 class CommitteesPage(Page):
-    parent_page_types = []
     subpage_types = ["CommitteePage"]
 
     def get_context(self, request):
