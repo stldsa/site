@@ -1,4 +1,4 @@
-from django.db.models.fields import CharField
+from django.db.models.fields import CharField, URLField
 import requests
 from datetime import datetime
 from django.db import models
@@ -6,10 +6,11 @@ from stl_dsa.users.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from wagtail.core import blocks
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
+from wagtail.core.fields import RichTextField, StreamField
 from wagtail.snippets.models import register_snippet
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
 
 # Create your models here.
@@ -133,3 +134,31 @@ class CommitteesPage(Page):
         context["committees"] = committees
 
         return context
+
+
+class ResourcesPage(Page):
+    resources = StreamField(
+        [
+            (
+                "resource",
+                blocks.StreamBlock(
+                    [
+                        ("resource_name", blocks.CharBlock()),
+                        ("information", blocks.RichTextBlock()),
+                        (
+                            "structured_info_block",
+                            blocks.StreamBlock(
+                                [
+                                    ("heading", blocks.CharBlock()),
+                                    ("body", blocks.RichTextBlock()),
+                                ]
+                            ),
+                        ),
+                    ]
+                ),
+            )
+        ]
+    )
+    content_panels = Page.content_panels + [
+        StreamFieldPanel("resources"),
+    ]

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<h1>{{ page.title }}</h1>
+<div class="accordion" id="accordionExample">
+    {% for resource in page.resources %}
+        {% with count=forloop.counter %}
+        <div class="accordion-item">
+            {% for block in resource.value %}
+                {% if block.block_type == 'resource_name' %}
+                    <h2 class="accordion-header" id="heading{{ count }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ count }}" aria-expanded="false" aria-controls="collapse{{ count }}">
+                            
+                        <section>{{ block.value }}</section>
+                        </button>
+                    </h2>
+                {% elif block.block_type == 'information' %}
+                    <div id="collapse{{ count }}" class="accordion-collapse collapse" aria-labelledby="heading{{ count }}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            {{ block.value }} 
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endwith %}
+    {% endfor %}
+</div>
+
+{% endblock %}
