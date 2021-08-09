@@ -25,7 +25,7 @@ This will build your container, install your dependencies, and run services for 
 
 To execute a command in your container's environment, prefix your commands with::
 
-  $ docker-compose run web <your command here>  
+  docker-compose run web <your command here>  
 
 To get our application working, we need to initialize our database. Run::
 
