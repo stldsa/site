@@ -86,7 +86,11 @@ Running tests with pytest
 
   $ pytest
 
+Learning about Django
+---------------------
+Our site is built on Django, a powerful Python web development framework. If you'd like to learn the basics of Django, their `official tutorial <https://docs.djangoproject.com/en/3.2/intro/tutorial01/>`_ is excellent.
+
 
 Wagtail CMS
 --------------
-A good portion of the site is built using Wagtail, which is a nice little CMS backend to make it easier for non-programmers to update content on the site - read about the `Zen of Wagtail <https://docs.wagtail.io/en/stable/getting_started/the_zen_of_wagtail.html>`_ to get the idea. Go to http://locahost:8000/cms with a superuser account to log in and poke around. (If the link on this page doesnt work, type in ``localhost:8000/cms`` manually into your browser.)
+A good portion of the site is built using Wagtail, which is a nice little Django-based CMS backend to make it easier for non-programmers to update content on the site - read about the `Zen of Wagtail <https://docs.wagtail.io/en/stable/getting_started/the_zen_of_wagtail.html>`_ to get the idea. Go to http://locahost:8000/cms with a superuser account to log in and poke around. (If the link on this page doesnt work, type in ``localhost:8000/cms`` manually into your browser.)
