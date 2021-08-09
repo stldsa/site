@@ -19,7 +19,8 @@ Docker Setup
 ------------
 
 To set up your environment using Docker, run::
-  $ docker-compose up
+
+docker-compose up
 
 This will build your container, install your dependencies, and run services for your database and web server.
 
