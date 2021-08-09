@@ -89,4 +89,4 @@ Running tests with pytest
 
 Wagtail CMS
 --------------
-A good portion of the site is built using Wagtail - read about the `Zen of Wagtail https://docs.wagtail.io/en/stable/getting_started/the_zen_of_wagtail.html`_ to get the idea. Go to ``http://locahost:8000/cms`` with a superuser account to log in and poke around. 
+A good portion of the site is built using Wagtail - read about the `Zen of Wagtail <https://docs.wagtail.io/en/stable/getting_started/the_zen_of_wagtail.html>`_ to get the idea. Go to ``http://locahost:8000/cms`` with a superuser account to log in and poke around. 
