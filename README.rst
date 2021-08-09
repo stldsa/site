@@ -17,11 +17,26 @@ Website for the St Louis chapter of the Democratic Socialists of America
 
 Docker Setup
 ------------
-To set up your environment using Docker, run ``docker-compose build`` which installs your dependencies. When complete, run ``docker-compose up -d`` to spin up your container, which provides endpoints for your local database and app server. The ``-d`` flag is optional and runs the container in **detached** mode which means that the container runs in the background and you may use the same terminal for the following commands. To execute a command in your container's environment, prefix your commands with ``docker-compose run web <your command here>``.  To get our application working, we need to initialize the database. ``docker-compose run web python manage.py migrate`` runs migrations, which establishes our database schema. ``docker-compose run web python manage.py seed-db`` then populates your local database with fake data needed for the site to work.  You can now view a functional copy of the website in your browser at ``localhost:8000``.
+To set up your environment using Docker, run:
+  ``docker-compose up``
 
+this will build your container, install your dependencies, and run services for your database and web server.
+
+To execute a command in your container's environment, prefix your commands with ``docker-compose run web <your command here>``.  
+
+To get our application working, we need to initialize our database:
+``docker-compose run web python manage.py migrate``
+
+and seed it with fake data:
+  ``docker-compose run web python manage.py seed-db``
+  
+You should now be able to view a functional copy of the website in your browser at ``http://localhost:8000``.
+
+Manual Setup
+------------
 
 Prerequisites
--------------
+^^^^^^^^^^^^^
 * python 3.8.5 (I suggest pyenv to manage python versions)
 * poetry_ dependency manager
 * postgresql
@@ -29,27 +44,19 @@ Prerequisites
 .. _poetry: https://python-poetry.org/docs/#installation
 
 Setting Up Your Local Environment
----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * ``poetry shell`` to open your virtual environment shell
-* ``poetry install`` to install dependencies within virtual environment
-note on black: if you are getting errors that black is not installed despite installing it via poetry, just install it via pip
+* ``poetry install`` to install dependencies within virtual Environment
 
 Initialize Database
--------------------
-1) ``python manage.py makemigrations``
-2) ``python manage.py migrate``
+^^^^^^^^^^^^^^^^^^^
+* ``python manage.py makemigrations``
 
 Run dev server
+^^^^^^^^^^^^^^
 
 * ``python manage.py runserver``
-
-Settings
---------
-
-Moved to settings_.
-
-.. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
 
 Basic Commands
 --------------
@@ -63,53 +70,15 @@ Setting Up Your Users
 
     $ python manage.py createsuperuser
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
-Type checks
-^^^^^^^^^^^
-
-Running type checks with mypy:
-
-::
-
-  $ mypy stl_dsa
-
-Test coverage
-^^^^^^^^^^^^^
-
-To run the tests, check your test coverage, and generate an HTML coverage report::
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-Running tests with py.test
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Running tests with pytest
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
   $ pytest
 
-Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Moved to `Live reloading and SASS compilation`_.
-
-.. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
-
-
-
-
-
-Deployment
-----------
-
-The following details how to deploy this application.
-
-
-Heroku
-^^^^^^
-
-See detailed `cookiecutter-django Heroku documentation`_.
-
-.. _`cookiecutter-django Heroku documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-on-heroku.html
+Wagtail CMS
+--------------
+A good portion of the site is built using Wagtail - read about the `Zen of Wagtail https://docs.wagtail.io/en/stable/getting_started/the_zen_of_wagtail.html`_ to get the idea.
