@@ -17,18 +17,14 @@ Website for the St Louis chapter of the Democratic Socialists of America
 
 Docker Setup
 ------------
-To set up your environment using Docker, run:
-  ``docker-compose up``
 
-this will build your container, install your dependencies, and run services for your database and web server.
+To set up your environment using Docker, run ``docker-compose up``
+
+This will build your container, install your dependencies, and run services for your database and web server.
 
 To execute a command in your container's environment, prefix your commands with ``docker-compose run web <your command here>``.  
 
-To get our application working, we need to initialize our database:
-``docker-compose run web python manage.py migrate``
-
-and seed it with fake data:
-  ``docker-compose run web python manage.py seed-db``
+To get our application working, we need to initialize our database. Run ``docker-compose run web python manage.py migrate`` and seed it with fake data using ``docker-compose run web python manage.py seed-db``
   
 You should now be able to view a functional copy of the website in your browser at ``http://localhost:8000``.
 
