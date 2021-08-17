@@ -3,7 +3,6 @@ from datetime import datetime
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
-from action_network import get_events
 from events.models import Event
 from news.models import NewsPage
 
