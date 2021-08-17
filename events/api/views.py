@@ -2,7 +2,7 @@ from events.api.serializers import EventSerializer
 from rest_framework import viewsets, permissions
 import json
 from django.http import HttpResponse
-from action_network import get_events
+from actionnetwork.action_network import get_events
 from config.settings.local import ACTIONNETWORK_API_KEYS
 from events.models import Event
 from rest_framework.response import Response
