@@ -1,7 +1,6 @@
-import requests
 from datetime import datetime
 from django.db import models
-from committees.models import Committee, CommitteePage
+from committees.models import Committee
 
 # Create your models here.
 
