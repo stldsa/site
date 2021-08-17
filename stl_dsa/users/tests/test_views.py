@@ -28,7 +28,7 @@ class TestUserUpdateView:
         request = rf.get("/fake-url/")
         request.user = user
         view.request = request
-        view_user = view.get_user_object()
+        view_user = view.get_object()
         assert view_user == user
 
     def test_membership_status_returned(self, client):
