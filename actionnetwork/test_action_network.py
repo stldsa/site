@@ -1,7 +1,7 @@
 import action_network
-import vcr
+import pytest
 
 
-@vcr.use_cassette()
+@pytest.mark.vcr()
 def test_get_events():
     action_network.get_events()
