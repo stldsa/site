@@ -41,3 +41,12 @@ def get_emails():
     )
     events_json = messages_response.json()
     return events_json["_embedded"]["osdi:messages"]
+
+
+# def get_tags():
+
+
+# def get_tag(tag):
+#     tags_response = requests.get("https://actionnetwork.org/api/v2/tags/",
+#     headers=
+#     )
