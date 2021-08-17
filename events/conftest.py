@@ -1,5 +1,4 @@
 import pytest
-from events.api import views
 
 
 @pytest.fixture(scope="module")
