@@ -44,15 +44,15 @@ django-seed = "^0.2.2"
 Faker = "^8.10.1"
 pytest-selenium = "^2.0.1"
 pytest = "^6.2.4"
+validators = "^0.18.2"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q -W ignore::DeprecationWarning"
 DJANGO_SETTINGS_MODULE = "config.settings.test"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
-filterwarnings = "ignore::django.utils.deprecation.RemovedInDjango40Warning"
+filterwarnings = ["ignore::django.utils.deprecation.RemovedInDjango40Warning", "ignore::django.utils.deprecation.RemovedInDjango41Warning"]
 
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
-

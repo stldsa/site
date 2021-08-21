@@ -38,7 +38,13 @@ Seed it with fake data using::
   
 You should now be able to view a functional copy of the website in your browser at http://localhost:8000.
 
-When you are done with your session, you may run ``docker-compose stop`` to stop running the containers. Running ``docker-compose down`` will stop the containers and remove them -- essentially deleting any data you may have added. If you'd like to make changes to the database that can easily be redeployed, consider contributing to the db-seed command.
+When you are done with your session, you may run ``docker-compose stop`` to stop running the containers. Running ``docker-compose down`` will stop the containers and remove them -- essentially deleting any data you may have added. If you'd like to make changes to the database that can easily be redeployed, consider contributing to the db-seed command. 
+
+For now, if you need to install a new package dependency you must rebuild the Docker image. This might look like::
+
+  poetry add <package-name>
+  docker-compose up --build
+
 
 Manual Setup
 ------------

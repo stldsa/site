@@ -4,19 +4,26 @@ from events.models import Event
 from datetime import datetime
 
 
+def get_resource(resource, group):
+    return requests.get(
+        "https://actionnetwork.org/api/v2/" + resource + "/",
+        headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS[group]},
+    )
+
+
+def get_resource_list(resource, group):
+    response = get_resource(resource, group)
+    return response.json()["_embedded"][f"osdi:{resource}"]
+
+
 def get_events():
-    def get_events_for_formation(formation_key):
-        events_response = requests.get(
-            "https://actionnetwork.org/api/v2/events/",
-            # params={"filter": f"modified_date gt '{last_api_call}'"},
-            headers={"OSDI-API-Token": formation_key},
-        )
+    def get_events_for_formation(formation):
+        events_response = get_resource("events", formation)
         events_json = events_response.json()
         return events_json["_embedded"]["osdi:events"]
 
     return [
-        get_events_for_formation(key)
-        for key in settings.ACTIONNETWORK_API_KEYS.values()
+        get_events_for_formation(key) for key in settings.ACTIONNETWORK_API_KEYS.keys()
     ]
 
 
@@ -43,10 +50,12 @@ def get_emails():
     return events_json["_embedded"]["osdi:messages"]
 
 
-# def get_tags():
+def get_tags():
+    return get_resource("tags", "main")
 
 
-# def get_tag(tag):
-#     tags_response = requests.get("https://actionnetwork.org/api/v2/tags/",
-#     headers=
-#     )
+def get_tag_taggings_href(tag):
+    tags = get_resource_list("tags", "main")
+    return next(item for item in tags if item["name"] == tag)["_links"][
+        "osdi:taggings"
+    ]["href"]
