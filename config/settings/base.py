@@ -150,6 +150,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
@@ -306,4 +307,4 @@ REST_FRAMEWORK = {
 # ------------------------------------------------------------------------------
 WAGTAIL_SITE_NAME = "St Louis DSA"
 ACTIONNETWORK_API_KEYS = json.loads(os.environ.get("ACTIONNETWORK_API_KEYS", "{}"))
-SILENCED_SYSTEM_CHECKS = ["auth.W004"]
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
