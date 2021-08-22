@@ -1,5 +1,5 @@
 # The base image we want to inherit from
-FROM python:3.9.2 AS development_build
+FROM nikolaik/python-nodejs:latest
 
 ARG DJANGO_ENV
 
@@ -28,16 +28,19 @@ RUN apt-get update \
     git \
     libpq-dev \
     wget \
+    # && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    # && apt-get install -y nodejs \
     # Cleaning cache:
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
-    && pip install "poetry==$POETRY_VERSION" && poetry --version
+    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* 
+# && pip install "poetry==$POETRY_VERSION" && poetry --version \
 
 # set work directory
 WORKDIR /code
-COPY pyproject.toml poetry.lock
-
 COPY . .
+
+# COPY . .
 # Install dependencies:
+RUN npm install
 RUN poetry install
 # copy project
 CMD ["python", "manage.py", "runserver"]
