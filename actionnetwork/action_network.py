@@ -1,7 +1,6 @@
 import requests
 from django.conf import settings
 from events.models import Event
-from datetime import datetime
 
 
 def get_events():
@@ -22,16 +21,15 @@ def get_events():
 
 def save_events(events):
     for event in events:
-        obj, created = Event.objects.update_or_create(
+        Event.objects.update_or_create(
             id=event["identifiers"][0].split(":")[1],
             defaults={
                 "title": event["title"],
-                "start": datetime.fromisoformat(event["start_date"][:-1]),
+                "start": event["start_date"],
                 "url": event["browser_url"],
                 "description": event["description"],
             },
         )
-    return
 
 
 def get_emails():
