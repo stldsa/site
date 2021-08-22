@@ -1,7 +1,5 @@
-import requests
-import action_network as an
+from actionnetwork import action_network as an
 from django.core.management.base import BaseCommand
-from events.models import Event
 
 
 class Command(BaseCommand):
