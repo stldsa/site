@@ -1,4 +1,4 @@
-from django.db.models.fields import CharField, URLField
+from django.db.models.fields import CharField
 import requests
 from datetime import datetime
 from django.db import models
@@ -9,7 +9,6 @@ from django.dispatch import receiver
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
-from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
 
