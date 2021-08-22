@@ -1,13 +1,7 @@
 import json
-import pytest
-import action_network
-import requests
-from django.urls import reverse, resolve
-from config.settings.local import ACTIONNETWORK_API_KEYS
-from django.test import Client
+from django.urls import resolve
 
 
-@pytest.mark.django_db
 def test_events_api_url_routed(admin_client):
     response = admin_client.get("/api/events/")
     assert response.status_code == 200

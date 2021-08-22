@@ -6,7 +6,7 @@ from committees.models import Committee
 
 
 class APICalls(models.Model):
-    datetime = models.DateTimeField(default=datetime(2, 1, 1, 1, 1, 2))
+    datetime = models.DateTimeField(default=datetime.min)
 
 
 class Event(models.Model):
