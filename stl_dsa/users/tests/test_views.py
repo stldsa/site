@@ -32,7 +32,7 @@ class TestUserUpdateView:
         assert view_user == user
 
     def test_membership_status_returned(self, client):
-        response = client.get("/user")
+        assert client.get("/user")
 
 
 class TestUserRedirectView:

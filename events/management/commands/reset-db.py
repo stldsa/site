@@ -29,7 +29,10 @@ class Command(BaseCommand):
         cur = conn.cursor()
         # DANGER: Not using prepared variables here. hardcore python formatting.
         cur.execute(
-            "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = '{}' AND pid <> pg_backend_pid();".format(
+            """
+            SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity
+            WHERE pg_stat_activity.datname = '{}' AND pid <> pg_backend_pid();
+            """.format(
                 conn_kwargs["dbname"]
             )
         )
@@ -89,6 +92,4 @@ class Command(BaseCommand):
         if verbosity > 0:
             msg = "Migrations done. Generating content. Time to grab a coffee..."
             self.stdout.write(msg)
-        # this is a wagtail specific management command to setup some initial Wagtail pages
-        # only needed if you are using Wagtail
         call_command("setup_page_tree", verbosity=verbosity)

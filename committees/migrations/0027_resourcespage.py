@@ -9,20 +9,47 @@ import wagtail.core.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0060_fix_workflow_unique_constraint'),
-        ('committees', '0026_person_membership'),
+        ("wagtailcore", "0060_fix_workflow_unique_constraint"),
+        ("committees", "0026_person_membership"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ResourcesPage',
+            name="ResourcesPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('resources', wagtail.core.fields.StreamField([('resource', wagtail.core.blocks.CharBlock()), ('information', wagtail.core.blocks.RichTextBlock()), ('structured_info', wagtail.core.blocks.StreamBlock([('heading', wagtail.core.blocks.CharBlock()), ('body', wagtail.core.blocks.RichTextBlock())]))])),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.page",
+                    ),
+                ),
+                (
+                    "resources",
+                    wagtail.core.fields.StreamField(
+                        [
+                            ("resource", wagtail.core.blocks.CharBlock()),
+                            ("information", wagtail.core.blocks.RichTextBlock()),
+                            (
+                                "structured_info",
+                                wagtail.core.blocks.StreamBlock(
+                                    [
+                                        ("heading", wagtail.core.blocks.CharBlock()),
+                                        ("body", wagtail.core.blocks.RichTextBlock()),
+                                    ]
+                                ),
+                            ),
+                        ]
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

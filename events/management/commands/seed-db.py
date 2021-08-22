@@ -2,13 +2,10 @@ import datetime
 import logging
 from faker import Faker
 from pathlib import Path
-from django.conf import settings
 from django.apps import apps
 from django.contrib.auth import get_user_model
-from django.core.files import File
 from django.core.management.base import BaseCommand
 from wagtail.core.models import Page
-from wagtail.images.models import Image
 from events.models import Event
 
 fake = Faker()
@@ -38,7 +35,12 @@ class Command(BaseCommand):
         homepage = HomePage(
             title="St Louis DSA",
             banner_title="We are the St. Louis Democratic Socialists of America!",
-            body="<h3>Our Mission:</h3><p><b>Create a more equitable world by establishing socialism as a political force</b></p><h3>We Believe:</h3><p><b>Our government and economy should operate, through social ownership, for the benefit of all</b></p>",
+            body="""
+            <h3>Our Mission:</h3><p><b>Create a more equitable world by
+            establishing socialism as a political force</b></p><h3>We
+            Believe:</h3><p><b>Our government and economy should operate,
+            through social ownership, for the benefit of all</b></p>
+            """,
         )
         root.add_child(instance=homepage)
         site = Site(

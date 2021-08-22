@@ -2,6 +2,7 @@ from django.contrib.auth.models import Group
 import pytest
 
 from stl_dsa.users.models import User
+from stl_dsa.users.views import UserUpdateView
 from stl_dsa.users.tests.factories import UserFactory
 
 
@@ -34,7 +35,7 @@ def member(user, member_group):
 
 
 @pytest.fixture
-def member_update_response(member):
+def member_update_response(rf, member):
     view = UserUpdateView()
     request = rf.get("/fake-url/")
     request.user = user

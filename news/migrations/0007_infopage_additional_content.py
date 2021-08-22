@@ -8,13 +8,15 @@ import wagtail.core.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news', '0006_infopage'),
+        ("news", "0006_infopage"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='infopage',
-            name='additional_content',
-            field=wagtail.core.fields.StreamField([('embed', wagtail.core.blocks.RawHTMLBlock())], null=True),
+            model_name="infopage",
+            name="additional_content",
+            field=wagtail.core.fields.StreamField(
+                [("embed", wagtail.core.blocks.RawHTMLBlock())], null=True
+            ),
         ),
     ]
