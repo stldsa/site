@@ -14,7 +14,7 @@ ENV DJANGO_CONFIGURATION=Docker \
     PIP_DEFAULT_TIMEOUT=100 \
     # poetry:
     POETRY_VIRTUALENVS_CREATE=false \
-    POETRY_CACHE_DIR='/var/cache/pypoetry' 
+    POETRY_CACHE_DIR='/var/cache/pypoetry'
 
 # System deps:
 RUN apt-get update \
@@ -34,5 +34,7 @@ COPY . .
 
 RUN npm install
 RUN poetry install
+
+RUN pre-commit install
 
 CMD ["python", "manage.py", "runserver"]
