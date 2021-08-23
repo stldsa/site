@@ -57,24 +57,42 @@ class InfoPage(Page):
 
 class DocumentPage(Page):
     date_published = models.DateField("Last Updated", blank=True, null=True)
-    body = StreamField([
-        ('section', blocks.StreamBlock([
-            ('header', CharBlock()),
-            ('text', blocks.RichTextBlock()),
-            ('image', ImageChooserBlock()),
-            ('quote', BlockQuoteBlock()),
-            ('subsection', blocks.StreamBlock([
-                ('header', CharBlock()),
-                ('text', blocks.TextBlock()),
-                ('subsubsection', blocks.StreamBlock([
-                    ('header', CharBlock()),
-                    ('text', blocks.TextBlock()),
-                ]))
-            ]))
-        ]))
-    ], blank=True)
+    body = StreamField(
+        [
+            (
+                "section",
+                blocks.StreamBlock(
+                    [
+                        ("header", CharBlock()),
+                        ("text", blocks.RichTextBlock()),
+                        ("image", ImageChooserBlock()),
+                        ("quote", BlockQuoteBlock()),
+                        (
+                            "subsection",
+                            blocks.StreamBlock(
+                                [
+                                    ("header", CharBlock()),
+                                    ("text", blocks.TextBlock()),
+                                    (
+                                        "subsubsection",
+                                        blocks.StreamBlock(
+                                            [
+                                                ("header", CharBlock()),
+                                                ("text", blocks.TextBlock()),
+                                            ]
+                                        ),
+                                    ),
+                                ]
+                            ),
+                        ),
+                    ]
+                ),
+            )
+        ],
+        blank=True,
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel("date_published"),
-        StreamFieldPanel("body")
+        StreamFieldPanel("body"),
     ]

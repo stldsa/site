@@ -49,6 +49,7 @@ pytest = "^6.2.4"
 flake8 = "^3.9.2"
 flakehell = "^0.9.0"
 django-debug-toolbar = "^3.2.2"
+pytest-drf = "^1.1.2"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -61,33 +62,13 @@ filterwarnings = [
     "ignore::django.utils.deprecation.RemovedInDjango41Warning"
 ]
 
-[tool.flakehell]
-exclude = ["README.rst", "README.md",]
-format = "colored"
-max_line_length = 133
-show_source = true
-whitelist = "../../allowlist.txt"
-extended_default_ignore = []
+[tool.flake8]
+max-line-length = 88
+select = "C,E,F,W,B,B950"
+extend-ignore = "E203, E501"
 
-[tool.flakehell.plugins]
-flake8-bandit = ["+*", "-S322"]
-flake8-bugbear = ["+*"]
-flake8-builtins = ["+*"]
-flake8-comprehensions = ["+*"]
-flake8-darglint = ["+*"]
-flake8-docstrings = ["+*"]
-flake8-eradicate = ["+*"]
-flake8-isort = ["+*"]
-flake8-mutable = ["+*"]
-flake8-pytest-style = ["+*"]
-flake8-spellcheck = ["+*"]
-mccabe = ["+*"]
-pep8-naming = ["+*"]
-pycodestyle = ["+*"]
-pyflakes = ["+*"]
-
-[tool.flakehell.exceptions."**/migrations/**"]
-pycodestyle = ["-E501", "-F405"]
+[tool.black]
+exclude = '^.*\b(migrations)\b.*$'
 
 [build-system]
 requires = ["poetry>=1.1.6"]
