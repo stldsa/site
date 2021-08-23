@@ -70,5 +70,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"id": self.pk})
 
+    @property
+    def is_staff(self):
+        return self.is_admin
+
     def __str__(self):
         return str(self.first_name) + " " + str(self.last_name)
