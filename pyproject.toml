@@ -53,7 +53,8 @@ django-debug-toolbar = "^3.2.2"
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q"
-DJANGO_SETTINGS_MODULE = "config.settings.test"
+DJANGO_SETTINGS_MODULE = "config.settings"
+DJANGO_CONFIGURATION = Test
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 filterwarnings = [
     "ignore::django.utils.deprecation.RemovedInDjango40Warning",
