@@ -8,7 +8,7 @@ from django.db import models
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, password=None):
+    def create_user(self, email, first_name=None, last_name=None, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -26,7 +26,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, date_of_birth, password=None):
+    def create_superuser(self, email, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -45,8 +45,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     # First Name and Last Name do not cover name patterns
     # around the globe.
     # username = models.CharField(null=True, blank=True, max_length=150)
-    first_name = models.CharField(null=False, blank=False, max_length=30)
-    last_name = models.CharField(null=False, blank=False, max_length=30)
+    first_name = models.CharField(null=True, blank=True, max_length=30)
+    last_name = models.CharField(null=True, blank=True, max_length=30)
     email = models.EmailField(null=False, blank=False, unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
