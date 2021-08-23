@@ -258,15 +258,16 @@ class Dev(Base):
     INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 
 
-class Docker(Dev):
-    DATABASES = values.DatabaseURLValue("postgres://postgres:postgres@db:5432/postgres")
-
-
 class Local(Dev):
     DATABASES = values.DatabaseURLValue("postgres:///stl_dsa")
 
 
+class Docker(Dev):
+    DATABASES = values.DatabaseURLValue("postgres://postgres:postgres@db:5432/postgres")
+
+
 class Test(Dev):
+
     TEST_RUNNER = "django.test.runner.DiscoverRunner"
     PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
     TEMPLATES = Base.TEMPLATES
