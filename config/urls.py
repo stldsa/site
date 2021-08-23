@@ -4,7 +4,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
-from config.views import podcast_redirect
 from rest_framework.authtoken.views import obtain_auth_token
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
@@ -24,7 +23,6 @@ urlpatterns = [
     path("users/", include("stl_dsa.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     path("events/", include("events.urls")),
-    path("feed/podcast/", podcast_redirect),
     path(
         "fullcalendar/",
         TemplateView.as_view(template_name="fullcalendar.html"),
