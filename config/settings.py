@@ -245,14 +245,11 @@ class Dev(Base):
     EMAIL_BACKEND = env(
         "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
     )
-    INSTALLED_APPS = (
-        ["whitenoise.runserver_nostatic"]
-        + Base.INSTALLED_APPS
-        + [
-            "debug_toolbar",
-            "django_extensions",
-        ]
-    )  # noqa F405
+    INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + Base.INSTALLED_APPS
+    INSTALLED_APPS = INSTALLED_APPS + [
+        "debug_toolbar",
+        "django_extensions",
+    ]
     DEBUG_TOOLBAR_CONFIG = {
         "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
         "SHOW_TEMPLATE_CONTEXT": True,
