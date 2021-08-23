@@ -35,4 +35,4 @@ jobs:
       run: pip install -U pytest
     - name: Test with pytest
       run: |
-        pytest
+        pytest --disable-warnings
