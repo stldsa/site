@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Welcome to the website for the St Louis chapter of the Democratic Socialists of America! We hope this guide will make it easy for newcomers to contribute to website features.
+Welcome to the codesbas for the St Louis DSA website! We hope this guide will make it easy for newcomers to contribute to website features.
 
 ## Before You Begin
 
