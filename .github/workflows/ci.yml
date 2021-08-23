@@ -20,23 +20,8 @@ jobs:
       - name: Install Poetry
         uses: abatilo/actions-poetry@v2.1.0
 
-      - name: Cache Poetry virtualenv
-        uses: actions/cache@v1
-        id: cache
-        with:
-          path: ~/.virtualenvs
-          key: poetry-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: |
-            poetry-${{ hashFiles('**/poetry.lock') }}
-
-      - name: Set Poetry config
-        run: |
-          poetry config settings.virtualenvs.in-project false
-          poetry config settings.virtualenvs.path ~/.virtualenvs
-
       - name: Install Dependencies
         run: poetry install
-        if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Code Quality
         run: poetry run black . --check
@@ -44,5 +29,5 @@ jobs:
       - name: Test with pytest
         env:
           DJANGO_SETTINGS_MODULE: project.settings
-          SECRETS_FILE: .confidential/ci.json
-        run: poetry run pytest --cov . -n 2
+          DJANGO_CONFIG: Test
+        run: poetry run pytest --disable-warnings
