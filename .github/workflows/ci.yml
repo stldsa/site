@@ -7,7 +7,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     services:
-      db:
+      postgres:
         image: postgres
         env:
           POSTGRES_PASSWORD: postgres
@@ -39,6 +39,5 @@ jobs:
       - name: Test with pytest
         env:
           DJANGO_SETTINGS_MODULE: config.settings
-          DJANGO_CONFIG: Test
-          DATABASE_URL: "postgres://github_actions:postgres@db:5432/postgres"
+          DATABASE_URL: "postgres://github_actions:postgres@postgres:5432/postgres"
         run: poetry run pytest --disable-warnings
