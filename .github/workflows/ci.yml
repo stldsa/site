@@ -37,7 +37,7 @@ jobs:
         run: poetry run black . --check
 
       - name: Run migrations
-        run: python manage.py migrate
+        run: poetry run python manage.py migrate
 
       - name: Test with pytest
         env:
