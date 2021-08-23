@@ -21,7 +21,6 @@ services:
       - "8000:8000"
     environment:
       - ACTIONNETWORK_API_KEYS
-      - DJANGO_SETTINGS_MODULE=config.settings.docker
     networks:
       - main
     depends_on:

@@ -3,7 +3,7 @@ from rest_framework import viewsets
 import json
 from django.http import HttpResponse
 from actionnetwork.action_network import get_events
-from config.settings.local import ACTIONNETWORK_API_KEYS
+from config.settings import ACTIONNETWORK_API_KEYS
 from events.models import Event
 
 
