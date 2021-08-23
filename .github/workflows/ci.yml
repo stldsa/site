@@ -37,10 +37,15 @@ jobs:
         run: poetry run black . --check
 
       - name: Run migrations
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings
+          DJANGO_CONFIGURATION: Test
+          DATABASE_URL: "postgres://github_actions:postgres@postgres:5432/postgres"
         run: poetry run python manage.py migrate
 
       - name: Test with pytest
         env:
           DJANGO_SETTINGS_MODULE: config.settings
+          DJANGO_CONFIGURATION: Test
           DATABASE_URL: "postgres://github_actions:postgres@postgres:5432/postgres"
         run: poetry run pytest --disable-warnings
