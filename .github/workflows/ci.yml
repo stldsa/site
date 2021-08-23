@@ -40,4 +40,5 @@ jobs:
         env:
           DJANGO_SETTINGS_MODULE: config.settings
           DJANGO_CONFIG: Test
+          DATABASE_URL: "postgres://github_actions:postgres@db:5432/postgres"
         run: poetry run pytest --disable-warnings
