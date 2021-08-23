@@ -31,6 +31,8 @@ jobs:
         poetry-version: 1.1.6
     - name: Install dependencies
       run: poetry install
+    - name: Install pytest
+      run: pip install -U pytest
     - name: Test with pytest
       run: |
         pytest
