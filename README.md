@@ -22,9 +22,8 @@ The easiest way to get started with your local development environment is throug
 
 ### 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) and [clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) the repository
 
-### 2. Install Docker
+### 2. [Install Docker](https://docs.docker.com/engine/install/)
 
-If you have not already, install [Docker](https://docs.docker.com/engine/install/) for your operating system.
 
 ### 3. Build your Docker Image and spin up a container
 
