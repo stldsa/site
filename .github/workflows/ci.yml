@@ -36,6 +36,9 @@ jobs:
       - name: Code Quality
         run: poetry run black . --check
 
+      - name: Run migrations
+        run: python manage.py migrate
+
       - name: Test with pytest
         env:
           DJANGO_SETTINGS_MODULE: config.settings
