@@ -20,15 +20,17 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
+    - name: Install flakehell
+      run: python3 -m pip install --user flakehell
+    - name: Lint with flakehell
+      run: |
+        flakehell lint
     - name: Install Poetry
       uses: abatilo/actions-poetry@v2.0.0
       with:
         poetry-version: 1.1.6
     - name: Install dependencies
       run: poetry install
-    - name: Lint with flakehell
-      run: |
-        flakehell lint
     - name: Test with pytest
       run: |
         pytest
