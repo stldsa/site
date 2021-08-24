@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.191.1/containers/docker-existing-docker-compose
 // If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
 {
-	"name": "Existing Docker Compose (Extend)",
+	"name": "STL DSA Full Environment",
 	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
 	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
 	"dockerComposeFile": [
@@ -13,11 +13,18 @@
 	"service": "web",
 	// The optional 'workspaceFolder' property is the path VS Code should open by default when
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/code",
+	"workspaceFolder": "/app",
 	// Set *default* container specific settings.json values on container create.
-	"settings": {},
+	"settings": {
+		"python.formatting.provider": "black",
+		"python.linting.flake8Enabled": true,
+		"python.linting.enabled": true,
+		"python.linting.flake8Args": [
+		  "--max-line-length=120"
+		]
+	},
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [],
+	"extensions": ["bungcip.better-toml", "ms-azuretools.vscode-docker", "poeticandroid.vscode-poetry", "ms-python.python", "sourcery.sourcery", "redhat.vscode-yaml"],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Uncomment the next line if you want start specific services in your Docker Compose config.
@@ -25,7 +32,7 @@
 	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
 	// "shutdownAction": "none",
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	// "postCreateCommand": echo
+	// "postCreateCommand": ["python manage.py migrate && python manage.py seed-db &&"]
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"
 }

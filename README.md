@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Welcome to the codesbas for the St Louis DSA website! We hope this guide will make it easy for newcomers to contribute to website features.
+Welcome to the codebase for the St Louis DSA website! We hope this guide will make it easy for newcomers to contribute to website features.
 
 ## Before You Begin
 
@@ -18,51 +18,50 @@ Many pages on our site are built with Wagtail, which is a nice Django-based cont
 
 ## Getting Set Up
 
-The easiest way to get started with your local development environment is through our Docker Setup, which is outlined below. If these instructions do not work (or if you'd like to set up your own environment and have questions), please reach out to tech@stldsa.org or make a pull request with suggested changes.
+The easiest way to get started with your local development environment is through our Docker Setup, which is outlined below. If these instructions do not work (or if you'd like to set up your own environment and have questions), please reach out to tech@stldsa.org or [open a GitHub issue](https://github.com/stldsa/site/issues/new/choose).
 
 ### 1. Clone the repository
 
-    git clone https://github.com/stldsa/site.git
+    git clone https://github.com/stldsa/site.git stldsa
 
-If you are a member of DSA, ask to be added as a maintainer of the repo. If you are not a member, feel free to fork the repo.
+If you are a member of DSA, ask to be added as a maintainer of the repo. If you are not a member, feel free to fork the repo. `cd stldsa` to move to the project root folder.
 
 ### 2. [Install Docker](https://docs.docker.com/engine/install/) (if you haven't already)
 
-### 3. Spin up a Docker Container
+### 3. Build the Docker Image and create the Docker container
 
-    docker-compose up -d
+There are two extremely easy ways to do this.
+
+1. `docker-compose up`
     
-The first time you run this command builds the Docker *image* the container is based on. The `-d` flag runs the container in 'detached' mode so you can continue using the same terminal. If you'd like to see the console logs from the running services, omit it.
+2. Using [VS Code](https://code.visualstudio.com/) as your IDE, Install the [Remote-Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension, then `Ctrl+Shift+P` to open the Command Pallet and type "Install devcontainer." Select the option that pops up and follow any instructions. Restart your shell and run `devcontainer open` in your console from the project root.
 
-### 4. Initialize your Database
 
-1. Open a bash shell inside the container:
+ The first time you run this command *builds* the Docker *image*, which is a static blueprint for a Docker container. This will take a few minutes. Subsequent builds will run off a cache and should run faster. Then it *creates* a *container*, which you can think of as an ephemeral instance of the image.  Everytime you create a container, you will begin with a fresh database (corollary: every time you remove a container, i.e. with `docker-compose down`, you will lose its data). You may `docker-compose stop` and `docker-compose start` the container to stop/start the server process, which takes up some memory and the `localhost:8000` port. After all of the scripts are done executing, visit http://localhost:8000 to view your local copy of the site.
+    
 
-       docker-compose run web bash
+## Developing
 
-2. Run your initial [migration](https://docs.djangoproject.com/en/3.2/topics/migrations/) to set up the database schema:
+If not working in the VS Code remote container, you can open a bash shell inside the container:
 
-       python manage.py migrate
+    $ docker-compose run web bash
 
-3. Now we need to seed our database with some fake data:
-
-       python manage.py seed-db
+and close the shell with `Ctrl+D`. Alternatively you can run one-off commands with `docker-compose run web <command>`. You may want to create an alias with `alias stldsa="docker-compose run web"` that allows you to run commands with `stldsa <command>`. Persist this alias across shell sessions by adding `>> ~/.bashrc` (Linux) or `>> ~/.bash_profile` (macOS).
       
- You should now be able to view a functional copy of the website in your browser at http://localhost:8000. 
- 
-4. Create a local admin account. 
-
-       python manage.py createsuperuser
-
 
 You're all set up! You can close out of the container shell with `Ctrl+D`. Reopen the shell at any time if you would like to develop inside the container, or run commands with `docker-compose run web <command>`, OR create an alias such as with `alias stldsa="docker-compose run web"`. 
 
+## Create a local admin account
 
-## Useful Commands
+    $ python manage.py createsuperuser
+
+When prompted, enter any email and password. You may now log in to http://localhost:8000/cms to view the Wagtail admin console. Feel free to poke around.
+
+## More useful commands
 - Add package dependencies with `poetry add <package name>` (instead of using `pip`). Note: may take a while to resolve dependencies first time you run this command.
 - Run tests with `pytest`.
 - Open a Python shell with `python manage.py shell`
-- Delete your data with `python manage.py flush` or completely reset your database (including migrations) with `python manage.py reset_db`.
+- Delete your data (but not your [migrations](https://docs.djangoproject.com/en/3.2/topics/migrations/)) with `python manage.py flush` and restore seed data with `python manage.py seed-db`.
 
 ## Contributing
 
@@ -70,7 +69,7 @@ If you would like to contribute to this repository, a couple of helpful steps:
 
 ### Code formatting
 
-Use [black](https://github.com/psf/black) in your IDE to automatically format your code according to the project standards upon saving. Black automatically comes with the Python extension for VS Code and should come preconfigured according to the `.vscode` file that comes with this repo. Installing pre-commit ensures your code is properly formatted (using [black]) before committing any code.
+Use [black](https://github.com/psf/black) in your IDE to automatically format your code according to the project standards each time you save your code. Black automatically comes with the Python extension for VS Code and should come preconfigured according to the `.vscode` configuration file that comes with this repo. Installing **pre-commit** ensures your code is black-formatted before committing any code:
 
     pre-committ install
 
@@ -90,4 +89,4 @@ Now create a new branch and switch to it:
 
 where `<feature-name>` is whatever you'd like to work on.
 
-Write some code, and ideally, some tests to go with it. Commit frequently as you go, running tests with `pytest` to make sure it doesnt break anything before each commit. When you're ready to share the state of your code with others, `git push` your commits to GitHub for others to review or continue your work. If your feature is complete and you think your code is ready for prime time, [open a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+Write some code, ideally with some tests. Commit frequently as you go, running tests with `pytest` to make sure it doesnt break anything before each commit. When you're ready to share the state of your code with others, `git push` your feature branch to GitHub for others to review or continue your work. If your feature is complete and you think your code is ready for prime time, [open a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on the `main` branch.

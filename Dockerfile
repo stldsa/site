@@ -55,4 +55,4 @@ RUN ln -s $VENV_PATH .venv
 
 RUN npm install
 
-CMD ["python", "manage.py", "runserver"]
+ENTRYPOINT ["bash", "/app/init_db.sh"]
