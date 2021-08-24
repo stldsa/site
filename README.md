@@ -37,12 +37,14 @@ There are two extremely easy ways to do this.
 2. Using [VS Code](https://code.visualstudio.com/) as your IDE, Install the [Remote-Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension, then `Ctrl+Shift+P` to open the Command Pallet and type "Install devcontainer." Select the option that pops up and follow any instructions. Restart your shell and run `devcontainer open` in your console from the project root.
 
 
- The first time you run this command *builds* the Docker **image**, which is a static blueprint for a Docker container. This will take a few minutes. Subsequent builds will run off a cache and should run faster. Then it *creates* a **container**, which you can think of as an ephemeral instance of the image.  Everytime you create a container, you will begin with a fresh database (corollary: every time you remove a container, you will lose its data). Some common Docker operations:
+The first time you do this, the *build* process is run to create a Docker **image**, which is a static blueprint for a Docker container. This will take a few minutes and does things like set up the operating system and install package dependencies. Subsequent builds will run off a cache and should run faster. Then it *creates* a **container**, which you can think of as an ephemeral instance of the image.  Everytime you create a container, you will begin with a fresh database (corollary: every time you remove a container, you will lose its data).
+ 
+Some common Docker operations:
 
 - Using Docker Compose: `docker-compose stop` and `docker-compose start` stop and start the server process, which takes up some memory and the `localhost:8000` port. `docker-compose down` removes the container.
 - If developing in a VS Code Remote Container, you can perform these operations in the Remote Explorer tab on the left menu. 
  
- After all of the scripts are done executing, visit http://localhost:8000 to view your local copy of the site.
+ After all of the scripts are done executing, visit http://localhost:8000 to view your local copy of the site. Magic!
     
 
 ## Developing
@@ -52,9 +54,6 @@ If not working in the VS Code remote container, you can open a bash shell inside
     $ docker-compose run web bash
 
 and close the shell with `Ctrl+D`. Alternatively you can run one-off commands with `docker-compose run web <command>`. You may want to create an alias with `alias stldsa="docker-compose run web"` that allows you to run commands with `stldsa <command>`. Persist this alias across shell sessions by adding `>> ~/.bashrc` (Linux) or `>> ~/.bash_profile` (macOS) to the alias command.
-      
-
-You're all set up! You can close out of the container shell with `Ctrl+D`. Reopen the shell at any time if you would like to develop inside the container, or run commands with `docker-compose run web <command>`, OR create an alias such as with `alias stldsa="docker-compose run web"`. 
 
 ## Create a local admin account
 
