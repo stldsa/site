@@ -12,7 +12,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
-    PYSETUP_PATH="/opt/pysetup" \
+    POETRY_VIRTUALENVS_PATH="/opt/pysetup" \
     VENV_PATH="/opt/pysetup/.venv"
 
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
@@ -27,7 +27,7 @@ RUN apt-get update \
         
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
-WORKDIR $PYSETUP_PATH
+WORKDIR $POETRY_VIRTUALENVS_PATH
 COPY poetry.lock pyproject.toml ./
 RUN poetry install --no-dev
 
@@ -38,18 +38,20 @@ RUN apt-get install -y nodejs
 
 FROM base-node as development
 
-WORKDIR $PYSETUP_PATH
+WORKDIR $POETRY_VIRTUALENVS_PATH
 COPY --from=builder-base $POETRY_HOME $POETRY_HOME
-COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
+COPY --from=builder-base $POETRY_VIRTUALENVS_PATH $POETRY_VIRTUALENVS_PATH
 
 RUN poetry install
 
 WORKDIR /app
 
 ENV DJANGO_CONFIGURATION=Docker \
-    DJANGO_SETTINGS_MODULE='config.settings' 
+    DJANGO_SETTINGS_MODULE='config.settings'
 
 COPY . .
+
+RUN ln -s $VENV_PATH .venv
 
 RUN npm install
 
