@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Welcome to the codebase for the St Louis DSA website! We hope this guide will make it easy for newcomers to contribute to website features.
+Welcome to the codebase for the St Louis DSA website! We hope this guide will make it easy for newcomers to get set up and contribute to website features.
 
 ## Before You Begin
 
