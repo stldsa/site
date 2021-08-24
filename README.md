@@ -22,7 +22,7 @@ The easiest way to get started with your local development environment is throug
 
 ### 1. Clone the repository
 
-    git clone https://github.com/stldsa/site.git stldsa
+    $ git clone https://github.com/stldsa/site.git stldsa
 
 If you are a member of DSA, ask to be added as a maintainer of the repo. If you are not a member, feel free to fork the repo. `cd stldsa` to move to the project root folder.
 
@@ -37,7 +37,12 @@ There are two extremely easy ways to do this.
 2. Using [VS Code](https://code.visualstudio.com/) as your IDE, Install the [Remote-Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension, then `Ctrl+Shift+P` to open the Command Pallet and type "Install devcontainer." Select the option that pops up and follow any instructions. Restart your shell and run `devcontainer open` in your console from the project root.
 
 
- The first time you run this command *builds* the Docker *image*, which is a static blueprint for a Docker container. This will take a few minutes. Subsequent builds will run off a cache and should run faster. Then it *creates* a *container*, which you can think of as an ephemeral instance of the image.  Everytime you create a container, you will begin with a fresh database (corollary: every time you remove a container, i.e. with `docker-compose down`, you will lose its data). You may `docker-compose stop` and `docker-compose start` the container to stop/start the server process, which takes up some memory and the `localhost:8000` port. After all of the scripts are done executing, visit http://localhost:8000 to view your local copy of the site.
+ The first time you run this command *builds* the Docker **image**, which is a static blueprint for a Docker container. This will take a few minutes. Subsequent builds will run off a cache and should run faster. Then it *creates* a **container**, which you can think of as an ephemeral instance of the image.  Everytime you create a container, you will begin with a fresh database (corollary: every time you remove a container, you will lose its data). 
+
+- Using Docker Compose: `docker-compose stop` and `docker-compose start` stop and start the server process, which takes up some memory and the `localhost:8000` port. `docker-compose down` removes the container.
+- If developing in a VS Code Remote Container, you can perform these operations in the Remote Explorer tab on the left menu. 
+ 
+ After all of the scripts are done executing, visit http://localhost:8000 to view your local copy of the site.
     
 
 ## Developing
@@ -46,14 +51,16 @@ If not working in the VS Code remote container, you can open a bash shell inside
 
     $ docker-compose run web bash
 
-and close the shell with `Ctrl+D`. Alternatively you can run one-off commands with `docker-compose run web <command>`. You may want to create an alias with `alias stldsa="docker-compose run web"` that allows you to run commands with `stldsa <command>`. Persist this alias across shell sessions by adding `>> ~/.bashrc` (Linux) or `>> ~/.bash_profile` (macOS).
+and close the shell with `Ctrl+D`. Alternatively you can run one-off commands with `docker-compose run web <command>`. You may want to create an alias with `alias stldsa="docker-compose run web"` that allows you to run commands with `stldsa <command>`. Persist this alias across shell sessions by adding `>> ~/.bashrc` (Linux) or `>> ~/.bash_profile` (macOS) to the alias command.
       
 
 You're all set up! You can close out of the container shell with `Ctrl+D`. Reopen the shell at any time if you would like to develop inside the container, or run commands with `docker-compose run web <command>`, OR create an alias such as with `alias stldsa="docker-compose run web"`. 
 
 ## Create a local admin account
 
-    $ python manage.py createsuperuser
+In a container shell or using `docker-compose run web`: 
+
+    python manage.py createsuperuser
 
 When prompted, enter any email and password. You may now log in to http://localhost:8000/cms to view the Wagtail admin console. Feel free to poke around.
 
