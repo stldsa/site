@@ -37,7 +37,7 @@ There are two extremely easy ways to do this.
 2. Using [VS Code](https://code.visualstudio.com/) as your IDE, Install the [Remote-Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension, then `Ctrl+Shift+P` to open the Command Pallet and type "Install devcontainer." Select the option that pops up and follow any instructions. Restart your shell and run `devcontainer open` in your console from the project root.
 
 
- The first time you run this command *builds* the Docker **image**, which is a static blueprint for a Docker container. This will take a few minutes. Subsequent builds will run off a cache and should run faster. Then it *creates* a **container**, which you can think of as an ephemeral instance of the image.  Everytime you create a container, you will begin with a fresh database (corollary: every time you remove a container, you will lose its data). 
+ The first time you run this command *builds* the Docker **image**, which is a static blueprint for a Docker container. This will take a few minutes. Subsequent builds will run off a cache and should run faster. Then it *creates* a **container**, which you can think of as an ephemeral instance of the image.  Everytime you create a container, you will begin with a fresh database (corollary: every time you remove a container, you will lose its data). Some common Docker operations:
 
 - Using Docker Compose: `docker-compose stop` and `docker-compose start` stop and start the server process, which takes up some memory and the `localhost:8000` port. `docker-compose down` removes the container.
 - If developing in a VS Code Remote Container, you can perform these operations in the Remote Explorer tab on the left menu. 
