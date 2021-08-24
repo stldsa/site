@@ -1,40 +1,56 @@
 # The base image we want to inherit from
-FROM nikolaik/python-nodejs:python3.9-nodejs16
+FROM python:3.9 as base
 
-
-ENV DJANGO_CONFIGURATION=Docker \
-    DJANGO_SETTINGS_MODULE='config.settings' \
-    # python:
+ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONFAULTHANDLER=1 \
-    PYTHONUNBUFFERED=1 \
     PYTHONHASHSEED=random \
-    # pip:
+    PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    # poetry:
-    POETRY_VIRTUALENVS_CREATE=false \
-    POETRY_CACHE_DIR='/var/cache/pypoetry'
+    POETRY_VERSION=1.1.8 \
+    POETRY_HOME="/opt/poetry" \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_NO_INTERACTION=1 \
+    PYSETUP_PATH="/opt/pysetup" \
+    VENV_PATH="/opt/pysetup/.venv"
 
-# System deps:
+ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
+
+FROM base as builder-base
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-    bash \
-    build-essential \
-    curl \
-    gettext \
-    git \
-    libpq-dev \
-    wget \
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+        # deps for installing poetry
+        curl \
+        # deps for building python deps
+        build-essential 
+        
+RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
-WORKDIR /code
+WORKDIR $PYSETUP_PATH
+COPY poetry.lock pyproject.toml ./
+RUN poetry install --no-dev
+
+FROM base as base-node
+
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get install -y nodejs
+
+FROM base-node as development
+
+WORKDIR $PYSETUP_PATH
+COPY --from=builder-base $POETRY_HOME $POETRY_HOME
+COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
+
+RUN poetry install
+
+WORKDIR /app
+
+ENV DJANGO_CONFIGURATION=Docker \
+    DJANGO_SETTINGS_MODULE='config.settings' 
 
 COPY . .
 
 RUN npm install
-RUN poetry install
-
-RUN pre-commit install
 
 CMD ["python", "manage.py", "runserver"]
