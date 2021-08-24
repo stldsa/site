@@ -324,6 +324,18 @@ search = ["dj-search-url"]
 testing = ["django-discover-runner", "mock", "django-cache-url (>=1.0.0)", "dj-database-url", "dj-email-url", "dj-search-url", "Sphinx (>=1.4)"]
 
 [[package]]
+name = "django-coverage-plugin"
+version = "2.0.0"
+description = "Django template coverage.py plugin"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+coverage = "*"
+six = ">=1.4.0"
+
+[[package]]
 name = "django-crispy-forms"
 version = "1.12.0"
 description = "Best way to have Django DRY forms"
@@ -1517,7 +1529,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "14fd6799b2d03e7fbf8c6a4a9ff5bb8a1f38489fb7c0a76936dc7264054e6c48"
+content-hash = "51ddbc39d0e55045cbbe6c0def2fd651215b0a5e38a0f551e85c5eb516b18b07"
 
 [metadata.files]
 anyascii = [
@@ -1742,6 +1754,9 @@ django-cogwheels = [
 django-configurations = [
     {file = "django-configurations-2.2.tar.gz", hash = "sha256:9e3bcea1355ac50a4c9f854f751d214cb17e5f8adf18405a4488d0a1e8945915"},
     {file = "django_configurations-2.2-py2.py3-none-any.whl", hash = "sha256:0b93cb7042739e2d69cfc6fb81676bbd3cbb63ea19b02e8b681f4cad3a8aaf1b"},
+]
+django-coverage-plugin = [
+    {file = "django_coverage_plugin-2.0.0.tar.gz", hash = "sha256:5a7ac412528876563a45f9b54ad9962e33e5f95b409843c4c6c92cb0247eee66"},
 ]
 django-crispy-forms = [
     {file = "django-crispy-forms-1.12.0.tar.gz", hash = "sha256:d196db62ee8b4fc32d1f9583d0e4be1bb17328b662682c1ecb9fb77bbc0fcf77"},
