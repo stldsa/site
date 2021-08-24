@@ -55,7 +55,7 @@ The first time you run this command builds the Docker *image* the container is b
        python manage.py createsuperuser
 
 
-You're all set up! You can close out of the container shell with `Ctrl+D`. Reopen the shell at any time if you would like to develop inside the container, or run commands with `docker-compose run web <command>`, OR create an alias such as with `alias stldsa="docker-compose run web"`.
+You're all set up! You can close out of the container shell with `Ctrl+D`. Reopen the shell at any time if you would like to develop inside the container, or run commands with `docker-compose run web <command>`, OR create an alias such as with `alias stldsa="docker-compose run web"`. 
 
 
 ## Useful Commands
