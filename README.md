@@ -20,10 +20,15 @@ Many pages on our site are built with Wagtail, which is a nice Django-based cont
 
 The easiest way to get started with your local development environment is through our Docker Setup, which is outlined below. If these instructions do not work (or if you'd like to set up your own environment and have questions), please reach out to tech@stldsa.org or make a pull request with suggested changes.
 
-### 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) and [clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) the repository
+### 1. Clone the repository
+
+i.e.,
+
+    git clone https://github.com/stldsa/site.git
+
+If you are a member of DSA, ask to be added as a maintainer of the repo. If you are not a member, feel free to fork the repo.
 
 ### 2. [Install Docker](https://docs.docker.com/engine/install/)
-
 
 ### 3. Build your Docker Image and spin up a container
 
@@ -73,4 +78,26 @@ Now we need to seed our database with some fake data:
 
 ## Contributing
 
-TODO
+If you would like to contribute to this repository, a couple of helpful steps:
+
+### Install pre-commit
+
+Installing pre-commit ensures your code is properly formatted before committing any code.
+
+    pre-committ install
+
+### Branch your code
+
+Before you start work on an issue/feature, make sure your code base is up to date. If you are working off of a forked repository, make sure you have STL DSA's repo as a remote and fetch/pull from there. 
+
+On the `main` branch:
+
+    git pull
+
+Now create a new branch and switch to it:
+
+    git checkout -b <feature-name>
+
+where `<feature-name>` is whatever you'd like to work on.
+
+Write some code, and when you think it's in a good state, run `pytest` to make sure it doesnt break anything. You should also write and pass your own tests for your new feature. When your tests pass, you may `git commit` your code. If you're ready to share the state of your code with others, `git push` your code to GitHub for others to review or continue your work. If your feature is done and you think your code is ready for prime time, [open a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
