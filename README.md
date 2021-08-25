@@ -30,44 +30,36 @@ If you are a member of DSA, ask to be added as a maintainer of the repo. If you 
 
 ### 3. Build the Docker Image and create the Docker container
 
-There are two extremely easy ways to do this.
+    $ docker-compose up
 
-1. `docker-compose up`
-    
-2. Using [VS Code](https://code.visualstudio.com/) as your IDE, Install the [Remote-Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension, then `Ctrl+Shift+P` to open the Command Pallet and type "Install devcontainer." Select the option that pops up and follow any instructions. Restart your shell and run `devcontainer open` in your console from the project root.
+The first time you do this, Docker uses the Dockerfile to *build* an **image**, which is basically a static blueprint for a Docker container. This will take a few minutes and does things like set up the operating system and install package dependencies. Subsequent builds will run off a cache and should run faster. Then it *creates* a **container**, which you should think of as an ephemeral, modifiable instantiation of the image. Every time you create a container, you will begin with a fresh database (corollary: every time you remove a container, you destroy the database). 
 
+Accordingly, avoid running `docker compose up` without first running `docker-compose down` (or otherwise removing the container). It shouldn't technically break anything if you do, but we want to avoid repeatedly attempting to initialize the database as good practice.
 
-The first time you do this, the *build* process is run to create a Docker **image**, which is a static blueprint for a Docker container. This will take a few minutes and does things like set up the operating system and install package dependencies. Subsequent builds will run off a cache and should run faster. Then it *creates* a **container**, which you can think of as an ephemeral instance of the image.  Everytime you create a container, you will begin with a fresh database (corollary: every time you remove a container, you will lose its data).
- 
-Some common Docker operations:
-
-- Using Docker Compose: `docker-compose stop` and `docker-compose start` stop and start the server process, which takes up some memory and the `localhost:8000` port. `docker-compose down` removes the container.
-- If developing in a VS Code Remote Container, you can perform these operations in the Remote Explorer tab on the left menu. 
- 
  After all of the scripts are done executing, visit http://localhost:8000 to view your local copy of the site. Magic!
-    
+
+Running  `docker-compose stop` simply stops running the container, freeing up memory and the `localhost:8000` port. Use `docker-compose start` to restart it.
+
+You can also perform many of these tasks with the Docker extension for VS Code if you prefer using a GUI.
 
 ## Developing
 
-If not working in the VS Code remote container, you can open a bash shell inside the container:
+You can open a bash shell inside the container with:
 
     $ docker-compose run web bash
 
-and close the shell with `Ctrl+D`. Alternatively you can run one-off commands with `docker-compose run web <command>`. You may want to create an alias with `alias stldsa="docker-compose run web"` that allows you to run commands with `stldsa <command>`. Persist this alias across shell sessions by adding `>> ~/.bashrc` (Linux) or `>> ~/.bash_profile` (macOS) to the alias command.
-
-## Create a local admin account
-
-In a container shell or using `docker-compose run web`: 
-
-    python manage.py createsuperuser
-
-When prompted, enter any email and password. You may now log in to http://localhost:8000/cms to view the Wagtail admin console. Feel free to poke around.
+and close the shell with `Ctrl+D`. Alternatively you can run one-off commands with `docker-compose exec web <command>`. You may want to create an alias such as `alias stldsa="docker-compose exec web"` that allows you to run commands with the much simpler `stldsa <command>`. Persist this alias across shell sessions by adding `>> ~/.bashrc` (Linux) or `>> ~/.bash_profile` (macOS) to the alias command.
 
 ## More useful commands
+
 - Add package dependencies with `poetry add <package name>` (we use [poetry](https://python-poetry.org/) instead of `pip`). Note: may take a while to resolve dependencies first time you run this command.
 - Run tests with `pytest`.
 - Open a Python shell with `python manage.py shell`
 - Delete your data (but not your [migrations](https://docs.djangoproject.com/en/3.2/topics/migrations/)) with `python manage.py flush` and restore seed data with `python manage.py seed-db`.
+
+## Browse the Wagtail CMS
+
+The startup scripts create an admin user with the email *admin@example.com* and the password *password*.  Go to http://localhost:8000/cms and enter these credentials to open the Wagtail admin interface. Browse around and get a sense for the site tree. Notice that upon returning to the "front end" of the website, you can view a shortcut to some convenient options in the lower-right corner of pages that use Wagtail.
 
 ## Contributing
 
