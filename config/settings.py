@@ -71,7 +71,6 @@ class Base(Configuration):
         "committees",
         "phonenumber_field",
         "news",
-        "django_seed",
     ]
     INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
     MIGRATION_MODULES = {"sites": "stl_dsa.contrib.sites.migrations"}
