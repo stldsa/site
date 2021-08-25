@@ -33,7 +33,7 @@ RUN npm install .
 FROM py-base as development
 
 ENV DJANGO_SUPERUSER_EMAIL="admin@example.com" \
-    DJANGO_SUPERUSER_PASSWORD="password" \
+    DJANGO_SUPERUSER_PASSWORD="stldsa" \
     DJANGO_CONFIGURATION=Docker \
     DJANGO_SETTINGS_MODULE='config.settings'
 
