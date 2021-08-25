@@ -64,7 +64,7 @@ In a container shell or using `docker-compose run web`:
 When prompted, enter any email and password. You may now log in to http://localhost:8000/cms to view the Wagtail admin console. Feel free to poke around.
 
 ## More useful commands
-- Add package dependencies with `poetry add <package name>` (instead of using `pip`). Note: may take a while to resolve dependencies first time you run this command.
+- Add package dependencies with `poetry add <package name>` (we use [poetry](https://python-poetry.org/) instead of `pip`). Note: may take a while to resolve dependencies first time you run this command.
 - Run tests with `pytest`.
 - Open a Python shell with `python manage.py shell`
 - Delete your data (but not your [migrations](https://docs.djangoproject.com/en/3.2/topics/migrations/)) with `python manage.py flush` and restore seed data with `python manage.py seed-db`.
