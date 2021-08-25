@@ -62,7 +62,7 @@ The `--rm` flag is optional and deletes your containers after they stop, which w
 
 In contrast to `up`, `run` overwrites the `CMD` step with your arguments, so the database initialization script is skipped.
 
-> Tip: You may want to create an alias function e.g. `function stldsa() { docker-compose run web "$@"; }` that allows you to run commands with the much simpler `stldsa <command>`. Persist this alias function across shell sessions by adding `>> ~/.bashrc` (Linux) or `>> ~/.bash_profile` (macOS) to the alias command.
+> Tip: You may want to append an alias function in your `.bashrc` (Linux/Ubuntu) or `.bash_profile` (macOS) using `echo 'function stldsa() { docker-compose run web "$@"; }' >> ~/.bashrc`. This will allow you to run commands with the much simpler `stldsa <command>`.
 
 ## Common/useful commands
 
@@ -82,9 +82,14 @@ In contrast to `up`, `run` overwrites the `CMD` step with your arguments, so the
 
       $ docker-compose run web pytest
 
+- When you change any model fields, you must make some new migrations:
+
+      $ docker-compose run web python manage.py makemigrations
+      $ docker-compose run web python manage.py migrate
+
 ## Browse Wagtail CMS
 
-The startup scripts create an admin user with the email *admin@example.com* and the password *password*.  Go to http://localhost:8000/cms and enter these credentials to open the Wagtail admin interface. Browse around, navigate the site tree, and try making a page yourself! Notice that upon returning to the "front end" of the website, if you're viewing a page that uses Wagtail (which is most of them), you can now see a nifty shortcut the lower-right corner.
+The startup scripts create an admin user with the email *admin@example.com* and the password *admin1234* (You can [override these settings](https://docs.djangoproject.com/en/3.0/ref/django-admin/#createsuperuser) using your environment variables).  Go to http://localhost:8000/cms and enter these credentials to open the Wagtail admin interface. Browse around, navigate the site tree, and try making a page yourself! Notice that upon returning to the "front end" of the website, if you're viewing a page that uses Wagtail (which is most of them), you can now see a nifty shortcut the lower-right corner.
 
 ## Contributing
 
