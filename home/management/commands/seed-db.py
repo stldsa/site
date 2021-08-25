@@ -35,12 +35,12 @@ class Command(BaseCommand):
         homepage = HomePage(
             title="St Louis DSA",
             banner_title="We are the St. Louis Democratic Socialists of America!",
-            body="""
-            <h3>Our Mission:</h3><p><b>Create a more equitable world by
-            establishing socialism as a political force</b></p><h3>We
-            Believe:</h3><p><b>Our government and economy should operate,
-            through social ownership, for the benefit of all</b></p>
+            body=f"""
+            <h3>Our Mission:</h3><p><b>{fake.sentence()}</b></p><h3>We
+            Believe:</h3><p><b>{fake.sentence()}</b></p>
             """,
+            highlighted_campaign=f"{fake.text()} Campaign",
+            highlighted_description=fake.paragraph(),
         )
         root.add_child(instance=homepage)
         site = Site(
@@ -55,8 +55,7 @@ class Command(BaseCommand):
         homepage.add_child(instance=newsindexpage)
         NewsPage = apps.get_model("news.NewsPage")
         newspage = NewsPage(
-            title="Today's News",
-            slug="1",
+            title=fake.text(),
             date=datetime.date.today(),
             body=fake.paragraph(),
         )

@@ -11,6 +11,9 @@ class HomePage(Page):
     template = "pages/home.html"
     banner_title = models.CharField(max_length=100, blank=False, null=True)
     body = RichTextField(blank=True)
+    highlighted_campaign = models.CharField(max_length=100, blank=False, null=True)
+    highlighted_description = models.TextField(blank=False, null=True)
+
     max_count = 1
 
     content_panels = Page.content_panels + [
