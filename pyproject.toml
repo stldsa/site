@@ -18,7 +18,6 @@ django-phonenumber-field = { extras = ["phonenumbers"], version = "^4.0.0" }
 argon2-cffi = "^20.1.0"
 wagtailmenus = "^3.0.2"
 django-anymail = "^8.1"
-psycopg2 = "^2.8.6"
 gunicorn = "^20.0.4"
 django-redis = "^4.12.1"
 django-scheduler = "^0.9.3"
