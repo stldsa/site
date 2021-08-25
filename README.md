@@ -6,7 +6,7 @@ Welcome to the codebase for the St Louis DSA website! We hope this guide will ma
 
 ## Quickstart
 
-For experienced developers
+If you know what you're doing and ready to jump in:
 
     $ docker-compose up
 
@@ -40,7 +40,7 @@ If you are a member of DSA, ask to be added as a maintainer of the repo. If you 
 
     $ docker-compose build
 
- This command builds **images** for both your database container (from a standard Docker repository) and your web service container (from the Dockerfile). These images essentially provide a starting point for Docker containers to run off of so that they can be quick and painless. Thus, building them will take a few minutes the first time and does things like set up the operating system and install package dependencies. Subsequent builds will use a cache and should execute faster - you should only have to rebuild if you make changes to the Dockerfile. 
+ This command builds **images** for both your database container (from the standard DockerHub postgres repository) and your web service container (from the Dockerfile). These images essentially provide a starting point for Docker containers to run off of so that they can be quick and painless. Thus, building them will take a few minutes the first time while it does things like set up the operating system and install package dependencies. Subsequent builds will use a cache and should execute faster - you should only have to rebuild if you make changes to the Dockerfile. 
 
 ### 4. Create and run the service containers
 
@@ -62,7 +62,7 @@ The `--rm` flag is optional and deletes your containers after they stop, which w
 
 In contrast to `up`, `run` overwrites the `CMD` step with your arguments, so the database initialization script is skipped.
 
-> Tip: You may want to create an alias such as `alias stldsa="docker-compose --rm run web"` that allows you to run commands with the much simpler `stldsa <command>`. Persist this alias across shell sessions by adding `>> ~/.bashrc` (Linux) or `>> ~/.bash_profile` (macOS) to the alias command.
+> Tip: You may want to create an alias function e.g. `function stldsa() { docker-compose run web "$@"; }` that allows you to run commands with the much simpler `stldsa <command>`. Persist this alias function across shell sessions by adding `>> ~/.bashrc` (Linux) or `>> ~/.bash_profile` (macOS) to the alias command.
 
 ## Common/useful commands
 
