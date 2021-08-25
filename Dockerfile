@@ -1,60 +1,45 @@
 # The base image we want to inherit from
-FROM python:3.9 as base
+FROM python:3.9.6-slim-buster as py-base
+
+ENV PYTHONFAULTHANDLER=1 \
+    PYTHONHASHSEED=random \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    PIP_DEFAULT_TIMEOUT=100 \
+    PATH="/opt/venv/bin:$PATH"
+
+FROM py-base as base
+
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
+    build-essential \
+    gcc 
+
+RUN pip install poetry==1.1.8
+
+WORKDIR /opt
+COPY poetry.lock pyproject.toml ./
+RUN poetry export --dev -f requirements.txt -o requirements.txt
+
+RUN python -m venv /opt/venv
+RUN pip install --no-cache-dir -r requirements.txt
+
+FROM node:16-alpine as node-base
+WORKDIR /opt
+COPY package.json ./
+RUN npm install .
+
+FROM py-base as development
 
 ENV DJANGO_SUPERUSER_EMAIL="admin@example.com" \
     DJANGO_SUPERUSER_PASSWORD="password" \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONFAULTHANDLER=1 \
-    PYTHONHASHSEED=random \
-    PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=off \
-    PIP_DISABLE_PIP_VERSION_CHECK=on \
-    PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.1.8 \
-    POETRY_HOME="/opt/poetry" \
-    POETRY_VIRTUALENVS_IN_PROJECT=true \
-    POETRY_NO_INTERACTION=1 \
-    POETRY_VIRTUALENVS_PATH="/opt/pysetup" \
-    VENV_PATH="/opt/pysetup/.venv"
+    DJANGO_CONFIGURATION=Docker \
+    DJANGO_SETTINGS_MODULE='config.settings'
 
-ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
-
-FROM base as builder-base
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        # deps for installing poetry
-        curl \
-        # deps for building python deps
-        build-essential 
-        
-RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
-
-WORKDIR $POETRY_VIRTUALENVS_PATH
-COPY poetry.lock pyproject.toml ./
-RUN poetry install --no-dev
-
-FROM base as base-node
-
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -y nodejs
-
-FROM base-node as development
-
-WORKDIR $POETRY_VIRTUALENVS_PATH
-COPY --from=builder-base $POETRY_HOME $POETRY_HOME
-COPY --from=builder-base $POETRY_VIRTUALENVS_PATH $POETRY_VIRTUALENVS_PATH
-
-RUN poetry install
+COPY --from=node-base /opt/node_modules /opt/node_modules
+COPY --from=base /opt/venv /opt/venv
 
 WORKDIR /app
 
-ENV DJANGO_CONFIGURATION=Docker \
-    DJANGO_SETTINGS_MODULE='config.settings'
-
-COPY . .
-
-RUN ln -s $VENV_PATH .venv
-
-RUN npm install
-
-ENTRYPOINT ["bash", "/app/init_db.sh"]
+CMD ["bash", "/app/init_db.sh"]
