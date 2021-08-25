@@ -1,7 +1,9 @@
 # The base image we want to inherit from
 FROM python:3.9 as base
 
-ENV PYTHONDONTWRITEBYTECODE=1 \
+ENV DJANGO_SUPERUSER_EMAIL="admin@example.com" \
+    DJANGO_SUPERUSER_PASSWORD="password" \
+    PYTHONDONTWRITEBYTECODE=1 \
     PYTHONFAULTHANDLER=1 \
     PYTHONHASHSEED=random \
     PYTHONUNBUFFERED=1 \

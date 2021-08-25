@@ -14,7 +14,7 @@ services:
     build: .
     stdin_open: true
     tty: true
-    volumes:
+    volumes:  
       - .:/app
     ports:
       - "8000:8000"
@@ -24,5 +24,6 @@ services:
       - main
     depends_on:
       - db
+
 networks:
   main:
