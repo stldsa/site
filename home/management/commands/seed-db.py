@@ -6,7 +6,7 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from wagtail.core.models import Page, Site
-from events.models import Event
+from events.models import Event, EventsPage
 from home.models import HomePage
 from news.models import NewsIndexPage
 from committees.models import CommitteesPage
@@ -31,8 +31,6 @@ class Command(BaseCommand):
     requires_system_checks = False
 
     def _setup(self):
-        # Create a site with the new LanguageRedirectionPage set as the root
-
         Page.objects.filter(id=2).delete()
         root = Page.get_first_root_node()
         homepage = HomePage(
@@ -60,8 +58,15 @@ class Command(BaseCommand):
         )
         future_event.save()
 
-        newsindexpage = NewsIndexPage(title="News", slug="news", show_in_menus=True)
+        newsindexpage = NewsIndexPage(
+            title="Updates",
+            slug="updates",
+            show_in_menus=True,
+        )
         homepage.add_child(instance=newsindexpage)
+        newsindexpage.has_children_in_menu = False
+        newsindexpage.sub_menu = None
+
         NewsPage = apps.get_model("news.NewsPage")
         newspage = NewsPage(
             title=fake.sentence(),
@@ -70,10 +75,17 @@ class Command(BaseCommand):
             show_in_menus=True,
         )
         newsindexpage.add_child(instance=newspage)
+
+        event_menu_page = EventsPage(
+            title="Events", show_in_menus=True, link_url="/events/"
+        )
+        homepage.add_child(instance=event_menu_page)
+
         committees = CommitteesPage(
             title="What We Do", slug="formations", show_in_menus=True
         )
         homepage.add_child(instance=committees)
+
         committee_list = CommitteeFactory.build_batch(8)
         [committees.add_child(instance=committee) for committee in committee_list]
         committees.save()

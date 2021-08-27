@@ -88,10 +88,10 @@ In contrast to `up`, `run` overwrites the `CMD` step with your arguments, so the
       $ stldsa python manage.py makemigrations
       $ stldsa python manage.py migrate
 
-- Re-seed your database:
+<!-- - Re-seed your database:
 
       $ stldsa python manage.py flush
-      $ stldsa python manage.py seed-db
+      $ stldsa python manage.py seed-db -->
 
 - More helpful aliases:
 

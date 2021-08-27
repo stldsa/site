@@ -5,12 +5,12 @@
     <li class="nav-item">
         {% if item.sub_menu %}
             <div class="dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ item }}</a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ item }} </a>
                 <div class="sub-menu dropdown-menu">
                     {% for sub_item in item.sub_menu.items %}
-                        <a title="{{ item.slug }}" target="_blank" href="{{ item.href }}" class="dropdown-item">
+                        <a title="{{ sub_item.slug }}" target="_blank" href="{{ sub_item.href }}" class="dropdown-item">
                             <!-- <img class="navbar-dsa-icon" src="https://www.dsausa.org/wp-content/themes/wordpress-theme-v2/icons/all.svg" alt="all"> -->
-                            {{ item }}
+                            {{ sub_item }}
                         </a>
                     {% endfor %}
                 </div>
@@ -19,4 +19,5 @@
             <a class="nav-link" href="{{ item.href }}">{{ item }}</a>
         {% endif %}
     </li>
+    {% if not forloop.last %}<p class="navbar-text d-none d-sm-block"> 🌹 </p>{% endif %}
 {% endfor %}
