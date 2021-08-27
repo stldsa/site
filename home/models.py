@@ -8,11 +8,11 @@ from news.models import NewsPage
 
 
 class HomePage(Page):
-    template = "pages/home.html"
     banner_title = models.CharField(max_length=100, blank=False, null=True)
     body = RichTextField(blank=True)
     highlighted_campaign = models.CharField(max_length=100, blank=False, null=True)
     highlighted_description = models.TextField(blank=False, null=True)
+    action_network_embed_api_endpoint = models.URLField(blank=True, null=True)
 
     max_count = 1
 

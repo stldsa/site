@@ -19,13 +19,19 @@ class Base(Configuration):
     if READ_DOT_ENV_FILE:
         env.read_env(str(ROOT_DIR.path(".env")))
     DEBUG = values.BooleanValue(True)
+
+    WAGTAIL_SITE_NAME = "St Louis DSA"
     TIME_ZONE = "America/Chicago"
-    LANGUAGE_CODE = "en-us"
     SITE_ID = 1
+    WAGTAIL_I18N_ENABLED = True
     USE_I18N = True
     USE_L10N = True
     USE_TZ = True
-    LOCALE_PATHS = [ROOT_DIR.path("locale")]
+    WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
+        ("en", "English"),
+        ("es", "Spanish"),
+        ("bs", "Bosnian"),
+    ]
     ROOT_URLCONF = "config.urls"
     WSGI_APPLICATION = "config.wsgi.application"
     DJANGO_APPS = [
@@ -46,6 +52,9 @@ class Base(Configuration):
         "rest_framework",
         "rest_framework.authtoken",
         "home",  # home app before wagtail.admin overrides admin template
+        # "search",
+        "wagtail_localize",
+        "wagtail_localize.locales",
         "wagtail.contrib.forms",
         "wagtail.contrib.redirects",
         "wagtail.contrib.modeladmin",
@@ -57,12 +66,14 @@ class Base(Configuration):
         "wagtail.images",
         "wagtail.search",
         "wagtail.contrib.search_promotions",
+        "wagtail.contrib.settings",
         "wagtail.admin",
         "wagtail.core",
         "taggit",
         "modelcluster",
         "wagtailfontawesome",
         "wagtail_blocks",
+        "wagtailmenus",
     ]
 
     LOCAL_APPS = [
@@ -113,7 +124,7 @@ class Base(Configuration):
 
     # STATIC
     STATIC_ROOT = str(ROOT_DIR("staticfiles"))
-    STATIC_URL = "/static/"
+    STATIC_URL = "/staticfiles/"
     STATICFILES_DIRS = [str(APPS_DIR.path("static"))]
     STATICFILES_FINDERS = [
         "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -146,6 +157,8 @@ class Base(Configuration):
                     "django.template.context_processors.tz",
                     "django.contrib.messages.context_processors.messages",
                     "stl_dsa.utils.context_processors.settings_context",
+                    "wagtail.contrib.settings.context_processors.settings",
+                    "wagtailmenus.context_processors.wagtailmenus",
                 ],
             },
         }
@@ -225,7 +238,6 @@ class Base(Configuration):
         ),
     }
 
-    WAGTAIL_SITE_NAME = "St Louis DSA"
     ACTIONNETWORK_API_KEYS = json.loads(os.environ.get("ACTIONNETWORK_API_KEYS", "{}"))
     DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
     SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
@@ -253,7 +265,9 @@ class Dev(Base):
         "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
         "SHOW_TEMPLATE_CONTEXT": True,
     }
-    MIDDLEWARE = Base.MIDDLEWARE + ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+    MIDDLEWARE = Base.MIDDLEWARE + [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
     INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 
 

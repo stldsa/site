@@ -12,6 +12,7 @@ services:
       - main
   web:
     build: .
+    image: server
     stdin_open: true
     tty: true
     volumes:  
@@ -24,6 +25,7 @@ services:
       - main
     depends_on:
       - db
+    command: bash init_db.sh
 
 networks:
   main:

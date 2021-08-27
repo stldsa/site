@@ -6,14 +6,14 @@ authors = ["Tyler Schlichenmeyer <tyler.schlichenmeyer@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Django = "^3.2.6"
+Django = "^3.2"
 django-allauth = "^0.45.0"
 django-extensions = "^2.2.9"
 django-crispy-forms = "^1.9.1"
 django-environ = "^0.4.5"
 whitenoise = "^5.1.0"
 django-rest-framework = "^0.1.0"
-wagtail = "^2.14.1"
+wagtail = "^2.14"
 django-phonenumber-field = { extras = ["phonenumbers"], version = "^4.0.0" }
 argon2-cffi = "^20.1.0"
 wagtailmenus = "^3.0.2"
@@ -28,6 +28,7 @@ python-dateutil = "^2.8.2"
 django-configurations = "^2.2"
 dj-database-url = "^0.5.0"
 django-cache-url = "^3.2.3"
+wagtail-localize = {version = "1.0rc3", allow-prereleases = true}
 
 [tool.poetry.dev-dependencies]
 psycopg2-binary = "^2.8.5"
@@ -46,6 +47,7 @@ pre-commit = "^2.14.0"
 pytest-cov = "^2.12.1"
 django-coverage-plugin = "^2.0.0"
 vcrpy = "^4.1.1"
+jupyterlab = "^3.1.9"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -55,7 +57,7 @@ DJANGO_CONFIGURATION = "Test"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 filterwarnings = [
     "ignore::django.utils.deprecation.RemovedInDjango40Warning",
-    "ignore::django.utils.deprecation.RemovedInDjango41Warning"
+    # "ignore::django.utils.deprecation.RemovedInDjango41Warning"
 ]
 
 [tool.flake8]

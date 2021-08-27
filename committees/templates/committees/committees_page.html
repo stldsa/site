@@ -4,7 +4,7 @@
     <h2>Formations</h2>
     <ul>
         {% for committee in committees %}
-            <li><a href="{{ committee.slug }}">{{ committee.title }}</a></li>
+            <li><a href="{{ committee.slug }}">{{ committee }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
