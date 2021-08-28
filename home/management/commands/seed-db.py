@@ -1,21 +1,25 @@
 import datetime
 import logging
 from faker import Faker
-from pathlib import Path
+import factory
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
-from wagtail.core.models import Page
-from events.models import Event
+from wagtail.core.models import Page, Site
+from events.models import Event, EventsPage
+from home.models import HomePage
+from news.models import NewsIndexPage
+from committees.models import CommitteesPage
+from committees.factories import CommitteeFactory
 
 fake = Faker()
 
 User = get_user_model()
 
-APP_DIR = Path(__file__).resolve().parent.parent.parent
-FIXTURES_DIR = APP_DIR.joinpath("fixtures")
-
 logger = logging.getLogger("setup_page_tree")
+
+
+committee_list = CommitteeFactory.build_batch(8)
 
 
 class Command(BaseCommand):
@@ -29,43 +33,60 @@ class Command(BaseCommand):
     def _setup(self):
         Page.objects.filter(id=2).delete()
         root = Page.get_first_root_node()
-
-        Site = apps.get_model("wagtailcore.Site")
-        HomePage = apps.get_model("home.HomePage")
         homepage = HomePage(
             title="St Louis DSA",
-            banner_title="We are the St. Louis Democratic Socialists of America!",
-            body=f"""
-            <h3>Our Mission:</h3><p><b>{fake.sentence()}</b></p><h3>We
-            Believe:</h3><p><b>{fake.sentence()}</b></p>
-            """,
-            highlighted_campaign=f"{fake.text()} Campaign",
-            highlighted_description=fake.paragraph(),
+            banner_title="Welcome to St Louis DSA!",
+            mission_statement=fake.sentence(10),
+            values_statement=fake.sentence(10),
+            highlighted_campaign=f"{' '.join(fake.words(2)).title()} Campaign",
+            highlighted_description=fake.paragraph(5),
         )
         root.add_child(instance=homepage)
         site = Site(
             hostname="localhost",
             root_page=homepage,
             is_default_site=True,
-            site_name="St Louis DSA",
+            site_name="stldsa.org",
         )
         site.save()
-        NewsIndexPage = apps.get_model("news.NewsIndexPage")
-        newsindexpage = NewsIndexPage(title="News", slug="news")
-        homepage.add_child(instance=newsindexpage)
-        NewsPage = apps.get_model("news.NewsPage")
-        newspage = NewsPage(
-            title=fake.text(),
-            date=datetime.date.today(),
-            body=fake.paragraph(),
-        )
-        newsindexpage.add_child(instance=newspage)
         future_event = Event(
             title="Event Title",
             description=fake.paragraph(),
             start=fake.future_datetime(tzinfo=datetime.timezone.utc),
         )
         future_event.save()
+
+        newsindexpage = NewsIndexPage(
+            title="Updates",
+            slug="updates",
+            show_in_menus=True,
+        )
+        homepage.add_child(instance=newsindexpage)
+        newsindexpage.has_children_in_menu = False
+        newsindexpage.sub_menu = None
+
+        NewsPage = apps.get_model("news.NewsPage")
+        newspage = NewsPage(
+            title=fake.sentence(),
+            date=datetime.date.today(),
+            body=fake.paragraph(30),
+            show_in_menus=True,
+        )
+        newsindexpage.add_child(instance=newspage)
+
+        event_menu_page = EventsPage(
+            title="Events", show_in_menus=True, link_url="/events/"
+        )
+        homepage.add_child(instance=event_menu_page)
+
+        committees = CommitteesPage(
+            title="What We Do", slug="formations", show_in_menus=True
+        )
+        homepage.add_child(instance=committees)
+
+        committee_list = CommitteeFactory.build_batch(8)
+        [committees.add_child(instance=committee) for committee in committee_list]
+        committees.save()
 
     def handle(self, raise_error=False, *args, **options):
         # Root Page and a default homepage are created by wagtail migrations

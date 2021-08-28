@@ -37,23 +37,10 @@ class UserCreationForm(forms.ModelForm):
     password2 = forms.CharField(
         label="Password confirmation", widget=forms.PasswordInput
     )
-    # error_message = forms.UserCreationForm.error_messages.update(
-    #     {"duplicate_username": _("This email is already in use.")}
-    # )
 
     class Meta:
         model = User
         fields = ("email",)
-
-    def clean_username(self):
-        email = self.cleaned_data["email"]
-
-        try:
-            User.objects.get(email=email)
-        except User.DoesNotExist:
-            return email
-
-        raise ValidationError(self.error_messages["duplicate_username"])
 
 
 class SignUpForm(UserCreationForm):

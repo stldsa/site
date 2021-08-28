@@ -294,3 +294,5 @@ stl_dsa/media/
 */cassettes/*
 
 *Zone.Identifier
+
+.ipynb_checkpoints/

@@ -1,8 +1,7 @@
 from datetime import datetime
 from django.db import models
 from committees.models import Committee
-
-# Create your models here.
+from wagtailmenus.models import AbstractLinkPage
 
 
 class APICalls(models.Model):
@@ -26,3 +25,7 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title + " " + str(self.start)
+
+
+class EventsPage(AbstractLinkPage):
+    pass

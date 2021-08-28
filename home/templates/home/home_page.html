@@ -4,34 +4,43 @@
 {% block body_class %}template-homepage{% endblock %} -->
 
 {% block content %}
-<div class='col-md-auto container border border-danger d-block' style='text-align:center;'>
+
+<div class='col-md-auto container border border-danger d-block shadow' style='text-align:center;'>
   <div class='bgred'>
     <h2>{{ page.banner_title }}</h2>
   </div>
-  <div class='container'>{{ page.body|richtext }}</div>
+  <div class="row">
+    <div class='col-sm'>
+      <h2>Our Mission</h2>
+      <p>{{ page.mission_statement }}</p>
+    </div>
+    <div class='col-sm'>
+      <h2>We Believe</h2>
+      <p>{{ page.values_statement }}</p>
+    </div>
+  </div>
 </div>
-
 <!-- Portfolio Item Row -->
 <div class="row">
+  <div class="shadow p-3 mb-5 bg-white rounded">
+    <div class="col-md-8">
 
-  <div class="col-md-8">
+      <h2 class="my-4">A Message from the Executive Committee:</h2>
+      <h3>{{ update.title }}</h3>
+      <h5>Posted: {{ update.date|date:"M j, Y" }}</h5>
+      {{ update.body|richtext }}
 
-    <h2 class="my-4">A Message from the Executive Committee:</h2>
-    <h3>{{ update.title }}</h3>
-    <h5>Posted: {{ update.date|date:"M j, Y" }}</h5>
-    {{ update.body|richtext }}
-
-    <h2>Upcoming Events:</h2>
-    {% for event in events %}
-    <div class="col-md-8 col-sm-6 mb-4">
-      <a href='{{ event.url }}'>
-        <h4>{{ event.title }}</h4>
-      </a>
-      <p>{{ event.date|date:"D, M j" }} | {{ event.start_time }} | <b><a href={{ event.url }}>RSVP</a></b></p>
+      <h2>Upcoming Events:</h2>
+      {% for event in events %}
+      <div class="col-md-8 col-sm-6 mb-4">
+        <a href='{{ event.url }}'>
+          <h4>{{ event.title }}</h4>
+        </a>
+        <p>{{ event.date|date:"D, M j" }} | {{ event.start_time }} | <b><a href={{ event.url }}>RSVP</a></b></p>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-
   <div class="col-md-4">
     <h3 class="my-3">{{ page.highlighted_campaign }}</h3>
     <p>{{ page.highlighted_description }}</p>

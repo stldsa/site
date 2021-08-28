@@ -1,41 +1,33 @@
-import pytest
-
-from stl_dsa.users.forms import UserCreationForm
-from stl_dsa.users.tests.factories import UserFactory
-
-pytestmark = pytest.mark.django_db
+# from stl_dsa.users.forms import UserCreationForm
 
 
-class TestUserCreationForm:
-    def test_clean_username(self):
-        # A user with proto_user params does not exist yet.
-        proto_user = UserFactory.build()
+# def test_clean_username(user):
+#     # A user with proto_user params does not exist yet.
 
-        form = UserCreationForm(
-            {
-                "email": proto_user.email,
-                "password1": proto_user._password,
-                "password2": proto_user._password,
-            }
-        )
+#     form = UserCreationForm(
+#         {
+#             "email": user.email,
+#             "password1": user._password,
+#             "password2": user._password,
+#         }
+#     )
 
-        print(form.errors)
-        assert form.is_valid()
-        assert form.clean_username() == proto_user.email
+# assert form.is_valid()
+# assert form.clean_username() == user.email
 
-        # Creating a user.
-        form.save()
+# Creating a user.
+# form.save()
 
-        # The user with proto_user params already exists,
-        # hence cannot be created.
-        form = UserCreationForm(
-            {
-                "email": proto_user.email,
-                "password1": proto_user._password,
-                "password2": proto_user._password,
-            }
-        )
+# # The user with proto_user params already exists,
+# # hence cannot be created.
+# form = UserCreationForm(
+#     {
+#         "email": proto_user.email,
+#         "password1": proto_user._password,
+#         "password2": proto_user._password,
+#     }
+# )
 
-        assert not form.is_valid()
-        assert len(form.errors) == 1
-        assert "email" in form.errors
+# assert not form.is_valid()
+# assert len(form.errors) == 1
+# assert "email" in form.errors
