@@ -758,7 +758,6 @@ a .stronglink:hover {
 @media screen and ( max-width: 1024px ) {
   #mainmenu {
     display: flex;
-    justify-content: space-between;
     top: 0;
     position: -webkit-sticky;
     position: sticky;
@@ -2029,16 +2028,20 @@ header button {
 
 .navbar {
   background-color: rgba(231, 1, 9, 0.1);
+  justify-content: start;
 }
 
 @media screen and ( max-width: 400px ) {
-  .navbar-brand {
-    margin-right: 0;
+  .navbar-right {
+    margin-right: auto;
   }
 }
 
+.navbar-nav {
+  flex-direction: row;
+}
+
 .nav-item {
-  margin: 0px;
   font-weight: 600;
   padding-left: 8px;
   padding-right: 8px;
@@ -2051,6 +2054,7 @@ header button {
 }
 
 .nav-link {
+  margin-right: 10px;
   color: #241f20;
   font-family: "Styrene B";
   font-weight: 600;

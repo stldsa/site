@@ -754,7 +754,6 @@ input:focus {
   }
   @media #{$mobile-query} {
     display: flex;
-    justify-content: space-between;
     top: 0;
     position: -webkit-sticky;
     position: sticky;
@@ -2096,16 +2095,20 @@ header button {
 
 .navbar {
   background-color: $dsaredtrans-2x;
+  justify-content: start;
 }
 
-.navbar-brand {
+.navbar-right {
   @media #{$small-mobile-query} {
-    margin-right: 0;
+    margin-right: auto;
   }
 }
 
+.navbar-nav {
+  flex-direction: row
+}
+
 .nav-item {
-  margin: 0px;
   font-weight: 600;
   padding-left: 8px;
   padding-right: 8px;
@@ -2117,6 +2120,7 @@ header button {
 }
 
 .nav-link {
+  margin-right: 10px;
   color: $dsablack;
   font-family: "Styrene B";
   font-weight: 600;

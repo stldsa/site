@@ -5,11 +5,20 @@
 
 {% block content %}
 
-<div class='col-md-auto container border border-danger d-block' style='text-align:center;'>
+<div class='col-md-auto container border border-danger d-block shadow' style='text-align:center;'>
   <div class='bgred'>
     <h2>{{ page.banner_title }}</h2>
   </div>
-  <div class='container'>{{ page.body|richtext }}</div>
+  <div class="row">
+    <div class='col-sm'>
+      <h2>Our Mission</h2>
+      <p>{{ page.mission_statement }}</p>
+    </div>
+    <div class='col-sm'>
+      <h2>We Believe</h2>
+      <p>{{ page.values_statement }}</p>
+    </div>
+  </div>
 </div>
 <!-- Portfolio Item Row -->
 <div class="row">

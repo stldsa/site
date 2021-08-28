@@ -1,23 +1,22 @@
 {% load menu_tags %}
 
-
-{% for item in menu_items %}
-    <li class="nav-item">
+<div class="navbar-nav mr-auto">
+    {% for item in menu_items %}
+    
         {% if item.sub_menu %}
-            <div class="dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ item }} </a>
-                <div class="sub-menu dropdown-menu">
-                    {% for sub_item in item.sub_menu.items %}
-                        <a title="{{ sub_item.slug }}" target="_blank" href="{{ sub_item.href }}" class="dropdown-item">
-                            <!-- <img class="navbar-dsa-icon" src="https://www.dsausa.org/wp-content/themes/wordpress-theme-v2/icons/all.svg" alt="all"> -->
-                            {{ sub_item }}
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
+            <!-- {% for sub_item in item.sub_menu.items %}
+                <a title="{{ sub_item.slug }}" target="_blank" href="{{ sub_item.href }}" class="dropdown-item">
+                    {{ sub_item }}
+                </a>
+            {% endfor %} -->
         {% else %}
-            <a class="nav-link" href="{{ item.href }}">{{ item }}</a>
+            <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
         {% endif %}
-    </li>
-    {% if not forloop.last %}<p class="navbar-text d-none d-sm-block"> 🌹 </p>{% endif %}
-{% endfor %}
+    {% endfor %}
+            </div>
+<div class="navbar-nav ml-auto">
+    <a class="navbar-item" href="https://www.dsausa.org">
+        <img height=30px width=30px src="https://www.dsausa.org/wp-content/themes/wordpress-theme-v2/img/headerlogo-400x400.png" alt="Democratic Socialists of America (DSA)">
+    </a>
+</div>

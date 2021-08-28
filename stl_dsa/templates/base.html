@@ -29,16 +29,14 @@
 
 </head>
 
+<div class="container-fluid">
+    <nav class="navbar nav flex-column flex-md-row">
+        {% main_menu max_levels=2 add_sub_menus_inline=True %}
+    </nav>
+</div>
 <body class="home blog et_bloom et_monarch chrome">
     {% wagtailuserbar %}
     <div class="bg-white">
-        <nav class="navbar navbar-expand-md">
-            <div id="footerResponsive" class="navbar-collapse">
-                <ul class="navbar-nav">
-                    {% main_menu max_levels=2 add_sub_menus_inline=True %}
-                </ul>
-            </div>
-        </nav>
         <header id="pageheader" class="container" role="banner">
             <div class="row py-3 align-items-center">
                 <div class="col-6 col-sm-5">
