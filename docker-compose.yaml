@@ -8,24 +8,49 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432
     networks:
       - main
-  web:
+  django:
+    &django
     build: .
-    image: server
     stdin_open: true
     tty: true
     volumes:  
       - .:/app
     ports:
-      - "8000:8000"
+      - 8000:8000
     environment:
       - ACTIONNETWORK_API_KEYS
     networks:
       - main
     depends_on:
       - db
+    command: bash startup.sh
+
+  init-db:
+    <<: *django
     command: bash init_db.sh
+    ports:
+      - 8001
+    depends_on: 
+      - db      
+    networks:
+      - main
+
+  # notebook:
+  #   <<: *django
+  #   command: bash notebook.sh
+  #   environment:
+  #     - DJANGO_CONFIGURATION=Docker
+  #     - DJANGO_SETTINGS_MODULE=config.settings
+  #   ports: 
+  #     - "8888:8888"
+  #   networks:
+  #     - main
+  #   depends_on: 
+  #     - django
 
 networks:
   main:

@@ -90,7 +90,7 @@ class Base(Configuration):
         "allauth.account.auth_backends.AuthenticationBackend",
     ]
     AUTH_USER_MODEL = "users.User"
-    LOGIN_REDIRECT_URL = "users:redirect"
+    LOGIN_REDIRECT_URL = "myDSA"
     LOGIN_URL = "account_login"
 
     PASSWORD_HASHERS = [
@@ -269,6 +269,14 @@ class Dev(Base):
         "debug_toolbar.middleware.DebugToolbarMiddleware",
     ]
     INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
+    NOTEBOOK_ARGUMENTS = [
+        "--ip",
+        "0.0.0.0",
+        "--port",
+        "8888",
+        "--allow-root",
+        "--no-browser",
+    ]
 
 
 class Local(Dev):

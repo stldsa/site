@@ -48,3 +48,5 @@ def get_emails():
 #     tags_response = requests.get("https://actionnetwork.org/api/v2/tags/",
 #     headers=
 #     )
+def tag_list():
+    pass

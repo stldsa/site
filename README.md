@@ -56,32 +56,45 @@ If you're using [VS Code](https://code.visualstudio.com/) as your IDE, you can a
 
 Most commands that you'll need to run on a regular basis you should perform in a new container:
 
-    $ docker-compose run web <command>
+    $ docker-compose run django <command>
 
+> Tip: You may want to append an alias function in your `.bashrc` / `.bash_profile`:
 
-In contrast to `up`, `run` overwrites the `CMD` step with your arguments, so the database initialization script is skipped.
+Linux/Ubuntu:
 
-> Tip: You may want to append an alias function in your `.bashrc` (Linux/Ubuntu) or `.bash_profile` (macOS) using `echo 'function stldsa() { docker-compose run web "$@"; }' >> ~/.bashrc`. This will allow you to run commands with the much simpler `stldsa <command>`.
+     $ echo 'function stldsa() { docker-compose run django "$@"; }' >> ~/.bashrc` 
+
+macOS:    
+
+     $ echo 'function stldsa() { docker-compose run django "$@"; }' >> ~/.bash_profile`
+
+This will allow you to run commands with the much simpler `stldsa <command>`.
 
 **The rest of this guide uses the `stldsa` alias as described in the above tip**
 
-## Common/useful commands
+## Jupyter Notebook / Python Shell
+
+Our docker-compose file also spins up a service for Jupyter Notebooks. Use this to test out your Python code in an interactive shell environment. To open the Jupyter interface, look in your `docker-compose up` logs to find the link with the access token; if you don't want to/are unable to scroll up and sift through all the logs you can type `docker-compose logs notebook`. Open the `explore.ipynb` file in the root directory or create your own notebook.
+
+If you'd rather just use a simple shell to run some quick Python, you can always use `python manage.py shell`.
+
+## More common/useful commands
 
 - Open bash shells inside the container with:
 
       $ stldsa bash
 
-    Run your commands and close the bash shell with `Ctrl+D`. This might be useful for installing new dependencies without needing to rebuild the Docker image. To keep things clean, try to avoid using the bash shell unless you explicitly need to run multiple terminal commands.
+    Run your commands and close the bash shell with `Ctrl+D`. This might be useful for installing new dependencies without needing to rebuild the Docker image. To keep things clean, it is best practice to avoid using the bash shell unless you think you explicitly need to, instead using `docker-compose run` when possible.
 
-    > Note: Due to some quirks in the way Docker manages virtual environments, you should use `pip` inside the container when updating dependencies, even though the project uses [Poetry](https://python-poetry.org/) outside of Docker.
+    Due to some quirks in the way Docker manages virtual environments, you should use pip inside the container when updating dependencies if you just want to try it out. If you want to commit a dependency to the codebase: 
 
-- Open a Jupyter Notebook (use this if you need a Python shell):
-
-      $ stldsa python manage.py shell_plus --notebook
+        $ poetry add --lock
+        
+    `--lock` allows you to skip Poetry's attempt to install all your packages in a virtual environment on the host machine and just builds the wheel used to install dependencies in the container. 
 
 - Run tests:
 
-      $ stldsa web pytest
+      $ stldsa pytest
 
 - When you change any model fields, you must make some new migrations:
 
@@ -133,8 +146,6 @@ where `<feature-name>` is whatever you'd like to work on.
 Write some code, ideally with some tests. Commit frequently as you go, running tests with `pytest` to make sure it doesnt break anything before each commit. When you're ready to share the state of your code with others, push your **feature branch** to GitHub for others to review or continue your work. You can't push to `main` so don't even try!
 
      $ git push <feature-branch>
-     
-  
 
 If your feature is complete and you think your code is ready for prime time, [open a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on the `main` branch.
 

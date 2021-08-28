@@ -33,17 +33,3 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
             self.request, messages.INFO, _("Info successfully updated")
         )
         return super().form_valid(form)
-
-
-user_update_view = UserUpdateView.as_view()
-
-
-class UserRedirectView(LoginRequiredMixin, RedirectView):
-
-    permanent = False
-
-    def get_redirect_url(self):
-        return reverse("users:detail", kwargs={"id": self.request.user.id})
-
-
-user_redirect_view = UserRedirectView.as_view()
