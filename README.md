@@ -100,7 +100,7 @@ In contrast to `up`, `run` overwrites the `CMD` step with your arguments, so the
 
 ## Browse Wagtail CMS
 
-The startup scripts create an admin user with the email `admin@example.com` and the password `stldsa` (You can [override these settings](https://docs.djangoproject.com/en/3.0/ref/django-admin/#createsuperuser) using your environment variables).  Go to http://localhost:8000/cms and enter these credentials to open the Wagtail admin interface. Browse around, navigate the site tree, and try making a page yourself! Notice that upon returning to the "front end" of the website, if you're viewing a page that uses Wagtail (which is most of them), you can now see a nifty shortcut icon the lower-right corner.
+The startup scripts create an admin user with the email `admin@example.com` and the password `stldsa` (You can [override these settings](https://docs.djangoproject.com/en/3.0/ref/django-admin/#createsuperuser) using your environment variables if you really want to).  Go to http://localhost:8000/cms and enter these credentials to open the Wagtail admin interface. Browse around, navigate the site tree, and try making a page yourself! Notice that upon returning to the "front end" of the website, if you're viewing a page that uses Wagtail (which is most of them), you can now see a nifty shortcut icon the lower-right corner.
 
 ## Contributing
 
@@ -108,7 +108,7 @@ If you would like to contribute to this repository, a couple of helpful steps:
 
 ### Code formatting
 
-Use [Black](https://github.com/psf/black) in your IDE to automatically format your code according to Black's strict standards each time you save your code. Black automatically comes with the Python extension for VS Code and should come preconfigured according to the `.vscode` file that comes with this repo. 
+Use [Black](https://github.com/psf/black) in your IDE to automatically format your code according to Black's strict linting standards each time you save your code. Black automatically comes with the Python extension for VS Code and should come preconfigured according to the `.vscode` file that comes with this repo. 
 
 > *Optional*: Install **pre-commit** to ensure your code is black-formatted before each of your commits (this should be redundant assuming you're already running Black in the first place):
 
