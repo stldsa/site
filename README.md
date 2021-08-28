@@ -40,7 +40,7 @@ If you are a member of DSA, ask to be added as a maintainer of the repo. If you 
 
     $ docker-compose build
 
- This command builds **images** for both your database container (from the standard DockerHub postgres repository) and your web service container (from the Dockerfile). These images essentially provide a starting point for Docker containers to run off of so that they can be quick and painless. Thus, building them will take a few minutes the first time while it does things like set up the operating system and install package dependencies. Subsequent builds will use a cache and should execute faster - you should only have to rebuild if you make changes to the Dockerfile or need to install a new Python package. 
+ This command builds **images** for both your database container (from the standard DockerHub postgres repository) and your web service container (from the Dockerfile). These images essentially provide a starting point for Docker containers to run off of so that they can be quick and painless. Thus, building them will take a few minutes the first time while it does things like set up the operating system and install package dependencies. Subsequent builds will use a cache and should execute faster - you should only have to rebuild if you make changes to the Dockerfile. 
 
 ### 4. Create and run the service containers
 
@@ -48,7 +48,7 @@ If you are a member of DSA, ask to be added as a maintainer of the repo. If you 
 
  This creates two **containers** (again, one for the database and one for the web service), which are designed to be ephemeral, modifiable instantiations of the images. Using `up` also executes the final `CMD` step in the Dockerfile (which in our case, runs a bash script to initialize the database). Lastly, it keeps the services running so that a) the web service can access the database and b) and we can access the web server in our browser at [localhost:8000](http://localhost:8000). Go ahead and check it out! Magic!
  
- When you are done using the browser, you can run `docker-compose stop` if you want to stop the services, which will free up port 8000 and some memory. `docker-compose start` will spin it back up again. Run `docker-compose down` to stop *and* delete the containers (including the database). Or just keep it running forever 🤷
+ When you are done using the browser, you can run `docker-compose stop` if you want to stop the services, which will free up port 8000 and some memory. `docker-compose start` will spin it back up again. Run `docker-compose down` to stop *and* delete the containers (which will also delete the database). Or just keep it running forever! 🤷
 
 If you're using [VS Code](https://code.visualstudio.com/) as your IDE, you can also perform many of these tasks with the Docker extension whenever you might prefer using a GUI.
 
@@ -56,40 +56,51 @@ If you're using [VS Code](https://code.visualstudio.com/) as your IDE, you can a
 
 Most commands that you'll need to run on a regular basis you should perform in a new container:
 
-    $ docker-compose run --rm web <command>
+    $ docker-compose run web <command>
 
-The `--rm` flag is optional and deletes your containers after they stop, which will prevent your hard drive from cluttering up with containers. If at some point you end up with a lot of empty containers anyways, just run `docker container prune`.
 
 In contrast to `up`, `run` overwrites the `CMD` step with your arguments, so the database initialization script is skipped.
 
 > Tip: You may want to append an alias function in your `.bashrc` (Linux/Ubuntu) or `.bash_profile` (macOS) using `echo 'function stldsa() { docker-compose run web "$@"; }' >> ~/.bashrc`. This will allow you to run commands with the much simpler `stldsa <command>`.
 
+**The rest of this guide uses the `stldsa` alias as described in the above tip**
+
 ## Common/useful commands
 
 - Open bash shells inside the container with:
 
-      $ docker-compose run web bash
+      $ stldsa bash
 
     Run your commands and close the bash shell with `Ctrl+D`. This might be useful for installing new dependencies without needing to rebuild the Docker image. To keep things clean, try to avoid using the bash shell unless you explicitly need to run multiple terminal commands.
 
     > Note: Due to some quirks in the way Docker manages virtual environments, you should use `pip` inside the container when updating dependencies, even though the project uses [Poetry](https://python-poetry.org/) outside of Docker.
 
-- Open Python shells with:
+- Open a Jupyter Notebook (use this if you need a Python shell):
 
-      $ docker-compose run web python manage.py shell
+      $ stldsa python manage.py shell_plus --notebook
 
 - Run tests:
 
-      $ docker-compose run web pytest
+      $ stldsa web pytest
 
 - When you change any model fields, you must make some new migrations:
 
-      $ docker-compose run web python manage.py makemigrations
-      $ docker-compose run web python manage.py migrate
+      $ stldsa python manage.py makemigrations
+      $ stldsa python manage.py migrate
+
+<!-- - Re-seed your database:
+
+      $ stldsa python manage.py flush
+      $ stldsa python manage.py seed-db -->
+
+- More helpful aliases:
+
+      $ echo 'function stldsa-manage() { stldsa python manage.py "$@"; }' >> ~/.bashrc
+      $ echo 'function docker-reset() { docker-compose down && docker-compose up; }' >> ~/.bashrc
 
 ## Browse Wagtail CMS
 
-The startup scripts create an admin user with the email *admin@example.com* and the password *admin1234* (You can [override these settings](https://docs.djangoproject.com/en/3.0/ref/django-admin/#createsuperuser) using your environment variables).  Go to http://localhost:8000/cms and enter these credentials to open the Wagtail admin interface. Browse around, navigate the site tree, and try making a page yourself! Notice that upon returning to the "front end" of the website, if you're viewing a page that uses Wagtail (which is most of them), you can now see a nifty shortcut the lower-right corner.
+The startup scripts create an admin user with the email `admin@example.com` and the password `stldsa` (You can [override these settings](https://docs.djangoproject.com/en/3.0/ref/django-admin/#createsuperuser) using your environment variables).  Go to http://localhost:8000/cms and enter these credentials to open the Wagtail admin interface. Browse around, navigate the site tree, and try making a page yourself! Notice that upon returning to the "front end" of the website, if you're viewing a page that uses Wagtail (which is most of them), you can now see a nifty shortcut icon the lower-right corner.
 
 ## Contributing
 
