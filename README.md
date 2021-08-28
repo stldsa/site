@@ -75,9 +75,10 @@ In contrast to `up`, `run` overwrites the `CMD` step with your arguments, so the
 
     > Note: Due to some quirks in the way Docker manages virtual environments, you should use `pip` inside the container when updating dependencies, even though the project uses [Poetry](https://python-poetry.org/) outside of Docker.
 
-- Open a Jupyter Notebook (use this if you need a Python shell):
+- Open a Python shell:
 
-      $ stldsa python manage.py shell_plus --notebook
+      $ stldsa python manage.py shell   # if you need Django objects
+      $ stldsa ipython                  # if you don't
 
 - Run tests:
 
