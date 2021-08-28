@@ -73,8 +73,10 @@ In contrast to `up`, `run` overwrites the `CMD` step with your arguments, so the
 
     Run your commands and close the bash shell with `Ctrl+D`. This might be useful for installing new dependencies without needing to rebuild the Docker image. To keep things clean, try to avoid using the bash shell unless you explicitly need to run multiple terminal commands.
 
-    > Note: Due to some quirks in the way Docker manages virtual environments, you should use `pip` inside the container when updating dependencies, even though the project uses [Poetry](https://python-poetry.org/) outside of Docker.
-
+    Due to some quirks in the way Docker manages virtual environments, you should use `pip` inside the container when updating dependencies if you just want to try it out. If you want to commit a dependency to the codebase:
+      $ poetry add <package> --lock     # --lock allows you to skip Poetry's attempt to install all your packages in a virtual environment on the host machine.
+      $ docker-compose down && docker compose up --build 
+    
 - Open a Python shell:
 
       $ stldsa python manage.py shell   # if you need Django objects
