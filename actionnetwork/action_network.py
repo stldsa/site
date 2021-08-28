@@ -1,7 +1,6 @@
 import requests
 from django.conf import settings
 from events.models import Event
-from datetime import datetime
 
 
 def get_resource(resource, group):
@@ -29,16 +28,15 @@ def get_events():
 
 def save_events(events):
     for event in events:
-        obj, created = Event.objects.update_or_create(
+        Event.objects.update_or_create(
             id=event["identifiers"][0].split(":")[1],
             defaults={
                 "title": event["title"],
-                "start": datetime.fromisoformat(event["start_date"][:-1]),
+                "start": event["start_date"],
                 "url": event["browser_url"],
                 "description": event["description"],
             },
         )
-    return
 
 
 def get_emails():
@@ -54,8 +52,17 @@ def get_tags():
     return get_resource("tags", "main")
 
 
+<<<<<<< HEAD
 def get_tag_taggings_href(tag):
     tags = get_resource_list("tags", "main")
     return next(item for item in tags if item["name"] == tag)["_links"][
         "osdi:taggings"
     ]["href"]
+=======
+# def get_tag(tag):
+#     tags_response = requests.get("https://actionnetwork.org/api/v2/tags/",
+#     headers=
+#     )
+def tag_list():
+    pass
+>>>>>>> main

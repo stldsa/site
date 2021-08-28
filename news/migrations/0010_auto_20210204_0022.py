@@ -8,13 +8,23 @@ import wagtail.core.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news', '0009_documentpage'),
+        ("news", "0009_documentpage"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='documentpage',
-            name='document',
-            field=wagtail.core.fields.StreamField([('h1', wagtail.core.blocks.StreamBlock([('h2', wagtail.core.blocks.TextBlock())])), ('p', wagtail.core.blocks.TextBlock())]),
+            model_name="documentpage",
+            name="document",
+            field=wagtail.core.fields.StreamField(
+                [
+                    (
+                        "h1",
+                        wagtail.core.blocks.StreamBlock(
+                            [("h2", wagtail.core.blocks.TextBlock())]
+                        ),
+                    ),
+                    ("p", wagtail.core.blocks.TextBlock()),
+                ]
+            ),
         ),
     ]

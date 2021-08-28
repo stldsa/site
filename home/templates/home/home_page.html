@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+<!-- 
+{% block body_class %}template-homepage{% endblock %} -->
+
+{% block content %}
+
+<div class='col-md-auto container border border-danger d-block shadow' style='text-align:center;'>
+  <div class='bgred'>
+    <h2>{{ page.banner_title }}</h2>
+  </div>
+  <div class="row">
+    <div class='col-sm'>
+      <h2>Our Mission</h2>
+      <p>{{ page.mission_statement }}</p>
+    </div>
+    <div class='col-sm'>
+      <h2>We Believe</h2>
+      <p>{{ page.values_statement }}</p>
+    </div>
+  </div>
+</div>
+<!-- Portfolio Item Row -->
+<div class="row">
+  <div class="shadow p-3 mb-5 bg-white rounded">
+    <div class="col-md-8">
+
+      <h2 class="my-4">A Message from the Executive Committee:</h2>
+      <h3>{{ update.title }}</h3>
+      <h5>Posted: {{ update.date|date:"M j, Y" }}</h5>
+      {{ update.body|richtext }}
+
+      <h2>Upcoming Events:</h2>
+      {% for event in events %}
+      <div class="col-md-8 col-sm-6 mb-4">
+        <a href='{{ event.url }}'>
+          <h4>{{ event.title }}</h4>
+        </a>
+        <p>{{ event.date|date:"D, M j" }} | {{ event.start_time }} | <b><a href={{ event.url }}>RSVP</a></b></p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3 class="my-3">{{ page.highlighted_campaign }}</h3>
+    <p>{{ page.highlighted_description }}</p>
+    <h3 class="my-3">Chapter Priorities</h3>
+    <p>Our chapter has passed some resolutions establishing certain chapter priorities. </p>
+    <ul>
+      <li><a href="/formations/welcome">Strengthening STL DSA's Membership Base</a></li>
+      <li><a href="/formations/sns">Continuing socialist education with the Socialist Night School</a></li>
+      <li><a href="/formations/publicownership">Emphasizing our commitment to Protect Public Ownership</a></li>
+      <li><a href="/formations/no-on-3">Committing to defeat Amendment 3 on the November ballot</a></li>
+    </ul>
+    <p>If you're new to DSA, please sign up to help in one or more using the form below.</p>
+    <link href='https://actionnetwork.org/css/style-embed-whitelabel.css' rel='stylesheet' type='text/css' />
+    <script src='https://actionnetwork.org/widgets/v3/form/stldsa?format=js&source=widget'></script>
+    <div id='can-form-area-stldsa' style='width: 100%'><!-- this div is the target for our HTML insertion --></div>
+  </div>
+
+</div>
+<!-- /.row -->
+{% endblock %}

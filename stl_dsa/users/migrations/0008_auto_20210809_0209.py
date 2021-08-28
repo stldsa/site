@@ -6,17 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0007_user_is_member'),
+        ("users", "0007_user_is_member"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='user',
-            name='is_member',
+            model_name="user",
+            name="is_member",
         ),
         migrations.AddField(
-            model_name='user',
-            name='membership',
-            field=models.TextField(blank=True, choices=[('Active', 'Active'), ('In Arrears', 'In Arrears'), ('LAPSED', 'Lapsed'), ('None', 'None')], null=True),
+            model_name="user",
+            name="membership",
+            field=models.TextField(
+                blank=True,
+                choices=[
+                    ("Active", "Active"),
+                    ("In Arrears", "In Arrears"),
+                    ("LAPSED", "Lapsed"),
+                    ("None", "None"),
+                ],
+                null=True,
+            ),
         ),
     ]

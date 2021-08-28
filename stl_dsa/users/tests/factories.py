@@ -1,6 +1,5 @@
-from typing import Any, Sequence
 from django.contrib.auth import get_user_model
-from factory import django, post_generation
+from factory import django, post_generation, Sequence
 from faker import Faker
 
 faker = Faker()
@@ -8,25 +7,23 @@ User = get_user_model()
 
 
 class UserFactory(django.DjangoModelFactory):
+    class Meta:
+        model = User
+
+    class Params:
+        is_member = False
 
     email = faker.email()
     first_name = faker.first_name()
     last_name = faker.last_name()
+    id = Sequence(lambda n: str(n))
 
     @post_generation
-    def password(self, create: bool, extracted: Sequence[Any], **kwargs):
-        password = (
-            extracted
-            if extracted
-            else faker.password(
-                length=42,
-                special_chars=True,
-                digits=True,
-                upper_case=True,
-                lower_case=True,
-            )
-        )
-        self.set_password(password)
+    def groups(self, create, extracted, **kwargs):
+        if extracted and create:
+            self.groups.add(extracted)
 
-    class Meta:
-        model = User
+    @post_generation
+    def password(self, create, extracted, **kwargs):
+        password = extracted or faker.password()
+        self.set_password(password)

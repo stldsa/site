@@ -1,4 +1,4 @@
-from django.db.models.fields import CharField, URLField
+from django.db.models.fields import CharField
 import requests
 from datetime import datetime
 from django.db import models
@@ -9,7 +9,6 @@ from django.dispatch import receiver
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
-from wagtail.snippets.models import register_snippet
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
 
@@ -39,12 +38,12 @@ class Person(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.person.save()
 
-    def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+    # def __str__(self):
+    #     return self.user.first_name + " " + self.user.last_name
 
-    @property
-    def anonymous_name(self):
-        return self.user.first_name + " " + self.user.last_name[:1] + "."
+    # @property
+    # def anonymous_name(self):
+    #     return self.user.first_name + " " + self.user.last_name[:1] + "."
 
 
 class Committee(models.Model):
@@ -118,10 +117,7 @@ class CommitteePage(Page):
         return context
 
     def __str__(self):
-        return self.name
-
-    def __repr__(self):
-        return self.name
+        return self.name.title() + " " + self.get_formation_type_display()
 
 
 class CommitteesPage(Page):

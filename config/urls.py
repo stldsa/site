@@ -1,11 +1,10 @@
 from django.conf import settings
-from django.http import HttpResponse
 from django.urls import include, path, re_path
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
-from config.views import podcast_redirect
 from rest_framework.authtoken.views import obtain_auth_token
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
@@ -15,31 +14,38 @@ from events.api import urls as events_api_urls
 # from sphinxdoc import urls as sphinxdoc_urls
 
 
-urlpatterns = [
-    # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path(
-        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
-    ),
-    # Django Admin, use {% url 'admin:index' %}
-    path(settings.ADMIN_URL, admin.site.urls),
-    path("users/", include("stl_dsa.users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
-    path("events/", include("events.urls")),
-    path("committees/", include("committees.urls")),
-    path("feed/podcast/", podcast_redirect),
-    path(
-        "fullcalendar/",
-        TemplateView.as_view(template_name="fullcalendar.html"),
-        name="fullcalendar",
-    ),
-    path("api/", include(events_api_urls)),
-    path("auth-token/", obtain_auth_token),
-    # re_path(r"^docs/", include(sphinxdoc_urls)),
-    re_path(r"^cms/", include(wagtailadmin_urls)),
-    re_path(r"^documents/", include(wagtaildocs_urls)),
-    re_path(r"^pages/", include(wagtail_urls)),
-    re_path(r"", include(wagtail_urls)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = (
+    [
+        # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+        path(
+            "about/",
+            TemplateView.as_view(template_name="pages/about.html"),
+            name="about",
+        ),
+        # Django Admin, use {% url 'admin:index' %}
+        path(settings.ADMIN_URL, admin.site.urls),
+        path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
+        path("", include("allauth.urls")),
+        path("events/", include("events.urls")),
+        path(
+            "fullcalendar/",
+            TemplateView.as_view(template_name="fullcalendar.html"),
+            name="fullcalendar",
+        ),
+        path("api/", include(events_api_urls)),
+        path("auth-token/", obtain_auth_token),
+        # re_path(r"^docs/", include(sphinxdoc_urls)),
+        path("cms/", include(wagtailadmin_urls)),
+        path("documents/", include(wagtaildocs_urls)),
+        re_path(r"^pages/", include(wagtail_urls)),
+    ]
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    + i18n_patterns(
+        # path("search/", search_views.search, name="search"),
+        path("", include(wagtail_urls)),
+    )
+)
+
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

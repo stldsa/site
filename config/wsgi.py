@@ -15,8 +15,10 @@ framework.
 """
 import os
 import sys
+from configurations.wsgi import get_wsgi_application
 
-from django.core.wsgi import get_wsgi_application
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+os.environ.setdefault("DJANGO_CONFIGURATION", "Production")
 
 # This allows easy placement of apps within the interior
 # stl_dsa directory.
@@ -28,7 +30,6 @@ sys.path.append(os.path.join(app_path, "stl_dsa"))
 # if running multiple sites in the same mod_wsgi process. To fix this, use
 # mod_wsgi daemon mode with each site in its own daemon process, or use
 # os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.production"
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION

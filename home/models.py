@@ -8,14 +8,21 @@ from news.models import NewsPage
 
 
 class HomePage(Page):
-    template = "pages/home.html"
     banner_title = models.CharField(max_length=100, blank=False, null=True)
-    body = RichTextField(blank=True)
+    mission_statement = models.TextField(null=True)
+    values_statement = models.TextField(null=True)
+    highlighted_campaign = models.CharField(max_length=100, blank=False, null=True)
+    highlighted_description = models.TextField(blank=False, null=True)
+    action_network_embed_api_endpoint = models.URLField(blank=True, null=True)
+
     max_count = 1
 
     content_panels = Page.content_panels + [
         FieldPanel("banner_title"),
-        FieldPanel("body", classname="full"),
+        FieldPanel("mission_statement"),
+        FieldPanel("values_statement"),
+        FieldPanel("highlighted_campaign"),
+        FieldPanel("highlighted_description"),
     ]
 
     def get_context(self, request):

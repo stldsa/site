@@ -9,20 +9,43 @@ import wagtail.core.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0052_pagelogentry'),
-        ('news', '0008_auto_20200511_2206'),
+        ("wagtailcore", "0052_pagelogentry"),
+        ("news", "0008_auto_20200511_2206"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='DocumentPage',
+            name="DocumentPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('document', wagtail.core.fields.StreamField([('h1', wagtail.core.blocks.StreamBlock([('h2', wagtail.core.blocks.TextBlock())])), ('text', wagtail.core.blocks.TextBlock())])),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.page",
+                    ),
+                ),
+                (
+                    "document",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "h1",
+                                wagtail.core.blocks.StreamBlock(
+                                    [("h2", wagtail.core.blocks.TextBlock())]
+                                ),
+                            ),
+                            ("text", wagtail.core.blocks.TextBlock()),
+                        ]
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

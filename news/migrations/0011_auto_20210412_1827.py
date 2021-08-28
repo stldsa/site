@@ -9,22 +9,32 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('news', '0010_auto_20210204_0022'),
+        ("news", "0010_auto_20210204_0022"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='documentpage',
-            name='document',
+            model_name="documentpage",
+            name="document",
         ),
         migrations.AddField(
-            model_name='documentpage',
-            name='body',
-            field=wagtail.core.fields.StreamField([('heading', wagtail.core.blocks.CharBlock(form_classname='full title')), ('paragraph', wagtail.core.blocks.RichTextBlock()), ('image', wagtail.images.blocks.ImageChooserBlock())], blank=True),
+            model_name="documentpage",
+            name="body",
+            field=wagtail.core.fields.StreamField(
+                [
+                    (
+                        "heading",
+                        wagtail.core.blocks.CharBlock(form_classname="full title"),
+                    ),
+                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("image", wagtail.images.blocks.ImageChooserBlock()),
+                ],
+                blank=True,
+            ),
         ),
         migrations.AddField(
-            model_name='documentpage',
-            name='date_published',
-            field=models.DateField(blank=True, null=True, verbose_name='Last Updated'),
+            model_name="documentpage",
+            name="date_published",
+            field=models.DateField(blank=True, null=True, verbose_name="Last Updated"),
         ),
     ]
