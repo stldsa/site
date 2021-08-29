@@ -2112,7 +2112,7 @@ header button {
   font-weight: 600;
   padding-left: 8px;
   padding-right: 8px;
-  // border-radius: 4px;
+  border-radius: 4px;
 
   @media #{$mobile-query} {
     padding-left: 0px;

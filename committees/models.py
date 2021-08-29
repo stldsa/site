@@ -1,4 +1,4 @@
-from django.db.models.fields import CharField
+from django.db.models.fields import CharField, EmailField
 import requests
 from datetime import datetime
 from django.db import models
@@ -11,6 +11,7 @@ from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
+from actionnetwork import action_network as an
 
 # Create your models here.
 
@@ -18,6 +19,7 @@ from wagtail.search import index
 class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
     phone = PhoneNumberField(null=True, blank=True)
+    email = EmailField(null=True, blank=True)
 
     class MembershipStatus(models.TextChoices):
         ACTIVE = "Active"
@@ -32,11 +34,28 @@ class Person(models.Model):
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
-            Person.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
+            Person.objects.create(user=instance, email=instance.email)
         instance.person.save()
+
+    def action_network_id(self, **kwargs):
+        people = kwargs.get("people") or an.Resource("people")
+        return an.get_person_id_from_people_given_email(self.email, people)
+
+    def taggings(self, **kwargs):
+        person = kwargs.get(
+            "people", an.Resource("people", uuid=self.action_network_id)
+        )
+        tagging_href = person["_links"]["osdi:taggings"]["href"]
+        return kwargs.get(
+            "taggings", an.Resource("taggings"), id=an.get_id_from_href(tagging_href)
+        ).list
+
+    def tags(self, **kwargs):
+        return [an.get_tag_href_from_tagging(tagging) for tagging in self.taggings]
+
+    @property
+    def is_member(self):
+        return "Voting Members" in self.tags
 
     # def __str__(self):
     #     return self.user.first_name + " " + self.user.last_name
