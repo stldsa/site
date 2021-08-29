@@ -12,6 +12,7 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
 from actionnetwork import action_network as an
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
@@ -20,6 +21,7 @@ class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
     phone = PhoneNumberField(null=True, blank=True)
     email = EmailField(null=True, blank=True)
+    tags = TaggableManager()
 
     class MembershipStatus(models.TextChoices):
         ACTIVE = "Active"
@@ -37,21 +39,28 @@ class Person(models.Model):
             Person.objects.create(user=instance, email=instance.email)
         instance.person.save()
 
-    def action_network_id(self, **kwargs):
-        people = kwargs.get("people") or an.Resource("people")
+    def uuid(self, **kwargs):
+        people = kwargs.get("people") or an.Resource("people").list
         return an.get_person_id_from_people_given_email(self.email, people)
 
     def taggings(self, **kwargs):
-        person = kwargs.get(
-            "people", an.Resource("people", uuid=self.action_network_id)
-        )
+        person = kwargs.get("person") or self.resource
         tagging_href = person["_links"]["osdi:taggings"]["href"]
-        return kwargs.get(
-            "taggings", an.Resource("taggings"), id=an.get_id_from_href(tagging_href)
-        ).list
+        return an.Resource("people", href=tagging_href)
 
-    def tags(self, **kwargs):
-        return [an.get_tag_href_from_tagging(tagging) for tagging in self.taggings]
+    @property
+    def resource(self):
+        return an.Resource("people", uuid=self.uuid()).json
+
+    def tag_hrefs(self, **kwargs):
+        taggings = kwargs.get("taggings") or self.taggings()
+        return [an.get_tag_href_from_tagging(tagging) for tagging in taggings]
+
+    # def tags(self):
+    #     return [
+    #         an.Resource("tags", href=tag_href).json.get("name")
+    #         for tag_href in self.tag_hrefs()
+    #     ]
 
     @property
     def is_member(self):

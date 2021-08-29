@@ -1,18 +1,5 @@
 from factory.django import DjangoModelFactory
-from factory.declarations import PostGeneration
-from factory import Faker as fake
-from wagtail.core.models.sites import Site
-from treebeard.mp_tree import MP_Node
-
-
-# class SiteFactory(DjangoModelFactory):
-#     class Meta:
-#         model = Site
-
-#     hostname = "localhost"
-#     port = 8000
-#     site_name = "St Louis DSA"
-#     root_page = factory.
+from factory import Faker as fake        
 
 
 class FormationsPageFactory(DjangoModelFactory):

@@ -905,6 +905,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "model-bakery"
+version = "1.3.2"
+description = "Smart object creation facility for Django."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django = ">=2.2"
+
+[[package]]
 name = "mypy-extensions"
 version = "0.4.3"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
@@ -1985,7 +1996,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "4660ea3351f4d1f3da2817b7643c94966a744d8f31a2a148c0b2288a1b1bf913"
+content-hash = "e7c56c1193d7359ef5b7b8217e2b79534872c8362db9fd3fe1c119f1faf3b788"
 
 [metadata.files]
 anyascii = [
@@ -2510,6 +2521,10 @@ mccabe = [
 mistune = [
     {file = "mistune-0.8.4-py2.py3-none-any.whl", hash = "sha256:88a1051873018da288eee8538d476dffe1262495144b33ecb586c4ab266bb8d4"},
     {file = "mistune-0.8.4.tar.gz", hash = "sha256:59a3429db53c50b5c6bcc8a07f8848cb00d7dc8bdb431a4ab41920d201d4756e"},
+]
+model-bakery = [
+    {file = "model_bakery-1.3.2-py2.py3-none-any.whl", hash = "sha256:bebde0d4f895f55a8cf26706275a238fecdf0fddd227214675b7351598c99ce5"},
+    {file = "model_bakery-1.3.2.tar.gz", hash = "sha256:7e06071c7ba5c58f9c1d7245b4b80cc5240806f30c4561f5c04a652d67626725"},
 ]
 mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},

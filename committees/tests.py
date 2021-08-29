@@ -1,4 +1,5 @@
 from committees.models import Person
+from model_bakery import baker
 from faker import Faker
 
 fake = Faker()
@@ -10,25 +11,19 @@ def test_get_email(user):
 
 
 def test_get_action_network_id():
-    email = fake.email()
-    person = Person(email=email)
+    person = baker.prepare("Person", id=baker.seq(1))
     id = fake.uuid4()
 
     people = [
         {
-            "email_addresses": [{"address": email}],
+            "email_addresses": [{"address": person.email}],
             "identifiers": ["action_network:" + id],
         }
     ]
 
-    assert person.action_network_id(people=people) == id
+    assert person.uuid(people=people) == id
 
 
-def test_person_is_member():
-    member = Person()
-    nonmember = Person()
-    member.tags = ["Voting Members"]
-    nonmember.tags = []
-
-    assert member.is_member
-    assert not nonmember.is_member
+def test_person_is_member(member_person, nonmember_person):
+    assert member_person.is_member
+    assert not nonmember_person.is_member

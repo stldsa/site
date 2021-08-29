@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
 )
 from django.urls import reverse
 from django.db import models
+from actionnetwork import action_network as an
 
 
 class UserManager(BaseUserManager):
@@ -47,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # username = models.CharField(null=True, blank=True, max_length=150)
     first_name = models.CharField(null=True, blank=True, max_length=30)
     last_name = models.CharField(null=True, blank=True, max_length=30)
-    email = models.EmailField(null=False, blank=False, unique=True)
+    email = models.EmailField(null=False, blank=False, unique=True, primary_key=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -76,7 +77,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def is_member(self):
-        return self.user.is_member
+        return self.person.is_member
 
     def __str__(self):
         return str(self.first_name) + " " + str(self.last_name)

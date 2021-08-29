@@ -77,7 +77,7 @@ class Base(Configuration):
     ]
 
     LOCAL_APPS = [
-        "stl_dsa.users.apps.UsersConfig",
+        "stl_dsa.users",
         "events",
         "committees",
         "phonenumber_field",

@@ -5,18 +5,22 @@ import pathlib
 
 
 class Resource:
-    def __init__(self, name, group="main", uuid=None):
+    def __init__(self, name, group="main", uuid=None, href=None):
         self.name = name
         self.group = group
         self.uuid = uuid
+        self.href = href
 
     @property
     def json(self):
         return requests.get(
-            "https://actionnetwork.org/api/v2/"
-            + self.name
-            + "/"
-            + (self.uuid + "/" if self.uuid else ""),
+            self.href
+            or "/".join(
+                filter(
+                    None,
+                    ("https://actionnetwork.org/api/v2/", self.name, self.uuid),
+                )
+            ),
             headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS[self.group]},
         ).json()
 
