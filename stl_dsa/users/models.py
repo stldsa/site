@@ -5,7 +5,6 @@ from django.contrib.auth.models import (
 )
 from django.urls import reverse
 from django.db import models
-from actionnetwork import action_network as an
 
 
 class UserManager(BaseUserManager):
