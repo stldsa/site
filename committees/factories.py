@@ -1,5 +1,5 @@
 from factory.django import DjangoModelFactory
-from factory import Faker as fake        
+from factory import Faker as fake
 
 
 class FormationsPageFactory(DjangoModelFactory):
@@ -24,6 +24,3 @@ class CommitteeFactory(DjangoModelFactory):
     slug = fake("word")
     email = fake("email")
     show_in_menus = True
-    # parent = PostGeneration(
-    #     lambda obj, create, extracted, **kwargs: parent.add_child(obj)
-    # )
