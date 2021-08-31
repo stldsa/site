@@ -1,6 +1,7 @@
 from factory.django import DjangoModelFactory
 from wagtail.core.models import Page
 from factory import Faker as fake
+from factory import LazyAttribute
 
 
 class PageFactory(DjangoModelFactory):
@@ -17,8 +18,10 @@ class HomePageFactory(DjangoModelFactory):
 
     banner_title = "We are the St. Louis Democratic Socialists of America!"
     body = f"""
-    <h3>Our Mission:</h3><p><b>{fake("sentence", 10)}</b></p><h3>We
-    Believe:</h3><p><b>{fake("sentence", 10)}</b></p>
+    <h3>Our Mission:</h3><p><b>{fake("sentence", nb_words=10)}</b></p><h3>We
+    Believe:</h3><p><b>{fake("sentence", nb_words=10)}</b></p>
     """
-    highlighted_campaign = f"{' '.join(fake('words', 2)).title()} Campaign"
-    highlighted_description = fake("paragraph", 5)
+    highlighted_campaign = LazyAttribute(
+        lambda o: f"{' '.join(fake('words', nb=2)).title()} Campaign"
+    )
+    highlighted_description = fake("paragraph", nb=5)

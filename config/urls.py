@@ -1,3 +1,6 @@
+from stl_dsa.users.views import UserSignupView
+from stl_dsa.users.forms import User
+from allauth.account.views import SignupView
 from django.conf import settings
 from django.urls import include, path, re_path
 from django.conf.urls.static import static
@@ -25,6 +28,7 @@ urlpatterns = (
         # Django Admin, use {% url 'admin:index' %}
         path(settings.ADMIN_URL, admin.site.urls),
         path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
+        path("signup/", UserSignupView.as_view(), name="account_signup"),
         path("", include("allauth.urls")),
         path("events/", include("events.urls")),
         path(

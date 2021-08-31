@@ -8,7 +8,9 @@ class EmailFormView(FormView):
     form_class = EmailSubmissionForm
 
     def get_success_url(self, **kwargs):
-        emails = kwargs.get("emails", ["admin@example.com"])
-        print(emails)
-        print(self.request.POST["email"])
-        return "/login/" if self.request.POST["email"] in emails else "/signup/"
+        emails = kwargs.get("emails", User.objects.values_list("email", flat=True))
+        return (
+            "/login/"
+            if self.get_form_kwargs()["data"]["email"] in emails
+            else "/signup/"
+        )

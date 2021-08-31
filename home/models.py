@@ -38,7 +38,8 @@ class HomePage(Page):
         return context
 
     def serve(self, request):
-        if request.method == "POST":
-            return EmailFormView.as_view()(request)
-        else:
+        if request.method != "POST":
             return super().serve(request)
+
+        request.session["email"] = request.POST["email"]
+        return EmailFormView.as_view()(request)

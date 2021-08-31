@@ -50,10 +50,11 @@ pytest-cov = "^2.12.1"
 django-coverage-plugin = "^2.0.0"
 pytest-socket = "^0.4.1"
 model-bakery = "^1.3.2"
+wagtail-factories = "^2.0.1"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-ra -q --disable-socket"
+addopts = "-ra -q --disable-socket --no-migrations --reuse-db"
 DJANGO_SETTINGS_MODULE = "config.settings"
 DJANGO_CONFIGURATION = "Test"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
