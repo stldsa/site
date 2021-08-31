@@ -1,7 +1,9 @@
+from home.views import EmailFormView
+from home.forms import EmailSubmissionForm
 from django.db import models
 from datetime import datetime
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
+from django.shortcuts import render
 from wagtail.admin.edit_handlers import FieldPanel
 from events.models import Event
 from news.models import NewsPage
@@ -34,3 +36,9 @@ class HomePage(Page):
         )
         context["update"] = NewsPage.objects.all().order_by("-date")[0]
         return context
+
+    def serve(self, request):
+        if request.method == "POST":
+            return EmailFormView.as_view()(request)
+        else:
+            return super().serve(request)

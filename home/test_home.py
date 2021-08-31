@@ -9,4 +9,4 @@ def test_member_submits_email_and_is_redirected_to_login(rf, member):
 
 def test_nonmember_submits_email_and_is_redirected_to_login(user):
     response = EmailFormView(email=user.email)
-    assert response.get_success_url(emails=[]) == "/signup/"
+    assert response.get_success_url() == "/signup/"

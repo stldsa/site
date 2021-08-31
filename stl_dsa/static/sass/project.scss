@@ -1528,11 +1528,14 @@ article {
 #footer {
   // background-color: $dsared;
   // color: $white;
-
-  background-color: white;
+  position: fixed;
+  background-color: $dsalitegrey;
   // border-top: 1px solid $dsadarkgrey;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
   // .row {
   // 	padding: 20px;
   // }

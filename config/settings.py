@@ -21,6 +21,7 @@ class Base(Configuration):
     DEBUG = values.BooleanValue(True)
 
     WAGTAIL_SITE_NAME = "St Louis DSA"
+    SITE_ID = {"domain": "https://stldsa.org", "name": "St Louis DSA"}
     TIME_ZONE = "America/Chicago"
     SITE_ID = 1
     WAGTAIL_I18N_ENABLED = True
@@ -91,7 +92,7 @@ class Base(Configuration):
     ]
     AUTH_USER_MODEL = "users.User"
     LOGIN_REDIRECT_URL = "myDSA"
-    LOGIN_URL = "account_login"
+    LOGIN_URL = "login"
 
     PASSWORD_HASHERS = [
         "django.contrib.auth.hashers.Argon2PasswordHasher",

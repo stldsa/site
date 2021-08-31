@@ -1497,9 +1497,13 @@ article .wp-caption-text {
 }
 
 #footer {
-  background-color: white;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  position: fixed;
+  background-color: #f6f6f6;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #sitemap {
