@@ -11,7 +11,7 @@ User = get_user_model()
 
 class UserSignupView(SignupView):
     def get_initial(self):
-        email = self.request.session.pop("email")
+        email = self.request.session.get("email")
         return {"email": email} if email else {}
 
 

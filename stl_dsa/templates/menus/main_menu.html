@@ -2,18 +2,35 @@
 
 <div class="navbar-nav mr-auto flex-column flex-sm-row">
     {% for item in menu_items %}
-        <li class="nav-item">
-            {% if item.sub_menu and item.text != "Updates" %}
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
-            <div class="dropdown-menu">
-                {% for sub_item in item.sub_menu.items %}
-                    <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>
-                {% endfor %}
-            </div>
-            {% else %}
-                <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
+        {% if item.text == "Member Resources" %}
+            {% if request.user.is_member %}
+                <li class="nav-item">
+                    {% if item.sub_menu and item.text != "Updates" %}
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
+                    <div class="dropdown-menu">
+                        {% for sub_item in item.sub_menu.items %}
+                            <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
+                    {% endif %}
+                </li>
             {% endif %}
-        </li>
+        {% else %}
+            <li class="nav-item">
+                {% if item.sub_menu and item.text != "Updates" %}
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
+                <div class="dropdown-menu">
+                    {% for sub_item in item.sub_menu.items %}
+                        <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
+                {% endif %}
+            </li>
+        {% endif %}
     {% endfor %}
 </div>
 <div class="navbar-nav ml-auto align-items-center flex-row">
@@ -30,7 +47,7 @@
             </a>
         </li>
     {% else %}
-    <form class="form-inline" method="post" action="/en/">{% csrf_token %}
+    <form class="form-inline" method="post" action="/en/" autocomplete="username">{% csrf_token %}
         <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="E-mail Address" aria-label="login">
         <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Log In / Sign Up</button>
     </form>

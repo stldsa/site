@@ -35,7 +35,9 @@
     </nav>
 </div>
 <body class="home blog et_bloom et_monarch chrome">
-    {% wagtailuserbar %}
+    {% if request.user.is_admin %}
+        {% wagtailuserbar %}
+    {% endif %}
     <div class="bg-white">
         <header id="pageheader" class="container" role="banner">
             <div class="row py-3 align-items-center">
@@ -105,7 +107,7 @@
             </div>
         </header>
     </div>
-    <main class='container'>
+    <main class='container shadow pb-4'>
         {% block content %}
         {% endblock %}
     </main>

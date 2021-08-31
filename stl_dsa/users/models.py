@@ -36,6 +36,7 @@ class UserManager(BaseUserManager):
             password=password,
         )
         user.is_superuser = True
+        user.is_admin = True
         user.save(using=self._db)
         return user
 
@@ -59,8 +60,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
+        if perm == "wagtailadmin.access_admin":
+            return self.is_admin
+        else:
+            return False
 
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"

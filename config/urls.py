@@ -41,7 +41,6 @@ urlpatterns = (
         # re_path(r"^docs/", include(sphinxdoc_urls)),
         path("cms/", include(wagtailadmin_urls)),
         path("documents/", include(wagtaildocs_urls)),
-        re_path(r"^pages/", include(wagtail_urls)),
     ]
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + i18n_patterns(

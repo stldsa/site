@@ -1,3 +1,4 @@
+from factory.declarations import LazyAttribute
 from factory.django import DjangoModelFactory
 from factory import Faker as fake
 
@@ -18,9 +19,8 @@ class CommitteeFactory(DjangoModelFactory):
         parent = None
 
     title = fake("word")
-    name = fake("word")
     description = fake("paragraph")
     formation_type = fake("random_element", elements={"CT", "WG", "CU", "PR"})
-    slug = fake("word")
+    slug = LazyAttribute(lambda o: o.title)
     email = fake("email")
     show_in_menus = True

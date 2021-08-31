@@ -11,12 +11,12 @@
 
       <h2>Hi, {{ object.first_name }}!</h2>
       <h3>Membership Status: </h3> {{ object.person.membership }}
-      <h3>Your Formations:</h3>
+      <!-- <h3>Your Formations:</h3>
       {% for committee in object.person.committee_leader.all %}
         <li><a href="{{ committee.get_url }}">{{ committee.name }}</a></li>
       {% empty %}
         You are not currently signed up for any formations.
-      {% endfor %}
+      {% endfor %} -->
       <br><br>
       <p>You may edit your information using the buttons below.</p>
     </div>

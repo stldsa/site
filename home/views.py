@@ -4,7 +4,7 @@ from stl_dsa.users.models import User
 
 
 class EmailFormView(FormView):
-    template_name = "home_page.html"
+    template_name = "main_menu.html"
     form_class = EmailSubmissionForm
 
     def get_success_url(self, **kwargs):

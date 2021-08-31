@@ -1,5 +1,5 @@
 from django.db.models.fields import CharField, EmailField
-import requests
+from django.conf import settings
 from datetime import datetime
 from django.db import models
 from stl_dsa.users.models import User
@@ -64,18 +64,19 @@ class Person(models.Model):
 
     @property
     def is_member(self):
-        return "Voting Members" in self.tags
+        if "Voting Members" in self.tags.names():
+            self.membership = "Active"
+            return True
+        else:
+            self.membership = "None"
+            return False
 
-    # def __str__(self):
-    #     return self.user.first_name + " " + self.user.last_name
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
 
     # @property
     # def anonymous_name(self):
     #     return self.user.first_name + " " + self.user.last_name[:1] + "."
-
-
-class Committee(models.Model):
-    name = CharField(max_length=255)
 
 
 class CommitteePage(Page):
@@ -93,7 +94,6 @@ class CommitteePage(Page):
         (PRIORITY, "Priority"),
     ]
 
-    name = models.CharField(max_length=30)
     description = RichTextField()
     formation_type = models.CharField(
         max_length=2, choices=FORMATION_CHOICES, default=""
@@ -108,13 +108,11 @@ class CommitteePage(Page):
     # leader_name = models.CharField(max_length=30)
     email = models.EmailField()
     people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
-    api_key = models.CharField(max_length=32, null=True, blank=True)
     sign_up_form_endpoint = models.TextField(null=True, blank=True)
 
     search_fields = Page.search_fields + [index.SearchField("description")]
 
     content_panels = Page.content_panels + [
-        FieldPanel("name"),
         FieldPanel("description"),
         FieldPanel("formation_type"),
         FieldPanel("leader"),
@@ -124,28 +122,14 @@ class CommitteePage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        embeds = requests.get(
-            f"{self.sign_up_form_endpoint}/embed",
-            headers={"OSDI-API-Token": self.api_key},
-        ).json()
-        embed_code = embeds["embed_standard_layout_only_styles"]
-        context["embed_code"] = embed_code
-
-        events_response = requests.get(
-            "https://actionnetwork.org/api/v2/events",
-            headers={"OSDI-API-Token": self.api_key},
-        ).json()
-        events_list = events_response["_embedded"]["osdi:events"]
-        upcoming_events = []
-        for event in events_list:
-            event["start"] = datetime.fromisoformat(event["start_date"][:-1]).date()
-            upcoming_events.append(event)
-        context["upcoming_events"] = upcoming_events
+        context["upcoming_events"] = list(self.events.filter(start__gt=datetime.now()))
+        # embed_code = embeds["embed_standard_layout_only_styles"]
+        # context["embed_code"] = embed_code
 
         return context
 
     def __str__(self):
-        return self.name.title() + " " + self.get_formation_type_display()
+        return self.title.title() + " " + self.get_formation_type_display()
 
 
 class CommitteesPage(Page):
