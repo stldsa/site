@@ -91,7 +91,7 @@ class Base(Configuration):
         "allauth.account.auth_backends.AuthenticationBackend",
     ]
     AUTH_USER_MODEL = "users.User"
-    LOGIN_REDIRECT_URL = "myDSA"
+    LOGIN_REDIRECT_URL = "users:detail"
     LOGIN_URL = "login"
 
     PASSWORD_HASHERS = [

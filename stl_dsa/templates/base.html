@@ -112,6 +112,11 @@
     {% block extra_js %}
     {# Override this in templates to add extra javascript #}
     {% endblock %}
+    <footer class="footer">
+        <div class="container">
+            <p>© St Louis DSA - <a href="mailto:info@stldsa.org">info@stldsa.org</a></p>
+        </div>
+    </footer> 
     </div>
                         <!-- <div class="ml-2 ml-xs-3 d-md-none navbar-light">
                             <button class="navbar-toggler" id="mobile-navbar-toggler" type="button" data-target="#mobile-navbar" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,7 +165,7 @@
                     {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         {# URL provided by django-allauth/account/urls.py #}
-                        <a class="nav-link" href="{% url 'users:detail' request.user.id  %}">{% trans "My DSA" %}</a>
+                        <a class="nav-link" href="{% url 'users:detail'  %}">{% trans "My DSA" %}</a>
                     </li>
                     <li class="nav-item">
                         {# URL provided by django-allauth/account/urls.py #}
@@ -201,11 +206,6 @@
         crossorigin="anonymous"></script> 
 
 
-    <footer id="footer">
-        <div class="container">
-            <p>© St Louis DSA - <a href="mailto:info@stldsa.org">info@stldsa.org</a></p>
-        </div>
-    </footer> 
 
 </body>
 

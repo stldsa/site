@@ -18,10 +18,9 @@ class UserSignupView(SignupView):
 class UserDetailView(LoginRequiredMixin, DetailView):
 
     model = User
-    pk_url_kwarg = "id"
 
-
-user_detail_view = UserDetailView.as_view()
+    def get_object(self):
+        return self.request.user
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):

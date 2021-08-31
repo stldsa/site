@@ -2,25 +2,37 @@
 
 <div class="navbar-nav mr-auto flex-column flex-sm-row">
     {% for item in menu_items %}
-    
-        {% if item.sub_menu %}
+        <li class="nav-item">
+            {% if item.sub_menu and item.text != "Updates" %}
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
-            <!-- {% for sub_item in item.sub_menu.items %}
-                <a title="{{ sub_item.slug }}" target="_blank" href="{{ sub_item.href }}" class="dropdown-item">
-                    {{ sub_item }}
-                </a>
-            {% endfor %} -->
-        {% else %}
-            <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
-        {% endif %}
-    {% endfor %}
+            <div class="dropdown-menu">
+                {% for sub_item in item.sub_menu.items %}
+                    <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>
+                {% endfor %}
             </div>
+            {% else %}
+                <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</div>
 <div class="navbar-nav ml-auto align-items-center flex-row">
+    {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="btn btn-red my-2 my-sm-0 mr-2" href="{% url 'users:detail'  %}">My DSA</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-outline-dark my-2 my-sm-0 mr-2" href="{% url 'account_logout' %}">Log Off</a>
+        </li>
+        <li class="nav-item">
+            <a href="https://www.dsausa.org">
+                <img  class="navbar-item" height=40px width=40px src="{% static 'images/dsa-national-logo.png' %}" alt="Democratic Socialists of America (DSA)">
+            </a>
+        </li>
+    {% else %}
     <form class="form-inline" method="post" action="/en/">{% csrf_token %}
         <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="E-mail Address" aria-label="login">
         <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Log In / Sign Up</button>
-        <a href="https://www.dsausa.org">
-            <img  class="navbar-item" height=40px width=40px src="{% static 'images/dsa-national-logo.png' %}" alt="Democratic Socialists of America (DSA)">
-        </a>
     </form>
+    {% endif %}
 </div>
