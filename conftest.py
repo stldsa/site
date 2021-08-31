@@ -4,6 +4,11 @@ from model_bakery import baker
 
 
 @pytest.fixture
+def nonuser():
+    return baker.prepare("Person")
+
+
+@pytest.fixture
 def nonmember_person():
     person = baker.prepare("Person")
     person.tags = []

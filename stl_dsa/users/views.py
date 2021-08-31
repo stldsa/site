@@ -2,7 +2,7 @@ from allauth.account.views import SignupView
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.views.generic import DetailView, RedirectView, UpdateView
+from django.views.generic import DetailView, UpdateView
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 
@@ -11,7 +11,8 @@ User = get_user_model()
 
 class UserSignupView(SignupView):
     def get_initial(self):
-        return {"email": self.request.session.pop("email", None)}
+        email = self.request.session.pop("email")
+        return {"email": email} if email else {}
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
