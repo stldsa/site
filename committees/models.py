@@ -1,5 +1,4 @@
-from django.db.models.fields import CharField, EmailField
-from django.conf import settings
+from django.db.models.fields import EmailField
 from datetime import datetime
 from django.db import models
 from stl_dsa.users.models import User

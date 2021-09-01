@@ -10,15 +10,14 @@ def nonuser():
 
 @pytest.fixture
 def nonmember_person():
-    person = baker.prepare("Person")
-    person.tags = []
-    return person
+    return baker.prepare("Person")
 
 
 @pytest.fixture
-def member_person():
+def member_person(db):
     person = baker.prepare("Person")
-    person.tags = ["Voting Members"]
+    person.id = 1
+    person.tags.set("Voting Members")
     return person
 
 
