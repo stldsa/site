@@ -32,7 +32,6 @@ wagtail-localize = {version = "1.0rc3", allow-prereleases = true}
 notebook = "^6.4.3"
 validators = "^0.18.2"
 django-taggit = "^1.5.1"
-django-heroku = "^0.3.1"
 
 [tool.poetry.dev-dependencies]
 psycopg2-binary = "^2.8.5"
