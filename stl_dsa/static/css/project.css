@@ -2267,29 +2267,6 @@ header button {
   width: auto;
 }
 
-.dsa-chapter-map {
-  background-image: url("img/DSAChapterMap.png");
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-position: left center;
-  background-color: #ffe2d6;
-  margin-left: 0;
-  margin-right: 0;
-}
-@media screen and ( max-width: 1024px ) {
-  .dsa-chapter-map {
-    padding-top: 120px;
-  }
-}
-.dsa-chapter-map .col-12 {
-  padding-right: 0;
-  padding-left: 0;
-}
-.dsa-chapter-map .row {
-  margin-right: 0;
-  margin-left: 0;
-}
-
 .dsa-s-col {
   max-width: 660px;
   padding: 30px;

@@ -2335,27 +2335,6 @@ header button {
   width: auto;
 }
 
-.dsa-chapter-map {
-  background-image: url("img/DSAChapterMap.png");
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-position: left center;
-  background-color: $dsalightred;
-  margin-left: 0;
-  margin-right: 0;
-  @media #{$mobile-query} {
-    padding-top: 120px;
-  }
-  .col-12 {
-    padding-right: 0;
-    padding-left: 0;
-  }
-  .row {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-
 .dsa-s-col {
   max-width: 660px;
   padding: 30px;
