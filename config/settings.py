@@ -6,6 +6,7 @@ import os
 import json
 import environ
 import secrets
+import dj_database_url
 
 env = environ.Env()
 
@@ -398,3 +399,5 @@ class Production(Base):
             },
         },
     }
+
+    DATABASES = {"default": dj_database_url.config(conn_max_age=600, ssl_require=True)}
