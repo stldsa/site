@@ -1,0 +1,22 @@
+{% load static %}
+
+<div class="navbar-nav ml-auto align-items-center flex-row">
+    {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="btn btn-red my-2 my-sm-0 mr-2" href="{% url 'users:detail'  %}">My DSA</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-outline-dark my-2 my-sm-0 mr-2" href="{% url 'account_logout' %}">Log Out</a>
+        </li>
+        <li class="nav-item">
+            <a href="https://www.dsausa.org">
+                <img  class="navbar-item" height=40px width=40px src="{% static 'images/dsa-national-logo.png' %}" alt="Democratic Socialists of America (DSA)">
+            </a>
+        </li>
+    {% else %}
+    <form class="form-inline" method="post" action="/en/" autocomplete="username">{% csrf_token %}
+        <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="E-mail Address" aria-label="login">
+        <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Log In / Sign Up</button>
+    </form>
+    {% endif %}
+</div>
