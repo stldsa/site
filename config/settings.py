@@ -16,6 +16,7 @@ class Base(Configuration):
     # stl_dsa/config/settings.py - 2 = stl_dsa/
     ROOT_DIR = environ.Path(__file__) - 2
     APPS_DIR = ROOT_DIR.path("stl_dsa")
+    BASE_DIR = ROOT_DIR
     READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
     if READ_DOT_ENV_FILE:
         env.read_env(str(ROOT_DIR.path(".env")))
