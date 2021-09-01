@@ -1,5 +1,5 @@
 # mysite/settings.py
-
+import configurations
 from configurations import Configuration, values
 
 import os
@@ -9,6 +9,8 @@ import secrets
 import django_heroku
 
 env = environ.Env()
+
+configurations.setup()
 
 
 class Base(Configuration):
