@@ -60,14 +60,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
-        if perm == "wagtailadmin.access_admin":
-            return self.is_admin
-        else:
-            return False
+        if perm != "wagtailadmin.access_admin":
+            return self.is_superuser
+        return (
+            "Formation Leaders" in self.groups.all().values_list("name", flat=True)
+            or self.is_admin
+        )
 
     def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
         return True
 
     @property

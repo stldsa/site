@@ -1,4 +1,5 @@
 from django.db.models.fields import EmailField
+from django.contrib.auth.models import Group
 from datetime import datetime
 from django.db import models
 from stl_dsa.users.models import User
@@ -73,6 +74,11 @@ class Person(models.Model):
         print(self.tags.names())
         return "Voting Members" in self.tags.names()
 
+    def __str__(self):
+        if self.user:
+            return (self.user.first_name or "") + " " + (self.user.last_name or "")
+        return self.email
+
     # @property
     # def anonymous_name(self):
     #     return self.user.first_name + " " + self.user.last_name[:1] + "."
@@ -114,7 +120,6 @@ class CommitteePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("description"),
         FieldPanel("formation_type"),
-        FieldPanel("leader"),
         FieldPanel("email"),
         FieldPanel("sign_up_form_endpoint"),
     ]

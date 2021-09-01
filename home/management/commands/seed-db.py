@@ -79,7 +79,11 @@ class Command(BaseCommand):
         homepage.add_child(instance=committees)
 
         committee_list = CommitteeFactory.build_batch(8)
-        [committees.add_child(instance=committee) for committee in committee_list]
+        for committee in committee_list:
+            committees.add_child(instance=committee)
+            revision = committee.save_revision()
+            revision.publish()
+
         committees.save()
 
         future_event = Event(
