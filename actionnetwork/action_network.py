@@ -5,11 +5,12 @@ import pathlib
 
 
 class Resource:
-    def __init__(self, name, group="main", uuid=None, href=None):
+    def __init__(self, name, group="main", uuid=None, href=None, resource=None):
         self.name = name
         self.group = group
         self.uuid = uuid
         self.href = href
+        self.resource = resource or name
 
     @property
     def json(self):
@@ -27,7 +28,8 @@ class Resource:
     @property
     def list(self):
         json = self.json
-        return json["_embedded"][f"osdi:{self.name}"]
+        print(json)
+        return json["_embedded"].get(f"osdi:{self.resource}", [])
 
 
 def get_events():

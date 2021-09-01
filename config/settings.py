@@ -189,8 +189,6 @@ class Base(Configuration):
     # ADMIN
     # ------------------------------------------------------------------------------
     ADMIN_URL = values.Value("admin")
-    ADMINS = [("""Tyler Schlichenmeyer""", "tyler.schlichenmeyer@gmail.com")]
-    MANAGERS = ADMINS
 
     # LOGGING
     # ------------------------------------------------------------------------------
@@ -227,6 +225,7 @@ class Base(Configuration):
     ACCOUNT_FORMS = {"signup": "stl_dsa.users.forms.SignUpForm"}
     ACCOUNT_USER_MODEL_USERNAME_FIELD = None
     ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+    ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
     # DRF
     # -------------------------------------------------------------------------------

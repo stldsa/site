@@ -44,8 +44,12 @@ class Person(models.Model):
 
     def taggings(self, **kwargs):
         person = kwargs.get("person") or self.resource
-        tagging_href = person["_links"]["osdi:taggings"]["href"]
-        return an.Resource("people", href=tagging_href)
+        taggings = person["_links"].get("osdi:taggings", [])
+        if taggings:
+            return an.Resource(
+                "people", href=taggings["href"], resource="taggings"
+            ).list
+        return []
 
     @property
     def resource(self):
@@ -55,23 +59,19 @@ class Person(models.Model):
         taggings = kwargs.get("taggings") or self.taggings()
         return [an.get_tag_href_from_tagging(tagging) for tagging in taggings]
 
-    # def tags(self):
-    #     return [
-    #         an.Resource("tags", href=tag_href).json.get("name")
-    #         for tag_href in self.tag_hrefs()
-    #     ]
+    def get_tags(self):
+        return [
+            an.Resource("tags", href=tag_href).json.get("name")
+            for tag_href in self.tag_hrefs()
+        ]
 
     @property
     def is_member(self):
         if "Voting Members" in self.tags.names():
-            self.membership = "Active"
             return True
-        else:
-            self.membership = "None"
-            return False
-
-    def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        self.tags.set(*self.get_tags())
+        print(self.tags.names())
+        return "Voting Members" in self.tags.names()
 
     # @property
     # def anonymous_name(self):

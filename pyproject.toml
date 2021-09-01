@@ -54,7 +54,7 @@ wagtail-factories = "^2.0.1"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-ra -q --disable-socket --no-migrations --reuse-db"
+addopts = "-ra -q --disable-socket --no-migrations"
 DJANGO_SETTINGS_MODULE = "config.settings"
 DJANGO_CONFIGURATION = "Test"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]

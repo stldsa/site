@@ -4,32 +4,33 @@
     {% for item in menu_items %}
         {% if item.text == "Member Resources" %}
             {% if request.user.is_member %}
-                <li class="nav-item">
                     {% if item.sub_menu and item.text != "Updates" %}
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
-                    <div class="dropdown-menu">
-                        {% for sub_item in item.sub_menu.items %}
-                            <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>
-                        {% endfor %}
-                    </div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
+                            <div class="dropdown-menu">
+                                {% for sub_item in item.sub_menu.items %}
+                                    <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>
+                                {% endfor %}
+                            </div>
+                        </li>
                     {% else %}
-                        <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
+                        <li class="nav-item"><a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a></li>
                     {% endif %}
                 </li>
             {% endif %}
         {% else %}
-            <li class="nav-item">
                 {% if item.sub_menu and item.text != "Updates" %}
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
-                <div class="dropdown-menu">
-                    {% for sub_item in item.sub_menu.items %}
-                        <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>
-                    {% endfor %}
-                </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
+                        <div class="dropdown-menu">
+                            {% for sub_item in item.sub_menu.items %}
+                                <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
                 {% else %}
                     <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
                 {% endif %}
-            </li>
         {% endif %}
     {% endfor %}
 </div>
@@ -39,7 +40,7 @@
             <a class="btn btn-red my-2 my-sm-0 mr-2" href="{% url 'users:detail'  %}">My DSA</a>
         </li>
         <li class="nav-item">
-            <a class="btn btn-outline-dark my-2 my-sm-0 mr-2" href="{% url 'account_logout' %}">Log Off</a>
+            <a class="btn btn-outline-dark my-2 my-sm-0 mr-2" href="{% url 'account_logout' %}">Log Out</a>
         </li>
         <li class="nav-item">
             <a href="https://www.dsausa.org">

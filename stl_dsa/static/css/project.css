@@ -2366,5 +2366,27 @@ figcaption {
     margin-bottom: 7px;
   }
 }
+.banner {
+  background-image: linear-gradient(rgba(231, 1, 9, 0.1), #e70109), url(../images/banner.png);
+  background-size: cover;
+  background-position: center top 20%;
+}
+
+.banner h1 {
+  margin-top: 10px;
+}
+
+.banner h1, .banner h2 {
+  color: #f6f6f6;
+  text-shadow: -1px 1px 0 #241f20;
+}
+
+.banner p {
+  color: #e4e4e8;
+}
+
+img.navbar-item {
+  border-radius: 6px;
+}
 
 /*# sourceMappingURL=project.css.map */

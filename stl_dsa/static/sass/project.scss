@@ -2150,7 +2150,7 @@ header button {
 
 .dropdown-menu {
   margin-top: 0px;
-  background-color: $dsaredtrans-2x
+  background-color: $dsaredtrans-2x;
   //margin-left: -17px;
 }
 
@@ -2437,4 +2437,27 @@ figcaption {
     margin: 5px;
     margin-bottom: 7px;
   }
+}
+
+.banner {
+  background-image: linear-gradient($dsaredtrans-2x, $dsared), url(../images/banner.png);
+  background-size: cover;
+  background-position: center top 20% ;
+}
+
+.banner h1 {
+  margin-top: 10px;
+}
+
+.banner h1, .banner h2 {
+  color: $dsalitegrey;
+  text-shadow: -1px 1px 0 $dsablack;
+}
+
+.banner p {
+  color: $dsamidgrey;
+}
+
+img.navbar-item {
+  border-radius: 6px;
 }

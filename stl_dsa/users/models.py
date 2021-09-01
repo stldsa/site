@@ -70,16 +70,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         # Simplest possible answer: Yes, always
         return True
 
-    def get_absolute_url(self):
-        return reverse("users:detail", kwargs={"id": self.pk})
-
     @property
     def is_staff(self):
         return self.is_admin
 
     @property
     def is_member(self):
-        return self.person.is_member
+        return self.groups.filter(name="Members").exists() or self.person.is_member
+
+    @property
+    def membership_status(self):
+        return "Active" if self.is_member else "None"
 
     def __str__(self):
         return str(self.first_name) + " " + str(self.last_name)

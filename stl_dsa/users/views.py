@@ -1,4 +1,4 @@
-from allauth.account.views import SignupView
+from allauth.account.views import LoginView, SignupView
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
@@ -15,8 +15,13 @@ class UserSignupView(SignupView):
         return {"email": email} if email else {}
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserLoginView(LoginView):
+    def get_initial(self):
+        email = self.request.session.get("email")
+        return {"email": email} if email else {}
 
+
+class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
 
     def get_object(self):
