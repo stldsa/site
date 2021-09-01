@@ -6,6 +6,7 @@ import os
 import json
 import environ
 import secrets
+import django_heroku
 
 env = environ.Env()
 
@@ -397,3 +398,6 @@ class Production(Base):
             },
         },
     }
+
+
+django_heroku.settings(locals())
