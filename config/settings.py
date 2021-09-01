@@ -1,5 +1,4 @@
 # mysite/settings.py
-import configurations
 from configurations import Configuration, values
 
 import os
@@ -308,7 +307,8 @@ class Test(Dev):
 
 
 class Production(Base):
-    ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["stldsa.org"])
+    DEBUG = False
+    ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["*"])
     CACHES = values.CacheURLValue("redis://127.0.0.1:6379/1")
 
     # SECURITY
