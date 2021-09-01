@@ -49,12 +49,6 @@ class Command(BaseCommand):
             site_name="stldsa.org",
         )
         site.save()
-        future_event = Event(
-            title="Event Title",
-            description=fake.paragraph(),
-            start=fake.future_datetime(tzinfo=datetime.timezone.utc),
-        )
-        future_event.save()
 
         newsindexpage = NewsIndexPage(
             title="Updates",
@@ -87,6 +81,14 @@ class Command(BaseCommand):
         committee_list = CommitteeFactory.build_batch(8)
         [committees.add_child(instance=committee) for committee in committee_list]
         committees.save()
+
+        future_event = Event(
+            title="Event Title",
+            description=fake.paragraph(),
+            start=fake.future_datetime(tzinfo=datetime.timezone.utc),
+            formation=committee_list[0],
+        )
+        future_event.save()
 
     def handle(self, raise_error=False, *args, **options):
         # Root Page and a default homepage are created by wagtail migrations

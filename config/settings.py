@@ -21,6 +21,7 @@ class Base(Configuration):
     DEBUG = values.BooleanValue(True)
 
     WAGTAIL_SITE_NAME = "St Louis DSA"
+    # SITE_ID = {"domain": "https://stldsa.org", "name": "St Louis DSA"}
     TIME_ZONE = "America/Chicago"
     SITE_ID = 1
     WAGTAIL_I18N_ENABLED = True
@@ -77,7 +78,7 @@ class Base(Configuration):
     ]
 
     LOCAL_APPS = [
-        "stl_dsa.users.apps.UsersConfig",
+        "stl_dsa.users",
         "events",
         "committees",
         "phonenumber_field",
@@ -90,7 +91,7 @@ class Base(Configuration):
         "allauth.account.auth_backends.AuthenticationBackend",
     ]
     AUTH_USER_MODEL = "users.User"
-    LOGIN_REDIRECT_URL = "myDSA"
+    LOGIN_REDIRECT_URL = "users:detail"
     LOGIN_URL = "account_login"
 
     PASSWORD_HASHERS = [
@@ -188,8 +189,6 @@ class Base(Configuration):
     # ADMIN
     # ------------------------------------------------------------------------------
     ADMIN_URL = values.Value("admin")
-    ADMINS = [("""Tyler Schlichenmeyer""", "tyler.schlichenmeyer@gmail.com")]
-    MANAGERS = ADMINS
 
     # LOGGING
     # ------------------------------------------------------------------------------
@@ -225,6 +224,8 @@ class Base(Configuration):
     ACCOUNT_UNIQUE_EMAIL = True
     ACCOUNT_FORMS = {"signup": "stl_dsa.users.forms.SignUpForm"}
     ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+    ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+    ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
     # DRF
     # -------------------------------------------------------------------------------

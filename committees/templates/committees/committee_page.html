@@ -6,28 +6,30 @@
 <div class='container'>
     <div class='row'>
         <div class='col-sm'>
-            <h2>{{ page.name }} {{ page.get_formation_type_display }}</h2>
+            <h2>{{ page }}</h2>
             <h4>Current Chair(s):</h4>
             <p>{{ page.leader_name }} | {{ page.email|urlize }}</p>
             <h4>Description:</h4>
             <p>{{ page.description|richtext }}</p>
-            <!-- <h4>Upcoming Events:</h4>
+            <h4>Upcoming Events:</h4>
             <div class='container'>
                 {% if upcoming_events %}
                     {% for event in upcoming_events %}
                         <a href='{{ event.browser_url }}'>
-                            <h4>{{ event.title }}</h4>
+                            {{ event.title }}
                         </a>
-                        <p>{{ event.date|date:"D, M j" }} | {{ event.start_time }} | <b><a href={{ event.browser_url }}>RSVP</a></b></p>
+                        {{ event.date|date:"D, M j" }} | {{ event.start }} | <b><a href={{ event.browser_url }}>RSVP</a></b>
                     {% endfor %}
                 {% else %}
-                    <p>No events posted.</p>
+                    <p>No upcoming events yet.</p>
                 {% endif %}
-            </div> -->
+            </div>
         </div>
-        <div class='col-sm'>
-            {{ embed_code|safe }}
-        </div>
+        <!-- <div class='col-sm'>
+            {% if embed_code %}
+                {{ embed_code|safe }}
+            {% endif %}
+        </div> -->
     </div>
 </div>
 

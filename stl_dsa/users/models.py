@@ -36,6 +36,7 @@ class UserManager(BaseUserManager):
             password=password,
         )
         user.is_superuser = True
+        user.is_admin = True
         user.save(using=self._db)
         return user
 
@@ -45,8 +46,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     # First Name and Last Name do not cover name patterns
     # around the globe.
     # username = models.CharField(null=True, blank=True, max_length=150)
-    first_name = models.CharField(null=True, blank=True, max_length=30)
-    last_name = models.CharField(null=True, blank=True, max_length=30)
+    first_name = models.CharField(null=True, blank=False, max_length=30)
+    last_name = models.CharField(null=True, blank=False, max_length=30)
     email = models.EmailField(null=False, blank=False, unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -59,20 +60,27 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
+        if perm == "wagtailadmin.access_admin":
+            return self.is_admin
+        else:
+            return False
 
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
 
-    def get_absolute_url(self):
-        return reverse("users:detail", kwargs={"id": self.pk})
-
     @property
     def is_staff(self):
         return self.is_admin
+
+    @property
+    def is_member(self):
+        return self.groups.filter(name="Members").exists() or self.person.is_member
+
+    @property
+    def membership_status(self):
+        return "Active" if self.is_member else "None"
 
     def __str__(self):
         return str(self.first_name) + " " + str(self.last_name)

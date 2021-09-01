@@ -30,12 +30,14 @@
 </head>
 
 <div class="container-fluid">
-    <nav class="navbar nav flex-column flex-md-row">
+    <nav class="navbar nav">
         {% main_menu max_levels=2 add_sub_menus_inline=True %}
     </nav>
 </div>
 <body class="home blog et_bloom et_monarch chrome">
-    {% wagtailuserbar %}
+    {% if request.user.is_admin %}
+        {% wagtailuserbar %}
+    {% endif %}
     <div class="bg-white">
         <header id="pageheader" class="container" role="banner">
             <div class="row py-3 align-items-center">
@@ -105,13 +107,19 @@
             </div>
         </header>
     </div>
-    <main class='container'>
+    {% block banner %}{% endblock %}
+    <main class='container shadow pb-4'>
         {% block content %}
         {% endblock %}
     </main>
     {% block extra_js %}
     {# Override this in templates to add extra javascript #}
     {% endblock %}
+    <footer class="footer">
+        <div class="container">
+            <p>© St Louis DSA - <a href="mailto:info@stldsa.org">info@stldsa.org</a></p>
+        </div>
+    </footer> 
     </div>
                         <!-- <div class="ml-2 ml-xs-3 d-md-none navbar-light">
                             <button class="navbar-toggler" id="mobile-navbar-toggler" type="button" data-target="#mobile-navbar" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,7 +168,7 @@
                     {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         {# URL provided by django-allauth/account/urls.py #}
-                        <a class="nav-link" href="{% url 'users:detail' request.user.id  %}">{% trans "My DSA" %}</a>
+                        <a class="nav-link" href="{% url 'users:detail'  %}">{% trans "My DSA" %}</a>
                     </li>
                     <li class="nav-item">
                         {# URL provided by django-allauth/account/urls.py #}
@@ -201,11 +209,6 @@
         crossorigin="anonymous"></script> 
 
 
-    <footer>
-        <div class="container">
-            <p>© St Louis DSA - <a href="mailto:info@stldsa.org">info@stldsa.org</a></p>
-        </div>
-    </footer> 
 
 </body>
 

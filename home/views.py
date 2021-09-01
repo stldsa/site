@@ -4,9 +4,15 @@ from stl_dsa.users.models import User
 
 
 class EmailFormView(FormView):
-    template_name = "home_page.html"
+    template_name = "main_menu.html"
     form_class = EmailSubmissionForm
 
     def get_success_url(self, **kwargs):
-        emails = kwargs.get("emails", [])
-        return "/login/" if self.email in emails else "/signup/"
+        emails = kwargs.get("emails", None) or User.objects.values_list(
+            "email", flat=True
+        )
+        return (
+            "/login/"
+            if self.get_form_kwargs()["data"]["email"] in emails
+            else "/signup/"
+        )

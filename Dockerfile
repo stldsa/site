@@ -1,29 +1,32 @@
 # The base image we want to inherit from
 FROM python:3.9.6-slim-buster as py-base
 
-ENV PYTHONFAULTHANDLER=1 \
-    PYTHONHASHSEED=random \
-    PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1 \
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    PATH="/opt/venv/bin:$PATH"
+    POETRY_VERSION=1.1.8 \
+    POETRY_HOME="/opt/poetry" \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_NO_INTERACTION=1 \
+    PYSETUP_PATH="/opt/pysetup" \
+    VENV_PATH="/opt/pysetup/.venv"
+
+ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
 FROM py-base as base
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
     build-essential \
-    gcc 
+    curl
 
-RUN pip install poetry==1.1.8
+RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
-WORKDIR /opt
+WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
-RUN poetry export --dev --without-hashes -f requirements.txt -o requirements.txt
-
-RUN python -m venv /opt/venv
-RUN pip install --no-cache-dir -r requirements.txt
+RUN poetry install --no-dev
 
 FROM node:16-alpine as node-base
 
@@ -38,18 +41,25 @@ tar xvz
 
 FROM py-base as development
 
+
 ENV DJANGO_SUPERUSER_EMAIL="admin@example.com" \
     DJANGO_SUPERUSER_PASSWORD="stldsa" \
     DJANGO_CONFIGURATION=Docker \
     DJANGO_SETTINGS_MODULE='config.settings' \
     PATH="/opt/sass:$PATH"
 
+WORKDIR $PYSETUP_PATH
+
+COPY --from=base $POETRY_HOME $POETRY_HOME
+COPY --from=base $PYSETUP_PATH $PYSETUP_PATH
 COPY --from=node-base /opt/node_modules /opt/node_modules
-COPY --from=base /opt/venv /opt/venv
 COPY --from=sass /dart-sass /opt/sass
 
-COPY . /app/
+RUN ls $PYSETUP_PATH
+RUN ls $POETRY_HOME
+RUN poetry install
 
 WORKDIR /app
+
 
 # CMD ["bash", "/app/init_db.sh"]

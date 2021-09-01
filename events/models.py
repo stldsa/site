@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.db import models
-from committees.models import Committee
+from committees.models import CommitteePage
 from wagtailmenus.models import AbstractLinkPage
 
 
@@ -18,7 +18,11 @@ class Event(models.Model):
     state = models.CharField(max_length=2, null=True, blank=True)
     zip = models.IntegerField(null=True, blank=True)
     formation = models.ForeignKey(
-        Committee, null=True, on_delete=models.CASCADE, blank=True
+        CommitteePage,
+        null=True,
+        on_delete=models.CASCADE,
+        blank=True,
+        related_name="events",
     )
     url = models.URLField()
     id = models.CharField(max_length=50, primary_key=True)
