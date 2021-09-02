@@ -122,6 +122,7 @@ class Base(Configuration):
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.common.BrokenLinkEmailsMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        "wagtail.core.middleware.SiteMiddleware",
         "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     ]
 
@@ -152,7 +153,6 @@ class Base(Configuration):
                     "django.template.loaders.app_directories.Loader",
                 ],
                 "context_processors": [
-                    "django.template.context_processors.debug",
                     "django.template.context_processors.request",
                     "django.contrib.auth.context_processors.auth",
                     "django.template.context_processors.i18n",
