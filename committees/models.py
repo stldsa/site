@@ -1,5 +1,5 @@
 from django.db.models.fields import EmailField
-from django.contrib.auth.models import Group
+from wagtailmenus.models import MenuPage
 from datetime import datetime
 from django.db import models
 from stl_dsa.users.models import User
@@ -118,8 +118,8 @@ class CommitteePage(Page):
     search_fields = Page.search_fields + [index.SearchField("description")]
 
     content_panels = Page.content_panels + [
-        FieldPanel("description"),
         FieldPanel("formation_type"),
+        FieldPanel("description"),
         FieldPanel("leader_name"),
         FieldPanel("email"),
         FieldPanel("sign_up_form_endpoint"),
@@ -137,8 +137,8 @@ class CommitteePage(Page):
         return self.title.title() + " " + self.get_formation_type_display()
 
 
-class CommitteesPage(Page):
-    subpage_types = ["CommitteePage", "CommitteesPage"]
+class CommitteesPage(MenuPage):
+    subpage_types = ["CommitteePage"]
 
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
