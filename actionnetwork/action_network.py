@@ -2,6 +2,7 @@ import requests
 from django.conf import settings
 from urllib.parse import urlparse
 import pathlib
+from events.models import Event
 
 
 class Resource:
@@ -39,17 +40,17 @@ def get_events():
     }
 
 
-# def save_events(events):
-#     for event in events:
-#         Event.objects.update_or_create(
-#             id=event["identifiers"][0].split(":")[1],
-#             defaults={
-#                 "title": event["title"],
-#                 "start": event["start_date"],
-#                 "url": event["browser_url"],
-#                 "description": event["description"],
-#             },
-#         )
+def save_events(events):
+    for event in events:
+        Event.objects.update_or_create(
+            id=event["identifiers"][0].split(":")[1],
+            defaults={
+                "title": event["title"],
+                "start": event["start_date"],
+                "url": event["browser_url"],
+                "description": event["description"],
+            },
+        )
 
 
 def get_tag(tag_name, tag_list):
