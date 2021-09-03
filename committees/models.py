@@ -110,7 +110,7 @@ class CommitteePage(Page):
         on_delete=models.SET_NULL,
         related_name="committee_leader",
     )
-    leader_name = models.CharField(max_length=30)
+    leader_name = models.CharField(max_length=30, null=True)
     email = models.EmailField()
     people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
     sign_up_form_endpoint = models.TextField(null=True, blank=True)
@@ -138,7 +138,7 @@ class CommitteePage(Page):
 
 
 class CommitteesPage(Page):
-    subpage_types = ["CommitteePage"]
+    subpage_types = ["CommitteePage", "CommitteesPage"]
 
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
