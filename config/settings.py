@@ -76,7 +76,6 @@ class Base(Configuration):
         "wagtailfontawesome",
         "wagtail_blocks",
         "wagtailmenus",
-        "compressor",
     ]
 
     LOCAL_APPS = [
@@ -132,7 +131,6 @@ class Base(Configuration):
     STATICFILES_FINDERS = [
         "django.contrib.staticfiles.finders.FileSystemFinder",
         "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-        "compressor.finders.CompressorFinder",
     ]
 
     # MEDIA
