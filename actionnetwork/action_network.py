@@ -2,7 +2,7 @@ import requests
 from django.conf import settings
 from urllib.parse import urlparse
 import pathlib
-from events.models import Event
+from django.apps import apps
 
 
 class Resource:
@@ -42,7 +42,7 @@ def get_events():
 
 def save_events(events):
     for event in events:
-        Event.objects.update_or_create(
+        apps.get_model("events", "Event").objects.update_or_create(
             id=event["identifiers"][0].split(":")[1],
             defaults={
                 "title": event["title"],
