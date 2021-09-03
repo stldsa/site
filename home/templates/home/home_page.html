@@ -30,9 +30,11 @@
         <p style="font-family: 'Manifold DSA'">{{ update.body|richtext }}</p>
 
         <h1>Upcoming Events:</h1>
-        {% for event in events %}
-          <b><a href='{{ event.url }}'>{{ event.title }}</a></b> | {{ event.start|date:"D, M j" }}
-        {% endfor %}
+        <ul>
+          {% for event in events %}
+            <li><b><a href='{{ event.url }}'>{{ event.title }}</a></b> | {{ event.start|date:"D, M j" }}</li>
+          {% endfor %}
+        </ul> 
       </div>
     </div>
     <div class="col-sm-4 my-3">

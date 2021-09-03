@@ -29,15 +29,14 @@ class Resource:
     @property
     def list(self):
         json = self.json
-        print(json)
         return json["_embedded"].get(f"osdi:{self.resource}", [])
 
 
 def get_events():
-    return {
-        group: Resource("events", group).list
+    return [
+        Resource("events", group).list
         for group in settings.ACTIONNETWORK_API_KEYS.keys()
-    }
+    ]
 
 
 def save_events(events):
