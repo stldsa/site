@@ -4,15 +4,19 @@
     {% for item in menu_items %}
         {% if item.sub_menu and item.text != "Updates" %}
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item.text }} </a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
                 <div class="dropdown-menu">
                     {% for sub_item in item.sub_menu.items %}
-                        <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item.title }}</a>
+                        {% if sub_item == "Formation Groups" %}
+                            <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item.text }}</a>
+                        {% else %}
+                            <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item.title }}</a>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </li>
         {% else %}
-            <a class="nav-link" href="{{ item.href }}">🌹 {{ item.text }}</a>
+            <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
         {% endif %}
     {% endfor %}
 </div>
