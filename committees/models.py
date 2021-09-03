@@ -110,7 +110,7 @@ class CommitteePage(Page):
         on_delete=models.SET_NULL,
         related_name="committee_leader",
     )
-    # leader_name = models.CharField(max_length=30)
+    leader_name = models.CharField(max_length=30)
     email = models.EmailField()
     people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
     sign_up_form_endpoint = models.TextField(null=True, blank=True)
@@ -120,6 +120,7 @@ class CommitteePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("description"),
         FieldPanel("formation_type"),
+        FieldPanel("leader_name"),
         FieldPanel("email"),
         FieldPanel("sign_up_form_endpoint"),
     ]
