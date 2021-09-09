@@ -7,11 +7,7 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
                 <div class="dropdown-menu">
                     {% for sub_item in item.sub_menu.items %}
-                        {% if sub_item == "Formation Groups" %}
-                            <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item.text }}</a>
-                        {% else %}
-                            <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item.title }}</a>
-                        {% endif %}
+                        <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>
                     {% endfor %}
                 </div>
             </li>
