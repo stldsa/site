@@ -74,7 +74,7 @@ class Command(BaseCommand):
         homepage.add_child(instance=event_menu_page)
 
         committees = CommitteesPage(
-            title="What We Do",
+            title="Formation Groups",
             slug="formations",
             show_in_menus=True,
         )
