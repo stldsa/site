@@ -64,7 +64,7 @@ class Command(BaseCommand):
             title=fake.sentence(),
             date=datetime.date.today(),
             body=fake.paragraph(30),
-            show_in_menus=True,
+            show_in_menus=False,
         )
         newsindexpage.add_child(instance=newspage)
 
@@ -74,7 +74,9 @@ class Command(BaseCommand):
         homepage.add_child(instance=event_menu_page)
 
         committees = CommitteesPage(
-            title="What We Do", slug="formations", show_in_menus=True
+            title="What We Do",
+            slug="formations",
+            show_in_menus=True,
         )
         homepage.add_child(instance=committees)
 

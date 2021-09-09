@@ -24,3 +24,4 @@ class CommitteeFactory(DjangoModelFactory):
     slug = LazyAttribute(lambda o: o.title)
     email = fake("email")
     show_in_menus = True
+    leader_name = fake("name")

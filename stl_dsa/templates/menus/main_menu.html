@@ -2,7 +2,7 @@
 
 <div class="navbar-nav mr-auto flex-column flex-sm-row">
     {% for item in menu_items %}
-        {% if item.sub_menu and item.text != "Updates" %}
+        {% if item.sub_menu %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
                 <div class="dropdown-menu">
