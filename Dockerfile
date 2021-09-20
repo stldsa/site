@@ -20,7 +20,9 @@ FROM py-base as base
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
     build-essential \
-    curl
+    curl \
+    libpq-dev \
+    python3-dev
 
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
