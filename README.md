@@ -80,11 +80,11 @@ This will allow you to run commands with the much simpler `stldsa <command>`.
 
 - Open python shells inside the container with
 
-        $ stldsa python manage.py shell
+      $ stldsa python manage.py shell
 
 - Add dependencies from the Python Package Index with
 
-        $ poetry add <package>
+      $ poetry add <package>
         
  You may need to rebuild your Docker images with `docker-compose build`.
         
