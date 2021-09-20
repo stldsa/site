@@ -40,20 +40,17 @@ If you are a member of DSA, ask to be added as a maintainer of the repo. If you 
 
     $ docker-compose build
 
- This command builds **images** for both your database container (from the standard DockerHub postgres repository) and your web service container (from the Dockerfile). These images essentially provide a starting point for Docker containers to run off of so that they can be quick and painless. Thus, building them will take a few minutes the first time while it does things like set up the operating system and install package dependencies. Subsequent builds will use a cache and should execute faster - you should only have to rebuild if you make changes to the Dockerfile. To reduce the time needed to install Python packages, you may enable Docker Buildkit on your system by setting these environment variables as such:
-
-    $ export DOCKER_BUILDKIT=1
-    $ export COMPOSE_DOCKER_CLI_BUILD=1
+ This command builds **images** for both your database container (from the standard DockerHub postgres repository) and your web service container (from the Dockerfile). These images essentially provide a starting point for Docker containers to run off of so that they can be quick and painless. Thus, building them will take a few minutes the first time while it does things like set up the operating system and install package dependencies. Subsequent builds will use a cache and should execute faster - you should only have to rebuild if you make changes to the Dockerfile. 
 
 ### 4. Create and run the service containers
 
     $ docker-compose up
 
- This creates two **containers** (again, one for the database and one for the web service), which are designed to be ephemeral, modifiable instantiations of the images. Using `up` also executes the final `CMD` step in the Dockerfile (which in our case, runs a bash script to initialize the database). Lastly, it keeps the services running so that a) the web service can access the database and b) and we can access the web server in our browser at [localhost:8000](http://localhost:8000). Go ahead and check it out! Magic!
+ This creates two **containers** (again, one for the database and one for the web service), which are designed to be ephemeral, modifiable instantiations of the images. It also contains an additional temporary container to run database integrations using the `init-db.sh` script. The web and database containers will keep running so that a) the web service can access the database and b) and we can access the web server in our browser at [localhost:8000](http://localhost:8000). Go ahead and check it out! Magic!
  
  When you are done using the browser, you can run `docker-compose stop` if you want to stop the services, which will free up port 8000 and some memory. `docker-compose start` will spin it back up again. Run `docker-compose down` to stop *and* delete the containers (which will also delete the database). Or just keep it running forever! 🤷
 
-If you're using [VS Code](https://code.visualstudio.com/) as your IDE, you can also perform many of these tasks with the Docker extension whenever you might prefer using a GUI.
+If you're using [VS Code](https://code.visualstudio.com/) as your IDE, you can also perform many of these tasks with the Docker extension whenever you might prefer using a GUI. Additionally the repo includes a `.devcontainer` settings folder so you can try out VS Code's Development Containers feature, though developing in this environment hasn't been fully tested.
 
 ## Developing
 
@@ -75,26 +72,22 @@ This will allow you to run commands with the much simpler `stldsa <command>`.
 
 **The rest of this guide uses the `stldsa` alias as described in the above tip**
 
-## Jupyter Notebook / Python Shell
-
-Our docker-compose file also spins up a service for Jupyter Notebooks. Use this to test out your Python code in an interactive shell environment. To open the Jupyter interface, look in your `docker-compose up` logs to find the link with the access token; if you don't want to/are unable to scroll up and sift through all the logs you can type `docker-compose logs notebook`. Open the `explore.ipynb` file in the root directory or create your own notebook.
-
-If you'd rather just use a simple shell to run some quick Python, you can always use `python manage.py shell`.
-
 ## More common/useful commands
 
 - Open bash shells inside the container with:
 
       $ stldsa bash
 
-    Run your commands and close the bash shell with `Ctrl+D`. This might be useful for installing new dependencies without needing to rebuild the Docker image. To keep things clean, it is best practice to avoid using the bash shell unless you think you explicitly need to, instead using `docker-compose run` when possible.
+- Open python shells inside the container with
 
-    Due to some quirks in the way Docker manages virtual environments, you should use `pip` inside the container when updating dependencies if you just want to try it out. If you want to commit a dependency to the codebase: 
+        $ stldsa python manage.py shell
 
-        $ poetry add --lock
+- Add dependencies from the Python Package Index with
+
+        $ poetry add <package>
         
-    `--lock` allows you to skip Poetry's attempt to install all your packages in a virtual environment on the host machine and just builds the wheel used to install dependencies in the container. 
-
+ You may need to rebuild your Docker images with `docker-compose build`.
+        
 - Run tests:
 
       $ stldsa pytest
