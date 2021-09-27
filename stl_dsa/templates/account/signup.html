@@ -7,7 +7,7 @@
 
 {% block inner %}
 <h1>{% trans "Sign Up" %}</h1>
-
+<p>Already have an account? <a href="{{ login_url }}">Sign in here</a>.</p><br>
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form|crispy }}
