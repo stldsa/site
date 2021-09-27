@@ -15,7 +15,7 @@
         </li>
     {% else %}
     <form class="form-inline" method="post" action="/en/" autocomplete="username">{% csrf_token %}
-        <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="E-mail Address" aria-label="login">
+        <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="E-mail Address" required aria-label="login">
         <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Log In / Sign Up</button>
     </form>
     {% endif %}
