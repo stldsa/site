@@ -58,15 +58,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     EMAIL_FIELD = "email"
     REQUIRED_FIELDS = []
 
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        if perm != "wagtailadmin.access_admin":
-            return self.is_superuser
-        return (
-            "Formation Leaders" in self.groups.all().values_list("name", flat=True)
-            or self.is_admin
-        )
-
     def has_module_perms(self, app_label):
         return True
 
