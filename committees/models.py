@@ -68,11 +68,7 @@ class Person(models.Model):
 
     @property
     def is_member(self):
-        if "Voting Members" in self.tags.names():
-            return True
-        self.tags.set(*self.get_tags())
-        print(self.tags.names())
-        return "Voting Members" in self.tags.names()
+        return an.get_membership_status(self.email)
 
     def __str__(self):
         if self.user:
