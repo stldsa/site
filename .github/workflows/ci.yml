@@ -6,7 +6,7 @@ on: [push]
 jobs:
   test:
     env:
-      ACTIONNETWORK_API_KEY: '{"main": "fakekey"}'
+      ACTIONNETWORK_API_KEYS: '{"main": "fakekey"}'
     runs-on: ubuntu-latest
     services:
       postgres:
