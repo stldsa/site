@@ -66,60 +66,64 @@ def test_get_person_from_people_given_email():
     ]
     assert an.get_person_id_from_people_given_email(email, people) == id
 
-@patch('action_network.requests.get')
+
+@patch("action_network.requests.get")
 def test_get_person_by_email(mock_get):
     email = fake.email()
     id = fake.uuid4()
     an_apikey = "fakekey"
     an.get_person_by_email(email)
     mock_get.assert_called_once_with(
-        f'https://actionnetwork.org/api/v2/people?filter=email_address eq \'{email}\'',
-        headers={"OSDI-API-Token": an_apikey}
+        f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'",
+        headers={"OSDI-API-Token": an_apikey},
     )
+
 
 @responses.activate
 def test_get_membership_status():
     email = fake.email()
     test_member_person = {
-        '_embedded': {
-            'osdi:taggings': [
+        "_embedded": {
+            "osdi:taggings": [
                 {
-                    '_links': {
-                        'osdi:tag': {
-                            'href': 'https://actionnetwork.org/api/v2/tags/7cb02320-3ecc-4479-898e-67769a1bf7be'
+                    "_links": {
+                        "osdi:tag": {
+                            "href": "https://actionnetwork.org/api/v2/tags/7cb02320-3ecc-4479-898e-67769a1bf7be"
                         }
                     }
                 }
             ]
         }
     }
-    responses.add(responses.GET,
-            f'https://actionnetwork.org/api/v2/people?filter=email_address eq \'{email}\'',
-            json={'_embedded': { 'osdi:people': [ test_member_person ]}}
-            )
+    responses.add(
+        responses.GET,
+        f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'",
+        json={"_embedded": {"osdi:people": [test_member_person]}},
+    )
 
     assert an.get_membership_status(email) is True
-    
+
 
 @responses.activate
 def test_get_membership_status_nonmember():
     email = fake.email()
     test_nonmember_person = {
-        '_embedded': {
-            'osdi:taggings': [
+        "_embedded": {
+            "osdi:taggings": [
                 {
-                    '_links': {
-                        'osdi:tag': {
-                            'href': 'https://actionnetwork.org/api/v2/tags/random-tag-id'
+                    "_links": {
+                        "osdi:tag": {
+                            "href": "https://actionnetwork.org/api/v2/tags/random-tag-id"
                         }
                     }
                 }
             ]
         }
     }
-    responses.add(responses.GET,
-        f'https://actionnetwork.org/api/v2/people?filter=email_address eq \'{email}\'',
-        json={'_embedded': { 'osdi:people': [ test_nonmember_person ]}}
+    responses.add(
+        responses.GET,
+        f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'",
+        json={"_embedded": {"osdi:people": [test_nonmember_person]}},
     )
     assert an.get_membership_status(email) is False
 
