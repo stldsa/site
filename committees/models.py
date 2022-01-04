@@ -68,7 +68,7 @@ class Person(models.Model):
 
     @property
     def is_member(self):
-        return an.get_membership_status(self.email)
+        return an.get_membership_status(self.user.email)
 
     def __str__(self):
         if self.user:
