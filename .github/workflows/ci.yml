@@ -2,12 +2,11 @@ name: CI
 
 on: [push]
 
-variables:
-  ACTIONNETWORK_API_KEY: '{"main": "fakekey"}'
 
 jobs:
-
   test:
+    env:
+      ACTIONNETWORK_API_KEY: '{"main": "fakekey"}'
     runs-on: ubuntu-latest
     services:
       postgres:
