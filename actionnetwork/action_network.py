@@ -108,9 +108,11 @@ def get_person_by_email(email):
 
 def get_membership_status(email):
     person = get_person_by_email(email)
-    print(person)
-    for tagging in person["_embedded"]["osdi:taggings"]:
-        if VOTING_MEMBER_TAG_ID in tagging["_links"]["osdi:tag"]["href"]:
+    taggings_link = person["_links"].get("osdi:taggings", [])
+    # TODO: The "people" parameter here is getting overwritten by the href parameter
+    taggings = Resource("people", href=taggings_link["href"], resource="taggings").list
+    for tagging in taggings:
+        if VOTING_MEMBER_TAG_ID in get_tag_href_from_tagging(tagging):
             return True
     return False
 
