@@ -31,7 +31,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     model = User
-    fields = ["first_name", "last_name", "email"]
+    fields = ["first_name", "last_name"]
 
     def get_success_url(self):
         return reverse("users:detail")
