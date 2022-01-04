@@ -1,6 +1,5 @@
 from stl_dsa.users.views import UserSignupView, UserUpdateView
 from stl_dsa.users.tests.factories import UserFactory
-from django.urls import reverse
 
 
 def test_signup_view_from_homepage(rf):
@@ -19,7 +18,6 @@ def test_update_routes_to_myDSA(rf, db):
         data={
             "first_name": user.first_name,
             "last_name": user.last_name,
-            "email": user.email,
         },
     )
     request.user = user
