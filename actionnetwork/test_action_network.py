@@ -82,7 +82,21 @@ def test_get_person_by_email(mock_get):
 @responses.activate
 def test_get_membership_status():
     email = fake.email()
+    person_uuid = fake.uuid4()
     test_member_person = {
+        "_embedded": {
+            "osdi:people": [
+                {
+                    "_links": {
+                        "osdi:taggings": {
+                            "href": f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+    test_member_taggings = {
         "_embedded": {
             "osdi:taggings": [
                 {
@@ -98,7 +112,12 @@ def test_get_membership_status():
     responses.add(
         responses.GET,
         f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'",
-        json={"_embedded": {"osdi:people": [test_member_person]}},
+        json=test_member_person,
+    )
+    responses.add(
+        responses.GET,
+        f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings",
+        json=test_member_taggings,
     )
 
     assert an.get_membership_status(email) is True
@@ -107,7 +126,21 @@ def test_get_membership_status():
 @responses.activate
 def test_get_membership_status_nonmember():
     email = fake.email()
+    person_uuid = fake.uuid4()
     test_nonmember_person = {
+        "_embedded": {
+            "osdi:people": [
+                {
+                    "_links": {
+                        "osdi:taggings": {
+                            "href": f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+    test_nonmember_taggings = {
         "_embedded": {
             "osdi:taggings": [
                 {
@@ -123,7 +156,12 @@ def test_get_membership_status_nonmember():
     responses.add(
         responses.GET,
         f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'",
-        json={"_embedded": {"osdi:people": [test_nonmember_person]}},
+        json=test_nonmember_person,
+    )
+    responses.add(
+        responses.GET,
+        f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings",
+        json=test_nonmember_taggings,
     )
     assert an.get_membership_status(email) is False
 
