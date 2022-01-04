@@ -25,12 +25,3 @@ def test_get_action_network_id():
     ]
 
     assert person.uuid(people=people) == id
-
-
-@pytest.mark.django_db
-def test_person_is_member():
-    member_person = baker.make("Person")
-    member_person.tags.add("Voting Members")
-    # nonmember_person = baker.make("Person")
-    assert member_person.is_member
-    # assert not nonmember_person.is_member

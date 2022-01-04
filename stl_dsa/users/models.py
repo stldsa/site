@@ -67,7 +67,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def is_member(self):
-        return self.groups.filter(name="Members").exists() or self.person.is_member
+        return self.person.is_member
 
     @property
     def membership_status(self):

@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 import pathlib
 from django.apps import apps
 
+VOTING_MEMBER_TAG_ID = "7cb02320-3ecc-4479-898e-67769a1bf7be"
 
 class Resource:
     def __init__(self, name, group="main", uuid=None, href=None, resource=None):
@@ -21,8 +22,7 @@ class Resource:
                 filter(
                     None,
                     ("https://actionnetwork.org/api/v2/", self.name, self.uuid),
-                )
-            ),
+                )),
             headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS[self.group]},
         ).json()
 
@@ -95,6 +95,20 @@ def get_person_id_from_people_given_email(email, people):
         None,
     )
 
+def get_person_by_email(email):
+    href = f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'"
+    resource = Resource("people", href=href)
+    result = resource.list
+    if len(result) >= 1:
+        return result[0]
+
+def get_membership_status(email):
+    person = get_person_by_email(email)
+    print(person)
+    for tagging in person['_embedded']['osdi:taggings']:
+        if VOTING_MEMBER_TAG_ID in tagging['_links']['osdi:tag']['href']:
+            return True
+    return False
 
 def get_href_from_id(id_str):
     return f"https://actionnetwork.org/api/v2/{id_str}/"
