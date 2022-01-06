@@ -1,13 +1,10 @@
-import action_network as an
-import json
+from actionnetwork import action_network as an
+import pytest
+import requests
 import responses
-from os import environ
 from faker import Faker
-from unittest.mock import patch, Mock
-from config.settings import ACTIONNETWORK_API_KEYS
 
 fake = Faker()
-
 
 # def test_events_resource():
 #     events = an.Resource("events", "main").list
@@ -17,6 +14,61 @@ fake = Faker()
 # def test_person_resource():
 #     id = fake.uuid4()
 #     an.Resource("people", group="main", id=id)
+
+
+@pytest.fixture
+def member_uuid(faker):
+    return faker.uuid4()
+
+
+@pytest.fixture
+def nonmember_uuid(faker):
+    return faker.uuid4()
+
+
+@pytest.fixture
+def nonmember_taggings_response():
+    return [
+        {
+            "_links": {
+                "osdi:tag": {"href": "https://actionnetwork.org/api/v2/tags/random_tag"}
+            }
+        }
+    ]
+
+
+@pytest.fixture
+def nonmember_person_response(nonmember_uuid):
+    return {
+        "_embedded": {
+            "osdi:people": [
+                {
+                    "_links": {
+                        "osdi:taggings": {
+                            "href": f"https://actionnetwork.org/api/v2/people/{nonmember_uuid}/taggings"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+
+
+@pytest.fixture
+def member_person_response(member_uuid):
+    return {
+        "_embedded": {
+            "osdi:people": [
+                {
+                    "_links": {
+                        "osdi:taggings": {
+                            "href": f"https://actionnetwork.org/api/v2/people/{member_uuid}/taggings"
+                        }
+                    }
+                }
+            ]
+        }
+    }
 
 
 def test_get_taggings_href():
@@ -67,103 +119,27 @@ def test_get_person_from_people_given_email():
     assert an.get_person_id_from_people_given_email(email, people) == id
 
 
-@patch("action_network.requests.get")
-def test_get_person_by_email(mock_get):
-    email = fake.email()
-    id = fake.uuid4()
-    an_apikey = "fakekey"
-    an.get_person_by_email(email)
-    mock_get.assert_called_once_with(
-        f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'",
-        headers={"OSDI-API-Token": an_apikey},
-    )
-
-
-@responses.activate
-def test_get_membership_status():
-    email = fake.email()
-    person_uuid = fake.uuid4()
-    test_member_person = {
-        "_embedded": {
-            "osdi:people": [
-                {
-                    "_links": {
-                        "osdi:taggings": {
-                            "href": f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings"
-                        }
-                    }
-                }
-            ]
-        }
-    }
-    test_member_taggings = {
-        "_embedded": {
-            "osdi:taggings": [
-                {
-                    "_links": {
-                        "osdi:tag": {
-                            "href": "https://actionnetwork.org/api/v2/tags/7cb02320-3ecc-4479-898e-67769a1bf7be"
-                        }
-                    }
-                }
-            ]
-        }
-    }
-    responses.add(
+def test_get_person_by_email(mocked_responses, member_email, member_person_response):
+    href = f"{an.AN_API_URL}/people?filter=email_address eq '{member_email}'"
+    mocked_responses.add(
         responses.GET,
-        f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'",
-        json=test_member_person,
+        href,
+        json=member_person_response,
     )
-    responses.add(
-        responses.GET,
-        f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings",
-        json=test_member_taggings,
-    )
-
-    assert an.get_membership_status(email) is True
+    person_response = requests.get(href).json()
+    assert person_response == member_person_response
 
 
-@responses.activate
-def test_get_membership_status_nonmember():
-    email = fake.email()
-    person_uuid = fake.uuid4()
-    test_nonmember_person = {
-        "_embedded": {
-            "osdi:people": [
-                {
-                    "_links": {
-                        "osdi:taggings": {
-                            "href": f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings"
-                        }
-                    }
-                }
-            ]
-        }
-    }
-    test_nonmember_taggings = {
-        "_embedded": {
-            "osdi:taggings": [
-                {
-                    "_links": {
-                        "osdi:tag": {
-                            "href": "https://actionnetwork.org/api/v2/tags/random-tag-id"
-                        }
-                    }
-                }
-            ]
-        }
-    }
-    responses.add(
-        responses.GET,
-        f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'",
-        json=test_nonmember_person,
-    )
-    responses.add(
-        responses.GET,
-        f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings",
-        json=test_nonmember_taggings,
-    )
-    assert an.get_membership_status(email) is False
+def test_get_membership_status_member(
+    member_taggings_response,
+):
+    assert an.get_membership_status_from_taggings(member_taggings_response)
+
+
+def test_get_membership_status_nonmember(
+    nonmember_taggings_response,
+):
+    assert an.get_membership_status_from_taggings(nonmember_taggings_response) is False
 
 
 def test_get_id_from_href():
@@ -176,3 +152,11 @@ def test_get_tag_href_from_tagging():
     href = fake.url()
     tagging = {"_links": {"osdi:tag": {"href": href}}}
     assert an.get_tag_href_from_tagging(tagging) == href
+
+
+def test_membership_no_tags(nonmember_taggings_response):
+    assert an.get_membership_status_from_taggings(nonmember_taggings_response) is False
+
+
+def test_membership_tags(member_taggings_response):
+    assert an.get_membership_status_from_taggings(member_taggings_response)

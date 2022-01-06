@@ -5,6 +5,7 @@ import pathlib
 from django.apps import apps
 
 VOTING_MEMBER_TAG_ID = "7cb02320-3ecc-4479-898e-67769a1bf7be"
+AN_API_URL = "https://actionnetwork.org/api/v2"
 
 
 class Resource:
@@ -15,23 +16,14 @@ class Resource:
         self.href = href
         self.resource = resource or name
 
-    @property
-    def json(self):
-        return requests.get(
-            self.href
-            or "/".join(
-                filter(
-                    None,
-                    ("https://actionnetwork.org/api/v2/", self.name, self.uuid),
-                )
-            ),
-            headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS[self.group]},
-        ).json()
+    def get_group_api_key(group):
+        return settings.ACTIONNETWORK_API_KEYS[group]
 
-    @property
-    def list(self):
-        json = self.json
-        return json["_embedded"].get(f"osdi:{self.resource}", [])
+    def get_response(href, api_key):
+        return requests.get(
+            href,
+            headers={"OSDI-API-Token": api_key},
+        )
 
 
 def get_events():
@@ -99,22 +91,24 @@ def get_person_id_from_people_given_email(email, people):
 
 
 def get_person_by_email(email):
-    href = f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'"
-    resource = Resource("people", href=href)
-    result = resource.list
-    if len(result) >= 1:
-        return result[0]
+    response = requests.get(
+        AN_API_URL + "/people", params={"filter": f"email_address eq '{email}'"}
+    )
+    return response.json()["_embedded"]["osdi:people"][0]
 
 
-def get_membership_status(email):
-    person = get_person_by_email(email)
-    taggings_link = person["_links"].get("osdi:taggings", [])
-    # TODO: The "people" parameter here is getting overwritten by the href parameter
-    taggings = Resource("people", href=taggings_link["href"], resource="taggings").list
-    for tagging in taggings:
-        if VOTING_MEMBER_TAG_ID in get_tag_href_from_tagging(tagging):
-            return True
-    return False
+# person = get_person_by_email(email)
+# taggings_link = person["_links"].get("osdi:taggings", [])
+# # TODO: The "people" parameter here is getting overwritten by the href parameter
+# taggings = Resource("people", href=taggings_link["href"], resource="taggings").list
+# taggings = requests.get(member_taggings_href)
+
+
+def get_membership_status_from_taggings(taggings):
+    return any(
+        VOTING_MEMBER_TAG_ID in get_tag_href_from_tagging(tagging)
+        for tagging in taggings
+    )
 
 
 def get_href_from_id(id_str):
@@ -122,8 +116,6 @@ def get_href_from_id(id_str):
 
 
 def get_id_from_href(href):
-    print(href)
-
     return pathlib.Path(urlparse(href).path).stem
 
 

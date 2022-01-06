@@ -1,18 +1,19 @@
-from django.db.models.fields import EmailField
-from wagtailmenus.models import MenuPage
-from datetime import datetime
+import requests
+from django.db.models.fields import EmailField, UUIDField
 from django.db import models
 from stl_dsa.users.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from actionnetwork import action_network as an
+from django.conf import settings
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
-from actionnetwork import action_network as an
-from taggit.managers import TaggableManager
+from wagtailmenus.models import MenuPage
+from django.contrib.auth.models import Group
 
 # Create your models here.
 
@@ -21,7 +22,7 @@ class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
     phone = PhoneNumberField(null=True, blank=True)
     email = EmailField(null=True, blank=True)
-    tags = TaggableManager()
+    uuid = UUIDField(null=True)
 
     class MembershipStatus(models.TextChoices):
         ACTIVE = "Active"
@@ -29,9 +30,7 @@ class Person(models.Model):
         LAPSED = "LAPSED"
         NONE = "None"
 
-    membership = models.TextField(
-        choices=MembershipStatus.choices, null=True, blank=True
-    )
+    membership = models.BooleanField(null=True)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -39,36 +38,34 @@ class Person(models.Model):
             Person.objects.create(user=instance, email=instance.email)
         instance.person.save()
 
-    def uuid(self, **kwargs):
-        people = kwargs.get("people") or an.Resource("people").list
-        return an.get_person_id_from_people_given_email(self.email, people)
-
-    def taggings(self, **kwargs):
-        person = kwargs.get("person") or self.resource
-        taggings = person["_links"].get("osdi:taggings", [])
-        if taggings:
-            return an.Resource(
-                "people", href=taggings["href"], resource="taggings"
-            ).list
-        return []
-
-    @property
-    def resource(self):
-        return an.Resource("people", uuid=self.uuid()).json
+    def get_uuid(self):
+        self.uuid = an.get_person_by_email(self.email)["identifiers"][0].split(":")[1]
 
     def tag_hrefs(self, **kwargs):
         taggings = kwargs.get("taggings") or self.taggings()
         return [an.get_tag_href_from_tagging(tagging) for tagging in taggings]
 
-    def get_tags(self):
-        return [
-            an.Resource("tags", href=tag_href).json.get("name")
-            for tag_href in self.tag_hrefs()
-        ]
-
     @property
-    def is_member(self):
-        return an.get_membership_status(self.user.email)
+    def taggings_href(self):
+        return an.AN_API_URL + "/people/" + self.uuid + "/taggings"
+
+    def update_membership(self):
+        self.membership = an.get_membership_status_from_taggings(
+            requests.get(
+                self.taggings_href,
+                headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS["main"]},
+            ).json()
+        )
+        if self.membership:
+            self.user.groups.set([Group.objects.get(name="Members")])
+        else:
+            self.user.groups.set([])
+
+    def get_tagging_href(self):
+        self.tagging_href = requests.get(
+            an.AN_API_URL + f"/people/{self.uuid}",
+            headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS["main"]},
+        ).json()["_links"]["osdi:taggings"]["href"]
 
     def __str__(self):
         if self.user:
