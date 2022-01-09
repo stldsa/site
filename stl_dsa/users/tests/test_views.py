@@ -1,5 +1,5 @@
 from stl_dsa.users.views import UserSignupView, UserUpdateView
-from stl_dsa.users.tests.factories import UserFactory
+from stl_dsa.users.models import User
 
 
 def test_signup_view_from_homepage(rf):
@@ -11,16 +11,17 @@ def test_signup_view_from_homepage(rf):
     assert initial["email"] == "test@example.com"
 
 
-def test_update_routes_to_myDSA(rf, db):
-    user = UserFactory()
+def test_update_routes_to_myDSA(rf, faker):
+    first_name = faker.first_name()
+    last_name = faker.last_name()
     request = rf.post(
         "/myDSA/update",
         data={
-            "first_name": user.first_name,
-            "last_name": user.last_name,
+            "first_name": first_name,
+            "last_name": last_name,
         },
     )
-    request.user = user
+    request.user = User(first_name=first_name, last_name=last_name, email=faker.email())
     view = UserUpdateView()
     view.setup(request)
 

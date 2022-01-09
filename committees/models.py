@@ -1,27 +1,23 @@
-from django.db.models.fields import EmailField
-from wagtailmenus.models import MenuPage
-from datetime import datetime
+import requests
+from django.db.models.fields import EmailField, UUIDField
 from django.db import models
 from stl_dsa.users.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from actionnetwork import action_network as an
+from django.conf import settings
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
-from actionnetwork import action_network as an
-from taggit.managers import TaggableManager
-
-# Create your models here.
+from wagtailmenus.models import MenuPage
 
 
 class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
     phone = PhoneNumberField(null=True, blank=True)
-    email = EmailField(null=True, blank=True)
-    tags = TaggableManager()
 
     class MembershipStatus(models.TextChoices):
         ACTIVE = "Active"
@@ -29,55 +25,15 @@ class Person(models.Model):
         LAPSED = "LAPSED"
         NONE = "None"
 
-    membership = models.TextField(
-        choices=MembershipStatus.choices, null=True, blank=True
-    )
-
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
-            Person.objects.create(user=instance, email=instance.email)
-        instance.person.save()
-
-    def uuid(self, **kwargs):
-        people = kwargs.get("people") or an.Resource("people").list
-        return an.get_person_id_from_people_given_email(self.email, people)
-
-    def taggings(self, **kwargs):
-        person = kwargs.get("person") or self.resource
-        taggings = person["_links"].get("osdi:taggings", [])
-        if taggings:
-            return an.Resource(
-                "people", href=taggings["href"], resource="taggings"
-            ).list
-        return []
-
-    @property
-    def resource(self):
-        return an.Resource("people", uuid=self.uuid()).json
-
-    def tag_hrefs(self, **kwargs):
-        taggings = kwargs.get("taggings") or self.taggings()
-        return [an.get_tag_href_from_tagging(tagging) for tagging in taggings]
-
-    def get_tags(self):
-        return [
-            an.Resource("tags", href=tag_href).json.get("name")
-            for tag_href in self.tag_hrefs()
-        ]
-
-    @property
-    def is_member(self):
-        return an.get_membership_status(self.user.email)
+            Person(user=instance).save()
 
     def __str__(self):
         if self.user:
             return (self.user.first_name or "") + " " + (self.user.last_name or "")
         return self.email
-
-    # @property
-    # def anonymous_name(self):
-    #     return self.user.first_name + " " + self.user.last_name[:1] + "."
 
 
 class CommitteePage(Page):
