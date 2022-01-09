@@ -39,3 +39,17 @@ def test_uuid(faker):
 
 def test_people_json():
     assert an.People({}).json == {}
+
+
+def test_tag_json():
+    assert an.Tag({}).json == {}
+
+
+def test_get_tag_from_uuid(faker, monkeypatch):
+    uuid = faker.uuid4()
+    monkeypatch.setattr(
+        an, "call_api", lambda uri: {"identifiers": ["action_network:" + uuid]}
+    )
+    tag = an.Tag.from_uuid(uuid).json
+    print(tag)
+    assert tag["identifiers"][0].split(":")[1] == uuid

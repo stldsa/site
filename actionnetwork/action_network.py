@@ -53,8 +53,10 @@ def call_api(URI, params=None):
 
 
 class People:
-    def __init__(self, people_json):
-        self.json = people_json
+    def __init__(self, json):
+        self.json = json
+
+    URI = urljoin(API_URL, "people")
 
 
 class Taggings:
@@ -69,9 +71,6 @@ class Taggings:
     def json(self):
         return call_api(self.URI)
 
-    def has_tag(self, tag_id):
-        return tag_id in self.tags
-
     def get_taggings(self):
         return call_api(self.URI)
 
@@ -81,6 +80,23 @@ class Taggings:
             tagging["href"]
             for tagging in self.get_taggings()["_links"]["osdi:taggings"]
         ]
+
+    def has_tag(self, tag_id):
+        return any(tag_id in tag for tag in self.tags)
+
+
+class Tags:
+    pass
+
+
+class Tag:
+    def __init__(self, json):
+        self.json = json
+
+    @classmethod
+    def from_uuid(cls, uuid):
+        uri = API_URL + "/tags/" + uuid
+        return cls(call_api(uri))
 
 
 class Person:
@@ -102,8 +118,6 @@ class Person:
             f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'"
         )
         return cls.from_URI(people["_links"]["osdi:people"][0]["href"])
-
-    people_endpoint = urljoin(API_URL, "people")
 
     @property
     def URI(self):
