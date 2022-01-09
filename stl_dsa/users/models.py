@@ -3,8 +3,11 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin,
 )
-from django.urls import reverse
 from django.db import models
+from actionnetwork.action_network import Person, Taggings
+from django.contrib.auth.models import Group
+
+VOTING_MEMBER_TAG_ID = "7cb02320-3ecc-4479-898e-67769a1bf7be"
 
 
 class UserManager(BaseUserManager):
@@ -49,6 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(null=True, blank=False, max_length=30)
     last_name = models.CharField(null=True, blank=False, max_length=30)
     email = models.EmailField(null=False, blank=False, unique=True)
+    uuid = models.UUIDField(null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -65,13 +69,19 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_admin
 
-    @property
-    def is_member(self):
-        return self.person.is_member
+    def get_uuid(self):
+        return self.uuid or Person.from_email(self.email).uuid
 
     @property
-    def membership_status(self):
-        return "Active" if self.is_member else "None"
+    def is_member(self):
+        return Taggings(self.get_uuid()).has_tag(VOTING_MEMBER_TAG_ID)
+
+    def update_membership(self):
+        member_group = Group.objects.get(name="Members")
+        if self.is_member:
+            self.groups.add(member_group)
+        else:
+            self.groups.remove(member_group)
 
     def __str__(self):
         return str(self.first_name) + " " + str(self.last_name)

@@ -13,16 +13,11 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.search import index
 from wagtailmenus.models import MenuPage
-from django.contrib.auth.models import Group
-
-# Create your models here.
 
 
 class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
     phone = PhoneNumberField(null=True, blank=True)
-    email = EmailField(null=True, blank=True)
-    uuid = UUIDField(null=True)
 
     class MembershipStatus(models.TextChoices):
         ACTIVE = "Active"
@@ -30,51 +25,15 @@ class Person(models.Model):
         LAPSED = "LAPSED"
         NONE = "None"
 
-    membership = models.BooleanField(null=True)
-
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
-            Person.objects.create(user=instance, email=instance.email)
-        instance.person.save()
-
-    def get_uuid(self):
-        self.uuid = an.get_person_by_email(self.email)["identifiers"][0].split(":")[1]
-
-    def tag_hrefs(self, **kwargs):
-        taggings = kwargs.get("taggings") or self.taggings()
-        return [an.get_tag_href_from_tagging(tagging) for tagging in taggings]
-
-    @property
-    def taggings_href(self):
-        return an.AN_API_URL + "/people/" + self.uuid + "/taggings"
-
-    def update_membership(self):
-        self.membership = an.get_membership_status_from_taggings(
-            requests.get(
-                self.taggings_href,
-                headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS["main"]},
-            ).json()
-        )
-        if self.membership:
-            self.user.groups.set([Group.objects.get(name="Members")])
-        else:
-            self.user.groups.set([])
-
-    def get_tagging_href(self):
-        self.tagging_href = requests.get(
-            an.AN_API_URL + f"/people/{self.uuid}",
-            headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS["main"]},
-        ).json()["_links"]["osdi:taggings"]["href"]
+            Person(user=instance).save()
 
     def __str__(self):
         if self.user:
             return (self.user.first_name or "") + " " + (self.user.last_name or "")
         return self.email
-
-    # @property
-    # def anonymous_name(self):
-    #     return self.user.first_name + " " + self.user.last_name[:1] + "."
 
 
 class CommitteePage(Page):

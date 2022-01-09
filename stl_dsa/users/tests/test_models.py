@@ -1,17 +1,30 @@
-import pytest
-from stl_dsa.users.tests.factories import UserFactory
-from django.contrib.auth.models import Group
-from committees.models import CommitteePage
-
-# TODO: This test needs to grant the group admin access in Wagtail to pass
-# @pytest.mark.django_db
-# def test_formation_leaders_wagtail_access():
-#     user = UserFactory()
-#     leader_group, _ = Group.objects.get_or_create(name="Formation Leaders")
-#     user.groups.set([leader_group])
-#     assert user.has_perm("wagtailadmin.access_admin")
+from _pytest.monkeypatch import monkeypatch
+from stl_dsa.users.models import User
+import actionnetwork.action_network as an
 
 
-@pytest.mark.django_db
-def test_superuser_has_wagtail_access(admin_user):
-    admin_user.has_perm("wagtailadmin.access_admin")
+def test_new_user_is_member(monkeypatch, faker):
+    monkeypatch.setattr(User, "get_uuid", faker.uuid4)
+    monkeypatch.setattr(an.Taggings, "has_tag", lambda self, tag: True)
+    assert User(email=faker.email()).is_member
+
+
+def test_existing_user_is_member(monkeypatch, faker):
+    monkeypatch.setattr(an.Taggings, "has_tag", lambda self, tag: True)
+    assert User(uuid=faker.uuid4()).is_member
+
+
+def test_get_uuid_already_has_one(faker):
+    uuid = faker.uuid4()
+    user = User(email=faker.email(), uuid=uuid)
+    user.get_uuid()
+    assert user.uuid == uuid
+
+
+def test_get_uuid_when_doesnt_have_one(faker, monkeypatch):
+    uuid = faker.uuid4()
+    user = User(email=faker.email())
+    monkeypatch.setattr(an.Person, "from_email", lambda email: an.Person({}))
+    monkeypatch.setattr(an.Person, "uuid", uuid)
+
+    assert user.get_uuid() == uuid

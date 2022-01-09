@@ -178,7 +178,7 @@ python-versions = ">=3.6.1"
 
 [[package]]
 name = "charset-normalizer"
-version = "2.0.9"
+version = "2.0.10"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
 category = "main"
 optional = false
@@ -246,7 +246,7 @@ python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
 
 [[package]]
 name = "decorator"
-version = "5.1.0"
+version = "5.1.1"
 description = "Decorators for Humans"
 category = "main"
 optional = false
@@ -292,7 +292,7 @@ python-versions = "*"
 
 [[package]]
 name = "django"
-version = "3.2.10"
+version = "3.2.11"
 description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
@@ -714,7 +714,7 @@ pytz = "*"
 
 [[package]]
 name = "identify"
-version = "2.4.1"
+version = "2.4.2"
 description = "File identification library for Python"
 category = "dev"
 optional = false
@@ -770,7 +770,7 @@ test = ["pytest (!=5.3.4)", "pytest-cov", "flaky", "ipyparallel"]
 
 [[package]]
 name = "ipython"
-version = "7.30.1"
+version = "7.31.0"
 description = "IPython: Productive Interactive Computing"
 category = "main"
 optional = false
@@ -954,7 +954,7 @@ python-versions = "*"
 
 [[package]]
 name = "model-bakery"
-version = "1.3.3"
+version = "1.4.0"
 description = "Smart object creation facility for Django."
 category = "dev"
 optional = false
@@ -1321,7 +1321,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "pygments"
-version = "2.11.1"
+version = "2.11.2"
 description = "Pygments is a syntax highlighting package written in Python."
 category = "main"
 optional = false
@@ -1678,7 +1678,7 @@ python-versions = "*"
 
 [[package]]
 name = "requests"
-version = "2.27.0"
+version = "2.27.1"
 description = "Python HTTP for Humans."
 category = "main"
 optional = false
@@ -1957,7 +1957,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "urllib3"
-version = "1.26.7"
+version = "1.26.8"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 category = "main"
 optional = false
@@ -2198,7 +2198,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.6"
-content-hash = "02217d79a599be9ad5380d97a17c0a9513cc7fde3a58ff13ffe999dd914ab7b3"
+content-hash = "c783b4b564e973caf3bae34ab609154bb0cb453214440de9580e6623715a7e42"
 
 [metadata.files]
 anyascii = [
@@ -2328,8 +2328,8 @@ cfgv = [
     {file = "cfgv-3.3.1.tar.gz", hash = "sha256:f5a830efb9ce7a445376bb66ec94c638a9787422f96264c98edc6bdeed8ab736"},
 ]
 charset-normalizer = [
-    {file = "charset-normalizer-2.0.9.tar.gz", hash = "sha256:b0b883e8e874edfdece9c28f314e3dd5badf067342e42fb162203335ae61aa2c"},
-    {file = "charset_normalizer-2.0.9-py3-none-any.whl", hash = "sha256:1eecaa09422db5be9e29d7fc65664e6c33bd06f9ced7838578ba40d58bdf3721"},
+    {file = "charset-normalizer-2.0.10.tar.gz", hash = "sha256:876d180e9d7432c5d1dfd4c5d26b72f099d503e8fcc0feb7532c9289be60fcbd"},
+    {file = "charset_normalizer-2.0.10-py3-none-any.whl", hash = "sha256:cb957888737fc0bbcd78e3df769addb41fd1ff8cf950dc9e7ad7793f1bf44455"},
 ]
 click = [
     {file = "click-8.0.3-py3-none-any.whl", hash = "sha256:353f466495adaeb40b6b5f592f9f91cb22372351c84caeb068132442a4518ef3"},
@@ -2433,8 +2433,8 @@ debugpy = [
     {file = "debugpy-1.5.1.zip", hash = "sha256:d2b09e91fbd1efa4f4fda121d49af89501beda50c18ed7499712c71a4bf3452e"},
 ]
 decorator = [
-    {file = "decorator-5.1.0-py3-none-any.whl", hash = "sha256:7b12e7c3c6ab203a29e157335e9122cb03de9ab7264b137594103fd4a683b374"},
-    {file = "decorator-5.1.0.tar.gz", hash = "sha256:e59913af105b9860aa2c8d3272d9de5a56a4e608db9a2f167a8480b323d529a7"},
+    {file = "decorator-5.1.1-py3-none-any.whl", hash = "sha256:b8c3f85900b9dc423225913c5aace94729fe1fa9763b38939a95226f02d37186"},
+    {file = "decorator-5.1.1.tar.gz", hash = "sha256:637996211036b6385ef91435e4fae22989472f9d571faba8927ba8253acbc330"},
 ]
 defusedxml = [
     {file = "defusedxml-0.7.1-py2.py3-none-any.whl", hash = "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61"},
@@ -2453,8 +2453,8 @@ dj-database-url = [
     {file = "dj_database_url-0.5.0-py2.py3-none-any.whl", hash = "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"},
 ]
 django = [
-    {file = "Django-3.2.10-py3-none-any.whl", hash = "sha256:df6f5eb3c797b27c096d61494507b7634526d4ce8d7c8ca1e57a4fb19c0738a3"},
-    {file = "Django-3.2.10.tar.gz", hash = "sha256:074e8818b4b40acdc2369e67dcd6555d558329785408dcd25340ee98f1f1d5c4"},
+    {file = "Django-3.2.11-py3-none-any.whl", hash = "sha256:0a0a37f0b93aef30c4bf3a839c187e1175bcdeb7e177341da0cb7b8194416891"},
+    {file = "Django-3.2.11.tar.gz", hash = "sha256:69c94abe5d6b1b088bf475e09b7b74403f943e34da107e798465d2045da27e75"},
 ]
 django-allauth = [
     {file = "django-allauth-0.45.0.tar.gz", hash = "sha256:6d46be0e1480316ccd45476db3aefb39db70e038d2a543112d314b76bb999a4e"},
@@ -2584,8 +2584,8 @@ icalendar = [
     {file = "icalendar-4.0.9.tar.gz", hash = "sha256:cc73fa9c848744843046228cb66ea86cd8c18d73a51b140f7c003f760b84a997"},
 ]
 identify = [
-    {file = "identify-2.4.1-py2.py3-none-any.whl", hash = "sha256:0192893ff68b03d37fed553e261d4a22f94ea974093aefb33b29df2ff35fed3c"},
-    {file = "identify-2.4.1.tar.gz", hash = "sha256:64d4885e539f505dd8ffb5e93c142a1db45480452b1594cacd3e91dca9a984e9"},
+    {file = "identify-2.4.2-py2.py3-none-any.whl", hash = "sha256:67c1e66225870dce721228176637a8ef965e8dd58450bcc7592249d0dfc4da6c"},
+    {file = "identify-2.4.2.tar.gz", hash = "sha256:93e8ec965e888f2212aa5c24b2b662f4832c39acb1d7196a70ea45acb626a05e"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
@@ -2603,8 +2603,8 @@ ipykernel = [
     {file = "ipykernel-6.6.1.tar.gz", hash = "sha256:91ff0058b45660aad4a68088041059c0d378cd53fc8aff60e5abc91bcc049353"},
 ]
 ipython = [
-    {file = "ipython-7.30.1-py3-none-any.whl", hash = "sha256:fc60ef843e0863dd4e24ab2bb5698f071031332801ecf8d1aeb4fb622056545c"},
-    {file = "ipython-7.30.1.tar.gz", hash = "sha256:cb6aef731bf708a7727ab6cde8df87f0281b1427d41e65d62d4b68934fa54e97"},
+    {file = "ipython-7.31.0-py3-none-any.whl", hash = "sha256:4c4234cdcc6b8f87c5b5c7af9899aa696ac5cfcf0e9f6d0688018bbee5c73bce"},
+    {file = "ipython-7.31.0.tar.gz", hash = "sha256:346c74db7312c41fa566d3be45d2e759a528dcc2994fe48aac1a03a70cd668a3"},
 ]
 ipython-genutils = [
     {file = "ipython_genutils-0.2.0-py2.py3-none-any.whl", hash = "sha256:72dd37233799e619666c9f639a9da83c34013a73e8bbc79a7a6348d93c61fab8"},
@@ -2726,8 +2726,8 @@ mistune = [
     {file = "mistune-0.8.4.tar.gz", hash = "sha256:59a3429db53c50b5c6bcc8a07f8848cb00d7dc8bdb431a4ab41920d201d4756e"},
 ]
 model-bakery = [
-    {file = "model_bakery-1.3.3-py2.py3-none-any.whl", hash = "sha256:32f4c993242afd1024f0d5a6aa913850788bc2694db5a69e6d44b20936b52f60"},
-    {file = "model_bakery-1.3.3.tar.gz", hash = "sha256:4e44f5d58f11a8e1f733264f3d3659bd8e6d9c731779f91a3c70281df5066cd2"},
+    {file = "model_bakery-1.4.0-py2.py3-none-any.whl", hash = "sha256:a89befaae667380f5e2352981d45fed36747941f5c3e9dffa962fc6ba8d661d1"},
+    {file = "model_bakery-1.4.0.tar.gz", hash = "sha256:c29fb821c81cda2c37dfbdcb1dd2218cda179ecb96c6edb6cd9cdaa146706d92"},
 ]
 mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
@@ -2956,8 +2956,8 @@ pyflakes = [
     {file = "pyflakes-2.3.1.tar.gz", hash = "sha256:f5bc8ecabc05bb9d291eb5203d6810b49040f6ff446a756326104746cc00c1db"},
 ]
 pygments = [
-    {file = "Pygments-2.11.1-py3-none-any.whl", hash = "sha256:9135c1af61eec0f650cd1ea1ed8ce298e54d56bcd8cc2ef46edd7702c171337c"},
-    {file = "Pygments-2.11.1.tar.gz", hash = "sha256:59b895e326f0fb0d733fd28c6839bd18ad0687ba20efc26d4277fd1d30b971f4"},
+    {file = "Pygments-2.11.2-py3-none-any.whl", hash = "sha256:44238f1b60a76d78fc8ca0528ee429702aae011c265fe6a8dd8b63049ae41c65"},
+    {file = "Pygments-2.11.2.tar.gz", hash = "sha256:4e426f72023d88d03b2fa258de560726ce890ff3b630f88c21cbb8b2503b8c6a"},
 ]
 pyjwt = [
     {file = "PyJWT-2.3.0-py3-none-any.whl", hash = "sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f"},
@@ -3242,8 +3242,8 @@ regex = [
     {file = "regex-2021.11.10.tar.gz", hash = "sha256:f341ee2df0999bfdf7a95e448075effe0db212a59387de1a70690e4acb03d4c6"},
 ]
 requests = [
-    {file = "requests-2.27.0-py2.py3-none-any.whl", hash = "sha256:f71a09d7feba4a6b64ffd8e9d9bc60f9bf7d7e19fd0e04362acb1cfc2e3d98df"},
-    {file = "requests-2.27.0.tar.gz", hash = "sha256:8e5643905bf20a308e25e4c1dd379117c09000bf8a82ebccc462cfb1b34a16b5"},
+    {file = "requests-2.27.1-py2.py3-none-any.whl", hash = "sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d"},
+    {file = "requests-2.27.1.tar.gz", hash = "sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61"},
 ]
 requests-oauthlib = [
     {file = "requests-oauthlib-1.3.0.tar.gz", hash = "sha256:b4261601a71fd721a8bd6d7aa1cc1d6a8a93b4a9f5e96626f8e4d91e8beeaa6a"},
@@ -3405,8 +3405,8 @@ typing-extensions = [
     {file = "typing_extensions-4.0.1.tar.gz", hash = "sha256:4ca091dea149f945ec56afb48dae714f21e8692ef22a395223bcd328961b6a0e"},
 ]
 urllib3 = [
-    {file = "urllib3-1.26.7-py2.py3-none-any.whl", hash = "sha256:c4fdf4019605b6e5423637e01bc9fe4daef873709a7973e195ceba0a62bbc844"},
-    {file = "urllib3-1.26.7.tar.gz", hash = "sha256:4987c65554f7a2dbf30c18fd48778ef124af6fab771a377103da0585e2336ece"},
+    {file = "urllib3-1.26.8-py2.py3-none-any.whl", hash = "sha256:000ca7f471a233c2251c6c7023ee85305721bfdf18621ebff4fd17a8653427ed"},
+    {file = "urllib3-1.26.8.tar.gz", hash = "sha256:0e7c33d9a63e7ddfcb86780aac87befc2fbddf46c58dbb487e0855f7ceec283c"},
 ]
 validators = [
     {file = "validators-0.18.2-py3-none-any.whl", hash = "sha256:0143dcca8a386498edaf5780cbd5960da1a4c85e0719f3ee5c9b41249c4fefbd"},

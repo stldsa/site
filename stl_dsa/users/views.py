@@ -25,7 +25,9 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
 
     def get_object(self):
-        return self.request.user
+        user = self.request.user
+        user.update_membership()
+        return user
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
