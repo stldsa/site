@@ -4,7 +4,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.db import models
-from actionnetwork.action_network import Person, Taggings
+from actionnetwork.action_network import Person, People, Taggings
 from django.contrib.auth.models import Group
 
 VOTING_MEMBER_TAG_ID = "7cb02320-3ecc-4479-898e-67769a1bf7be"
@@ -70,7 +70,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_admin
 
     def get_uuid(self):
-        return self.uuid or Person.from_email(self.email).uuid
+        return self.uuid or Person.from_people(People.from_email(self.email), 0)
 
     @property
     def is_member(self):

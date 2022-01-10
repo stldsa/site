@@ -58,6 +58,13 @@ class People:
 
     URI = urljoin(API_URL, "people")
 
+    @classmethod
+    def from_email(cls, email):
+        people = call_api(
+            f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'"
+        )
+        return cls(people)
+
 
 class Taggings:
     def __init__(self, person_uuid):
@@ -109,15 +116,17 @@ class Person:
         return cls(call_api(uri))
 
     @classmethod
-    def from_URI(cls, URI):
-        return cls(call_api(URI))
+    def from_people(cls, people, person_index):
+        person_list = people.json["_links"]["osdi:people"]
+        first_person = next(iter(person_list), None)
+        if first_person:
+            return call_api(first_person["href"])
+        else:
+            return ""
 
     @classmethod
-    def from_email(cls, email):
-        people = call_api(
-            f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'"
-        )
-        return cls.from_URI(people["_links"]["osdi:people"][0]["href"])
+    def from_URI(cls, URI):
+        return cls(call_api(URI))
 
     @property
     def URI(self):

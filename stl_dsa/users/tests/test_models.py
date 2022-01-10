@@ -23,7 +23,11 @@ def test_get_uuid_already_has_one(faker):
 def test_get_uuid_when_doesnt_have_one(faker, monkeypatch):
     uuid = faker.uuid4()
     user = User(email=faker.email())
-    monkeypatch.setattr(an.Person, "from_email", lambda email: an.Person({}))
+    monkeypatch.setattr(
+        an.People,
+        "from_email",
+        lambda email: an.People({"_links": {"osdi:people": []}}),
+    )
     monkeypatch.setattr(an.Person, "uuid", uuid)
 
     assert user.get_uuid() == uuid

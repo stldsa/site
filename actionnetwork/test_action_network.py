@@ -13,7 +13,7 @@ def test_call_api(faker):
     an.call_api(url, params={"filter": f"email_address eq '{email}'"})
 
 
-def test_person_from_email(faker, monkeypatch):
+def test_people_from_email(faker, monkeypatch):
     email = faker.email()
     monkeypatch.setattr(
         an,
@@ -22,7 +22,7 @@ def test_person_from_email(faker, monkeypatch):
             "_links": {"osdi:people": [{"href": faker.uuid4()}]}
         },
     )
-    assert an.Person.from_email(email)
+    assert an.People.from_email(email)
 
 
 def test_taggings_has_tag(monkeypatch, faker):
