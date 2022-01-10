@@ -32,8 +32,6 @@ The easiest way to get started with your local development environment is throug
 
     $ git clone https://github.com/stldsa/site.git stldsa && cd stldsa
 
-If you are a member of DSA, ask to be added as a maintainer of the repo. If you are not a member, feel free to fork the repo.
-
 ### 2. [Install Docker](https://docs.docker.com/engine/install/) (if you haven't already)
 
 ### 3. Build the Docker Image
