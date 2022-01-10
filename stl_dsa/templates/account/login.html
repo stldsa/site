@@ -39,6 +39,8 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   {% endif %}
   <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
   <button class="primaryAction btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+  <br><br>
+  <p>Don't have an account? <a href="{% url 'account_signup' %}">Sign up here</a>.</p>
 </form>
 
 {% endblock %}
