@@ -7,12 +7,12 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
 
       <h2>Hi, {{ object.first_name }}!</h2>
-      <h3>Membership Status: </h3> 
+      <h3>Your membership status: </h3> 
       {% if object.is_member %}
-       <p>Active</p>
+       <h1 style='color:red'>Active</h1>
       {% else %}
         <p>No active membership found at this email.</p>
       {% endif %}
@@ -22,11 +22,24 @@
       {% empty %}
         You are not currently signed up for any formations.
       {% endfor %} -->
-      <p>
-        Active members may view STL DSA's Membership Handbook <a href=https://stldsa.org/documents/3/STLDSA_Handbook_currentstate11-12-21.pdf>here</a>!
-      </p>
-      <br><br>
-      <p>You may edit your information using the buttons below.</p>
+      <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
+      <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+    </div>
+    <div class="col-sm-8">
+      
+      {% if object.is_member %}
+        <h5><emph>Check out our STL DSA Membership Handbook! </emph></h5>
+        <br>
+        <a href=https://stldsa.org/documents/3/STLDSA_Handbook_currentstate11-12-21.pdf><img src="{% static 'images/handbook-cover-landscape.jpg' %}" width="500"></a>
+        <br>
+        <div style="padding-top:10px"><i>Inside, you'll find info about our chapter's structure, how you can get involved, and more.</i></div>
+      {% else %}
+        <h1>Why join DSA?</h1>
+        <p>Joining DSA means making a commitment to cooperation and solidarity. Join and help us build working class power, further democratic socialist ideas in the United States, and fight to democratize our economy and society.</p>
+        <p><i>DSA is entirely member funded.</i> We believe this helps keep the organization accountable to its members and gives everyone a stake.</p>
+        <h3>Ready to get started?</h3>
+        <p><button>Join DSA</button></p>
+      {% endif %}
     </div>
   </div>
 
@@ -35,8 +48,6 @@
 <div class="row">
 
   <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
     <!-- Your Stuff: Custom user template urls -->
   </div>
 
