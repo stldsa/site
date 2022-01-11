@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
 
-  <div class="row">
+  <div class="d-flex justify-content-between">
     <div class="col-sm-4">
 
       <h2>Hi, {{ object.first_name }}!</h2>
@@ -25,7 +25,7 @@
       <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
       <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
       
       {% if object.is_member %}
         <h5><emph>Check out our STL DSA Membership Handbook! </emph></h5>

@@ -69,12 +69,29 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_admin
 
+    @property
+    def get_actionnetwork_people(self):
+        return People.from_email(self.email)
+
+    @property
+    def get_primary_person(self):
+        return Person.from_people(self.get_actionnetwork_people)
+
     def get_uuid(self):
-        return self.uuid or Person.from_people(People.from_email(self.email), 0)
+        uuid = self.get_primary_person.uuid
+        self.uuid = uuid
+        return uuid
+
+    @property
+    def taggings(self):
+        return Taggings(self.uuid or self.get_uuid())
 
     @property
     def is_member(self):
-        return Taggings(self.get_uuid()).has_tag(VOTING_MEMBER_TAG_ID)
+        if People.from_email(self.email).list:
+            return self.taggings.has_tag(VOTING_MEMBER_TAG_ID)
+        else:
+            return False
 
     def update_membership(self):
         member_group = Group.objects.get(name="Members")

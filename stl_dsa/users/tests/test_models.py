@@ -1,11 +1,15 @@
-from stl_dsa.users.models import User
+from stl_dsa.users.models import User, VOTING_MEMBER_TAG_ID
 import actionnetwork.action_network as an
 
 
-def test_new_user_is_member(monkeypatch, faker):
-    monkeypatch.setattr(User, "get_uuid", faker.uuid4)
-    monkeypatch.setattr(an.Taggings, "has_tag", lambda self, tag: True)
-    assert User(email=faker.email()).is_member
+def test_new_user_is_member(faker, monkeypatch):
+    monkeypatch.setattr(User, "taggings", an.Taggings(faker.uuid4()))
+    monkeypatch.setattr(
+        an.Taggings,
+        "has_tag",
+        lambda self, tag: False,
+    )
+    assert User().is_member == False
 
 
 def test_existing_user_is_member(monkeypatch, faker):
@@ -13,21 +17,13 @@ def test_existing_user_is_member(monkeypatch, faker):
     assert User(uuid=faker.uuid4()).is_member
 
 
-def test_get_uuid_already_has_one(faker):
-    uuid = faker.uuid4()
-    user = User(email=faker.email(), uuid=uuid)
-    user.get_uuid()
-    assert user.uuid == uuid
-
-
 def test_get_uuid_when_doesnt_have_one(faker, monkeypatch):
     uuid = faker.uuid4()
     user = User(email=faker.email())
     monkeypatch.setattr(
-        an.People,
-        "from_email",
-        lambda email: an.People({"_links": {"osdi:people": []}}),
+        User,
+        "get_primary_person",
+        an.Person({"identifiers": ["action_network:" + uuid]}),
     )
-    monkeypatch.setattr(an.Person, "uuid", uuid)
 
     assert user.get_uuid() == uuid

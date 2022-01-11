@@ -65,6 +65,10 @@ class People:
         )
         return cls(people)
 
+    @property
+    def list(self):
+        return self.json["_embedded"]["osdi:people"]
+
 
 class Taggings:
     def __init__(self, person_uuid):
@@ -116,13 +120,11 @@ class Person:
         return cls(call_api(uri))
 
     @classmethod
-    def from_people(cls, people, person_index):
+    def from_people(cls, people):
         person_list = people.json["_links"]["osdi:people"]
         first_person = next(iter(person_list), None)
         if first_person:
-            return call_api(first_person["href"])
-        else:
-            return ""
+            return cls(call_api(first_person["href"]))
 
     @classmethod
     def from_URI(cls, URI):
@@ -134,7 +136,11 @@ class Person:
 
     @property
     def uuid(self):
-        return self.json["identifiers"][0].split(":")[1]
+        id = next(iter(self.json.get("identifiers", [])), "")
+        if id:
+            return id.split(":")[1]
+        else:
+            return None
 
     @property
     def taggings(self):
