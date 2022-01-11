@@ -11,6 +11,7 @@ from home.models import HomePage
 from news.models import NewsIndexPage, InfoPage
 from committees.models import CommitteesPage
 from committees.factories import CommitteeFactory
+from django.contrib.auth.models import Group
 
 fake = Faker()
 
@@ -105,6 +106,8 @@ class Command(BaseCommand):
             revision.publish()
             formation_type.save()
         formation_index.save()
+
+        Group.objects.create(name="Members")
 
     def handle(self, raise_error=False, *args, **options):
         # Root Page and a default homepage are created by wagtail migrations
