@@ -3,8 +3,10 @@
 {% block content %}
     <h2>Formations</h2>
     <ul>
-        {% for committee in committees %}
-            <li><a href="{{ committee.slug }}">{{ committee }}</a></li>
+        <div class="intro">{{ page.intro|richtext }}</div>
+
+        {% for post in page.get_children %}
+            <h2><a href="{% pageurl committee %}">{{ committee.title }}</a></h2>
         {% endfor %}
     </ul>
 {% endblock %}

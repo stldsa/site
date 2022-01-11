@@ -19,12 +19,6 @@ class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
     phone = PhoneNumberField(null=True, blank=True)
 
-    class MembershipStatus(models.TextChoices):
-        ACTIVE = "Active"
-        IN_ARREARS = "In Arrears"
-        LAPSED = "LAPSED"
-        NONE = "None"
-
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
@@ -33,7 +27,6 @@ class Person(models.Model):
     def __str__(self):
         if self.user:
             return (self.user.first_name or "") + " " + (self.user.last_name or "")
-        return self.email
 
 
 class CommitteePage(Page):
