@@ -1,5 +1,4 @@
 from home.views import EmailFormView
-from home.forms import EmailSubmissionForm
 from django.db import models
 from datetime import datetime
 from wagtail.core.models import Page
@@ -7,6 +6,7 @@ from django.shortcuts import render
 from wagtail.admin.edit_handlers import FieldPanel
 from events.models import Event
 from news.models import NewsPage
+from wagtail.core.fields import RichTextField
 
 
 class HomePage(Page):
@@ -14,7 +14,7 @@ class HomePage(Page):
     mission_statement = models.TextField(null=True)
     values_statement = models.TextField(null=True)
     highlighted_campaign = models.CharField(max_length=100, blank=False, null=True)
-    highlighted_description = models.TextField(blank=False, null=True)
+    highlighted_description = RichTextField(blank=False, null=True)
     action_network_embed_api_endpoint = models.URLField(blank=True, null=True)
 
     max_count = 1
