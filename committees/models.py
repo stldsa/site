@@ -82,7 +82,7 @@ class CommitteePage(Page):
 
 class CommitteesPage(MenuPage):
     subpage_types = ["CommitteePage"]
-    description = RichTextField(null=True)
+    description = RichTextField(null=True, blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("description"),
