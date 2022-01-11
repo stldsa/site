@@ -1,12 +1,12 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags %}
+
 
 {% block content %}
-    <h2>Formations</h2>
+    <h2>{{ page.title }}</h2>
+    {% for formation in page.get_children %}
     <ul>
-        <div class="intro">{{ page.intro|richtext }}</div>
-
-        {% for post in page.get_children %}
-            <h2><a href="{% pageurl committee %}">{{ committee.title }}</a></h2>
-        {% endfor %}
+        <div class="title"><a href="{% pageurl formation %}">{{ formation.title }}</a></div>
     </ul>
+    {% endfor %}
 {% endblock %}

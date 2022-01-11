@@ -72,7 +72,7 @@ class Command(BaseCommand):
             title="Events", show_in_menus=True, link_url="/events/"
         )
         homepage.add_child(instance=event_menu_page)
-        formation_index = InfoPage(title="All Formation Groups")
+        formation_index = InfoPage(title="All Formation Groups", show_in_menus=True)
         homepage.add_child(instance=formation_index)
         for formation_type_name in [
             "Priority Resolutions",
@@ -82,7 +82,7 @@ class Command(BaseCommand):
         ]:
             formation_type = CommitteesPage(
                 title=formation_type_name,
-                slug=stringcase.snakecase(formation_type_name),
+                slug=stringcase.spinalcase(formation_type_name),
                 show_in_menus=True,
             )
             formation_index.add_child(instance=formation_type)
