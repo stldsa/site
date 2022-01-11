@@ -18,11 +18,6 @@ from events.api import urls as events_api_urls
 urlpatterns = (
     [
         # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-        path(
-            "about/",
-            TemplateView.as_view(template_name="pages/about.html"),
-            name="about",
-        ),
         # Django Admin, use {% url 'admin:index' %}
         path(settings.ADMIN_URL, admin.site.urls),
         path("myDSA/", include("stl_dsa.users.urls", namespace="users")),

@@ -14,7 +14,7 @@
       {% if object.is_member %}
        <h1 style='color:red'>Active</h1>
       {% else %}
-        <p>No active membership found at this email.</p>
+        <h4>No active membership found at this email.</h4>
       {% endif %}
       <!-- <h3>Your Formations:</h3>
       {% for committee in object.person.committee_leader.all %}
@@ -38,7 +38,7 @@
         <p>Joining DSA means making a commitment to cooperation and solidarity. Join and help us build working class power, further democratic socialist ideas in the United States, and fight to democratize our economy and society.</p>
         <p><i>DSA is entirely member funded.</i> We believe this helps keep the organization accountable to its members and gives everyone a stake.</p>
         <h3>Ready to get started?</h3>
-        <p><button>Join DSA</button></p>
+        <p><a class='btn btn-primary' href="/join">Join DSA</a></p>
       {% endif %}
     </div>
   </div>
