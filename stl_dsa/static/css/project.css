@@ -441,7 +441,7 @@ input:focus {
 }
 
 .ol-numbers {
-  list-style: decimal outside;
+  list-style: decimal inside;
   text-align: justify;
 }
 .ol-numbers li {
