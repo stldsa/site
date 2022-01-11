@@ -450,13 +450,13 @@ input:focus {
 }
 .ol-numbers ol {
   margin-left: 1em;
-  list-style: lower-alpha outside;
+  list-style: decimal-inside;
 }
 .ol-numbers ol ol {
-  list-style: lower-roman;
+  list-style: lower-alpha inside;
 }
 .ol-numbers ol ol ol {
-  list-style: decimal;
+  list-style: lower-roman inside;
 }
 
 .error {

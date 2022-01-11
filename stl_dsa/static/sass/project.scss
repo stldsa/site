@@ -480,11 +480,11 @@ input:focus {
   }
   ol {
     margin-left: 1em;
-    list-style: lower-alpha outside;
+    list-style: decimal-inside;
     ol {
-      list-style: lower-roman;
+      list-style: lower-alpha inside;
       ol {
-        list-style: decimal;
+        list-style: lower-roman inside;
       }
     }
   }
