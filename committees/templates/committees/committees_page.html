@@ -4,6 +4,7 @@
 
 {% block content %}
     <h2>{{ page.title }}</h2>
+    <h4>{{ page.description }}</h4>
     {% for formation in page.get_children %}
     <ul>
         <div class="title"><a href="{% pageurl formation %}">{{ formation.title }}</a></div>

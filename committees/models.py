@@ -82,6 +82,11 @@ class CommitteePage(Page):
 
 class CommitteesPage(MenuPage):
     subpage_types = ["CommitteePage"]
+    description = RichTextField(null=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("description"),
+    ]
 
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
