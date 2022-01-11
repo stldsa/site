@@ -7,7 +7,7 @@
     <h4>{{ page.description|richtext }}</h4>
     {% for formation in page.get_children %}
         <ul>
-            <div class="title"><a href="{% pageurl formation %}">{{ formation.title }}</a></div>
+            <li><div class="title"><a href="{% pageurl formation %}">{{ formation.title }}</a></div></li>
         </ul>
     {% endfor %}
 {% endblock %}
