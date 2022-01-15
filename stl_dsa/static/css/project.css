@@ -2374,4 +2374,10 @@ img.navbar-item {
   border-radius: 6px;
 }
 
+@media screen and (max-width: 500px) {
+  .responsiverow {
+    flex-direction: column;
+  }
+}
+
 /*# sourceMappingURL=project.css.map */

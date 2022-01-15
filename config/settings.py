@@ -400,4 +400,3 @@ class Production(Base):
     }
 
     DATABASES = {"default": dj_database_url.config(conn_max_age=600, ssl_require=True)}
-    DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
