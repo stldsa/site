@@ -94,7 +94,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             return False
 
     def update_membership(self):
-        member_group = Group.objects.get_or_create(name="Members")
+        member_group = Group.objects.get(name="Members")
         if self.is_member:
             self.groups.add(member_group)
         else:
