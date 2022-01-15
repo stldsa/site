@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
 
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between responsiverow">
     <div class="col-sm-4">
 
       <h2>Hi, {{ object.first_name }}!</h2>
@@ -28,6 +28,7 @@
     <div class="col-sm-6">
       
       {% if object.is_member %}
+        <br>
         <h5><emph>Check out your STL DSA Membership Handbook! </emph></h5>
         <div id="adobe-dc-view"></div>
         <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
