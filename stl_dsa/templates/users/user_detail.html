@@ -28,11 +28,9 @@
     <div class="col-sm-6">
       
       {% if object.is_member %}
-        <h5><emph>Check out our STL DSA Membership Handbook! </emph></h5>
-        <br>
-        <a href=https://stldsa.org/documents/5/STLDSA_Handbook_currentstate11-12-21_ckBS7zS.pdf><img src="{% static 'images/handbook-cover-landscape.jpg' %}" width="500"></a>
-        <br>
-        <div style="padding-top:10px"><i>Inside, you'll find info about our chapter's structure, how you can get involved, and more.</i></div>
+        <h5><emph>Check out your STL DSA Membership Handbook! </emph></h5>
+        <iframe src="http://docs.google.com/gview?url={% static pdf.STLDSA_MemberHandbook.pdf %}&embedded=true" 
+        style="width:600px; height:500px;" frameborder="0"></iframe>
       {% else %}
         <h1>Why join DSA?</h1>
         <p>Joining DSA means making a commitment to cooperation and solidarity. Join and help us build working class power, further democratic socialist ideas in the United States, and fight to democratize our economy and society.</p>
