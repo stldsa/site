@@ -23,6 +23,10 @@ class Resource:
             headers={"OSDI-API-Token": api_key},
         )
 
+    @property
+    def list(self):
+        return self.json["_embedded"]["osdi:people"]
+
 
 def get_events():
     return [
@@ -31,25 +35,35 @@ def get_events():
     ]
 
 
-def save_events(events):
-    for event in events:
-        apps.get_model("events", "Event").objects.update_or_create(
-            id=event["identifiers"][0].split(":")[1],
-            defaults={
-                "title": event["title"],
-                "start": event["start_date"],
-                "url": event["browser_url"],
-                "description": event["description"],
-            },
-        )
+def save_event(event):
+    apps.get_model("events", "Event").objects.update_or_create(
+        id=event["identifiers"][0].split(":")[1],
+        defaults={
+            "title": event["title"],
+            "start": event["start_date"],
+            "url": event["browser_url"],
+            "description": event["description"],
+        },
+    )
 
 
-def call_api(URI, params=None):
+def call_api(URI, params=None, group="main"):
     return requests.get(
         URI,
         params=params,
-        headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS["main"]},
+        headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS[group]},
     ).json()
+
+
+class Events:
+    def __init__(self, json=None, group="main"):
+        self.json = json or call_api(
+            "https://actionnetwork.org/api/v2/events", group=group
+        )
+
+    @property
+    def list(self):
+        return self.json["_embedded"]["osdi:events"]
 
 
 class People:
