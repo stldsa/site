@@ -1,9 +1,13 @@
 import requests
+import logging
 from django.conf import settings
 from urllib.parse import urljoin
 from django.apps import apps
 
 API_URL = "https://actionnetwork.org/api/v2"
+People_URL = urljoin(API_URL, "people")
+
+logger = logging.getLogger("action_network")
 
 
 class Resource:
@@ -18,10 +22,15 @@ class Resource:
         return settings.ACTIONNETWORK_API_KEYS[group]
 
     def get_response(href, api_key):
-        return requests.get(
+        response = requests.get(
             href,
             headers={"OSDI-API-Token": api_key},
         )
+        if response.ok:
+            return response
+        else:
+            logger.error("get_response error!", response.json)
+            return None
 
     @property
     def list(self):
@@ -48,11 +57,16 @@ def save_event(event):
 
 
 def call_api(URI, params=None, group="main"):
-    return requests.get(
+    response = requests.get(
         URI,
         params=params,
         headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS[group]},
-    ).json()
+    )
+    if response.ok:
+        return response.json()
+    else:
+        logger.error("call_api error! for URI=" + URI, response.json)
+        return None
 
 
 class Events:
@@ -70,17 +84,19 @@ class People:
     def __init__(self, json):
         self.json = json
 
-    URI = urljoin(API_URL, "people")
+    URI = People_URL
 
     @classmethod
     def from_email(cls, email):
-        people = call_api(
-            f"https://actionnetwork.org/api/v2/people?filter=email_address eq '{email}'"
-        )
+        get_email_URL = People_URL + f"?filter=email_address eq '{email}'"
+        people = call_api(get_email_URL)
         return cls(people)
 
     @property
     def list(self):
+        if self.json is None:
+            logger.error("error with People.list!", self)
+            return None
         return self.json["_embedded"]["osdi:people"]
 
 
@@ -90,7 +106,7 @@ class Taggings:
 
     @property
     def URI(self):
-        return API_URL + "/people/" + self.person_uuid + "/taggings"
+        return urljoin(People_URL, self.person_uuid + "/taggings")
 
     @property
     def json(self):
@@ -136,8 +152,7 @@ class Person:
     @classmethod
     def from_people(cls, people):
         person_list = people.json["_links"]["osdi:people"]
-        first_person = next(iter(person_list), None)
-        if first_person:
+        if first_person := next(iter(person_list), None):
             return cls(call_api(first_person["href"]))
 
     @classmethod
@@ -150,8 +165,7 @@ class Person:
 
     @property
     def uuid(self):
-        id = next(iter(self.json.get("identifiers", [])), "")
-        if id:
+        if id := next(iter(self.json.get("identifiers", [])), ""):
             return id.split(":")[1]
         else:
             return None
