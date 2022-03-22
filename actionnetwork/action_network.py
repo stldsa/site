@@ -30,10 +30,6 @@ class Resource:
         logger.error("get_response error!", response.json)
         return None
 
-    @property
-    def list(self):
-        return self.json["_embedded"]["osdi:people"]
-
 
 def get_events():
     return [
@@ -64,17 +60,6 @@ def call_api(URI, params=None, group="main"):
         return response.json()
     logger.error(f"call_api error! for URI={URI}", response.json)
     return None
-
-
-class Events:
-    def __init__(self, json=None, group="main"):
-        self.json = json or call_api(
-            "https://actionnetwork.org/api/v2/events", group=group
-        )
-
-    @property
-    def list(self):
-        return self.json["_embedded"]["osdi:events"]
 
 
 class People:
