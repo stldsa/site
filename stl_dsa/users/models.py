@@ -45,7 +45,6 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-
     # First Name and Last Name do not cover name patterns
     # around the globe.
     # username = models.CharField(null=True, blank=True, max_length=150)
@@ -55,6 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     uuid = models.UUIDField(null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_member = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -88,10 +88,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def is_member(self):
-        if People.from_email(self.email).list:
-            return self.taggings.has_tag(VOTING_MEMBER_TAG_ID)
-        else:
-            return False
+        return self.taggings.has_tag(VOTING_MEMBER_TAG_ID)
+
+    def update_model_from_api(self):
+        new_people = People.from_email(self.email)
 
     def update_membership(self):
         member_group = Group.objects.get(name="Members")
