@@ -5,8 +5,7 @@ from urllib.parse import urljoin
 from django.apps import apps
 
 API_URL = "https://actionnetwork.org/api/v2"
-People_URL = urljoin(API_URL, "people")
-
+people_URL = urljoin(API_URL, "people")
 logger = logging.getLogger("action_network")
 
 
@@ -28,13 +27,8 @@ class Resource:
         )
         if response.ok:
             return response
-        else:
-            logger.error("get_response error!", response.json)
-            return None
-
-    @property
-    def list(self):
-        return self.json["_embedded"]["osdi:people"]
+        logger.error("get_response error!", response.json)
+        return None
 
 
 def get_events():
@@ -64,31 +58,19 @@ def call_api(URI, params=None, group="main"):
     )
     if response.ok:
         return response.json()
-    else:
-        logger.error("call_api error! for URI=" + URI, response.json)
-        return None
-
-
-class Events:
-    def __init__(self, json=None, group="main"):
-        self.json = json or call_api(
-            "https://actionnetwork.org/api/v2/events", group=group
-        )
-
-    @property
-    def list(self):
-        return self.json["_embedded"]["osdi:events"]
+    logger.error(f"call_api error! for URI={URI}", response.json)
+    return None
 
 
 class People:
     def __init__(self, json):
         self.json = json
 
-    URI = People_URL
+    URI = people_URL
 
     @classmethod
     def from_email(cls, email):
-        get_email_URL = People_URL + f"?filter=email_address eq '{email}'"
+        get_email_URL = f"{people_URL}?filter=email_address eq '{email}'"
         people = call_api(get_email_URL)
         return cls(people)
 
@@ -106,7 +88,7 @@ class Taggings:
 
     @property
     def URI(self):
-        return urljoin(People_URL, self.person_uuid + "/taggings")
+        return urljoin(people_URL, f"{self.person_uuid}/taggings")
 
     @property
     def json(self):
@@ -136,7 +118,7 @@ class Tag:
 
     @classmethod
     def from_uuid(cls, uuid):
-        uri = API_URL + "/tags/" + uuid
+        uri = f"{API_URL}/tags/{uuid}"
         return cls(call_api(uri))
 
 

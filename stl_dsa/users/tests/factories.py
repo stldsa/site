@@ -15,7 +15,7 @@ class UserFactory(django.DjangoModelFactory):
     email = Sequence(lambda n: f"person{n}@example.com")
     first_name = faker.first_name()
     last_name = faker.last_name()
-    is_active = True
+    is_member = True
 
     @post_generation
     def password(self, create, extracted, **kwargs):
