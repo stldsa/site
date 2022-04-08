@@ -31,9 +31,13 @@
 
         <h1>Upcoming Events:</h1>
         <ul>
-          {% for event in events %}
-            <li><b><a href='{{ event.url }}'>{{ event.title }}</a></b> | {{ event.start|date:"D, M j" }}</li>
-          {% endfor %}
+          {% if events %}
+            {% for event in events %}
+              <li><b><a href='{{ event.url }}'>{{ event.title }}</a></b> | {{ event.start|date:"D, M j" }}</li>
+            {% endfor %}
+          {% else %}
+              <p>No upcoming events.</p>
+          {% endif %}
         </ul> 
       </div>
     </div>
