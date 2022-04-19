@@ -2079,8 +2079,16 @@ header button {
   margin-right: 10px;
   color: #241f20;
   font-family: "Styrene B";
+  font-size: inherit;
   font-weight: 600;
 }
+
+button.nav-link {
+  background: none;
+  border: none;
+  outline: none;
+}
+
 .nav-link:hover, .nav-link:focus {
   color: #e70109;
 }
