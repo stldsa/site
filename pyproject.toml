@@ -34,6 +34,7 @@ validators = "^0.18.2"
 django-taggit = "^1.5.1"
 django-compressor = "^2.4.1"
 vcrpy = "^4.1.1"
+psycopg2 = "^2.9.3"
 
 [tool.poetry.dev-dependencies]
 psycopg2-binary = "^2.8.5"
