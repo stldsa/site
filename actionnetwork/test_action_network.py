@@ -51,5 +51,4 @@ def test_get_tag_from_uuid(faker, monkeypatch):
         an, "call_api", lambda uri: {"identifiers": ["action_network:" + uuid]}
     )
     tag = an.Tag.from_uuid(uuid).json
-    print(tag)
     assert tag["identifiers"][0].split(":")[1] == uuid
