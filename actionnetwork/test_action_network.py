@@ -37,6 +37,14 @@ def test_uuid(faker):
     assert an.Person({"identifiers": [f"action_network:{uuid}"]}).uuid == uuid
 
 
+@responses.activate
+def test_person_from_people(faker):
+    person1_endpoint = f"https://actionnetwork.org/api/v2/people/{faker.uuid4()}"
+    responses.add(responses.GET, person1_endpoint, json={})
+    people = an.People({"_links": {"osdi:people": [{"href": person1_endpoint}]}})
+    assert an.Person.from_people(people).json == {}
+
+
 def test_people_json():
     assert an.People({}).json == {}
 

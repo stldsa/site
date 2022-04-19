@@ -63,7 +63,7 @@ def call_api(URI, params=None, group="main"):
 
 
 class People:
-    def __init__(self, json):
+    def __init__(self, json: str):
         self.json = json
 
     URI = people_URL
@@ -132,7 +132,7 @@ class Person:
         return cls(call_api(uri))
 
     @classmethod
-    def from_people(cls, people):
+    def from_people(cls, people: People):
         person_list = people.json["_links"]["osdi:people"]
         if first_person := next(iter(person_list), None):
             return cls(call_api(first_person["href"]))
@@ -147,10 +147,14 @@ class Person:
 
     @property
     def uuid(self):
-        if id := next(iter(self.json.get("identifiers", [])), ""):
-            return id.split(":")[1]
-        else:
-            return None
+        return next(
+            (
+                id.split(":")[1]
+                for id in self.json.get("identifiers", [])
+                if id.split(":")[0] == "action_network"
+            ),
+            None,
+        )
 
     @property
     def taggings(self):
