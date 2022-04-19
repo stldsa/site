@@ -34,7 +34,7 @@ def test_taggings_has_tag(monkeypatch, faker):
 
 def test_uuid(faker):
     uuid = faker.uuid4()
-    assert an.Person({"identifiers": ["action_network:" + uuid]}).uuid == uuid
+    assert an.Person({"identifiers": [f"action_network:{uuid}"]}).uuid == uuid
 
 
 def test_people_json():
