@@ -147,14 +147,11 @@ class Person:
 
     @property
     def uuid(self):
-        return next(
-            (
-                id.split(":")[1]
-                for id in self.json.get("identifiers", [])
-                if id.split(":")[0] == "action_network"
-            ),
-            None,
-        )
+        return [
+            id.split(":")[1]
+            for id in self.json.get("identifiers", [])
+            if id.split(":")[0] == "action_network"
+        ][0]
 
     @property
     def taggings(self):
