@@ -71,14 +71,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def actionnetwork_people(self):
-        return People.from_email(self.email)
-
-    @property
-    def get_primary_person(self):
-        return Person.first_from_people(self.actionnetwork_people)
+        return People.from_email(self.email).ids
 
     def get_uuid(self):
-        uuid = self.actionnetwork_people.ids[0]
+        uuid = self.actionnetwork_people[0]
         self.uuid = uuid
         return uuid
 
@@ -101,4 +97,4 @@ class User(AbstractBaseUser, PermissionsMixin):
             self.groups.remove(member_group)
 
     def __str__(self):
-        return str(self.first_name) + " " + str(self.last_name)
+        return f"{str(self.first_name)} {str(self.last_name)}"

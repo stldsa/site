@@ -66,7 +66,7 @@ def test_taggings_has_tag(monkeypatch, faker):
 def test_uuid(faker):
     uuid = faker.uuid4()
     assert (
-        an.Person({"identifiers": ["salsa: 1234", f"action_network:{uuid}"]}).uuid
+        an.Person({"identifiers": ["salsa:1234", f"action_network:{uuid}"]}).uuid
         == uuid
     )
 

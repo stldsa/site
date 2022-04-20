@@ -126,8 +126,12 @@ class Tag:
 
 
 class Person:
-    def __init__(self, json):
-        self.json = json
+    def __init__(self, data):
+        self.uuid = [
+            id.split(":")[1]
+            for id in data.get("identifiers", [])
+            if id.split(":")[0] == "action_network"
+        ][0]
 
     @classmethod
     def from_uuid(cls, uuid):
@@ -146,13 +150,13 @@ class Person:
     def URI(self):
         return self.people_endpoint + self.uuid
 
-    @property
-    def uuid(self):
-        return [
-            id.split(":")[1]
-            for id in self.json.get("identifiers", [])
-            if id.split(":")[0] == "action_network"
-        ][0]
+    # @property
+    # def uuid(self):
+    #     return [
+    #         id.split(":")[1]
+    #         for id in self.json.get("identifiers", [])
+    #         if id.split(":")[0] == "action_network"
+    #     ][0]
 
     @property
     def taggings(self):

@@ -2,6 +2,7 @@ from stl_dsa.users.models import User, Taggings
 import actionnetwork.action_network as an
 from actionnetwork.action_network import People
 import responses
+from responses import matchers
 
 
 def test_new_user_is_not_member(mocker):
@@ -25,10 +26,18 @@ def test_existing_user_is_member(monkeypatch, faker):
     assert User(uuid=faker.uuid4()).is_member
 
 
-# @responses.activate
-# def test_get_uuid_when_doesnt_have_one(faker, people_endpoint):
-#     uuid = faker.uuid4()
-#     responses.add(responses.GET, url=f'{people_endpoint}/{uuid}', json={})
-#     user = User(email=faker.email())
+@responses.activate
+def test_get_uuid_when_doesnt_have_one(faker):
+    uuid = faker.uuid4()
+    email = faker.email()
+    url = "https://actionnetwork.org/api/v2/people"
+    responses.add(
+        responses.GET,
+        url=url,
+        match=[matchers.query_param_matcher({"filter": f"email_address eq '{email}'"})],
+        json={"_links": {"osdi:people": [{"href": f"{url}/{uuid}"}]}},
+    )
 
-#     assert user.get_uuid() == uuid
+    user = User(email=email)
+
+    assert user.get_uuid() == uuid
