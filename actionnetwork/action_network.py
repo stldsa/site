@@ -70,8 +70,7 @@ class People:
 
     @classmethod
     def from_email(cls, email):
-        get_email_URL = f"{people_URL}?filter=email_address eq '{email}'"
-        people = call_api(get_email_URL)
+        people = call_api(people_URL, {"filter": f"email_address eq '{email}'"})
         return cls(people)
 
     @property
