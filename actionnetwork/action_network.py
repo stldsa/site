@@ -95,14 +95,10 @@ class Taggings:
 
     @property
     def URI(self):
-        return urljoin(people_URL, f"{self.person_uuid}/taggings")
-
-    @property
-    def json(self):
-        return call_api(self.URI)
+        return f"people/{self.person_uuid}/taggings"
 
     def get_taggings(self):
-        return call_api(self.URI)
+        return call_api(self.URI).json()
 
     @property
     def tags(self):
