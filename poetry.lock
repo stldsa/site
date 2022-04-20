@@ -1632,6 +1632,18 @@ toml = ["toml"]
 yaml = ["pyyaml"]
 
 [[package]]
+name = "pytest-vcr"
+version = "1.0.2"
+description = "Plugin for managing VCR.py cassettes"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pytest = ">=3.6.0"
+vcrpy = "*"
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -2305,7 +2317,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.6"
-content-hash = "02fa53109a277bd212d29cd1457a3823a2d2c5c874ba368d3a4aba08b6772233"
+content-hash = "bd04ec50cce03065a1b36a54dbaaf976ab1dba48d7d5bf7a1e7d906c4905dfe2"
 
 [metadata.files]
 anyascii = [
@@ -3277,6 +3289,10 @@ pytest-socket = [
 pytest-variables = [
     {file = "pytest-variables-1.9.0.tar.gz", hash = "sha256:f79851e4c92a94c93d3f1d02377b5ac97cc8800392e87d108d2cbfda774ecc2a"},
     {file = "pytest_variables-1.9.0-py2.py3-none-any.whl", hash = "sha256:ccf4afcd70de1f5f18b4463758a19f24647a9def1805f675e80db851c9e00ac0"},
+]
+pytest-vcr = [
+    {file = "pytest-vcr-1.0.2.tar.gz", hash = "sha256:23ee51b75abbcc43d926272773aae4f39f93aceb75ed56852d0bf618f92e1896"},
+    {file = "pytest_vcr-1.0.2-py2.py3-none-any.whl", hash = "sha256:2f316e0539399bea0296e8b8401145c62b6f85e9066af7e57b6151481b0d6d9c"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},

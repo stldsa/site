@@ -1,28 +1,59 @@
+from cgitb import html
 from actionnetwork import action_network as an
 from faker import Faker
 import responses
+from responses import matchers
+import pytest
+import secrets
 
 fake = Faker()
 
 
+@pytest.fixture
+def main_api_key():
+    return secrets.token_hex(16)
+
+
+@pytest.fixture
+def people_endpoint():
+    return "https://actionnetwork.org/api/v2/people"
+
+
 @responses.activate
-def test_call_api(faker):
-    url = faker.url()
-    email = faker.email()
-    responses.add(responses.GET, url + f"?filter=email_address eq '{email}'", json={})
-    an.call_api(url, params={"filter": f"email_address eq '{email}'"})
-
-
-def test_people_from_email(faker, monkeypatch):
-    email = faker.email()
-    monkeypatch.setattr(
-        an,
-        "call_api",
-        lambda self, params=None: {
-            "_links": {"osdi:people": [{"href": faker.uuid4()}]}
-        },
+def test_correct_api_key(settings, main_api_key, people_endpoint):
+    settings.ACTIONNETWORK_API_KEYS = {"main": main_api_key}
+    url = "https://actionnetwork.org/api/v2/people"
+    responses.add(
+        responses.GET,
+        url=people_endpoint,
+        status=200,
+        match=[matchers.header_matcher({"OSDI-API-Token": main_api_key})],
     )
-    assert an.People.from_email(email)
+    assert an.call_api(url).status_code == 200
+
+
+@responses.activate
+def test_missing_api_key(settings, people_endpoint):
+    settings.ACTIONNETWORK_API_KEYS = {"main": secrets.token_hex(16)}
+    responses.add(
+        responses.GET,
+        url=people_endpoint,
+        status=403,
+    )
+    assert an.call_api(people_endpoint).status_code == 403
+
+
+@responses.activate
+def test_people_from_email(faker, people_endpoint):
+    email = faker.email()
+    responses.add(
+        responses.GET,
+        url=people_endpoint,
+        match=[matchers.query_param_matcher({"filter": f"email_address eq '{email}'"})],
+        json={"_links": {"osdi:people": [{"href": people_endpoint + faker.uuid4()}]}},
+        status=200,
+    )
+    assert len(an.People.from_email(email).json["_links"]["osdi:people"]) > 0
 
 
 def test_taggings_has_tag(monkeypatch, faker):

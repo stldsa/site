@@ -4,7 +4,7 @@ from django.conf import settings
 from urllib.parse import urljoin
 from django.apps import apps
 
-API_URL = "https://actionnetwork.org/api/v2"
+API_URL = "https://actionnetwork.org/api/v2/"
 people_URL = urljoin(API_URL, "people")
 logger = logging.getLogger("action_network")
 
@@ -17,18 +17,15 @@ class Resource:
         self.href = href
         self.resource = resource or name
 
-    def get_group_api_key(group):
+    def get_group_api_key(self, group):
         return settings.ACTIONNETWORK_API_KEYS[group]
 
-    def get_response(href, api_key):
+    def get_response(self, href, api_key):
         response = requests.get(
             href,
             headers={"OSDI-API-Token": api_key},
         )
-        if response.ok:
-            return response
-        logger.error("get_response error!", response.json)
-        return None
+        return response
 
 
 def get_events():
@@ -50,16 +47,14 @@ def save_event(event):
     )
 
 
-def call_api(URI, params=None, group="main"):
+def call_api(resource, params=None, group="main"):
+    URI = urljoin(API_URL, resource)
     response = requests.get(
         URI,
         params=params,
         headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS[group]},
     )
-    if response.ok:
-        return response.json()
-    logger.error(f"call_api error! for URI={URI}", response.json)
-    return None
+    return response
 
 
 class People:
@@ -70,7 +65,9 @@ class People:
 
     @classmethod
     def from_email(cls, email):
-        people = call_api(people_URL, {"filter": f"email_address eq '{email}'"})
+        people = call_api(
+            people_URL, params={"filter": f"email_address eq '{email}'"}
+        ).json()
         return cls(people)
 
     @property
@@ -134,7 +131,7 @@ class Person:
     def from_people(cls, people: People):
         person_list = people.json["_links"]["osdi:people"]
         if first_person := next(iter(person_list), None):
-            return cls(call_api(first_person["href"]))
+            return cls(call_api(first_person["href"]).json())
 
     @classmethod
     def from_URI(cls, URI):
