@@ -58,9 +58,10 @@ def call_api(resource, params=None, group="main"):
 
 
 class People:
-    def __init__(self, data=None):
+    def __init__(self, data=None, email=None):
+        params = {"filter": f"email_address eq '{email}'"} if email else None
         if data is None:
-            data = call_api("people").json()
+            data = call_api("people", params=params).json()
         if links := data.get("_links"):
             self.ids = [
                 person["href"].split("/")[-1] for person in links["osdi:people"]

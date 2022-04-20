@@ -53,7 +53,7 @@ def test_people_from_email(faker, people_endpoint):
         json={"_links": {"osdi:people": [{"href": people_endpoint + faker.uuid4()}]}},
         status=200,
     )
-    assert len(an.People.from_email(email).ids) > 0
+    assert len(an.People(email=email).ids) > 0
 
 
 def test_taggings_has_tag(monkeypatch, faker):

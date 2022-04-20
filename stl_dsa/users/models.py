@@ -71,7 +71,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def actionnetwork_people(self):
-        return People.from_email(self.email).ids
+        return People(email=self.email).ids
 
     def get_uuid(self):
         uuid = self.actionnetwork_people[0]
