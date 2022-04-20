@@ -58,8 +58,19 @@ def call_api(resource, params=None, group="main"):
 
 
 class People:
-    def __init__(self, json: str):
-        self.json = json
+    def __init__(self, data=None):
+        if data is None:
+            data = call_api("people").json()
+        if links := data.get("_links"):
+            self.ids = [
+                person["href"].split("/")[-1] for person in links["osdi:people"]
+            ]
+        else:
+            self.ids = []
+        if embedded := data.get("_embedded"):
+            self.people = embedded["osdi:people"]
+        else:
+            self.people = []
 
     URI = people_URL
 
@@ -128,10 +139,8 @@ class Person:
         return cls(call_api(uri))
 
     @classmethod
-    def from_people(cls, people: People):
-        person_list = people.json["_links"]["osdi:people"]
-        if first_person := next(iter(person_list), None):
-            return cls(call_api(first_person["href"]).json())
+    def first_from_people(cls, people: People):
+        return people.people[0] if people.people else None
 
     @classmethod
     def from_URI(cls, URI):

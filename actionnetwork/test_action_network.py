@@ -1,10 +1,10 @@
-from cgitb import html
 from actionnetwork import action_network as an
 from faker import Faker
 import responses
 from responses import matchers
 import pytest
 import secrets
+from urllib.parse import urljoin
 
 fake = Faker()
 
@@ -53,7 +53,7 @@ def test_people_from_email(faker, people_endpoint):
         json={"_links": {"osdi:people": [{"href": people_endpoint + faker.uuid4()}]}},
         status=200,
     )
-    assert len(an.People.from_email(email).json["_links"]["osdi:people"]) > 0
+    assert len(an.People.from_email(email).ids) > 0
 
 
 def test_taggings_has_tag(monkeypatch, faker):
@@ -76,11 +76,19 @@ def test_person_from_people(faker):
     person1_endpoint = f"https://actionnetwork.org/api/v2/people/{faker.uuid4()}"
     responses.add(responses.GET, person1_endpoint, json={})
     people = an.People({"_links": {"osdi:people": [{"href": person1_endpoint}]}})
-    assert an.Person.from_people(people).json == {}
+    assert an.Person.first_from_people(people) is None
 
 
-def test_people_json():
-    assert an.People({}).json == {}
+@responses.activate
+def test_people_init(faker, people_endpoint):
+    uuid = faker.uuid4()
+    responses.add(
+        responses.GET,
+        people_endpoint,
+        status=200,
+        json={"_links": {"osdi:people": [{"href": urljoin(people_endpoint, uuid)}]}},
+    )
+    assert an.People().ids == [uuid]
 
 
 def test_tag_json():

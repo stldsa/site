@@ -70,15 +70,15 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_admin
 
     @property
-    def get_actionnetwork_people(self):
+    def actionnetwork_people(self):
         return People.from_email(self.email)
 
     @property
     def get_primary_person(self):
-        return Person.from_people(self.get_actionnetwork_people)
+        return Person.first_from_people(self.actionnetwork_people)
 
     def get_uuid(self):
-        uuid = self.get_primary_person.uuid
+        uuid = self.actionnetwork_people.ids[0]
         self.uuid = uuid
         return uuid
 
