@@ -4,7 +4,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.db import models
-from actionnetwork.action_network import Person, People, Taggings
+import actionnetwork.action_network as an
 from django.contrib.auth.models import Group
 
 VOTING_MEMBER_TAG_ID = "7cb02320-3ecc-4479-898e-67769a1bf7be"
@@ -69,25 +69,22 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_admin
 
-    @property
-    def actionnetwork_people(self):
-        return People(email=self.email).ids
-
     def get_uuid(self):
-        uuid = self.actionnetwork_people[0]
-        self.uuid = uuid
-        return uuid
+        ids = an.People(email=self.email).ids
+        self.uuid = ids[0] if ids else None
+        self.save()
+        return self.uuid
 
     @property
     def taggings(self):
-        return Taggings(self.uuid or self.get_uuid())
+        return an.Taggings(self.uuid or self.get_uuid())
 
     @property
     def is_member(self):
         return self.taggings.has_tag(VOTING_MEMBER_TAG_ID)
 
     def update_model_from_api(self):
-        new_people = People.from_email(self.email)
+        new_people = an.People.from_email(self.email)
 
     def update_membership(self):
         member_group = Group.objects.get(name="Members")
