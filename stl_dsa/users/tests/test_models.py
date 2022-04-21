@@ -1,6 +1,5 @@
 from stl_dsa.users.models import User
 import actionnetwork.action_network as an
-from actionnetwork.action_network import People
 import responses
 from responses import matchers
 import pytest

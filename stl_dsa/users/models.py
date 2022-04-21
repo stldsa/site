@@ -72,9 +72,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_member(self):
         return self.taggings.has_tag(VOTING_MEMBER_TAG_ID)
 
-    def update_model_from_api(self):
-        new_people = an.People.from_email(self.email)
-
     def update_membership(self):
         member_group = Group.objects.get(name="Members")
         if self.is_member:
