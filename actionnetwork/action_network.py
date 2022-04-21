@@ -96,7 +96,7 @@ class Taggings:
 
     @property
     def URI(self):
-        return f"people/{self.person_uuid}/taggings"
+        return f"https://actionnetwork.org/api/v2/people/{self.person_uuid}/taggings"
 
     def get_taggings(self):
         return call_api(self.URI).json()
