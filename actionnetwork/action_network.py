@@ -103,10 +103,9 @@ class Taggings:
 
     @property
     def tags(self):
-        return [
-            tagging["href"]
-            for tagging in self.get_taggings()["_links"]["osdi:taggings"]
-        ]
+        taggings = self.get_taggings()["_embedded"]["osdi:taggings"]
+        hrefs = [tagging["_links"]["osdi:tag"]["href"] for tagging in taggings]
+        return [href.split("/")[-1] for href in hrefs]
 
     def has_tag(self, tag_id):
         return any(tag_id in tag for tag in self.tags)
