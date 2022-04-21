@@ -25,6 +25,7 @@ import pytest
 @pytest.mark.django_db
 @responses.activate
 def test_existing_user_is_member(monkeypatch, faker):
+    uuid = faker.uuid4()
     url = "https://actionnetwork.org/api/v2/people"
     responses.add(
         responses.GET,
@@ -34,9 +35,27 @@ def test_existing_user_is_member(monkeypatch, faker):
                 {"filter": "email_address eq 'member@example.com'"}
             )
         ],
-        json={"_links": {"osdi:people": [{"href": f"{url}/{faker.uuid4()}"}]}},
+        json={"_links": {"osdi:people": [{"href": f"{url}/{uuid}"}]}},
     )
-
+    responses.add(
+        responses.GET,
+        url=f"{url}/{uuid}/taggings",
+        json={
+            "_embedded": {
+                "osdi:taggings": [
+                    {
+                        "_links": {
+                            "self": {
+                                "osdi:tag": {
+                                    "href": f"https://actionnetwork.org/api/v2/tags/{uuid}"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+    )
     monkeypatch.setattr(an.Taggings, "has_tag", lambda self, tag: True)
     assert User(email="member@example.com").is_member
 

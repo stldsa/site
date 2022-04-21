@@ -12,10 +12,6 @@ VOTING_MEMBER_TAG_ID = "7cb02320-3ecc-4479-898e-67769a1bf7be"
 
 class UserManager(BaseUserManager):
     def create_user(self, email, first_name=None, last_name=None, password=None):
-        """
-        Creates and saves a User with the given email, date of
-        birth and password.
-        """
         if not email:
             raise ValueError("Users must have an email address")
 
@@ -30,10 +26,6 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None):
-        """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
-        """
         user = self.create_user(
             email,
             password=password,
@@ -45,9 +37,6 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    # First Name and Last Name do not cover name patterns
-    # around the globe.
-    # username = models.CharField(null=True, blank=True, max_length=150)
     first_name = models.CharField(null=True, blank=False, max_length=30)
     last_name = models.CharField(null=True, blank=False, max_length=30)
     email = models.EmailField(null=False, blank=False, unique=True)

@@ -56,10 +56,31 @@ def test_people_from_email(faker, people_endpoint):
     assert len(an.People(email=email).ids) > 0
 
 
-def test_taggings_has_tag(monkeypatch, faker):
+@responses.activate
+def test_taggings_has_tag(faker):
     voting_member_tag_id = faker.uuid4()
-    monkeypatch.setattr(an.Taggings, "tags", [voting_member_tag_id])
-    taggings = an.Taggings({})
+    person_uuid = faker.uuid4()
+    assert voting_member_tag_id != person_uuid
+    responses.add(
+        responses.GET,
+        url=f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings",
+        json={
+            "_embedded": {
+                "osdi:taggings": [
+                    {
+                        "_links": {
+                            "self": {
+                                "osdi:tag": {
+                                    "href": f"https://actionnetwork.org/api/v2/tags/{voting_member_tag_id}"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+    )
+    taggings = an.Taggings(person_uuid)
     assert taggings.has_tag(voting_member_tag_id)
 
 
