@@ -61,7 +61,7 @@ class People:
     def __init__(self, data=None, email=None):
         params = {"filter": f"email_address eq '{email}'"} if email else None
         if data is None:
-            data = call_api("people", params=params).json()
+            data = call_api(self.name, params=params).json()
         if links := data.get("_links"):
             self.ids = [
                 person["href"].split("/")[-1] for person in links["osdi:people"]
@@ -73,14 +73,14 @@ class People:
         else:
             self.people = []
 
-    URI = people_URL
+    name = "people"
 
     @classmethod
     def from_email(cls, email):
-        people = call_api(
-            people_URL, params={"filter": f"email_address eq '{email}'"}
+        data = call_api(
+            cls.name, params={"filter": f"email_address eq '{email}'"}
         ).json()
-        return cls(people)
+        return cls(data)
 
     @property
     def list(self):
@@ -91,15 +91,15 @@ class People:
 
 
 class Taggings:
-    def __init__(self, person_uuid):
+    def __init__(self, person_uuid=None):
         self.person_uuid = person_uuid
 
     @property
-    def URI(self):
-        return f"https://actionnetwork.org/api/v2/people/{self.person_uuid}/taggings"
+    def resource(self):
+        return f"people/{self.person_uuid}/taggings"
 
     def get_taggings(self):
-        return call_api(self.URI).json()
+        return call_api(self.resource).json()
 
     @property
     def tags(self):
@@ -122,7 +122,7 @@ class Tag:
 
     @classmethod
     def from_uuid(cls, uuid):
-        uri = f"{API_URL}/tags/{uuid}"
+        uri = f"tags/{uuid}"
         return cls(call_api(uri))
 
 
@@ -150,14 +150,6 @@ class Person:
     @property
     def URI(self):
         return self.people_endpoint + self.uuid
-
-    # @property
-    # def uuid(self):
-    #     return [
-    #         id.split(":")[1]
-    #         for id in self.json.get("identifiers", [])
-    #         if id.split(":")[0] == "action_network"
-    #     ][0]
 
     @property
     def taggings(self):
