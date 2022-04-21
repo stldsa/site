@@ -106,12 +106,16 @@ class Taggings:
         hrefs = [tagging["_links"]["osdi:tag"]["href"] for tagging in taggings]
         return [href.split("/")[-1] for href in hrefs]
 
-    def has_tag(self, tag_id):
-        return any(tag_id in tag for tag in self.tags)
-
 
 class Tags:
-    pass
+    def __init__(self, data=None):
+        if data is None:
+            self.data = call_api("tags").json()
+        self.tags = self.data["_embedded"]["OSDI:tags"]
+        self.names = [tag["name"] for tag in self.tags]
+
+    def find_tag_id(self, tag_name):
+        return [[tag["id"] for tag in self.tags if tag["name"] == "Voting Member"]][0]
 
 
 class Tag:

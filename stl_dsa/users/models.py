@@ -69,7 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def is_member(self):
-        return self.taggings.has_tag(VOTING_MEMBER_TAG_ID)
+        return VOTING_MEMBER_TAG_ID in self.taggings.tags
 
     def update_membership(self):
         member_group = Group.objects.get(name="Members")

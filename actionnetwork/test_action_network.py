@@ -79,7 +79,7 @@ def test_taggings_has_tag(faker):
         },
     )
     taggings = an.Taggings(person_uuid)
-    assert taggings.has_tag(voting_member_tag_id)
+    assert voting_member_tag_id in taggings.tags
 
 
 def test_uuid(faker):

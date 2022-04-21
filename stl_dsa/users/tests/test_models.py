@@ -23,8 +23,10 @@ import pytest
 
 @pytest.mark.django_db
 @responses.activate
-def test_existing_user_is_member(monkeypatch, faker):
+def test_existing_user_is_member(faker):
     uuid = faker.uuid4()
+    voting_tag_uuid = faker.uuid4()
+    assert uuid != voting_tag_uuid
     url = "https://actionnetwork.org/api/v2/people"
     responses.add(
         responses.GET,
@@ -45,7 +47,7 @@ def test_existing_user_is_member(monkeypatch, faker):
                     {
                         "_links": {
                             "osdi:tag": {
-                                "href": f"https://actionnetwork.org/api/v2/tags/{uuid}"
+                                "href": f"https://actionnetwork.org/api/v2/tags/{voting_tag_uuid}"
                             }
                         }
                     }
@@ -53,8 +55,7 @@ def test_existing_user_is_member(monkeypatch, faker):
             }
         },
     )
-    monkeypatch.setattr(an.Taggings, "has_tag", lambda self, tag: True)
-    assert User(email="member@example.com").is_member
+    assert voting_tag_uuid in User(email="member@example.com").taggings.tags
 
 
 @pytest.mark.django_db
