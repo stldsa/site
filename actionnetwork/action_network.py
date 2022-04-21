@@ -101,7 +101,8 @@ class Taggings:
 
     @property
     def tags(self):
-        taggings = self.data["_embedded"]["osdi:taggings"]
+        data = self.data
+        taggings = data["_embedded"]["osdi:taggings"]
         hrefs = [tagging["_links"]["osdi:tag"]["href"] for tagging in taggings]
         return [href.split("/")[-1] for href in hrefs]
 
