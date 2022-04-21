@@ -69,10 +69,8 @@ def test_taggings_has_tag(faker):
                 "osdi:taggings": [
                     {
                         "_links": {
-                            "self": {
-                                "osdi:tag": {
-                                    "href": f"https://actionnetwork.org/api/v2/tags/{voting_member_tag_id}"
-                                }
+                            "osdi:tag": {
+                                "href": f"https://actionnetwork.org/api/v2/tags/{voting_member_tag_id}"
                             }
                         }
                     }

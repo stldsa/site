@@ -44,10 +44,8 @@ def test_existing_user_is_member(monkeypatch, faker):
                 "osdi:taggings": [
                     {
                         "_links": {
-                            "self": {
-                                "osdi:tag": {
-                                    "href": f"https://actionnetwork.org/api/v2/tags/{uuid}"
-                                }
+                            "osdi:tag": {
+                                "href": f"https://actionnetwork.org/api/v2/tags/{uuid}"
                             }
                         }
                     }
