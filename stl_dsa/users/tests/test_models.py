@@ -55,7 +55,7 @@ def test_existing_user_is_member(faker):
             }
         },
     )
-    assert voting_tag_uuid in User(email="member@example.com").taggings.tags
+    assert voting_tag_uuid in an.Taggings(uuid).tags
 
 
 @pytest.mark.django_db
