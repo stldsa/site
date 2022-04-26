@@ -36,13 +36,6 @@ class Events:
         return call_api("events", group=self.group).json()["_embedded"]["osdi:events"]
 
 
-def get_events():
-    return [
-        Resource("events", group).list
-        for group in settings.ACTIONNETWORK_API_KEYS.keys()
-    ]
-
-
 def save_event(event):
     apps.get_model("events", "Event").objects.update_or_create(
         id=event["identifiers"][0].split(":")[1],
