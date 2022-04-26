@@ -28,6 +28,14 @@ class Resource:
         return response
 
 
+class Events:
+    def __init__(self, group):
+        self.group = group
+
+    def get(self):
+        return call_api("events", group=self.group).json()["_embedded"]["osdi:events"]
+
+
 def get_events():
     return [
         Resource("events", group).list
