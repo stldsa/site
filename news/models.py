@@ -1,10 +1,10 @@
 from django.db import models
 from wagtail.search import index
-from wagtail.core import blocks
-from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.blocks import BlockQuoteBlock, CharBlock
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail import blocks
+from wagtail.models import Page
+from wagtail.fields import RichTextField, StreamField
+from wagtail.blocks import BlockQuoteBlock, CharBlock
+from wagtail.admin.panels import FieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -51,7 +51,7 @@ class InfoPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("body", classname="full"),
-        StreamFieldPanel("additional_content"),
+        FieldPanel("additional_content"),
     ]
 
 
@@ -94,5 +94,5 @@ class DocumentPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("date_published"),
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
     ]

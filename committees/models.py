@@ -4,10 +4,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
-from wagtail.core import blocks
-from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail import blocks
+from wagtail.models import Page
+from wagtail.fields import RichTextField, StreamField
+from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
 from wagtailmenus.models import MenuPage
 from datetime import datetime
@@ -121,5 +121,5 @@ class ResourcesPage(Page):
         ]
     )
     content_panels = Page.content_panels + [
-        StreamFieldPanel("resources"),
+        FieldPanel("resources"),
     ]

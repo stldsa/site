@@ -5,7 +5,7 @@ import stringcase
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
-from wagtail.core.models import Page, Site
+from wagtail.models import Page, Site
 from events.models import Event, EventsPage
 from home.models import HomePage
 from news.models import NewsIndexPage, InfoPage

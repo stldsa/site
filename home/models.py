@@ -1,12 +1,12 @@
 from home.views import EmailFormView
 from django.db import models
 from datetime import datetime
-from wagtail.core.models import Page
+from wagtail.models import Page
 from django.shortcuts import render
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.panels import FieldPanel
 from events.models import Event
 from news.models import NewsPage
-from wagtail.core.fields import RichTextField
+from wagtail.fields import RichTextField
 
 
 class HomePage(Page):
