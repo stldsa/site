@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from wagtail.search import index
 from wagtail import blocks
 from wagtail.models import Page
@@ -20,7 +21,15 @@ class NewsIndexPage(Page):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         blogpages = self.get_children().live().order_by("-first_published_at")
-        context["blogpages"] = blogpages
+        paginator = Paginator(blogpages, 5)
+        page = request.GET.get('page')
+        try:
+            resources = paginator.page(page)
+        except PageNotAnInteger:
+            resources = paginator.page(1)
+        except EmptyPage:
+            resources = paginator.page(paginator.num_pages)
+        context["blogpages"] = resources
         return context
 
 
