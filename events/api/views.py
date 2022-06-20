@@ -13,4 +13,5 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
             Event.objects.filter(start__range=(start, end))
             .exclude(title__icontains="members only")
             .exclude(title__icontains="test_event")
+            .exclude(status__equals="cancelled")
         )

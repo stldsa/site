@@ -44,6 +44,7 @@ def save_event(event):
             "start": event["start_date"],
             "url": event["browser_url"],
             "description": event["description"],
+            "status": event["status"],
         },
     )
 
