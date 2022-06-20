@@ -25,6 +25,7 @@ class Event(models.Model):
         related_name="events",
     )
     url = models.URLField()
+    status = models.CharField(max_length=50, null=True, blank=True)
     id = models.CharField(max_length=50, primary_key=True)
 
     def __str__(self):
