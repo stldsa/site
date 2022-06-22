@@ -35,7 +35,7 @@ class NewsIndexPage(Page):
 
 
 class NewsPage(Page):
-    date = models.DateField("Post date")
+    date = models.DateTimeField("Schedule Send Date + Time")
     heading = models.CharField(max_length=500, null=True, blank=True)
     body = RichTextField(blank=True)
 
