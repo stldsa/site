@@ -3,7 +3,6 @@ from stl_dsa.users.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.conf import settings
 from wagtail import blocks
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField

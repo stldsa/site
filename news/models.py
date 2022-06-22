@@ -1,11 +1,12 @@
 from django.db import models
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from modelcluster.fields import ParentalKey
 from wagtail.search import index
 from wagtail import blocks
-from wagtail.models import Page
+from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.images.blocks import ImageChooserBlock
 
 
@@ -35,6 +36,7 @@ class NewsIndexPage(Page):
 
 class NewsPage(Page):
     date = models.DateField("Post date")
+    heading = models.CharField(max_length=500, null=True, blank=True)
     body = RichTextField(blank=True)
 
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
@@ -44,8 +46,31 @@ class NewsPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("date"),
+        FieldPanel("heading"),
         FieldPanel("body", classname="full"),
+        InlinePanel('related_stories', label="Related Stories"),
     ]
+
+
+class RelatedStory(models.Model):
+    title = models.CharField(max_length=255, null=True)
+    link_external = models.URLField("External link", null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('link_external'),
+        FieldPanel('description'),
+        FieldPanel('image'),
+    ]
+
+    class Meta:
+        abstract = True
+
+
+class NewsPageRelatedStories(Orderable, RelatedStory):
+    news_page = ParentalKey(NewsPage, on_delete=models.CASCADE, related_name='related_stories')
 
 
 class InfoPage(Page):

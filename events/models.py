@@ -1,7 +1,9 @@
 from datetime import datetime
 from django.db import models
 from committees.models import CommitteePage
+from modelcluster.fields import ParentalKey
 from wagtailmenus.models import AbstractLinkPage
+from wagtail.admin.panels import FieldPanel
 
 
 class APICalls(models.Model):
@@ -27,6 +29,11 @@ class Event(models.Model):
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
     id = models.CharField(max_length=50, primary_key=True)
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('description'),
+    ]
 
     def __str__(self):
         return f"{self.title} {str(self.start)}"
