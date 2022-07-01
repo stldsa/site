@@ -34,7 +34,7 @@ class HomePage(Page):
             .exclude(title__icontains="members only")
             .order_by("start")[:4]
         )
-        context["update"] = NewsPage.objects.all().order_by("-date")[0]
+        context["update"] = NewsPage.objects.all().order_by("-last_published_at")[0]
         return context
 
     def serve(self, request):

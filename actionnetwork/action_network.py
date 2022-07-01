@@ -157,3 +157,17 @@ class Person:
     @property
     def taggings(self):
         return Taggings(self.uuid)
+
+
+class Email:
+    def send():
+        requests.post(
+            "https://actionnetwork.org/api/v2/messages",
+            headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS["main"]},
+            data={
+                "subject": "Test Subject",
+                "body": "test body!!!",
+                "from": "STL DSA",
+                "reply-to": "info@stldsa.org",
+            },
+        )

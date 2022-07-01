@@ -1,7 +1,6 @@
 from datetime import datetime
 from django.db import models
 from committees.models import CommitteePage
-from modelcluster.fields import ParentalKey
 from wagtailmenus.models import AbstractLinkPage
 from wagtail.admin.panels import FieldPanel
 
@@ -31,8 +30,8 @@ class Event(models.Model):
     id = models.CharField(max_length=50, primary_key=True)
 
     panels = [
-        FieldPanel('title'),
-        FieldPanel('description'),
+        FieldPanel("title"),
+        FieldPanel("description"),
     ]
 
     def __str__(self):
