@@ -12,3 +12,11 @@ def create(subject, body, from_, reply_to, api_token):
             "reply_to": reply_to,
         },
     )
+
+
+def schedule(endpoint, scheduled_start_date, api_token):
+    return requests.post(
+        endpoint,
+        headers={"OSDI-API-Token": api_token},
+        data={"scheduled_start_date": scheduled_start_date},
+    )

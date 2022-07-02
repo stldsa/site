@@ -37,6 +37,7 @@ class NewsIndexPage(Page):
 class NewsPage(Page):
     heading = models.CharField(max_length=500, null=True, blank=True)
     body = RichTextField(blank=True)
+    action_network_href = models.URLField(blank=True, null=True)
 
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
     search_fields = Page.search_fields + [

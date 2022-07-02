@@ -20,4 +20,4 @@ class NewsConfig(AppConfig):
     name = "news"
 
     def ready(self):
-        import news.signals
+        import news.receivers
