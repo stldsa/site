@@ -500,22 +500,6 @@ Django = "*"
 testing = ["django-modelcluster"]
 
 [[package]]
-name = "django-phonenumber-field"
-version = "6.3.0"
-description = "An international phone number field for django models."
-category = "main"
-optional = false
-python-versions = ">=3.7"
-
-[package.dependencies]
-Django = ">=2.2"
-phonenumbers = {version = ">=7.0.2", optional = true, markers = "extra == \"phonenumbers\""}
-
-[package.extras]
-phonenumbers = ["phonenumbers (>=7.0.2)"]
-phonenumberslite = ["phonenumberslite (>=7.0.2)"]
-
-[[package]]
 name = "django-redis"
 version = "4.12.1"
 description = "Full featured redis cache backend for Django."
@@ -1221,14 +1205,6 @@ python-versions = "*"
 
 [package.dependencies]
 ptyprocess = ">=0.5"
-
-[[package]]
-name = "phonenumbers"
-version = "8.12.51"
-description = "Python version of Google's common library for parsing, formatting, storing and validating international phone numbers."
-category = "main"
-optional = false
-python-versions = "*"
 
 [[package]]
 name = "pickleshare"
@@ -2372,7 +2348,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.10.4"
-content-hash = "20f534a88262fe45a6461a0d1b49443bc6398d20794c092714033c2d6a7e783b"
+content-hash = "4a63250591bab5d3e0c74daccbd513137ca5a4dcd7e150fa48b3cb9fd37c7d58"
 
 [metadata.files]
 anyascii = [
@@ -2725,10 +2701,6 @@ django-permissionedforms = [
     {file = "django-permissionedforms-0.1.tar.gz", hash = "sha256:4340bb20c4477fffb13b4cc5cccf9f1b1010b64f79956c291c72d2ad2ed243f8"},
     {file = "django_permissionedforms-0.1-py2.py3-none-any.whl", hash = "sha256:d341a961a27cc77fde8cc42141c6ab55cc1f0cb886963cc2d6967b9674fa47d6"},
 ]
-django-phonenumber-field = [
-    {file = "django-phonenumber-field-6.3.0.tar.gz", hash = "sha256:668db2e61559908ce8dcd660ac716262c7922cc29ec76ede3f9b88772992dc28"},
-    {file = "django_phonenumber_field-6.3.0-py3-none-any.whl", hash = "sha256:188ca55b27ef1ac4d9b279d90ee3f1377ece6cd9ed8c63f0a66efd565bf9ad6f"},
-]
 django-redis = [
     {file = "django-redis-4.12.1.tar.gz", hash = "sha256:306589c7021e6468b2656edc89f62b8ba67e8d5a1c8877e2688042263daa7a63"},
     {file = "django_redis-4.12.1-py3-none-any.whl", hash = "sha256:1133b26b75baa3664164c3f44b9d5d133d1b8de45d94d79f38d1adc5b1d502e5"},
@@ -3078,10 +3050,6 @@ pathspec = [
 pexpect = [
     {file = "pexpect-4.8.0-py2.py3-none-any.whl", hash = "sha256:0b48a55dcb3c05f3329815901ea4fc1537514d6ba867a152b581d69ae3710937"},
     {file = "pexpect-4.8.0.tar.gz", hash = "sha256:fc65a43959d153d0114afe13997d439c22823a27cefceb5ff35c2178c6784c0c"},
-]
-phonenumbers = [
-    {file = "phonenumbers-8.12.51-py2.py3-none-any.whl", hash = "sha256:ac13b944e18ecb3ad58d9a090a2053dfe3d30dbe3711ebc2945a461b855ad4bf"},
-    {file = "phonenumbers-8.12.51.tar.gz", hash = "sha256:9d4a9460127ffd288ae071dd1f7942e2329da5b5c5d57d8aabe7103427ca7cbf"},
 ]
 pickleshare = [
     {file = "pickleshare-0.7.5-py2.py3-none-any.whl", hash = "sha256:9649af414d74d4df115d5d718f82acb59c9d418196b7b4290ed47a12ce62df56"},
