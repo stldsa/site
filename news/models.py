@@ -23,7 +23,7 @@ class NewsIndexPage(Page):
         context = super().get_context(request)
         blogpages = self.get_children().live().order_by("-first_published_at")
         paginator = Paginator(blogpages, 5)
-        page = request.GET.get('page')
+        page = request.GET.get("page")
         try:
             resources = paginator.page(page)
         except PageNotAnInteger:
@@ -35,7 +35,6 @@ class NewsIndexPage(Page):
 
 
 class NewsPage(Page):
-    date = models.DateTimeField("Schedule Send Date + Time")
     heading = models.CharField(max_length=500, null=True, blank=True)
     body = RichTextField(blank=True)
 
@@ -45,10 +44,9 @@ class NewsPage(Page):
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel("date"),
         FieldPanel("heading"),
         FieldPanel("body", classname="full"),
-        InlinePanel('related_stories', label="Related Stories"),
+        InlinePanel("related_stories", label="Related Stories"),
     ]
 
 
@@ -59,10 +57,10 @@ class RelatedStory(models.Model):
     image = models.ImageField(null=True, blank=True)
 
     panels = [
-        FieldPanel('title'),
-        FieldPanel('link_external'),
-        FieldPanel('description'),
-        FieldPanel('image'),
+        FieldPanel("title"),
+        FieldPanel("link_external"),
+        FieldPanel("description"),
+        FieldPanel("image"),
     ]
 
     class Meta:
@@ -70,7 +68,9 @@ class RelatedStory(models.Model):
 
 
 class NewsPageRelatedStories(Orderable, RelatedStory):
-    news_page = ParentalKey(NewsPage, on_delete=models.CASCADE, related_name='related_stories')
+    news_page = ParentalKey(
+        NewsPage, on_delete=models.CASCADE, related_name="related_stories"
+    )
 
 
 class InfoPage(Page):

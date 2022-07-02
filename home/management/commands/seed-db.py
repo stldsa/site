@@ -63,7 +63,6 @@ class Command(BaseCommand):
         NewsPage = apps.get_model("news.NewsPage")
         newspage = NewsPage(
             title=fake.sentence(),
-            date=datetime.date.today(),
             body=fake.paragraph(30),
             show_in_menus=False,
         )
