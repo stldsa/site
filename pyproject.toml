@@ -14,7 +14,6 @@ django-environ = "^0.4.5"
 whitenoise = "^5.1.0"
 django-rest-framework = "^0.1.0"
 wagtail = "^3.0"
-django-phonenumber-field = {extras = ["phonenumbers"], version = "^6.3.0"}
 argon2-cffi = "^20.1.0"
 wagtailmenus = "^3.0.2"
 django-anymail = "^8.1"
