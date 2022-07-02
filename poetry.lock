@@ -509,7 +509,6 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 Django = ">=2.2"
-phonenumbers = {version = ">=7.0.2", optional = true, markers = "extra == \"phonenumbers\""}
 
 [package.extras]
 phonenumbers = ["phonenumbers (>=7.0.2)"]
@@ -2372,7 +2371,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.10.4"
-content-hash = "c614d97d74fb1c1e38ffe606c7e06061d0183e04950b0db520f8e4e6b765b5c9"
+content-hash = "0f9ec9f5b7db5ca52214465a976698e713c32b72328cb78c26e6eb4ed52952f1"
 
 [metadata.files]
 anyascii = [
