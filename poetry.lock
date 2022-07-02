@@ -586,6 +586,17 @@ python-versions = ">=3.6"
 Django = ">=2.2"
 
 [[package]]
+name = "django-upgrade"
+version = "1.7.0"
+description = "Automatically upgrade your Django projects."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+tokenize-rt = ">=4.1.0"
+
+[[package]]
 name = "djangorestframework"
 version = "3.13.1"
 description = "Web APIs for Django, made easy."
@@ -2015,6 +2026,14 @@ doc = ["sphinx", "sphinx-rtd-theme"]
 test = ["pytest", "pytest-cov", "pytest-flake8", "pytest-isort", "coverage"]
 
 [[package]]
+name = "tokenize-rt"
+version = "4.2.1"
+description = "A wrapper around the stdlib `tokenize` which roundtrips."
+category = "main"
+optional = false
+python-versions = ">=3.6.1"
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -2255,20 +2274,26 @@ wagtail = ">=1.4.0"
 
 [[package]]
 name = "wagtailmenus"
-version = "3.0.2"
+version = "3.1.2"
 description = "An app to help you manage menus in your Wagtail projects more consistently."
 category = "main"
 optional = false
-python-versions = ">=3.4"
+python-versions = ">=3.7"
+develop = false
 
 [package.dependencies]
 django-cogwheels = "0.3"
 
 [package.extras]
-deployment = ["transifex-client"]
-development = ["wagtail (>=2.4,<=2.9)", "django-debug-toolbar", "django-extensions", "ipdb", "werkzeug", "beautifulsoup4 (>=4.5.1,<4.6.1)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
+development = ["wagtail (>=2.15)", "django-debug-toolbar", "django-extensions", "ipdb", "werkzeug", "beautifulsoup4 (>=4.8,<4.10)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
 docs = ["pyenchant (>=2.0)", "Sphinx (>=1.7.4)", "sphinxcontrib-spelling (>=1.4)", "sphinx-rtd-theme (>=0.3)"]
-testing = ["beautifulsoup4 (>=4.5.1,<4.6.1)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
+testing = ["beautifulsoup4 (>=4.8,<4.10)", "coverage (>=4.5)", "django-webtest (>=1.9,<1.10)"]
+
+[package.source]
+type = "git"
+url = 'https://github.com/jazzband/wagtailmenus.git'
+reference = 'v3.1.2'
+resolved_reference = "100d90c27e0b2bcd828a4667e86deae49c4842d0"
 
 [[package]]
 name = "wcwidth"
@@ -2371,7 +2396,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.10.4"
-content-hash = "0f9ec9f5b7db5ca52214465a976698e713c32b72328cb78c26e6eb4ed52952f1"
+content-hash = "7a7892fb9a4cbccb6d482b0e79cd1ed210dfe053d5c09b1af17644b8d30c0a3c"
 
 [metadata.files]
 anyascii = [
@@ -2748,6 +2773,10 @@ django-taggit = [
 django-treebeard = [
     {file = "django-treebeard-4.5.1.tar.gz", hash = "sha256:80150017725239702054e5fa64dc66e383dc13ac262c8d47ee5a82cb005969da"},
     {file = "django_treebeard-4.5.1-py3-none-any.whl", hash = "sha256:7c2b1cdb1e9b46d595825186064a1228bc4d00dbbc186db5b0b9412357fba91c"},
+]
+django-upgrade = [
+    {file = "django-upgrade-1.7.0.tar.gz", hash = "sha256:46fac65ec9c3b7a545c1e11d4f27a79c9e364287341e5c11958d12cddc39bc57"},
+    {file = "django_upgrade-1.7.0-py3-none-any.whl", hash = "sha256:d5d669af2898aa482ceaa1d7f5869a97094f9740bd260b4a58cb7dea982b4685"},
 ]
 djangorestframework = [
     {file = "djangorestframework-3.13.1-py3-none-any.whl", hash = "sha256:24c4bf58ed7e85d1fe4ba250ab2da926d263cd57d64b03e8dcef0ac683f8b1aa"},
@@ -3628,6 +3657,10 @@ tinycss2 = [
     {file = "tinycss2-1.1.1-py3-none-any.whl", hash = "sha256:fe794ceaadfe3cf3e686b22155d0da5780dd0e273471a51846d0a02bc204fec8"},
     {file = "tinycss2-1.1.1.tar.gz", hash = "sha256:b2e44dd8883c360c35dd0d1b5aad0b610e5156c2cb3b33434634e539ead9d8bf"},
 ]
+tokenize-rt = [
+    {file = "tokenize_rt-4.2.1-py2.py3-none-any.whl", hash = "sha256:08a27fa032a81cf45e8858d0ac706004fcd523e8463415ddf1442be38e204ea8"},
+    {file = "tokenize_rt-4.2.1.tar.gz", hash = "sha256:0d4f69026fed520f8a1e0103aa36c406ef4661417f20ca643f913e33531b3b94"},
+]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
@@ -3734,10 +3767,7 @@ wagtailfontawesome = [
     {file = "wagtailfontawesome-1.2.1-py2.py3-none-any.whl", hash = "sha256:76b1c64c4f1042d468a83e4352f74b57bda4a4aa09cdfeeb8663dead5ed632be"},
     {file = "wagtailfontawesome-1.2.1.tar.gz", hash = "sha256:6c1bd2d6061880848de6374ceb75d38a8c9b0debb1d4aef8a2fdc9d565a8f417"},
 ]
-wagtailmenus = [
-    {file = "wagtailmenus-3.0.2-py3-none-any.whl", hash = "sha256:518b8e74fddcae91115313085673b72fdfc17aa4f711f0ea00dbdffa20abce33"},
-    {file = "wagtailmenus-3.0.2.tar.gz", hash = "sha256:77c2e098decc8882f8fbf4fbab6c04911a0daf744aabbfb7e4952f03e3533386"},
-]
+wagtailmenus = []
 wcwidth = [
     {file = "wcwidth-0.2.5-py2.py3-none-any.whl", hash = "sha256:beb4802a9cebb9144e99086eff703a642a13d6a0052920003a230f3294bbe784"},
     {file = "wcwidth-0.2.5.tar.gz", hash = "sha256:c4d647b99872929fdb7bdcaa4fbe7f01413ed3d98077df798530e5b04f116c83"},
