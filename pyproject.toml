@@ -8,7 +8,7 @@ authors = ["Tyler Schlichenmeyer <tyler.schlichenmeyer@gmail.com>"]
 python = "3.10.4"
 Django = "^4.0.5"
 django-allauth = "^0.45.0"
-django-extensions = "^2.2.9"
+django-extensions = "^3.1.5"
 django-crispy-forms = "^1.9.1"
 django-environ = "^0.4.5"
 whitenoise = "^5.1.0"
@@ -37,7 +37,6 @@ wagtail-factories = "^2.0.1"
 black = "^22.3.0"
 django-phonenumber-field = "^6.3.0"
 phonenumbers = "^8.12.51"
-django-upgrade = "^1.7.0"
 
 [tool.poetry.dev-dependencies]
 psycopg2-binary = "^2.8.5"
@@ -66,10 +65,6 @@ addopts = "-ra -q --disable-socket --no-migrations"
 DJANGO_SETTINGS_MODULE = "config.settings"
 DJANGO_CONFIGURATION = "Test"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
-filterwarnings = [
-    "ignore::django.utils.deprecation.RemovedInDjango40Warning",
-    "ignore::django.utils.deprecation.RemovedInDjango41Warning"
-]
 
 [tool.flake8]
 max-line-length = 88
