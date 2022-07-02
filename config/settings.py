@@ -244,7 +244,7 @@ class Base(Configuration):
     )  # The default key is not real
     DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
     SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
-    WAGTAILADMIN_BASE_URL = 'https://stldsa.org'
+    WAGTAILADMIN_BASE_URL = "https://stldsa.org"
 
 
 class Dev(Base):

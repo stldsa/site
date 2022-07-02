@@ -1,13 +1,15 @@
+import datetime
 from django.db import models
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from modelcluster.fields import ParentalKey
 from wagtail.search import index
 from wagtail import blocks
-from wagtail.models import Page, Orderable
+from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
-from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.images.blocks import ImageChooserBlock
+from events.models import Event
+from wagtail.admin.forms import WagtailAdminPageForm
 
 
 class NewsIndexPage(Page):
@@ -34,10 +36,68 @@ class NewsIndexPage(Page):
         return context
 
 
+# class NewsPageForm(WagtailAdminPageForm):
+#     def save(self, commit=True):
+#         page = super().save(commit=False)
+#         # created_datetime = page.save_revision().created_at
+#         # upcoming_events = Event.objects.filter(date__range=(created_datetime, created_datetime + datetime.timedelta(days=7)))
+#         # Update the duration field from the submitted dates
+#         page.related_stories = [
+#             (
+#                 "related_story",
+#                 [
+#                     ("heading", "TestHeading"),
+#                     ("paragraph", "this is a test p"),
+#                     ("image", None),
+#                 ],
+#             )
+#         ]
+
+#         if commit:
+#             page.save()
+#         return page
+
+
+def upcoming_events_as_related_stories():
+    return [
+        ("related_story", {"heading": event.title, "paragraph": event.description})
+        for event in list(
+            Event.objects.filter(
+                start__range=(
+                    datetime.datetime.now(),
+                    datetime.datetime.now() + datetime.timedelta(days=7),
+                )
+            )
+        )
+    ]
+
+
 class NewsPage(Page):
     heading = models.CharField(max_length=500, null=True, blank=True)
     body = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
+    related_stories = StreamField(
+        [
+            (
+                "related_story",
+                blocks.StructBlock(
+                    [
+                        ("heading", blocks.CharBlock(form_classname="full title")),
+                        ("paragraph", blocks.TextBlock()),
+                        ("image", ImageChooserBlock()),
+                    ],
+                ),
+            )
+        ],
+        null=True,
+        blank=True,
+        collapsed=False,
+        # default=[
+        #     ("related_story", {"heading": "1", "paragraph": "this is p1"}),
+        #     ("related_story", {"heading": "2", "paragraph": "this is p1"}),
+        # ],
+        default=upcoming_events_as_related_stories,
+    )
 
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
     search_fields = Page.search_fields + [
@@ -47,31 +107,33 @@ class NewsPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("heading"),
         FieldPanel("body", classname="full"),
-        InlinePanel("related_stories", label="Related Stories"),
+        FieldPanel("related_stories"),
     ]
 
-
-class RelatedStory(models.Model):
-    title = models.CharField(max_length=255, null=True)
-    link_external = models.URLField("External link", null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
-
-    panels = [
-        FieldPanel("title"),
-        FieldPanel("link_external"),
-        FieldPanel("description"),
-        FieldPanel("image"),
-    ]
-
-    class Meta:
-        abstract = True
+    # base_form_class = NewsPageForm
 
 
-class NewsPageRelatedStories(Orderable, RelatedStory):
-    news_page = ParentalKey(
-        NewsPage, on_delete=models.CASCADE, related_name="related_stories"
-    )
+# class RelatedStory(models.Model):
+#     title = models.CharField(max_length=255, null=True)
+#     link_external = models.URLField("External link", null=True, blank=True)
+#     description = models.TextField(null=True, blank=True)
+#     image = models.ImageField(null=True, blank=True)
+
+#     panels = [
+#         FieldPanel("title"),
+#         FieldPanel("link_external"),
+#         FieldPanel("description"),
+#         FieldPanel("image"),
+#     ]
+
+#     class Meta:
+#         abstract = True
+
+
+# class NewsPageRelatedStories(Orderable, RelatedStory):
+#     news_page = ParentalKey(
+#         NewsPage, on_delete=models.CASCADE, related_name="related_stories"
+#     )
 
 
 class InfoPage(Page):
