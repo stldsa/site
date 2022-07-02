@@ -1,5 +1,6 @@
 from django.db import models
 from stl_dsa.users.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from wagtail import blocks
@@ -13,6 +14,7 @@ from datetime import datetime
 
 class Person(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
+    phone = PhoneNumberField(null=True, blank=True)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
