@@ -9,7 +9,6 @@ from wagtail.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.panels import FieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 from events.models import Event
-from wagtail.admin.forms import WagtailAdminPageForm
 
 
 class NewsIndexPage(Page):
@@ -40,7 +39,9 @@ class NewsIndexPage(Page):
 #     def save(self, commit=True):
 #         page = super().save(commit=False)
 #         # created_datetime = page.save_revision().created_at
-#         # upcoming_events = Event.objects.filter(date__range=(created_datetime, created_datetime + datetime.timedelta(days=7)))
+# upcoming_events = Event.objects.filter(
+#     date__range=(created_datetime, created_datetime + datetime.timedelta(days=7))
+# )
 #         # Update the duration field from the submitted dates
 #         page.related_stories = [
 #             (
