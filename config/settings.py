@@ -47,6 +47,7 @@ class Base(Configuration):
         "django.forms",
     ]
     THIRD_PARTY_APPS = [
+        "phonenumber_field",
         "crispy_forms",
         "allauth",
         "allauth.account",
@@ -82,7 +83,6 @@ class Base(Configuration):
         "stl_dsa.users",
         "events",
         "committees",
-        "phonenumber_field",
         "news",
     ]
     INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
