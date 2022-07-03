@@ -207,7 +207,7 @@ h4 {
   font-family: "Manifold DSA", Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
 }
 
-#campaignheader, #hdrnav, #mainmenu .burger span, .stronglink {
+.header-logo-text, #campaignheader, #hdrnav, #mainmenu .burger span, .stronglink {
   font-family: "Styrene B", sans-serif;
 }
 
@@ -913,10 +913,7 @@ form fieldset + fieldset {
 }
 
 button {
-  background-color: #ddd;
-  border: 1px solid #a0a0a0;
   padding: 0.5em 1em;
-  font-size: 1.25em;
 }
 button:hover {
   background-color: #fafafa;
@@ -2194,11 +2191,12 @@ header button {
 
 .header-logo-text {
   color: #241f20;
-  font-weight: 600;
+  font-weight: 700;
+  padding-top: 0.5rem;
 }
 @media screen and ( max-width: 1024px ) {
   .header-logo-text {
-    font-size: 1rem;
+    font-size: 2rem;
   }
 }
 @media screen and (max-width: 400px) {

@@ -905,11 +905,8 @@ form {
   }
 }
 button {
-  background-color: $white-dark-3x;
-  border: 1px solid $gray;
   padding: 0.5em 1em;
   //margin: 1em 0;
-  font-size: $text-xl;
   &:hover {
     background-color: $white-dark-1x;
     border-color: $black-light-2x;
@@ -2256,10 +2253,12 @@ header button {
 
 .header-logo-text {
   color: $dsablack;
-  font-weight: 600;
+  font-weight: 700;
+  padding-top: .5rem;
+  @extend %font-styrene;
 
   @media #{$mobile-query} {
-    font-size: 1rem;
+    font-size: 2rem;
   }
 
   @media screen and (max-width: 400px) {
