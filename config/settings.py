@@ -72,7 +72,6 @@ class Base(Configuration):
         "modelcluster",
         "taggit",
         "wagtailfontawesome",
-        "wagtail_blocks",
         "wagtailmenus",
     ]
 
