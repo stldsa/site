@@ -28,7 +28,7 @@ $gray: #a0a0a0;
 $black: #000;
 $black-light-1x: #323232;
 $black-light-2x: #6d6d6d;
-$dsared: #e70109;
+$dsared: #ec1f27;
 $darkdsared: #9f0005;
 $dsalightred: #ffe2d6;
 $dsablack: #241f20;
@@ -288,7 +288,7 @@ h2,
 h3,
 h4 {
   display: block;
-  @extend %font-styrene;
+  @extend %font-manifold;
   margin: 1em 0 1em;
   font-weight: 400;
   font-weight: bold;
@@ -299,7 +299,7 @@ $h1: $text-4xl;
 h1 {
   font-size: 36px;
   font-weight: 700;
-  color: $dsablack;
+  color: $dsared;
   //	border-bottom: 2px solid $dsared;
 }
 h2 {
@@ -1097,6 +1097,7 @@ textarea {
   line-height: 1.25;
 }
 main {
+  background-color: #F6F4E7;
   // border: solid $dsalitegrey;
   // border-width: 0px 2px;
 

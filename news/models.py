@@ -35,30 +35,6 @@ class NewsIndexPage(Page):
         return context
 
 
-# class NewsPageForm(WagtailAdminPageForm):
-#     def save(self, commit=True):
-#         page = super().save(commit=False)
-#         # created_datetime = page.save_revision().created_at
-# upcoming_events = Event.objects.filter(
-#     date__range=(created_datetime, created_datetime + datetime.timedelta(days=7))
-# )
-#         # Update the duration field from the submitted dates
-#         page.related_stories = [
-#             (
-#                 "related_story",
-#                 [
-#                     ("heading", "TestHeading"),
-#                     ("paragraph", "this is a test p"),
-#                     ("image", None),
-#                 ],
-#             )
-#         ]
-
-#         if commit:
-#             page.save()
-#         return page
-
-
 def upcoming_events_as_related_stories():
     return [
         ("related_story", {"heading": event.title, "paragraph": event.description})
@@ -74,8 +50,14 @@ def upcoming_events_as_related_stories():
 
 
 class NewsPage(Page):
-    main_story_image = models.ImageField(null=True)
-    main_story_header = models.CharField(max_length=500, null=True, blank=True)
+    main_story_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    main_story_heading = models.CharField(max_length=500, null=True, blank=True)
     main_story_copy = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
     related_stories = StreamField(
@@ -84,8 +66,8 @@ class NewsPage(Page):
                 "related_story",
                 blocks.StructBlock(
                     [
-                        ("heading", blocks.CharBlock(form_classname="full title")),
-                        ("paragraph", blocks.TextBlock()),
+                        ("heading", blocks.CharBlock()),
+                        ("copy", blocks.TextBlock()),
                         ("image", ImageChooserBlock()),
                     ],
                 ),
@@ -94,10 +76,6 @@ class NewsPage(Page):
         null=True,
         blank=True,
         collapsed=False,
-        # default=[
-        #     ("related_story", {"heading": "1", "paragraph": "this is p1"}),
-        #     ("related_story", {"heading": "2", "paragraph": "this is p1"}),
-        # ],
         default=upcoming_events_as_related_stories,
         use_json_field=True,
     )
@@ -108,35 +86,11 @@ class NewsPage(Page):
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel("main_story_header"),
+        FieldPanel("main_story_image"),
+        FieldPanel("main_story_heading"),
         FieldPanel("main_story_copy", classname="full"),
         FieldPanel("related_stories"),
     ]
-
-    # base_form_class = NewsPageForm
-
-
-# class RelatedStory(models.Model):
-#     title = models.CharField(max_length=255, null=True)
-#     link_external = models.URLField("External link", null=True, blank=True)
-#     description = models.TextField(null=True, blank=True)
-#     image = models.ImageField(null=True, blank=True)
-
-#     panels = [
-#         FieldPanel("title"),
-#         FieldPanel("link_external"),
-#         FieldPanel("description"),
-#         FieldPanel("image"),
-#     ]
-
-#     class Meta:
-#         abstract = True
-
-
-# class NewsPageRelatedStories(Orderable, RelatedStory):
-#     news_page = ParentalKey(
-#         NewsPage, on_delete=models.CASCADE, related_name="related_stories"
-#     )
 
 
 class InfoPage(Page):

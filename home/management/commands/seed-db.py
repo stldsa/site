@@ -63,7 +63,18 @@ class Command(BaseCommand):
         NewsPage = apps.get_model("news.NewsPage")
         newspage = NewsPage(
             title=fake.sentence(),
-            body=fake.paragraph(30),
+            main_story_header=fake.sentence(),
+            main_story_copy=fake.paragraph(10),
+            related_stories=[
+                (
+                    "related_story",
+                    {"heading": fake.sentence(4), "copy": fake.paragraph(5)},
+                ),
+                (
+                    "related_story",
+                    {"heading": fake.sentence(4), "copy": fake.paragraph(4)},
+                ),
+            ],
             show_in_menus=False,
         )
         newsindexpage.add_child(instance=newspage)
