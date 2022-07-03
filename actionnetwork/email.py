@@ -11,7 +11,7 @@ def create(subject, body, from_, reply_to, api_token):
             "from": from_,
             "reply_to": reply_to,
         },
-    )
+    ).json()
 
 
 def schedule(endpoint, scheduled_start_date, api_token):

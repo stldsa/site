@@ -36,13 +36,13 @@ def schedule_send(sender, **kwargs):
 @receiver(page_published, sender=NewsPage)
 def create_email(sender, **kwargs):
     newspage = kwargs["instance"]
-    data = email.create(
+    response = email.create(
         newspage.title,
         newspage.body,
         "STL DSA",
         "info@stldsa.org",
         settings.ACTIONNETWORK_API_KEYS["main"],
     )
-    action_network_href = data.json()["_links"]["self"]["href"]
+    action_network_href = response["_links"]["self"]["href"]
     newspage.action_network_href = action_network_href
     newspage.save()
