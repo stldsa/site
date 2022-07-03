@@ -98,6 +98,7 @@ class NewsPage(Page):
         #     ("related_story", {"heading": "2", "paragraph": "this is p1"}),
         # ],
         default=upcoming_events_as_related_stories,
+        use_json_field=True,
     )
 
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
@@ -140,7 +141,10 @@ class NewsPage(Page):
 class InfoPage(Page):
     body = RichTextField(blank=True)
     additional_content = StreamField(
-        [("embed", blocks.RawHTMLBlock())], null=True, blank=True
+        [("embed", blocks.RawHTMLBlock())],
+        null=True,
+        blank=True,
+        use_json_field=True,
     )
 
     search_fields = Page.search_fields + [
@@ -188,6 +192,7 @@ class DocumentPage(Page):
             )
         ],
         blank=True,
+        use_json_field=True,
     )
 
     content_panels = Page.content_panels + [

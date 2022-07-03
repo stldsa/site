@@ -1,12 +1,12 @@
 # The base image we want to inherit from
-FROM python:3.9.6-slim-buster as py-base
+FROM python:3.10.4-slim-buster as py-base
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.1.8 \
+    POETRY_VERSION=1.1.13 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     build-essential \
     curl \
     libpq-dev \
-    python3-dev
+    python3-dev \
+    git
 
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 

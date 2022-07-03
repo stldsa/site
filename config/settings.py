@@ -59,6 +59,7 @@ class Base(Configuration):
         "wagtail_localize.locales",
         "wagtail.contrib.forms",
         "wagtail.contrib.redirects",
+        "wagtail.contrib.modeladmin",
         "wagtail.embeds",
         "wagtail.sites",
         "wagtail.users",

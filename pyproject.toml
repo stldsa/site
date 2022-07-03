@@ -63,6 +63,7 @@ addopts = "-ra -q --disable-socket --no-migrations"
 DJANGO_SETTINGS_MODULE = "config.settings"
 DJANGO_CONFIGURATION = "Test"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
+filterwarnings = ["ignore::django.utils.deprecation.RemovedInDjango40Warning"]
 
 [tool.flake8]
 max-line-length = 88
