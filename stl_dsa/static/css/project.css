@@ -204,7 +204,7 @@ button {
 h2,
 h3,
 h4 {
-  font-family: "Styrene B", sans-serif;
+  font-family: "ManifoldDSA", sans-serif;
 }
 
 img {
@@ -214,7 +214,7 @@ img {
 }
 
 body {
-  font: 400 1em/1 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 400 1em/1 "Roboto Slab", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #323232;
   margin-bottom: 40px;
 }
