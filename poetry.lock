@@ -2195,18 +2195,6 @@ docs = ["pyenchant (>=3.1.1,<4)", "sphinxcontrib-spelling (>=5.4.0,<6)", "Sphinx
 testing = ["python-dateutil (>=2.7)", "pytz (>=2014.7)", "elasticsearch (>=5.0,<6.0)", "Jinja2 (>=3.0,<3.2)", "boto3 (>=1.16,<1.17)", "freezegun (>=0.3.8)", "openpyxl (>=2.6.4)", "azure-mgmt-cdn (>=5.1,<6.0)", "azure-mgmt-frontdoor (>=0.3,<0.4)", "django-pattern-library (>=0.7,<0.8)", "coverage (>=3.7.0)", "black (==22.3.0)", "flake8 (>=3.6.0)", "isort (==5.6.4)", "flake8-blind-except (==0.1.1)", "flake8-comprehensions (==3.8.0)", "flake8-print (==2.0.2)", "doc8 (==0.8.1)", "flake8-assertive (==2.0.0)", "curlylint (==0.13.1)", "djhtml (==1.4.13)", "polib (>=1.1,<2.0)"]
 
 [[package]]
-name = "wagtail-blocks"
-version = "0.7.2"
-description = "A Collection of awesome Wagtail CMS stream-field blocks and Charts"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-wagtail = ">=2.8.1"
-wagtailfontawesome = ">=1.1.4"
-
-[[package]]
 name = "wagtail-localize"
 version = "1.2.1"
 description = "Translation plugin for Wagtail CMS"
@@ -2361,7 +2349,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.10.4"
-content-hash = "358996229daad3c6bc38f466063119f38858fe7bc1ee84a4e51feb4d81a8b54e"
+content-hash = "3035257e799c31235bd16ad38f8991b34020a4ad085dc52795d318490d617eb4"
 
 [metadata.files]
 anyascii = [
@@ -3708,9 +3696,6 @@ virtualenv = [
 wagtail = [
     {file = "wagtail-3.0.1-py3-none-any.whl", hash = "sha256:107d7a1ac9a4fde0fa2e454cc84f548dc41581cc627881abf4bbac3d5a30244c"},
     {file = "wagtail-3.0.1.tar.gz", hash = "sha256:917393fcea8644734beb323d607e02e4316370982ba0b4ea689a576567247bc8"},
-]
-wagtail-blocks = [
-    {file = "wagtail_blocks-0.7.2.tar.gz", hash = "sha256:890e5ef665de5f98e87884ee0455dbf2b39d0c96705e6d46d20b46777f485e5f"},
 ]
 wagtail-localize = [
     {file = "wagtail-localize-1.2.1.tar.gz", hash = "sha256:7873ec1b7b85d092f2070667286b96a1202a5362cbb9dce9905c9521af5224ad"},
