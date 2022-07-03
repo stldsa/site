@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.db import models
 from committees.models import CommitteePage
+from wagtail.models import Page
 from wagtailmenus.models import AbstractLinkPage
 from wagtail.admin.panels import FieldPanel
 
@@ -39,4 +40,4 @@ class Event(models.Model):
 
 
 class EventsPage(AbstractLinkPage):
-    pass
+    search_fields = Page.search_fields
