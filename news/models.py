@@ -74,8 +74,9 @@ def upcoming_events_as_related_stories():
 
 
 class NewsPage(Page):
-    heading = models.CharField(max_length=500, null=True, blank=True)
-    body = RichTextField(blank=True)
+    main_story_image = models.ImageField(null=True)
+    main_story_header = models.CharField(max_length=500, null=True, blank=True)
+    main_story_copy = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
     related_stories = StreamField(
         [
@@ -103,12 +104,12 @@ class NewsPage(Page):
 
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
     search_fields = Page.search_fields + [
-        index.SearchField("body"),
+        index.SearchField("main_story_copy"),
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel("heading"),
-        FieldPanel("body", classname="full"),
+        FieldPanel("main_story_header"),
+        FieldPanel("main_story_copy", classname="full"),
         FieldPanel("related_stories"),
     ]
 
