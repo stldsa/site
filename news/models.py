@@ -37,7 +37,7 @@ class NewsIndexPage(Page):
 
 def upcoming_events_as_related_stories():
     return [
-        ("related_story", {"heading": event.title, "paragraph": event.description})
+        ("related_story", {"heading": event.title, "copy": event.description})
         for event in list(
             Event.objects.filter(
                 start__range=(
