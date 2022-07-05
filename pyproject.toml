@@ -35,6 +35,8 @@ psycopg2 = "^2.9.3"
 black = "^22.3.0"
 django-phonenumber-field = "^6.3.0"
 phonenumbers = "^8.12.51"
+django-storages = "^1.12.3"
+python-decouple = "^3.6"
 
 [tool.poetry.dev-dependencies]
 psycopg2-binary = "^2.8.5"
