@@ -78,7 +78,7 @@ class NewsPage(Page):
         null=True,
         blank=True,
         collapsed=False,
-        default=upcoming_events_as_related_stories,
+        # default=upcoming_events_as_related_stories,
         use_json_field=True,
     )
 
