@@ -7,7 +7,6 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.panels import FieldPanel
-from wagtail.images.blocks import ImageChooserBlock
 from events.models import Event
 
 
@@ -68,10 +67,10 @@ class NewsPage(Page):
                     [
                         ("heading", blocks.CharBlock()),
                         ("copy", blocks.TextBlock()),
-                        (
-                            "image",
-                            ImageChooserBlock(),
-                        ),
+                        # (
+                        #     "image",
+                        #     ImageChooserBlock(),
+                        # ),
                     ],
                 ),
             )
@@ -125,7 +124,6 @@ class DocumentPage(Page):
                     [
                         ("header", CharBlock()),
                         ("text", blocks.RichTextBlock()),
-                        ("image", ImageChooserBlock()),
                         ("quote", BlockQuoteBlock()),
                         (
                             "subsection",
