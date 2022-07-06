@@ -423,3 +423,5 @@ class Production(Base):
     PRIVATE_MEDIA_DEFAULT_ACL = "private"
     PRIVATE_MEDIA_LOCATION = "media/private"
     PRIVATE_FILE_STORAGE = "stl_dsa.utils.storage_backends.PrivateMediaStorage"
+
+    WAGTAILDOCS_SERVE_METHOD = "direct"
