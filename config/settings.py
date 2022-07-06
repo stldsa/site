@@ -134,7 +134,7 @@ class Base(Configuration):
 
     # MEDIA
     # ------------------------------------------------------------------------------
-    MEDIA_ROOT = str(APPS_DIR.path("media"))
+    MEDIA_ROOT = str(BASE_DIR.path("media"))
     MEDIA_URL = "/media/"
 
     # TEMPLATES
