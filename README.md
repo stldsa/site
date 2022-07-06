@@ -8,7 +8,7 @@ Welcome to the codebase for the St Louis DSA website! We hope this guide will ma
 
 If you know what you're doing and ready to jump in:
 
-    $ docker-compose up
+    $ docker compose up
 
 ## Before You Begin
 
