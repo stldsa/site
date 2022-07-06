@@ -123,7 +123,7 @@ class Base(Configuration):
     ]
 
     # STATIC
-    STATIC_ROOT = BASE_DIR / "staticfiles"
+    STATIC_ROOT = str(BASE_DIR.path("staticfiles"))
     STATIC_URL = "/staticfiles/"
     STATICFILES_DIRS = [str(APPS_DIR.path("static"))]
     STATICFILES_FINDERS = [
@@ -133,7 +133,7 @@ class Base(Configuration):
 
     # MEDIA
     # ------------------------------------------------------------------------------
-    MEDIA_ROOT = BASE_DIR / "media"
+    MEDIA_ROOT = str(BASE_DIR.path("media"))
     MEDIA_URL = "/media/"
 
     # TEMPLATES

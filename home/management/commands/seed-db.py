@@ -63,7 +63,7 @@ class Command(BaseCommand):
         NewsPage = apps.get_model("news.NewsPage")
         newspage = NewsPage(
             title=fake.sentence(),
-            main_story_header=fake.sentence(),
+            main_story_heading=fake.sentence(),
             main_story_copy=fake.paragraph(10),
             related_stories=[
                 (
