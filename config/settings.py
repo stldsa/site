@@ -437,9 +437,3 @@ class Production(Base):
             }
         ]
     }
-
-    # Set the CORS configuration
-    s3 = boto3.client("s3")
-    s3.put_bucket_cors(
-        Bucket=AWS_STORAGE_BUCKET_NAME, CORSConfiguration=cors_configuration
-    )
