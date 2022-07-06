@@ -15,33 +15,33 @@ from events.api import urls as events_api_urls
 # from sphinxdoc import urls as sphinxdoc_urls
 
 
-urlpatterns = [
-    # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    # Django Admin, use {% url 'admin:index' %}
-    path(settings.ADMIN_URL, admin.site.urls),
-    path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
-    path("signup/", UserSignupView.as_view(), name="account_signup"),
-    path("login/", UserLoginView.as_view(), name="account_login"),
-    path("", include("allauth.urls")),
-    path("events/", include("events.urls")),
-    path(
-        "fullcalendar/",
-        TemplateView.as_view(template_name="fullcalendar.html"),
-        name="fullcalendar",
-    ),
-    path("api/", include(events_api_urls)),
-    path("auth-token/", obtain_auth_token),
-    # re_path(r"^docs/", include(sphinxdoc_urls)),
-    path("cms/", include(wagtailadmin_urls)),
-    path("documents/", include(wagtaildocs_urls)),
-] + i18n_patterns(
-    # path("search/", search_views.search, name="search"),
-    path("", include(wagtail_urls)),
+urlpatterns = (
+    [
+        # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+        # Django Admin, use {% url 'admin:index' %}
+        path(settings.ADMIN_URL, admin.site.urls),
+        path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
+        path("signup/", UserSignupView.as_view(), name="account_signup"),
+        path("login/", UserLoginView.as_view(), name="account_login"),
+        path("", include("allauth.urls")),
+        path("events/", include("events.urls")),
+        path(
+            "fullcalendar/",
+            TemplateView.as_view(template_name="fullcalendar.html"),
+            name="fullcalendar",
+        ),
+        path("api/", include(events_api_urls)),
+        path("auth-token/", obtain_auth_token),
+        # re_path(r"^docs/", include(sphinxdoc_urls)),
+        path("cms/", include(wagtailadmin_urls)),
+        path("documents/", include(wagtaildocs_urls)),
+    ]
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    + i18n_patterns(
+        # path("search/", search_views.search, name="search"),
+        path("", include(wagtail_urls)),
+    )
 )
-
-
-if settings.LOCAL_SERVE_STATIC_FILES:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.LOCAL_SERVE_MEDIA_FILES:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

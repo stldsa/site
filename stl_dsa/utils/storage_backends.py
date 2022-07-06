@@ -2,7 +2,6 @@
 
 from django.conf import settings
 from storages.backends.s3boto3 import S3Boto3Storage
-from django.core.files.storage import get_storage_class
 
 
 # class StaticStorage(S3Boto3Storage):
@@ -32,7 +31,7 @@ class PrivateMediaStorage(S3Boto3Storage):
     custom_domain = False
 
 
-def select_private_storage():
-    # important
-    private_storage_class = get_storage_class(settings.PRIVATE_FILE_STORAGE)
-    return private_storage_class()  # instantiate the storage
+# def select_private_storage():
+#     # important
+#     private_storage_class = get_storage_class(settings.PRIVATE_FILE_STORAGE)
+#     return private_storage_class()  # instantiate the storage

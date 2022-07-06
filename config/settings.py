@@ -279,6 +279,7 @@ class Dev(Base):
         "--allow-root",
         "--no-browser",
     ]
+    LOCAL_SERVE_MEDIA_FILES = True
 
 
 class Local(Dev):

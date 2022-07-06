@@ -9,7 +9,6 @@ from wagtail.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.panels import FieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 from events.models import Event
-from stl_dsa.utils.storage_backends import select_private_storage
 
 
 class NewsIndexPage(Page):
@@ -69,7 +68,10 @@ class NewsPage(Page):
                     [
                         ("heading", blocks.CharBlock()),
                         ("copy", blocks.TextBlock()),
-                        ("image", ImageChooserBlock(storage=select_private_storage)),
+                        (
+                            "image",
+                            ImageChooserBlock(),
+                        ),
                     ],
                 ),
             )
