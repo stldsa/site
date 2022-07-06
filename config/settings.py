@@ -403,6 +403,8 @@ class Production(Base):
 
     DATABASES = {"default": dj_database_url.config(conn_max_age=600, ssl_require=True)}
 
+    LOCAL_SERVE_MEDIA_FILES = False
+
     PUBLIC_MEDIA_DEFAULT_ACL = "public-read"
     PUBLIC_MEDIA_LOCATION = "media/public"
 
