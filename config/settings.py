@@ -415,7 +415,7 @@ class Production(Base):
     AWS_S3_REGION_NAME = config("BUCKETEER_AWS_REGION")
     AWS_DEFAULT_ACL = None
     AWS_S3_ENDPOINT_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400", "ACL": "public-read"}
 
     MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/"
     DEFAULT_FILE_STORAGE = "stl_dsa.utils.storage_backends.PublicMediaStorage"
@@ -423,17 +423,3 @@ class Production(Base):
     PRIVATE_MEDIA_DEFAULT_ACL = "private"
     PRIVATE_MEDIA_LOCATION = "media/private"
     PRIVATE_FILE_STORAGE = "stl_dsa.utils.storage_backends.PrivateMediaStorage"
-
-    ALLOWED_HOSTS += [AWS_S3_ENDPOINT_URL]
-
-    CORS_CONFIGURATION = {
-        "CORSRules": [
-            {
-                "AllowedHeaders": ["Authorization"],
-                "AllowedMethods": ["GET", "PUT"],
-                "AllowedOrigins": ALLOWED_HOSTS,
-                "ExposeHeaders": ["ETag", "x-amz-request-id"],
-                "MaxAgeSeconds": 3000,
-            }
-        ]
-    }
