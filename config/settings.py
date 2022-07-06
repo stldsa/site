@@ -1,6 +1,7 @@
 # mysite/settings.py
 from configurations import Configuration, values
 from decouple import config
+import boto3
 
 import os
 import json
@@ -424,3 +425,21 @@ class Production(Base):
     PRIVATE_FILE_STORAGE = "stl_dsa.utils.storage_backends.PrivateMediaStorage"
 
     ALLOWED_HOSTS += [AWS_S3_ENDPOINT_URL]
+
+    cors_configuration = {
+        "CORSRules": [
+            {
+                "AllowedHeaders": ["Authorization"],
+                "AllowedMethods": ["GET", "PUT"],
+                "AllowedOrigins": ALLOWED_HOSTS,
+                "ExposeHeaders": ["ETag", "x-amz-request-id"],
+                "MaxAgeSeconds": 3000,
+            }
+        ]
+    }
+
+    # Set the CORS configuration
+    s3 = boto3.client("s3")
+    s3.put_bucket_cors(
+        Bucket=AWS_STORAGE_BUCKET_NAME, CORSConfiguration=cors_configuration
+    )
