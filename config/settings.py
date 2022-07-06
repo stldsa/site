@@ -406,7 +406,7 @@ class Production(Base):
 
     LOCAL_SERVE_MEDIA_FILES = False
 
-    PUBLIC_MEDIA_DEFAULT_ACL = "public-read"
+    PUBLIC_MEDIA_DEFAULT_ACL = "bucket-owner-full-control"
     PUBLIC_MEDIA_LOCATION = "media/public"
 
     AWS_ACCESS_KEY_ID = config("BUCKETEER_AWS_ACCESS_KEY_ID")
