@@ -414,7 +414,8 @@ class Production(Base):
     AWS_STORAGE_BUCKET_NAME = config("BUCKETEER_BUCKET_NAME")
     S3_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
     AWS_S3_REGION_NAME = config("BUCKETEER_AWS_REGION")
-    AWS_DEFAULT_ACL = None
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_SIGNATURE_VERSION = config("S3_SIGNATURE_VERSION", default="s3v4")
     AWS_S3_ENDPOINT_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400", "ACL": "public-read"}
 
