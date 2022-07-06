@@ -426,7 +426,7 @@ class Production(Base):
 
     ALLOWED_HOSTS += [AWS_S3_ENDPOINT_URL]
 
-    cors_configuration = {
+    CORS_CONFIGURATION = {
         "CORSRules": [
             {
                 "AllowedHeaders": ["Authorization"],
