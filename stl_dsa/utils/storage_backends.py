@@ -2,13 +2,14 @@
 
 from django.conf import settings
 from storages.backends.s3boto3 import S3Boto3Storage
+from django.core.files.storage import get_storage_class
 
 
-class StaticStorage(S3Boto3Storage):
-    """Used to manage static files for the web server"""
+# class StaticStorage(S3Boto3Storage):
+#     """Used to manage static files for the web server"""
 
-    location = settings.STATIC_LOCATION
-    default_acl = settings.STATIC_DEFAULT_ACL
+#     location = settings.STATIC_LOCATION
+#     default_acl = settings.STATIC_DEFAULT_ACL
 
 
 class PublicMediaStorage(S3Boto3Storage):
@@ -29,3 +30,9 @@ class PrivateMediaStorage(S3Boto3Storage):
     default_acl = settings.PRIVATE_MEDIA_DEFAULT_ACL
     file_overwrite = False
     custom_domain = False
+
+
+def select_private_storage():
+    # important
+    private_storage_class = get_storage_class(settings.PRIVATE_FILE_STORAGE)
+    return private_storage_class()  # instantiate the storage

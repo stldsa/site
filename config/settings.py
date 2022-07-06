@@ -133,7 +133,7 @@ class Base(Configuration):
 
     # MEDIA
     # ------------------------------------------------------------------------------
-    MEDIA_ROOT = str(BASE_DIR.path("media"))
+    MEDIA_ROOT = str(APPS_DIR.path("media"))
     MEDIA_URL = "/media/"
 
     # TEMPLATES
@@ -281,13 +281,15 @@ class Dev(Base):
     ]
 
     # The following configs determine if files get served from the server or an S3 storage
-    S3_ENABLED = config("S3_ENABLED", cast=bool, default=False)
+    # S3_ENABLED = config("S3_ENABLED", cast=bool, default=False)
+    S3_ENABLED = True
     LOCAL_SERVE_MEDIA_FILES = config(
         "LOCAL_SERVE_MEDIA_FILES", cast=bool, default=not S3_ENABLED
     )
-    LOCAL_SERVE_STATIC_FILES = config(
-        "LOCAL_SERVE_STATIC_FILES", cast=bool, default=not S3_ENABLED
-    )
+    # LOCAL_SERVE_STATIC_FILES = config(
+    #     "LOCAL_SERVE_STATIC_FILES", cast=bool, default=not S3_ENABLED
+    # )
+    LOCAL_SERVE_STATIC_FILES = True
 
     if (not LOCAL_SERVE_MEDIA_FILES or not LOCAL_SERVE_STATIC_FILES) and not S3_ENABLED:
         raise ValueError(
@@ -300,7 +302,6 @@ class Dev(Base):
         AWS_STORAGE_BUCKET_NAME = config("BUCKETEER_BUCKET_NAME")
         AWS_S3_REGION_NAME = config("BUCKETEER_AWS_REGION")
         AWS_DEFAULT_ACL = None
-        AWS_S3_SIGNATURE_VERSION = config("S3_SIGNATURE_VERSION", default="s3v4")
         AWS_S3_ENDPOINT_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
         AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
