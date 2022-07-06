@@ -412,12 +412,12 @@ class Production(Base):
     AWS_ACCESS_KEY_ID = config("BUCKETEER_AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = config("BUCKETEER_AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = config("BUCKETEER_BUCKET_NAME")
+    S3_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
     AWS_S3_REGION_NAME = config("BUCKETEER_AWS_REGION")
     AWS_DEFAULT_ACL = None
     AWS_S3_ENDPOINT_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
     AWS_S3_OBJECT_PARAMETERS = {
         "CacheControl": "max-age=86400",
-        "ACL": "bucket-owner-full-control",
     }
 
     MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/"
