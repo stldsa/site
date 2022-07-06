@@ -283,9 +283,10 @@ class Dev(Base):
     # The following configs determine if files get served from the server or an S3 storage
     # S3_ENABLED = config("S3_ENABLED", cast=bool, default=False)
     S3_ENABLED = True
-    LOCAL_SERVE_MEDIA_FILES = config(
-        "LOCAL_SERVE_MEDIA_FILES", cast=bool, default=not S3_ENABLED
-    )
+    # LOCAL_SERVE_MEDIA_FILES = config(
+    #     "LOCAL_SERVE_MEDIA_FILES", cast=bool, default=not S3_ENABLED
+    # )
+    LOCAL_SERVE_MEDIA_FILES = False
     # LOCAL_SERVE_STATIC_FILES = config(
     #     "LOCAL_SERVE_STATIC_FILES", cast=bool, default=not S3_ENABLED
     # )
