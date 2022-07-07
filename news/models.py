@@ -53,8 +53,8 @@ def upcoming_events_as_related_stories():
 
 
 class RelatedStoryBlock(blocks.StructBlock):
-    heading = blocks.CharBlock()
-    copy = blocks.TextBlock()
+    heading = blocks.CharBlock(required=False)
+    copy = blocks.TextBlock(required=False)
     image = ImageChooserBlock(required=False)
 
 
@@ -75,7 +75,7 @@ class NewsPage(Page):
         blank=True,
         collapsed=False,
         default=upcoming_events_as_related_stories,
-        use_json_field=True,
+        use_json_field=False,
     )
 
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
@@ -97,7 +97,7 @@ class InfoPage(Page):
         [("embed", blocks.RawHTMLBlock())],
         null=True,
         blank=True,
-        use_json_field=True,
+        use_json_field=False,
     )
 
     search_fields = Page.search_fields + [
@@ -144,7 +144,7 @@ class DocumentPage(Page):
             )
         ],
         blank=True,
-        use_json_field=True,
+        use_json_field=False,
     )
 
     content_panels = Page.content_panels + [
