@@ -7,6 +7,7 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.panels import FieldPanel
+from wagtail.images.blocks import ImageChooserBlock
 from events.models import Event
 
 
@@ -36,7 +37,10 @@ class NewsIndexPage(Page):
 
 def upcoming_events_as_related_stories():
     return [
-        ("related_story", {"heading": event.title, "copy": event.description})
+        (
+            "related_story",
+            {"heading": event.title, "copy": event.description, "image": None},
+        )
         for event in list(
             Event.objects.filter(
                 start__range=(
@@ -59,28 +63,28 @@ class NewsPage(Page):
     main_story_heading = models.CharField(max_length=500, null=True, blank=True)
     main_story_copy = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
-    # related_stories = StreamField(
-    #     [
-    #         (
-    #             "related_story",
-    #             blocks.StructBlock(
-    #                 [
-    #                     ("heading", blocks.CharBlock()),
-    #                     ("copy", blocks.TextBlock()),
-    #                     # (
-    #                     #     "image",
-    #                     #     ImageChooserBlock(),
-    #                     # ),
-    #                 ],
-    #             ),
-    #         )
-    #     ],
-    #     null=True,
-    #     blank=True,
-    #     collapsed=False,
-    #     # default=upcoming_events_as_related_stories,
-    #     use_json_field=True,
-    # )
+    related_stories = StreamField(
+        [
+            (
+                "related_story",
+                blocks.StructBlock(
+                    [
+                        ("heading", blocks.CharBlock()),
+                        ("copy", blocks.TextBlock()),
+                        (
+                            "image",
+                            ImageChooserBlock(),
+                        ),
+                    ],
+                ),
+            )
+        ],
+        null=True,
+        blank=True,
+        collapsed=False,
+        default=upcoming_events_as_related_stories,
+        use_json_field=True,
+    )
 
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
     search_fields = Page.search_fields + [
@@ -91,7 +95,7 @@ class NewsPage(Page):
         FieldPanel("main_story_image"),
         FieldPanel("main_story_heading"),
         FieldPanel("main_story_copy", classname="full"),
-        # FieldPanel("related_stories"),
+        FieldPanel("related_stories"),
     ]
 
 

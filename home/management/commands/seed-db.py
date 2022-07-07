@@ -68,11 +68,19 @@ class Command(BaseCommand):
             related_stories=[
                 (
                     "related_story",
-                    {"heading": fake.sentence(4), "copy": fake.paragraph(5)},
+                    {
+                        "heading": fake.sentence(4),
+                        "copy": fake.paragraph(5),
+                        "image": None,
+                    },
                 ),
                 (
                     "related_story",
-                    {"heading": fake.sentence(4), "copy": fake.paragraph(4)},
+                    {
+                        "heading": fake.sentence(4),
+                        "copy": fake.paragraph(4),
+                        "image": None,
+                    },
                 ),
             ],
             show_in_menus=False,
