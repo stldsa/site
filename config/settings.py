@@ -243,7 +243,6 @@ class Base(Configuration):
     )  # The default key is not real
     DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
     SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
-    WAGTAILADMIN_BASE_URL = "https://stldsa.org"
 
 
 class Dev(Base):
@@ -427,3 +426,8 @@ class Production(Base):
     PRIVATE_FILE_STORAGE = "stl_dsa.utils.storage_backends.PrivateMediaStorage"
 
     WAGTAILDOCS_SERVE_METHOD = "direct"
+    WAGTAILADMIN_BASE_URL = "https://stldsa.org"
+
+
+class Staging(Production):
+    WAGTAILADMIN_BASE_URL = "https://stldsa-staging.herokuapp.com"
