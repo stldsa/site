@@ -38,6 +38,7 @@ phonenumbers = "^8.12.51"
 django-storages = "^1.12.3"
 python-decouple = "^3.6"
 boto3 = "^1.24.23"
+django-render-block = "^0.9.1"
 
 [tool.poetry.dev-dependencies]
 psycopg2-binary = "^2.8.5"

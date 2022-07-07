@@ -7,6 +7,8 @@ from news.models import NewsPage
 from django.utils import timezone
 from wagtail.models import PageRevision
 from wagtail.signals import page_published
+from render_block import render_block_to_string
+import json
 
 
 @receiver(post_save, sender=PageRevision)
@@ -36,19 +38,23 @@ def schedule_send(sender, **kwargs):
 @receiver(page_published, sender=NewsPage)
 def create_email(sender, **kwargs):
     newspage = kwargs["instance"]
-    main_story_html = (
-        f"<h1>{newspage.main_story_heading}</h1><div>{newspage.main_story_copy}</div>"
-    )
+    revision = newspage.save_revision()
+    # main_story_html = (
+    #     f"<h1>{newspage.main_story_heading}</h1><div>{newspage.main_story_copy}</div>"
+    # )
 
-    def related_story_html(story):
-        return f'<div class="row"><div class="col-3"><img src="{story["image"]}"></div><div class="col"><h2>{story["heading"]}</h2><p>{story["copy"]}</p></div></div>'
+    # def related_story_html(story):
+    #     return f'<div class="row"><div class="col-sm-4 my-auto"><img src="https://bucketeer-addd2217-1ffa-41ff-b050-fd915562796e.s3.amazonaws.com/bucketeer-addd2217-1ffa-41ff-b050-fd915562796e/media/public/images/{story["image"]}"></div><div class="col"><h2>{story["heading"]}</h2><p>{story["copy"]}</p></div></div>'
 
-    related_stories_html = [
-        related_story_html(block.value) for block in newspage.related_stories
-    ]
+    # related_stories_html = [
+    #     related_story_html(block.value) for block in newspage.related_stories
+    # ]
     response = email.create(
         newspage.title,
-        main_story_html + "".join(related_stories_html),
+        # main_story_html + "".join(related_stories_html),
+        render_block_to_string(
+            "news/news_page.html", "content", context={"page": newspage}
+        ),
         "STL DSA",
         "info@stldsa.org",
         settings.ACTIONNETWORK_API_KEYS["main"],

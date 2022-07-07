@@ -559,6 +559,20 @@ Django = ">=2.2"
 redis = ">=3.0.0"
 
 [[package]]
+name = "django-render-block"
+version = "0.9.1"
+description = "Render a particular block from a template to a string."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+django = ">=2.2"
+
+[package.extras]
+dev = ["Jinja2 (>=2.8)"]
+
+[[package]]
 name = "django-rest-framework"
 version = "0.1.0"
 description = "alias."
@@ -2422,7 +2436,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.10.5"
-content-hash = "765493eddd81d1987bc96bbba3ed4f90a2ac564db9a82e57309f9a989614a8d0"
+content-hash = "5baa5e24a3a0aea5a8eda170def984d1f1aa8000f1f661f8998c7eb69fd11efe"
 
 [metadata.files]
 anyascii = [
@@ -2790,6 +2804,10 @@ django-phonenumber-field = [
 django-redis = [
     {file = "django-redis-4.12.1.tar.gz", hash = "sha256:306589c7021e6468b2656edc89f62b8ba67e8d5a1c8877e2688042263daa7a63"},
     {file = "django_redis-4.12.1-py3-none-any.whl", hash = "sha256:1133b26b75baa3664164c3f44b9d5d133d1b8de45d94d79f38d1adc5b1d502e5"},
+]
+django-render-block = [
+    {file = "django-render-block-0.9.1.tar.gz", hash = "sha256:a01bfdb839e2f6b3f88a99021597484392bbd15d084f9a796e3e5658bae800f4"},
+    {file = "django_render_block-0.9.1-py3-none-any.whl", hash = "sha256:fbdd8be56cefcfd794756a2e62117cc031f9c5de3ef4bb53e9a3f877a359a1a7"},
 ]
 django-rest-framework = [
     {file = "django-rest-framework-0.1.0.tar.gz", hash = "sha256:47a8f496fa69e3b6bd79f68dd7a1527d907d6b77f009e9db7cf9bb21cc565e4a"},
