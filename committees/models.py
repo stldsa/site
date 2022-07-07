@@ -70,7 +70,7 @@ class CommitteePage(Page):
     def get_context(self, request):
         context = super().get_context(request)
         context["upcoming_events"] = list(self.events.filter(start__gt=datetime.now()))
-        # embed_code = embeds["embed_standard_layout_only_styles"]
+        # embed_code =  embeds["embed_standard_layout_only_styles"]
         # context["embed_code"] = embed_code
 
         return context
