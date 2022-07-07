@@ -37,13 +37,10 @@ class NewsIndexPage(Page):
 
 def upcoming_events_as_related_stories():
     return [
-        {
-            "related_story": {
-                "heading": event.title,
-                "copy": event.description,
-                "image": None,
-            }
-        }
+        (
+            "related_story",
+            {"heading": event.title, "copy": event.description},
+        )
         for event in list(
             Event.objects.filter(
                 start__range=(
@@ -57,7 +54,7 @@ def upcoming_events_as_related_stories():
 
 class RelatedStoryBlock(blocks.StructBlock):
     heading = blocks.CharBlock()
-    copy = blocks.RichTextBlock()
+    copy = blocks.TextBlock()
     image = ImageChooserBlock(required=False)
 
 

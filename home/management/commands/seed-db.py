@@ -71,7 +71,6 @@ class Command(BaseCommand):
                     {
                         "heading": fake.sentence(4),
                         "copy": fake.paragraph(5),
-                        "image": None,
                     },
                 ),
                 (
@@ -79,7 +78,6 @@ class Command(BaseCommand):
                     {
                         "heading": fake.sentence(4),
                         "copy": fake.paragraph(4),
-                        "image": None,
                     },
                 ),
             ],
