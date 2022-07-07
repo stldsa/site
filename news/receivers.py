@@ -48,7 +48,7 @@ def create_email(sender, **kwargs):
     ]
     response = email.create(
         newspage.title,
-        main_story_html + sum(related_stories_html),
+        main_story_html + related_stories_html.join(),
         "STL DSA",
         "info@stldsa.org",
         settings.ACTIONNETWORK_API_KEYS["main"],
