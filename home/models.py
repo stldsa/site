@@ -33,7 +33,7 @@ class HomePage(Page):
             .exclude(title__icontains="members only")
             .order_by("start")[:4]
         )
-        context["update"] = NewsPage.objects.latest("-last_published_at")
+        context["update"] = NewsPage.objects.live().latest("last_published_at")
         return context
 
     def serve(self, request):
