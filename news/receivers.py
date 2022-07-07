@@ -38,7 +38,7 @@ def create_email(sender, **kwargs):
     newspage = kwargs["instance"]
     response = email.create(
         newspage.title,
-        newspage.body,
+        newspage.main_story_copy,
         "STL DSA",
         "info@stldsa.org",
         settings.ACTIONNETWORK_API_KEYS["main"],
