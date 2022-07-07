@@ -19,11 +19,6 @@ class NewsIndexPage(Page):
         "news.NewsPage",  # appname.ModelName
     ]
 
-    def get_children(self):
-        qs = super().get_children()
-        qs = qs.order_by("-last_published_at")
-        return qs
-
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
