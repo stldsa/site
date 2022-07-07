@@ -52,6 +52,12 @@ def upcoming_events_as_related_stories():
     ]
 
 
+class RelatedStoryBlock(blocks.StructBlock):
+    heading = blocks.CharBlock()
+    copy = blocks.RichTextBlock()
+    image = ImageChooserBlock(required=False)
+
+
 class NewsPage(Page):
     main_story_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -64,21 +70,7 @@ class NewsPage(Page):
     main_story_copy = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
     related_stories = StreamField(
-        [
-            (
-                "related_story",
-                blocks.StructBlock(
-                    [
-                        ("heading", blocks.CharBlock()),
-                        ("copy", blocks.TextBlock()),
-                        (
-                            "image",
-                            ImageChooserBlock(),
-                        ),
-                    ],
-                ),
-            )
-        ],
+        [("related_story", RelatedStoryBlock())],
         null=True,
         blank=True,
         collapsed=False,
