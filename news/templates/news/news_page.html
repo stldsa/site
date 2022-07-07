@@ -18,9 +18,7 @@
     {% for block in page.related_stories %}
         <div class="row">
             <div class="col-sm-4 my-auto">
-                {% image block.value.image scale-100 as photo %}
-                <img src="https://bucketeer-addd2217-1ffa-41ff-b050-fd915562796e.s3.amazonaws.com/bucketeer-addd2217-1ffa-41ff-b050-fd915562796e{{ photo.url }}" width="{{ photo.width }}"
-                    height="{{ photo.height }}" alt="test" />
+                {% image block.value.image scale-100 %}
             </div>
             <div class="col-sm">
                     <h3>{{ block.value.heading }}</h3>
