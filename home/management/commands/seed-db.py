@@ -113,7 +113,10 @@ class Command(BaseCommand):
                 future_event = Event(
                     title="Event Title",
                     description=fake.paragraph(),
-                    start=fake.future_datetime(tzinfo=datetime.timezone.utc),
+                    start=fake.future_datetime(
+                        end_date=datetime.timedelta(days=6),
+                        tzinfo=datetime.timezone.utc,
+                    ),
                     formation=formation,
                 )
                 future_event.save()
