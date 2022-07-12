@@ -5,6 +5,6 @@ from wagtail import hooks
 def show_my_profile_only(parent_page, pages, request):
     # If we're in the 'user-profiles' section, only show the user's own profile
     if parent_page.slug == "updates":
-        pages = pages.orderby("-first_published_at")
+        pages = pages.order_by("-first_published_at")
 
     return pages
