@@ -280,6 +280,7 @@ class Dev(Base):
         "--no-browser",
     ]
     LOCAL_SERVE_MEDIA_FILES = True
+    WAGTAILADMIN_BASE_URL = "http://localhost:8000"
 
 
 class Local(Dev):
@@ -309,8 +310,8 @@ class Test(Dev):
 
 class Production(Base):
     DEBUG = False
-    ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["*"])
-    CACHES = values.CacheURLValue("redis://127.0.0.1:6379/1")
+    ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
+    # CACHES = values.CacheURLValue("redis://127.0.0.1:6379/1")
 
     # SECURITY
     # ------------------------------------------------------------------------------
