@@ -46,7 +46,12 @@ The easiest way to get started with your local development environment is throug
 
  This creates two **containers** (again, one for the database and one for the web service), which are designed to be ephemeral, modifiable instantiations of the images. It also contains an additional temporary container to run database integrations using the `init-db.sh` script. The web and database containers will keep running so that a) the web service can access the database and b) and we can access the web server in our browser at [localhost:8000](http://localhost:8000). Go ahead and check it out! Magic!
  
- When you are done using the browser, you can run `docker-compose stop` if you want to stop the services, which will free up port 8000 and some memory. `docker-compose start` will spin it back up again. Run `docker-compose down` to stop *and* delete the containers (which will also delete the database). Or just keep it running forever! 🤷
+ When you are done using the browser, you can run `docker-compose stop django` if you want to stop the services, which will free up port 8000 and some memory. `docker-compose start django` will spin it back up again. 
+ 
+ > Note: specifying the service name `django` prevents the migration service from running again. 
+ 
+ Run `docker-compose down` to stop *and* delete all containers (which will also delete the database). Or just keep it running forever! 🤷
+
 
 If you're using [VS Code](https://code.visualstudio.com/) as your IDE, you can also perform many of these tasks with the Docker extension whenever you might prefer using a GUI. Additionally the repo includes a `.devcontainer` settings folder so you can try out VS Code's Development Containers feature, though developing in this environment hasn't been fully tested.
 
