@@ -11,7 +11,13 @@ def create(subject, body, from_, reply_to, api_token):
             "from": from_,
             "reply_to": reply_to,
         },
-    ).json()
+    )
+
+
+def edit(action_network_href, put_data, api_token):
+    return requests.put(
+        action_network_href, headers={"OSDI-API-Token": api_token}, data=put_data
+    )
 
 
 def schedule(endpoint, scheduled_start_date, api_token):

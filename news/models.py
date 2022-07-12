@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.conf import settings
 from wagtail.search import index
 from wagtail import blocks
 from wagtail.models import Page
@@ -9,6 +10,11 @@ from wagtail.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.panels import FieldPanel
 from wagtail.images.blocks import ImageChooserBlock
 from events.models import Event
+from actionnetwork import email
+from render_block import render_block_to_string
+from django.utils import timezone
+import polling2 as polling
+import requests
 
 
 class NewsIndexPage(Page):
@@ -89,6 +95,65 @@ class NewsPage(Page):
         FieldPanel("main_story_copy", classname="full"),
         FieldPanel("related_stories"),
     ]
+
+    def save(self, *args, **kwargs):
+        print(self.action_network_href)
+        if self.action_network_href:
+            email.edit(
+                self.action_network_href,
+                {
+                    "subject": self.title,
+                    "body": render_block_to_string(
+                        "news/news_page.html", "content", context={"page": self}
+                    ),
+                    "from": "STL DSA",
+                    "reply_to": "info@stldsa.org",
+                },
+                settings.ACTIONNETWORK_API_KEYS["main"],
+            )
+            print("email edited!!!")
+        else:
+            print("Pre-Create")
+            response = email.create(
+                self.title,
+                # main_story_html + "".join(related_stories_html),
+                render_block_to_string(
+                    "news/news_page.html", "content", context={"page": self}
+                ),
+                "STL DSA",
+                "info@stldsa.org",
+                settings.ACTIONNETWORK_API_KEYS["main"],
+            )
+            print("post_create")
+            action_network_href = response.json()["_links"]["self"]["href"]
+            print(action_network_href)
+            self.action_network_href = action_network_href
+
+        if self.go_live_at and self.go_live_at > timezone.now():
+            print("start polling")
+            polling.poll(
+                lambda: requests.get(
+                    self.action_network_href,
+                    headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS["main"]},
+                )
+                .json()
+                .get("total_targeted", 0)
+                > 0,
+                step=1,
+                timeout=10,
+                step_function=lambda step: step + 2,
+            )
+            print("email found and valid")
+            email.schedule(
+                f"{self.action_network_href}/schedule",
+                self.go_live_at,
+                settings.ACTIONNETWORK_API_KEYS["main"],
+            )
+            print("email scheduled")
+        print(self.action_network_href)
+        print("post-save-revision")
+        super().save(*args, **kwargs)  # Call the "real" save() method.
+        print("saved!")
 
 
 class InfoPage(Page):
