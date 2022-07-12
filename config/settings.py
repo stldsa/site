@@ -429,6 +429,9 @@ class Production(Base):
     WAGTAILDOCS_SERVE_METHOD = "direct"
     WAGTAILADMIN_BASE_URL = "https://stldsa.org"
 
+    MIDDLEWARE_CLASSES = "raygun4py.middleware.django.Provider"
+    RAYGUN4PY_API_KEY = "ocPGkwhkAFhhkFnvyGCNOg"
+
 
 class Staging(Production):
     WAGTAILADMIN_BASE_URL = "https://stldsa-staging.herokuapp.com"
