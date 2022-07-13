@@ -80,7 +80,7 @@ class NewsPage(Page):
         null=True,
         blank=True,
         collapsed=False,
-        # default=upcoming_events_as_related_stories,
+        default=upcoming_events_as_related_stories,
         use_json_field=True,
     )
 
@@ -90,7 +90,9 @@ class NewsPage(Page):
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel("main_story_image"),
+        FieldPanel(
+            "main_story_image",
+        ),
         FieldPanel("main_story_heading"),
         FieldPanel("main_story_copy", classname="full"),
         FieldPanel("related_stories"),
