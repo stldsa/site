@@ -74,5 +74,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         else:
             self.groups.remove(member_group)
 
+    @property
+    def is_leader(self):
+        return "Leadership" in [group.name for group in list(self.groups.all())]
+
     def __str__(self):
         return f"{str(self.first_name)} {str(self.last_name)}"

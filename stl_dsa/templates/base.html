@@ -1,4 +1,5 @@
-{% load static wagtailuserbar i18n wagtailcore_tags menu_tags %}
+{% load static i18n wagtailcore_tags menu_tags wagtailuserbar %}
+
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -38,7 +39,7 @@
     </nav>
 </div>
 <body class="home blog et_bloom et_monarch chrome">
-    {% wagtailuserbar %}
+    {% if user.is_leader %}{% wagtailuserbar %}{% endif %}
     <div class="bg-white">
         <header id="pageheader" class="container" role="banner">
             <div class="row py-3 align-items-center">
