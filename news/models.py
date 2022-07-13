@@ -97,7 +97,6 @@ class NewsPage(Page):
     ]
 
     def save(self, *args, **kwargs):
-        print(self.action_network_href)
         if self.action_network_href:
             email.edit(
                 self.action_network_href,
@@ -111,9 +110,7 @@ class NewsPage(Page):
                 },
                 settings.ACTIONNETWORK_API_KEYS["main"],
             )
-            print("email edited!!!")
         else:
-            print("Pre-Create")
             response = email.create(
                 self.title,
                 # main_story_html + "".join(related_stories_html),
@@ -124,13 +121,10 @@ class NewsPage(Page):
                 "info@stldsa.org",
                 settings.ACTIONNETWORK_API_KEYS["main"],
             )
-            print("post_create")
             action_network_href = response.json()["_links"]["self"]["href"]
-            print(action_network_href)
             self.action_network_href = action_network_href
 
         if self.go_live_at and self.go_live_at > timezone.now():
-            print("start polling")
             polling.poll(
                 lambda: requests.get(
                     self.action_network_href,
@@ -143,17 +137,12 @@ class NewsPage(Page):
                 timeout=10,
                 step_function=lambda step: step + 2,
             )
-            print("email found and valid")
             email.schedule(
                 f"{self.action_network_href}/schedule",
                 self.go_live_at,
                 settings.ACTIONNETWORK_API_KEYS["main"],
             )
-            print("email scheduled")
-        print(self.action_network_href)
-        print("post-save-revision")
         super().save(*args, **kwargs)  # Call the "real" save() method.
-        print("saved!")
 
 
 class InfoPage(Page):
