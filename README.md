@@ -7,7 +7,9 @@ Welcome to the codebase for the St Louis DSA website! We hope this guide will ma
 
 ## Quickstart
 
-The quickest and easiest way to get plugged into our development environment is with VS Code Dev Containers.
+The quickest and easiest way to get plugged into our development environment is with VS Code Dev Containers. If you have a strong preference to use a different IDE, consider looking into their compatibility with "dev containers" and consider making a pull request to support your IDE of choice. 
+
+### Creating and developing in your Dev Container
 
 Click the "Devcontainers: Open" badge at the top of this README. Wait a few minutes while dependencies are installed and the database is initialized.
 
@@ -33,7 +35,7 @@ python manage.py runserver
 
 ### More useful commands
 
-Run these commands to perform common web development tasks. If you're new to web development, understanding what these commands do is a good place to start learning.
+Run the following commands to perform common web development tasks. If you're new to web development and/or Python and Django, understanding what these commands do is a good place to start learning.
 
 #### Run tests
 ```bash
@@ -47,20 +49,22 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-Open a Python shell:
+#### Open a Python shell
 
 ```bash
 python manage.py shell
 ```
 
-Add or remove packages with Poetry:
+### Add or remove packages with Poetry
 
 ```bash
 poetry add requests
 poetry remove requests
 ```
 
-## Django
+## Stack details
+
+### Django
 
 Right now, our website is primarily built using Python, particularly the Django web development framework. If you would like to develop tools using a different language or framework, please reach out to tech@stldsa.org and set up a meeting with a Tech Committee Chair so we can help you get started.
 
@@ -68,7 +72,7 @@ Right now, our website is primarily built using Python, particularly the Django 
 
  If you'd like to learn the basics of Django, their [official tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial01/) is excellent.
 
-## Wagtail CMS
+## Wagtail (CMS)
 
 Many pages on our site are built with Wagtail, which is a nice Django-based content management system (CMS) designed to make it easier for non-programmers to update content on the site - read about the [Zen of Wagtail](https://docs.wagtail.io/en/stable/getting_started/the_zen_of_wagtail.html) to get the idea.
 
