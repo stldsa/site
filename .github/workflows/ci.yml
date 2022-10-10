@@ -36,7 +36,7 @@ jobs:
         uses: abatilo/actions-poetry@v2.1.0
 
       - name: Install Dependencies
-        run: pip3 install poetry
+        run: pip3 install poetry && poetry install
 
       - name: Code Quality
         run: poetry run black . --check
