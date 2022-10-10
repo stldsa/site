@@ -11,9 +11,15 @@ The quickest and easiest way to get plugged into our development environment is 
 
 Click the "Devcontainers: Open" badge at the top of this README. Wait a few minutes while dependencies are installed and the database is initialized.
 
-After a few minutes, you should see the success message at the bottom of the terminal. Press any key to open the bash terminal.
+After a few minutes, you will see a prompt for an email address. Enter any email address (doesn't have to be one you own), then enter a password to create a superuser account for your local environment. You should then see the success message at the bottom of the terminal:
 
-#### Activate your Python virtual environment:
+```bash
+Done. Press any key to close the terminal.
+```
+
+A new terminal shell will open. You 
+
+#### Activate your Python virtual environment
 ```bash
 poetry shell
 ``` 
@@ -21,14 +27,16 @@ poetry shell
 #### Run the web server:
 ```bash
 python manage.py runserver
-``` 
+```
 
-#### Run tests:
+### More useful commands
+
+#### Run tests
 ```bash
 pytest
 ```
 
-#### Make/run migrations:
+#### Make/run migrations
 
 ```bash
 python manage.py makemigrations
