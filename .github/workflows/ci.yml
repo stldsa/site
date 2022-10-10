@@ -7,7 +7,6 @@ jobs:
   test:
     env:
       ACTIONNETWORK_API_KEYS: '{"main": "fakekey"}'
-      POETRY_VIRTUALENVS_CREATE: false
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -34,19 +33,17 @@ jobs:
           cache: "poetry"
       - run: poetry install
 
-      - name: Code Quality
-        run: black . --check
+      - run: poetry run black . --check
 
       - name: Run migrations
         env:
           DJANGO_SETTINGS_MODULE: config.settings
           DJANGO_CONFIGURATION: Test
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        run: python3 manage.py migrate
+        run: poetry run python manage.py migrate
 
-      - name: Test with pytest
-        env:
+      - env:
           DJANGO_SETTINGS_MODULE: config.settings
           DJANGO_CONFIGURATION: Test
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        run: pytest --disable-warnings
+        run: poetry run pytest
