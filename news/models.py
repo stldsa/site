@@ -123,7 +123,11 @@ class NewsPage(Page):
                 "info@stldsa.org",
                 settings.ACTIONNETWORK_API_KEYS["main"],
             )
-            action_network_href = response.json()["_links"]["self"]["href"]
+            links = response.json().get("_links")
+            if links:
+                action_network_href = links["self"]["href"]
+            else:
+                action_network_href = None
             self.action_network_href = action_network_href
 
         if self.go_live_at and self.go_live_at > timezone.now():
