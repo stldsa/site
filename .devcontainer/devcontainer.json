@@ -39,7 +39,7 @@
 	// ],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"onCreateCommand": "curl -sSL https://install.python-poetry.org | python3 - && poetry install",
-	"postCreateCommand": "poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py createsuperuser && poetry run python manage.py autopopulate_main_menus && poetry run python manage.py runserver",
+	"postCreateCommand": "poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py createsuperuser && poetry run python manage.py autopopulate_main_menus",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }

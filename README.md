@@ -13,22 +13,29 @@ The quickest and easiest way to get plugged into our development environment is 
 
 Click the "Devcontainers: Open" badge at the top of this README. Wait a few minutes while dependencies are installed and the database is initialized.
 
-After a few minutes, you will see a prompt for an email address. Enter any email address (it doesn't have to be one you own; it can be a fake one like admin@example.com). Then, enter a password to create a superuser account for your local environment. After a few moments you should see a message indicating the web server is running:
+After a few minutes, you will see a prompt for an email address. Enter any email address (it doesn't have to be one you own; it can be a fake one like admin@example.com). Then, enter a password to create a superuser account for your local environment. You should then see the success message at the bottom of the terminal:
 
 ```bash
-Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.
+Done. Press any key to close the terminal.
 ```
-You may now view a local copy of the website in your browser at the provided link.
 
-## Commands
+Press any key and a new terminal shell will open. 
 
-You may use the following commands to perform common web development tasks. If you're new to web development and/or Python and Django, understanding what these commands do is a good place to start learning.
+Run the following two commands to view a local copy of the site in your browser:
 
 #### Activate your Python virtual environment
 ```bash
 poetry shell
 ``` 
+
+#### Run the web server:
+```bash
+python manage.py runserver
+```
+
+### More useful commands
+
+Run the following commands to perform common web development tasks. If you're new to web development and/or Python and Django, understanding what these commands do is a good place to start learning.
 
 #### Run tests
 ```bash
