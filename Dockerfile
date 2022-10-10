@@ -1,5 +1,5 @@
 # The base image we want to inherit from
-FROM python:3.10.5-slim-buster as py-base
+FROM python:3.10.7-slim-buster as py-base
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
