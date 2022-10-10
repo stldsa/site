@@ -1,5 +1,5 @@
 from factory.django import DjangoModelFactory
-from wagtail.core.models import Page
+from wagtail.models import Page
 from factory import Faker as fake
 from factory import LazyAttribute
 

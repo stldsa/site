@@ -22,34 +22,38 @@
 {% block content %}
   <div class="row">
     <div class="col-sm-8">
-    <div class="p-3 mb-3 bg-white rounded">
+    <div class="p-3 mb-3 rounded">
 
         <h2 class="my-4">Weekly Digest:</h2>
         <h1>{{ update.title }}</h1>
-        <h3>Posted: {{ update.date|date:"M j, Y" }}</h3>
-        <p style="font-family: 'Manifold DSA'">{{ update.body|richtext }}</p>
+        <!-- <h3>Posted: {{ update.last_published_at|date:"M j, Y" }}</h3> -->
+        <p style="font-family: 'Manifold DSA'">{{ update.main_story_copy|richtext }}</p>
 
         <h1>Upcoming Events:</h1>
         <ul>
-          {% for event in events %}
-            <li><b><a href='{{ event.url }}'>{{ event.title }}</a></b> | {{ event.start|date:"D, M j" }}</li>
-          {% endfor %}
+          {% if events %}
+            {% for event in events %}
+              <li><b><a href='{{ event.url }}'>{{ event.title }}</a></b> | {{ event.start|date:"D, M j" }}</li>
+            {% endfor %}
+          {% else %}
+              <p>No upcoming events.</p>
+          {% endif %}
         </ul> 
       </div>
     </div>
     <div class="col-sm-4 my-3">
       <h2>{{ page.highlighted_campaign }}</h2>
-      <p>{{ page.highlighted_description }}</p>
+      <p>{{ page.highlighted_description|richtext }}</p>
       <h2>Chapter Priorities</h2>
       <p>Our chapter establishes our priority campaigns at our annual convention.</p>
-      <div class="container p-3" >
+      <!-- <div class="container p-3" >
         <ul>
           <li><a href="/formations/welcome">Strengthening STL DSA's Membership Base</a></li>
           <li><a href="/formations/sns">Continuing socialist education with the Socialist Night School</a></li>
           <li><a href="/formations/publicownership">Emphasizing our commitment to Protect Public Ownership</a></li>
           <li><a href="/formations/no-on-3">Committing to defeat Amendment 3 on the November ballot</a></li>
         </ul>
-      </div>
+      </div> -->
       <p class=>If you're new to DSA, please sign up to help in one or more using the form below.</p><br>
       <link href='https://actionnetwork.org/css/style-embed-whitelabel.css' rel='stylesheet' type='text/css' />
       <script src='https://actionnetwork.org/widgets/v3/form/stldsa?format=js&source=widget'></script>

@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rest_framework.authtoken.views import obtain_auth_token
 from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.core import urls as wagtail_urls
+from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from events.api import urls as events_api_urls
 
@@ -18,11 +18,6 @@ from events.api import urls as events_api_urls
 urlpatterns = (
     [
         # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-        path(
-            "about/",
-            TemplateView.as_view(template_name="pages/about.html"),
-            name="about",
-        ),
         # Django Admin, use {% url 'admin:index' %}
         path(settings.ADMIN_URL, admin.site.urls),
         path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
@@ -41,12 +36,15 @@ urlpatterns = (
         path("cms/", include(wagtailadmin_urls)),
         path("documents/", include(wagtaildocs_urls)),
     ]
-    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + i18n_patterns(
         # path("search/", search_views.search, name="search"),
         path("", include(wagtail_urls)),
     )
 )
+
+if settings.LOCAL_SERVE_MEDIA_FILES:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 if settings.DEBUG:

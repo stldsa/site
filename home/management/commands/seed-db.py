@@ -1,16 +1,17 @@
 import datetime
 import logging
 from faker import Faker
-import factory
+import stringcase
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
-from wagtail.core.models import Page, Site
+from wagtail.models import Page, Site
 from events.models import Event, EventsPage
 from home.models import HomePage
-from news.models import NewsIndexPage
+from news.models import NewsIndexPage, InfoPage
 from committees.models import CommitteesPage
 from committees.factories import CommitteeFactory
+from django.contrib.auth.models import Group
 
 fake = Faker()
 
@@ -62,8 +63,24 @@ class Command(BaseCommand):
         NewsPage = apps.get_model("news.NewsPage")
         newspage = NewsPage(
             title=fake.sentence(),
-            date=datetime.date.today(),
-            body=fake.paragraph(30),
+            main_story_heading=fake.sentence(),
+            main_story_copy=fake.paragraph(10),
+            related_stories=[
+                (
+                    "related_story",
+                    {
+                        "heading": fake.sentence(4),
+                        "copy": fake.paragraph(5),
+                    },
+                ),
+                (
+                    "related_story",
+                    {
+                        "heading": fake.sentence(4),
+                        "copy": fake.paragraph(4),
+                    },
+                ),
+            ],
             show_in_menus=False,
         )
         newsindexpage.add_child(instance=newspage)
@@ -72,29 +89,44 @@ class Command(BaseCommand):
             title="Events", show_in_menus=True, link_url="/events/"
         )
         homepage.add_child(instance=event_menu_page)
+        formation_index = InfoPage(title="All Formation Groups", show_in_menus=True)
+        homepage.add_child(instance=formation_index)
+        for formation_type_name in [
+            "Priority Resolutions",
+            "Committees",
+            "Working Groups",
+            "Caucuses",
+        ]:
+            formation_type = CommitteesPage(
+                title=formation_type_name,
+                slug=stringcase.spinalcase(formation_type_name),
+                show_in_menus=True,
+            )
+            formation_index.add_child(instance=formation_type)
+            formation_list = CommitteeFactory.build_batch(4)
+            for formation in formation_list:
+                formation_type.add_child(instance=formation)
+                revision = formation.save_revision()
+                revision.publish()
+                formation.save()
 
-        committees = CommitteesPage(
-            title="Formation Groups",
-            slug="formations",
-            show_in_menus=True,
-        )
-        homepage.add_child(instance=committees)
+                future_event = Event(
+                    title="Event Title",
+                    description=fake.paragraph(),
+                    start=fake.future_datetime(
+                        end_date=datetime.timedelta(days=6),
+                        tzinfo=datetime.timezone.utc,
+                    ),
+                    formation=formation,
+                )
+                future_event.save()
 
-        committee_list = CommitteeFactory.build_batch(8)
-        for committee in committee_list:
-            committees.add_child(instance=committee)
-            revision = committee.save_revision()
+            revision = formation_type.save_revision()
             revision.publish()
+            formation_type.save()
+        formation_index.save()
 
-        committees.save()
-
-        future_event = Event(
-            title="Event Title",
-            description=fake.paragraph(),
-            start=fake.future_datetime(tzinfo=datetime.timezone.utc),
-            formation=committee_list[0],
-        )
-        future_event.save()
+        Group.objects.create(name="Members")
 
     def handle(self, raise_error=False, *args, **options):
         # Root Page and a default homepage are created by wagtail migrations

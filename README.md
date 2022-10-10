@@ -1,6 +1,7 @@
 # St. Louis DSA Website
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/schlich/stldsa-site/tree/codespaces)
 
 Welcome to the codebase for the St Louis DSA website! We hope this guide will make it easy for newcomers to get set up and contribute to website features.
 
@@ -8,7 +9,7 @@ Welcome to the codebase for the St Louis DSA website! We hope this guide will ma
 
 If you know what you're doing and ready to jump in:
 
-    $ docker-compose up
+    $ docker compose up
 
 ## Before You Begin
 
@@ -32,8 +33,6 @@ The easiest way to get started with your local development environment is throug
 
     $ git clone https://github.com/stldsa/site.git stldsa && cd stldsa
 
-If you are a member of DSA, ask to be added as a maintainer of the repo. If you are not a member, feel free to fork the repo.
-
 ### 2. [Install Docker](https://docs.docker.com/engine/install/) (if you haven't already)
 
 ### 3. Build the Docker Image
@@ -48,7 +47,12 @@ If you are a member of DSA, ask to be added as a maintainer of the repo. If you 
 
  This creates two **containers** (again, one for the database and one for the web service), which are designed to be ephemeral, modifiable instantiations of the images. It also contains an additional temporary container to run database integrations using the `init-db.sh` script. The web and database containers will keep running so that a) the web service can access the database and b) and we can access the web server in our browser at [localhost:8000](http://localhost:8000). Go ahead and check it out! Magic!
  
- When you are done using the browser, you can run `docker-compose stop` if you want to stop the services, which will free up port 8000 and some memory. `docker-compose start` will spin it back up again. Run `docker-compose down` to stop *and* delete the containers (which will also delete the database). Or just keep it running forever! 🤷
+ When you are done using the browser, you can run `docker-compose stop django` if you want to stop the services, which will free up port 8000 and some memory. `docker-compose start django` will spin it back up again. 
+ 
+ > Note: specifying the service name `django` prevents the migration service from running again. 
+ 
+ Run `docker-compose down` to stop *and* delete all containers (which will also delete the database). Or just keep it running forever! 🤷
+
 
 If you're using [VS Code](https://code.visualstudio.com/) as your IDE, you can also perform many of these tasks with the Docker extension whenever you might prefer using a GUI. Additionally the repo includes a `.devcontainer` settings folder so you can try out VS Code's Development Containers feature, though developing in this environment hasn't been fully tested.
 

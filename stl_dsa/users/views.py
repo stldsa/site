@@ -25,16 +25,18 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
 
     def get_object(self):
-        return self.request.user
+        user = self.request.user
+        user.update_membership()
+        return user
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     model = User
-    fields = ["first_name", "last_name", "email"]
+    fields = ["first_name", "last_name"]
 
     def get_success_url(self):
-        return reverse("users:detail", kwargs={"id": self.request.user.pk})
+        return reverse("users:detail")
 
     def get_object(self):
         return User.objects.get(id=self.request.user.pk)

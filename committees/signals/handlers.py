@@ -1,5 +1,5 @@
 from committees.models import CommitteePage
-from wagtail.core.signals import page_published
+from wagtail.signals import page_published
 from django.dispatch import receiver
 from django.contrib.auth.models import Group
 

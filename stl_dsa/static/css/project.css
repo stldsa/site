@@ -185,6 +185,14 @@ button {
   cursor: pointer;
 }
 
+.container {
+  padding-top: 20px;
+}
+
+.div {
+  margin-top: 10px;
+}
+
 *,
 *:after,
 *:before {
@@ -192,10 +200,14 @@ button {
   box-sizing: border-box;
 }
 
-#campaignheader, #hdrnav, #mainmenu .burger span, .stronglink, h1,
+h1,
 h2,
 h3,
 h4 {
+  font-family: "Manifold DSA", Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+}
+
+.header-logo-text, #campaignheader, #hdrnav, #mainmenu .burger span, .stronglink {
   font-family: "Styrene B", sans-serif;
 }
 
@@ -236,7 +248,7 @@ h4 {
 h1 {
   font-size: 36px;
   font-weight: 700;
-  color: #241f20;
+  color: #ec1f27;
 }
 
 h2 {
@@ -311,11 +323,11 @@ p:last-of-type {
 }
 
 a {
-  color: #e70109;
+  color: #ec1f27;
   text-decoration: none;
 }
 a:hover {
-  color: #e70109;
+  color: #ec1f27;
 }
 a:focus {
   outline: 0;
@@ -329,7 +341,7 @@ a:hover img {
 
 input:focus {
   outline: 0;
-  border: 1px solid #e70109;
+  border: 1px solid #ec1f27;
 }
 
 .uppercase {
@@ -393,7 +405,7 @@ input:focus {
 }
 
 .extlink {
-  color: #d0181f;
+  color: #d4373d;
 }
 
 .gray {
@@ -433,7 +445,7 @@ input:focus {
 }
 
 .ol-numbers {
-  list-style: decimal outside;
+  list-style: decimal inside;
   text-align: justify;
 }
 .ol-numbers li {
@@ -442,23 +454,23 @@ input:focus {
 }
 .ol-numbers ol {
   margin-left: 1em;
-  list-style: lower-alpha outside;
+  list-style: decimal-inside;
 }
 .ol-numbers ol ol {
-  list-style: lower-roman;
+  list-style: lower-alpha inside;
 }
 .ol-numbers ol ol ol {
-  list-style: decimal;
+  list-style: lower-roman inside;
 }
 
 .error {
-  border: 1px solid #e70109;
-  background: rgba(231, 1, 9, 0.1);
+  border: 1px solid #ec1f27;
+  background: rgba(236, 31, 39, 0.1);
   padding: 1em;
 }
 
 .asterisk:after {
-  color: #e70109;
+  color: #ec1f27;
   content: "*";
   padding: 0.25em;
 }
@@ -603,7 +615,7 @@ input:focus {
   color: #fff;
 }
 a .stronglink:hover {
-  color: #d0181f;
+  color: #d4373d;
   background-color: #323232;
 }
 
@@ -732,7 +744,7 @@ a .stronglink:hover {
   right: 0.5em;
 }
 #modalclose:hover {
-  color: #e70109;
+  color: #ec1f27;
   cursor: pointer;
 }
 
@@ -774,14 +786,14 @@ a .stronglink:hover {
 }
 #mainmenu .burger {
   flex: 1 auto;
-  color: #e70109;
+  color: #ec1f27;
   font-size: 1.5em;
   transition: 0.2s all;
   line-height: 48px;
 }
 #mainmenu .burger:hover {
   cursor: pointer;
-  color: rgba(231, 1, 9, 0.5);
+  color: rgba(236, 31, 39, 0.5);
 }
 #mainmenu .burger span {
   font-weight: bold;
@@ -802,7 +814,7 @@ a .stronglink:hover {
   top: 48px;
   padding: 0.5em;
   z-index: 2000;
-  background: #e70109;
+  background: #ec1f27;
   color: #fff;
   font-size: 1.1em;
 }
@@ -815,7 +827,7 @@ a .stronglink:hover {
 @media screen and ( min-width: 1024px ) {
   #mainmenu #menucontents {
     margin-top: 8px;
-    border: 1px solid #4f0003;
+    border: 1px solid #69090d;
   }
 }
 #mainmenu #menucontents #navsearch {
@@ -901,10 +913,7 @@ form fieldset + fieldset {
 }
 
 button {
-  background-color: #ddd;
-  border: 1px solid #a0a0a0;
   padding: 0.5em 1em;
-  font-size: 1.25em;
 }
 button:hover {
   background-color: #fafafa;
@@ -939,7 +948,7 @@ input[type=submit]:hover,
 input[type=zip]:hover,
 textarea:hover,
 select:hover {
-  border-color: #d0181f;
+  border-color: #d4373d;
 }
 input[type=text]:focus,
 input[type=search]:focus,
@@ -1038,7 +1047,7 @@ textarea {
     margin-top: 0.25em;
   }
   #hdrnav .mainnav .sub-menu a:hover {
-    background-color: #e70109;
+    background-color: #ec1f27;
   }
 }
 #hdrnav .mainnav div {
@@ -1110,6 +1119,9 @@ textarea {
   line-height: 1.25;
 }
 
+main {
+  background-color: #F6F4E7;
+}
 main .grid-table {
   display: flex;
   flex-flow: row wrap;
@@ -1132,7 +1144,7 @@ main .grid-social {
 }
 main .grid-social .button-joindsa,
 main .grid-social .button-donate {
-  background-color: #e70109;
+  background-color: #ec1f27;
   color: #fff;
   font-weight: bold;
   text-align: center;
@@ -1204,7 +1216,7 @@ main #swagad a {
   right: 0;
 }
 main #swagad:hover {
-  border-color: #e70109;
+  border-color: #ec1f27;
   cursor: pointer;
 }
 main #swagad #swagad-1,
@@ -1257,7 +1269,7 @@ main #sidebar .sharebutton {
   border-radius: 4px;
 }
 main #sidebar .sharebutton:hover {
-  background-color: #b40107;
+  background-color: #c71118;
 }
 main #sidebar .sharebutton a {
   color: #fff;
@@ -1308,7 +1320,7 @@ main #sidebar .sidebar-sitelinks .item .content {
 }
 main #sidebar .sidebar-sitelinks .item .content .title {
   display: block;
-  color: #e70109;
+  color: #ec1f27;
   font-size: 1.25em;
 }
 main #sidebar .sidebar-sitelinks .item .content p {
@@ -1424,7 +1436,7 @@ article .byline {
 article header {
   margin: 3em 0 1em;
   padding-bottom: 0.5em;
-  border-bottom: 2px solid #e70109;
+  border-bottom: 2px solid #ec1f27;
 }
 article header h1 {
   margin: 0;
@@ -1679,7 +1691,7 @@ footer {
 .swiper-container-horizontal .swiper-pagination-bullet {
   width: 16px;
   height: 16px;
-  border: 2px solid #e70109;
+  border: 2px solid #ec1f27;
   background: unset;
 }
 .swiper-container-horizontal .swiper-pagination-bullet-active {
@@ -1690,7 +1702,7 @@ footer {
   position: absolute;
   width: 70%;
   height: 70%;
-  background: #e70109;
+  background: #ec1f27;
   content: "";
   border-radius: 50%;
   left: 15%;
@@ -1736,12 +1748,12 @@ footer {
   margin-top: 2em;
 }
 #announcements .urgent {
-  border-color: #e70109;
+  border-color: #ec1f27;
   display: flex;
   align-items: stretch;
 }
 #announcements .urgent .urgenticon {
-  background: #e70109;
+  background: #ec1f27;
   color: #fff;
   position: relative;
 }
@@ -1859,7 +1871,7 @@ footer {
 #eventfilters label {
   display: block;
   margin: 0.5em 0;
-  color: #e70109;
+  color: #ec1f27;
   font-size: 1.25em;
 }
 #eventfilters #eventcalkeywords {
@@ -1890,7 +1902,7 @@ footer {
 }
 #eventfilters #datepickeryears #prevyear:hover,
 #eventfilters #datepickeryears #nextyear:hover {
-  color: rgba(231, 1, 9, 0.5);
+  color: rgba(236, 31, 39, 0.5);
   cursor: pointer;
 }
 #eventfilters #datepickeryears div.placeholder {
@@ -1926,7 +1938,7 @@ footer {
 }
 #eventfilters #datepickermonths .filteredmonth {
   cursor: default;
-  background-color: rgba(231, 1, 9, 0.5);
+  background-color: rgba(236, 31, 39, 0.5);
   color: #fff;
 }
 #eventfilters #eventcalfiltersubmit {
@@ -1995,9 +2007,9 @@ header button {
 }
 
 .btn-red, .btn-primary {
-  background-color: #e70109;
+  background-color: #ec1f27;
   color: white;
-  border-color: #e70109;
+  border-color: #ec1f27;
 }
 @media screen and ( max-width: 400px ) {
   .btn-red, .btn-primary {
@@ -2033,14 +2045,14 @@ header button {
 }
 
 .dropdown-toggle::after {
-  color: #e70109;
+  color: #ec1f27;
   vertical-align: 1px;
   border-width: 7px;
   border-radius: 4px;
 }
 
 .navbar {
-  background-color: rgba(231, 1, 9, 0.1);
+  background-color: rgba(236, 31, 39, 0.1);
   justify-content: start;
 }
 
@@ -2074,7 +2086,7 @@ header button {
   font-weight: 600;
 }
 .nav-link:hover, .nav-link:focus {
-  color: #e70109;
+  color: #ec1f27;
 }
 .nav-link:focus {
   border-radius: 4px;
@@ -2083,7 +2095,7 @@ header button {
 
 .dropdown-menu {
   margin-top: 0px;
-  background-color: rgba(231, 1, 9, 0.1);
+  background-color: rgba(236, 31, 39, 0.1);
 }
 
 .dropdown-item {
@@ -2097,14 +2109,14 @@ header button {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 .dropdown-item.active, .dropdown-item:active {
-  background-color: #e70109;
+  background-color: #ec1f27;
   color: white;
 }
 .dropdown-item.active .navbar-dsa-icon, .dropdown-item:active .navbar-dsa-icon {
   display: none;
 }
 .dropdown-item.active .nav-item-desc, .dropdown-item:active .nav-item-desc {
-  color: #e70109;
+  color: #ec1f27;
 }
 
 .sub-menu > .dropdown-item {
@@ -2179,11 +2191,12 @@ header button {
 
 .header-logo-text {
   color: #241f20;
-  font-weight: 600;
+  font-weight: 700;
+  padding-top: 0.5rem;
 }
 @media screen and ( max-width: 1024px ) {
   .header-logo-text {
-    font-size: 1rem;
+    font-size: 2rem;
   }
 }
 @media screen and (max-width: 400px) {
@@ -2231,7 +2244,7 @@ header button {
 
 .jumpto-link-h1 {
   display: block;
-  color: #e70109;
+  color: #ec1f27;
   font-weight: 700;
   font-size: 20px;
   margin-top: 20px;
@@ -2242,7 +2255,7 @@ header button {
 }
 
 .red-text {
-  color: #e70109;
+  color: #ec1f27;
 }
 
 .bg-dsaweekly {
@@ -2258,7 +2271,7 @@ header button {
 }
 
 .bg-dsared {
-  background-color: #e70109;
+  background-color: #ec1f27;
   color: white;
 }
 
@@ -2344,7 +2357,7 @@ figcaption {
   }
 }
 .banner {
-  background-image: linear-gradient(rgba(231, 1, 9, 0.1), #e70109), url(../images/banner.png);
+  background-image: linear-gradient(rgba(236, 31, 39, 0.1), #ec1f27), url(../images/banner.png);
   background-size: cover;
   background-position: center top 20%;
 }
@@ -2364,6 +2377,12 @@ figcaption {
 
 img.navbar-item {
   border-radius: 6px;
+}
+
+@media screen and (max-width: 500px) {
+  .responsiverow {
+    flex-direction: column;
+  }
 }
 
 /*# sourceMappingURL=project.css.map */

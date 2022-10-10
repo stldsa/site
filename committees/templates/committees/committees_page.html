@@ -1,10 +1,13 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags %}
+
 
 {% block content %}
-    <h2>Formations</h2>
-    <ul>
-        {% for committee in committees %}
-            <li><a href="{{ committee.slug }}">{{ committee }}</a></li>
-        {% endfor %}
-    </ul>
+    <h2>{{ page.title }}</h2>
+    <h4>{{ page.description|richtext }}</h4>
+    {% for formation in page.get_children %}
+        <ul style="list-style-type: none">
+            <li><div class="title"><h5><a href="{% pageurl formation %}">{{ formation.title }}</a></h5></div></li>
+        </ul>
+    {% endfor %}
 {% endblock %}

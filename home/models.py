@@ -1,12 +1,11 @@
 from home.views import EmailFormView
-from home.forms import EmailSubmissionForm
 from django.db import models
 from datetime import datetime
-from wagtail.core.models import Page
-from django.shortcuts import render
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.models import Page
+from wagtail.admin.panels import FieldPanel
 from events.models import Event
 from news.models import NewsPage
+from wagtail.fields import RichTextField
 
 
 class HomePage(Page):
@@ -14,7 +13,7 @@ class HomePage(Page):
     mission_statement = models.TextField(null=True)
     values_statement = models.TextField(null=True)
     highlighted_campaign = models.CharField(max_length=100, blank=False, null=True)
-    highlighted_description = models.TextField(blank=False, null=True)
+    highlighted_description = RichTextField(blank=False, null=True)
     action_network_embed_api_endpoint = models.URLField(blank=True, null=True)
 
     max_count = 1
@@ -30,11 +29,11 @@ class HomePage(Page):
     def get_context(self, request):
         context = super(HomePage, self).get_context(request)
         context["events"] = (
-            Event.objects.filter(start__gte=datetime.today().date())
+            Event.objects.filter(start__gte=datetime.now().date())
             .exclude(title__icontains="members only")
             .order_by("start")[:4]
         )
-        context["update"] = NewsPage.objects.all().order_by("-date")[0]
+        context["update"] = NewsPage.objects.live().latest("last_published_at")
         return context
 
     def serve(self, request):

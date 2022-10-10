@@ -6,19 +6,52 @@
 {% block content %}
 <div class="container">
 
-  <div class="row">
-    <div class="col-sm-12">
+  <div class="d-flex justify-content-left responsiverow">
+    <div class="col-sm-4">
 
       <h2>Hi, {{ object.first_name }}!</h2>
-      <h3>Membership Status: </h3> {{ object.membership_status }}
+      <h3>Your membership status: </h3> 
+      {% if object.is_member %}
+       <h1 style='color:red'>Active</h1>
+       <p><a href=https://airtable.com/shrHcg9icfntZiZww>Meet one-on-one with an organizer</a> to gain access to more chapter resources!</p>
+      {% else %}
+        <h4>No active membership found at this email.</h4>
+      {% endif %}
       <!-- <h3>Your Formations:</h3>
       {% for committee in object.person.committee_leader.all %}
         <li><a href="{{ committee.get_url }}">{{ committee.name }}</a></li>
       {% empty %}
         You are not currently signed up for any formations.
       {% endfor %} -->
-      <br><br>
-      <p>You may edit your information using the buttons below.</p>
+      <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
+      <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+    </div>
+    <div class="col-sm-6">
+      
+      {% if object.is_member %}
+        <br>
+        <h5><emph>Check out your STL DSA Membership Handbook! </emph></h5>
+        <div class="embed-responsive embed-responsive-1by1">
+          <div class="embed-responsive-item" id="adobe-dc-view"></div>
+        </div>
+        <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+        <script type="text/javascript">
+          document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
+            var adobeDCView = new AdobeDC.View({clientId: "54c85e8ada824ec7a102b119a0b50ecf", divId: "adobe-dc-view"});
+            adobeDCView.previewFile({
+              content:{location: {url: "{% static 'pdf/STLDSA_MemberHandbook.pdf' %}"}},
+              metaData:{fileName: "STL DSA"}
+            }, {embedMode: "SIZED_CONTAINER"});
+          });
+        </script>
+        <h4>You may use the menu buttons above to download/print a PDF copy of the handbook or view in full screen mode. Additionally you can view the handbook in its own webpage <a href="{% static 'pdf/STLDSA_MemberHandbook.pdf' %}">here.</a></h4>
+      {% else %}
+        <h1>Why join DSA?</h1>
+        <p>Joining DSA means making a commitment to cooperation and solidarity. Join and help us build working class power, further democratic socialist ideas in the United States, and fight to democratize our economy and society.</p>
+        <p><i>DSA is entirely member funded.</i> We believe this helps keep the organization accountable to its members and gives everyone a stake.</p>
+        <h3>Ready to get started?</h3>
+        <p><a class='btn btn-primary' href="/join">Join DSA</a></p>
+      {% endif %}
     </div>
   </div>
 
@@ -27,8 +60,6 @@
 <div class="row">
 
   <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
     <!-- Your Stuff: Custom user template urls -->
   </div>
 

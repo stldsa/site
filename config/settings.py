@@ -1,5 +1,7 @@
 # mysite/settings.py
 from configurations import Configuration, values
+from decouple import config
+import boto3
 
 import os
 import json
@@ -16,8 +18,7 @@ class Base(Configuration):
     ROOT_DIR = environ.Path(__file__) - 2
     APPS_DIR = ROOT_DIR.path("stl_dsa")
     BASE_DIR = ROOT_DIR
-    READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
-    if READ_DOT_ENV_FILE:
+    if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=False):
         env.read_env(str(ROOT_DIR.path(".env")))
     DEBUG = values.BooleanValue(True)
 
@@ -47,6 +48,7 @@ class Base(Configuration):
         "django.forms",
     ]
     THIRD_PARTY_APPS = [
+        "phonenumber_field",
         "crispy_forms",
         "allauth",
         "allauth.account",
@@ -67,22 +69,19 @@ class Base(Configuration):
         "wagtail.documents",
         "wagtail.images",
         "wagtail.search",
-        "wagtail.contrib.search_promotions",
-        "wagtail.contrib.settings",
         "wagtail.admin",
-        "wagtail.core",
-        "taggit",
+        "wagtail",
         "modelcluster",
+        "taggit",
         "wagtailfontawesome",
-        "wagtail_blocks",
         "wagtailmenus",
+        "storages",
     ]
 
     LOCAL_APPS = [
         "stl_dsa.users",
         "events",
         "committees",
-        "phonenumber_field",
         "news",
     ]
     INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -125,7 +124,7 @@ class Base(Configuration):
     ]
 
     # STATIC
-    STATIC_ROOT = str(ROOT_DIR("staticfiles"))
+    STATIC_ROOT = str(BASE_DIR.path("staticfiles"))
     STATIC_URL = "/staticfiles/"
     STATICFILES_DIRS = [str(APPS_DIR.path("static"))]
     STATICFILES_FINDERS = [
@@ -135,7 +134,7 @@ class Base(Configuration):
 
     # MEDIA
     # ------------------------------------------------------------------------------
-    MEDIA_ROOT = str(APPS_DIR("media"))
+    MEDIA_ROOT = str(BASE_DIR.path("media"))
     MEDIA_URL = "/media/"
 
     # TEMPLATES
@@ -239,7 +238,9 @@ class Base(Configuration):
         ),
     }
 
-    ACTIONNETWORK_API_KEYS = json.loads(os.environ.get("ACTIONNETWORK_API_KEYS", "{}"))
+    ACTIONNETWORK_API_KEYS = json.loads(
+        os.environ.get("ACTIONNETWORK_API_KEYS", '{"main": "1234567890abcdefg"}')
+    )  # The default key is not real
     DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
     SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
 
@@ -278,6 +279,8 @@ class Dev(Base):
         "--allow-root",
         "--no-browser",
     ]
+    LOCAL_SERVE_MEDIA_FILES = True
+    WAGTAILADMIN_BASE_URL = "http://localhost:8000"
 
 
 class Local(Dev):
@@ -285,7 +288,9 @@ class Local(Dev):
 
 
 class Docker(Dev):
-    DATABASES = values.DatabaseURLValue("postgres://postgres:postgres@db:5432/postgres")
+    DATABASES = values.DatabaseURLValue(
+        "postgres://postgres:postgres@localhost:5432/postgres"
+    )
 
 
 class Test(Dev):
@@ -307,8 +312,8 @@ class Test(Dev):
 
 class Production(Base):
     DEBUG = False
-    ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["*"])
-    CACHES = values.CacheURLValue("redis://127.0.0.1:6379/1")
+    ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
+    # CACHES = values.CacheURLValue("redis://127.0.0.1:6379/1")
 
     # SECURITY
     # ------------------------------------------------------------------------------
@@ -400,3 +405,35 @@ class Production(Base):
     }
 
     DATABASES = {"default": dj_database_url.config(conn_max_age=600, ssl_require=True)}
+
+    LOCAL_SERVE_MEDIA_FILES = False
+
+    PUBLIC_MEDIA_DEFAULT_ACL = "public-read"
+    PUBLIC_MEDIA_LOCATION = "media/public"
+
+    AWS_ACCESS_KEY_ID = env("BUCKETEER_AWS_ACCESS_KEY_ID", default=None)
+    AWS_SECRET_ACCESS_KEY = env("BUCKETEER_AWS_SECRET_ACCESS_KEY", default=None)
+    AWS_STORAGE_BUCKET_NAME = env("BUCKETEER_BUCKET_NAME", default=None)
+    S3_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
+    AWS_S3_REGION_NAME = env("BUCKETEER_AWS_REGION", default=None)
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_SIGNATURE_VERSION = env("S3_SIGNATURE_VERSION", default="s3v4")
+    AWS_S3_ENDPOINT_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400", "ACL": "public-read"}
+
+    MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/"
+    DEFAULT_FILE_STORAGE = "stl_dsa.utils.storage_backends.PublicMediaStorage"
+
+    PRIVATE_MEDIA_DEFAULT_ACL = "private"
+    PRIVATE_MEDIA_LOCATION = "media/private"
+    PRIVATE_FILE_STORAGE = "stl_dsa.utils.storage_backends.PrivateMediaStorage"
+
+    WAGTAILDOCS_SERVE_METHOD = "direct"
+    WAGTAILADMIN_BASE_URL = "https://stldsa.org"
+
+    MIDDLEWARE_CLASSES = "raygun4py.middleware.django.Provider"
+    RAYGUN4PY_API_KEY = "ocPGkwhkAFhhkFnvyGCNOg"
+
+
+class Staging(Production):
+    WAGTAILADMIN_BASE_URL = "https://stldsa-staging.herokuapp.com"

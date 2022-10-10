@@ -3,7 +3,7 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import phonenumber_field.modelfields
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Migration(migrations.Migration):
@@ -31,9 +31,7 @@ class Migration(migrations.Migration):
                 ("email", models.EmailField(max_length=254)),
                 (
                     "phone",
-                    phonenumber_field.modelfields.PhoneNumberField(
-                        max_length=128, region=None
-                    ),
+                    PhoneNumberField(max_length=128, region=None),
                 ),
                 (
                     "user",

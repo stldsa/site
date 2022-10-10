@@ -4,7 +4,9 @@
     {% for item in menu_items %}
         {% if item.sub_menu %}
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">🌹 {{ item }} </a>
+                <button class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" type="button" data-toggle="dropdown">
+                    🌹 {{ item }}
+                </button>
                 <div class="dropdown-menu">
                     {% for sub_item in item.sub_menu.items %}
                         <a class="dropdown-item" href="{{ sub_item.href }}">{{ sub_item }}</a>

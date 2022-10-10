@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -30,15 +30,15 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "document",
-                    wagtail.core.fields.StreamField(
+                    wagtail.fields.StreamField(
                         [
                             (
                                 "h1",
-                                wagtail.core.blocks.StreamBlock(
-                                    [("h2", wagtail.core.blocks.TextBlock())]
+                                wagtail.blocks.StreamBlock(
+                                    [("h2", wagtail.blocks.TextBlock())]
                                 ),
                             ),
-                            ("text", wagtail.core.blocks.TextBlock()),
+                            ("text", wagtail.blocks.TextBlock()),
                         ]
                     ),
                 ),

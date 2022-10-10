@@ -1,74 +1,123 @@
-import action_network as an
+from actionnetwork import action_network as an
 from faker import Faker
+import responses
+from responses import matchers
+import pytest
+import secrets
+from urllib.parse import urljoin
 
 fake = Faker()
 
 
-# def test_events_resource():
-#     events = an.Resource("events", "main").list
-#     assert len(events) > 1
+@pytest.fixture
+def main_api_key():
+    return secrets.token_hex(16)
 
 
-# def test_person_resource():
-#     id = fake.uuid4()
-#     an.Resource("people", group="main", id=id)
+@pytest.fixture
+def people_endpoint():
+    return "https://actionnetwork.org/api/v2/people"
 
 
-def test_get_taggings_href():
-    url = fake.url()
-    tag_json = {"osdi:taggings": {"href": url}}
-    assert an.get_resource_href(tag_json, "taggings") == url
+@responses.activate
+def test_correct_api_key(settings, main_api_key, people_endpoint):
+    settings.ACTIONNETWORK_API_KEYS = {"main": main_api_key}
+    url = "https://actionnetwork.org/api/v2/people"
+    responses.add(
+        responses.GET,
+        url=people_endpoint,
+        status=200,
+        match=[matchers.header_matcher({"OSDI-API-Token": main_api_key})],
+    )
+    assert an.call_api(url).status_code == 200
 
 
-def test_get_person_hrefs_from_taggings():
-    url1 = fake.url()
-    url2 = fake.url()
-    taggings = [
-        {"osdi:people": {"href": url1}},
-        {"osdi:people": {"href": url2}},
-    ]
-    assert an.get_resources_hrefs(taggings, "people") == [url1, url2]
+@responses.activate
+def test_missing_api_key(settings, people_endpoint):
+    settings.ACTIONNETWORK_API_KEYS = {"main": secrets.token_hex(16)}
+    responses.add(
+        responses.GET,
+        url=people_endpoint,
+        status=403,
+    )
+    assert an.call_api(people_endpoint).status_code == 403
 
 
-def test_get_emails_from_people_resources():
-    email1 = fake.email()
-    email2 = fake.email()
-    resources = [
-        {"email_addresses": [{"address": email1}]},
-        {"email_addresses": [{"address": email2}]},
-    ]
-    emails = an.get_emails_from_people_resources(resources)
-
-    assert emails == [email1, email2]
-
-
-def test_get_emails_given_emails_json():
-    email1 = fake.email()
-    email2 = fake.email()
-    emails_json = [{"address": email1}, {"address": email2}]
-
-    assert an.get_emails_given_emails_json(emails_json) == [email1, email2]
+@responses.activate
+def test_people_from_email(faker, people_endpoint):
+    email = faker.email()
+    responses.add(
+        responses.GET,
+        url=people_endpoint,
+        match=[matchers.query_param_matcher({"filter": f"email_address eq '{email}'"})],
+        json={"_links": {"osdi:people": [{"href": people_endpoint + faker.uuid4()}]}},
+        status=200,
+    )
+    assert len(an.People(email=email).ids) > 0
 
 
-def test_get_person_from_people_given_email():
-    email = fake.email()
-    id = fake.uuid4()
-    people = [
-        {
-            "email_addresses": [{"address": email}],
-            "identifiers": ["action_network:" + id],
+@responses.activate
+def test_taggings_has_tag(faker):
+    voting_member_tag_id = faker.uuid4()
+    person_uuid = faker.uuid4()
+    assert voting_member_tag_id != person_uuid
+    responses.add(
+        responses.GET,
+        url=f"https://actionnetwork.org/api/v2/people/{person_uuid}/taggings",
+        json={
+            "_embedded": {
+                "osdi:taggings": [
+                    {
+                        "_links": {
+                            "osdi:tag": {
+                                "href": f"https://actionnetwork.org/api/v2/tags/{voting_member_tag_id}"
+                            }
+                        }
+                    }
+                ]
+            }
         },
-    ]
-    assert an.get_person_id_from_people_given_email(email, people) == id
+    )
+    taggings = an.Taggings(person_uuid)
+    assert voting_member_tag_id in taggings.tags
 
 
-def test_get_id_from_href():
-    id = fake.uuid4()
-    href = fake.url() + id
-    assert an.get_id_from_href(href) == id
+def test_uuid(faker):
+    uuid = faker.uuid4()
+    assert (
+        an.Person({"identifiers": ["salsa:1234", f"action_network:{uuid}"]}).uuid
+        == uuid
+    )
 
 
-def test_get_tag_href_from_tagging():
-    href = fake.url()
-    tagging = {"_links": {"osdi:tag": {"href": href}}}
-    assert an.get_tag_href_from_tagging(tagging) == href
+@responses.activate
+def test_person_from_people(faker):
+    person1_endpoint = f"https://actionnetwork.org/api/v2/people/{faker.uuid4()}"
+    responses.add(responses.GET, person1_endpoint, json={})
+    people = an.People({"_links": {"osdi:people": [{"href": person1_endpoint}]}})
+    assert an.Person.first_from_people(people) is None
+
+
+@responses.activate
+def test_people_init(faker, people_endpoint):
+    uuid = faker.uuid4()
+    responses.add(
+        responses.GET,
+        people_endpoint,
+        status=200,
+        json={"_links": {"osdi:people": [{"href": urljoin(people_endpoint, uuid)}]}},
+    )
+    assert an.People().ids == [uuid]
+
+
+def test_tag_json():
+    assert an.Tag({}).json == {}
+
+
+def test_get_tag_from_uuid(faker, monkeypatch):
+    uuid = faker.uuid4()
+    monkeypatch.setattr(
+        an, "call_api", lambda uri: {"identifiers": ["action_network:" + uuid]}
+    )
+    tag = an.Tag.from_uuid(uuid).json
+    assert tag["identifiers"][0].split(":")[1] == uuid
