@@ -46,11 +46,11 @@ jobs:
           DJANGO_SETTINGS_MODULE: config.settings
           DJANGO_CONFIGURATION: Test
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        run: poetry run python manage.py migrate
+        run: python manage.py migrate
 
       - name: Test with pytest
         env:
           DJANGO_SETTINGS_MODULE: config.settings
           DJANGO_CONFIGURATION: Test
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        run: poetry run pytest --disable-warnings
+        run: pytest --disable-warnings
