@@ -13,18 +13,33 @@ Click the "Devcontainers: Open" badge at the top of this README. Wait a few minu
 
 After a few minutes, you should see the success message at the bottom of the terminal. Press any key to open the bash terminal.
 
-Activate your Python virtual environment with `poetry shell`. Run the website with `python manage.py runserver` and you may either open the browser using the VS Code popup window, clicking the link in the terminal, or navigating to `http://127.0.0.1:8000/` in the browser.
+#### Activate your Python virtual environment:
+```bash
+poetry shell
+``` 
 
-Run tests with `pytest`.
+#### Run the web server:
+```bash
+python manage.py runserver
+``` 
 
-Make/run migrations with:
+#### Run tests:
+```bash
+pytest
+```
+
+#### Make/run migrations:
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-Open a Python shell with `python manage.py shell`.
+Open a Python shell:
+
+```bash
+python manage.py shell
+```
 
 Add or remove packages with Poetry:
 
