@@ -60,30 +60,30 @@ class Command(BaseCommand):
         newsindexpage.has_children_in_menu = False
         newsindexpage.sub_menu = None
 
-        NewsPage = apps.get_model("news.NewsPage")
-        newspage = NewsPage(
-            title=fake.sentence(),
-            main_story_heading=fake.sentence(),
-            main_story_copy=fake.paragraph(10),
-            related_stories=[
-                (
-                    "related_story",
-                    {
-                        "heading": fake.sentence(4),
-                        "copy": fake.paragraph(5),
-                    },
-                ),
-                (
-                    "related_story",
-                    {
-                        "heading": fake.sentence(4),
-                        "copy": fake.paragraph(4),
-                    },
-                ),
-            ],
-            show_in_menus=False,
-        )
-        newsindexpage.add_child(instance=newspage)
+        # NewsPage = apps.get_model("news.NewsPage")
+        # newspage = NewsPage(
+        #     title=fake.sentence(),
+        #     main_story_heading=fake.sentence(),
+        #     main_story_copy=fake.paragraph(10),
+        #     related_stories=[
+        #         (
+        #             "related_story",
+        #             {
+        #                 "heading": fake.sentence(4),
+        #                 "copy": fake.paragraph(5),
+        #             },
+        #         ),
+        #         (
+        #             "related_story",
+        #             {
+        #                 "heading": fake.sentence(4),
+        #                 "copy": fake.paragraph(4),
+        #             },
+        #         ),
+        #     ],
+        #     show_in_menus=False,
+        # )
+        # newsindexpage.add_child(instance=newspage)
 
         event_menu_page = EventsPage(
             title="Events", show_in_menus=True, link_url="/events/"
