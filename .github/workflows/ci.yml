@@ -39,7 +39,7 @@ jobs:
         run: poetry install
 
       - name: Code Quality
-        run: poetry run black . --check
+        run: black . --check
 
       - name: Run migrations
         env:
