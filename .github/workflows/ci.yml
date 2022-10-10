@@ -46,7 +46,7 @@ jobs:
           DJANGO_SETTINGS_MODULE: config.settings
           DJANGO_CONFIGURATION: Test
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        run: python manage.py migrate
+        run: python3 manage.py migrate
 
       - name: Test with pytest
         env:
