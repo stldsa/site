@@ -57,8 +57,6 @@ class Base(Configuration):
         "rest_framework.authtoken",
         "home",  # home app before wagtail.admin overrides admin template
         # "search",
-        "wagtail_localize",
-        "wagtail_localize.locales",
         "wagtail.contrib.forms",
         "wagtail.contrib.redirects",
         "wagtail.contrib.modeladmin",
