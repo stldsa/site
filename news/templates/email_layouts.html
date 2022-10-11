@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="editor-container" style="height: 700px"></div>
+<script> 
+    unlayer.init({
+        id: 'editor-container',
+        projectId: 1234,
+        displayMode: 'email'
+    });
+    unlayer.saveDesign(function(design) {
+        console.log('design', design);
+    });
+
+</script>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

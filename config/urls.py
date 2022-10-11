@@ -32,9 +32,11 @@ urlpatterns = (
         ),
         path("api/", include(events_api_urls)),
         path("auth-token/", obtain_auth_token),
-        # re_path(r"^docs/", include(sphinxdoc_urls)),
         path("cms/", include(wagtailadmin_urls)),
         path("documents/", include(wagtaildocs_urls)),
+        path(
+            "email-layouts/", TemplateView.as_view(template_name="email_layouts.html")
+        ),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + i18n_patterns(

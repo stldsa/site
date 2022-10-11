@@ -16,6 +16,7 @@ from render_block import render_block_to_string
 from django.utils import timezone
 import polling2 as polling
 import requests
+from django.utils.text import slugify
 
 
 class NewsletterIndexPage(Page):
@@ -66,6 +67,7 @@ class RelatedStoryBlock(blocks.StructBlock):
 
 
 class NewsletterPage(Page):
+    subject = models.CharField(max_length=255, verbose_name="Email Subject")
     main_story_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -90,10 +92,9 @@ class NewsletterPage(Page):
         index.SearchField("main_story_copy"),
     ]
 
-    content_panels = Page.content_panels + [
-        FieldPanel(
-            "main_story_image",
-        ),
+    content_panels = [
+        FieldPanel("subject"),
+        FieldPanel("main_story_image"),
         FieldPanel("main_story_heading"),
         FieldPanel("main_story_copy", classname="full"),
         FieldPanel("related_stories"),
@@ -150,6 +151,14 @@ class NewsletterPage(Page):
                 settings.ACTIONNETWORK_API_KEYS["main"],
             )
         super().save(*args, **kwargs)  # Call the "real" save() method.
+
+    def clean(self):
+        super().clean()
+        self.title = "Email Subject"
+        self.slug = slugify(self.title)
+
+
+NewsletterPage._meta.get_field("slug").default = "default-blank-slug"
 
 
 class InfoPage(Page):

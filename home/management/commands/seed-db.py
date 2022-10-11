@@ -60,8 +60,8 @@ class Command(BaseCommand):
         newsindexpage.has_children_in_menu = False
         newsindexpage.sub_menu = None
 
-        NewsPage = apps.get_model("news.NewsPage")
-        newspage = NewsPage(
+        NewsletterPage = apps.get_model("news.NewsletterPage")
+        newspage = NewsletterPage(
             title=fake.sentence(),
             main_story_heading=fake.sentence(),
             main_story_copy=fake.paragraph(10),
