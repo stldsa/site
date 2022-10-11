@@ -3,14 +3,14 @@ from news.signals import page_publish_scheduled
 from actionnetwork import email
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
-from news.models import NewsPage
+from news.models import NewsletterPage
 from django.utils import timezone
 from wagtail.signals import page_published
 import polling2 as polling
 import requests
 
 
-@receiver(page_published, sender=NewsPage)
+@receiver(page_published, sender=NewsletterPage)
 def schedule_send(sender, **kwargs):
     newspage = kwargs["instance"]
     revision = kwargs["revision"]

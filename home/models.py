@@ -4,7 +4,7 @@ from datetime import datetime
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel
 from events.models import Event
-from news.models import NewsPage
+from news.models import NewsletterPage
 from wagtail.fields import RichTextField
 
 
@@ -33,7 +33,7 @@ class HomePage(Page):
             .exclude(title__icontains="members only")
             .order_by("start")[:4]
         )
-        context["update"] = NewsPage.objects.live().latest("last_published_at")
+        context["update"] = NewsletterPage.objects.live().latest("last_published_at")
         return context
 
     def serve(self, request):

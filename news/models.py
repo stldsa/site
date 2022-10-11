@@ -1,4 +1,5 @@
 import datetime
+from django import forms
 from django.db import models
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.conf import settings
@@ -17,12 +18,12 @@ import polling2 as polling
 import requests
 
 
-class NewsIndexPage(Page):
+class NewsletterIndexPage(Page):
     message = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [FieldPanel("message", classname="full")]
     subpage_types = [
-        "news.NewsPage",  # appname.ModelName
+        "news.NewsletterPage",  # appname.ModelName
     ]
 
     def get_context(self, request):
@@ -64,7 +65,7 @@ class RelatedStoryBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
 
 
-class NewsPage(Page):
+class NewsletterPage(Page):
     main_story_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
