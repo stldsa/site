@@ -288,7 +288,9 @@ class Local(Dev):
 
 
 class Docker(Dev):
-    DATABASES = values.DatabaseURLValue("postgres://postgres:postgres@db:5432/postgres")
+    DATABASES = values.DatabaseURLValue(
+        "postgres://postgres:postgres@localhost:5432/postgres"
+    )
 
 
 class Test(Dev):

@@ -1,16 +1,70 @@
 # St. Louis DSA Website
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/schlich/stldsa-site)
 
 Welcome to the codebase for the St Louis DSA website! We hope this guide will make it easy for newcomers to get set up and contribute to website features.
 
 ## Quickstart
 
-If you know what you're doing and ready to jump in:
+The quickest and easiest way to get plugged into our development environment is with VS Code Dev Containers. If you have a strong preference to use a different IDE, consider looking into their compatibility with "dev containers" and consider making a pull request to support your IDE of choice. 
 
-    $ docker compose up
+### Creating and developing in your Dev Container
 
-## Before You Begin
+Click the "Devcontainers: Open" badge at the top of this README. Wait a few minutes while dependencies are installed and the database is initialized.
+
+After a few minutes, you will see a prompt for an email address. Enter any email address (it doesn't have to be one you own; it can be a fake one like admin@example.com). Then, enter a password to create a superuser account for your local environment. You should then see the success message at the bottom of the terminal:
+
+```bash
+Done. Press any key to close the terminal.
+```
+
+Press any key and a new terminal shell will open. 
+
+Run the following two commands to view a local copy of the site in your browser:
+
+#### Activate your Python virtual environment
+```bash
+poetry shell
+``` 
+
+#### Run the web server:
+```bash
+python manage.py runserver
+```
+
+### More useful commands
+
+Run the following commands to perform common web development tasks. If you're new to web development and/or Python and Django, understanding what these commands do is a good place to start learning.
+
+#### Run tests
+```bash
+pytest
+```
+
+#### Make/run migrations
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+#### Open a Python shell
+
+```bash
+python manage.py shell
+```
+
+### Add or remove packages with Poetry
+
+```bash
+poetry add requests
+poetry remove requests
+```
+
+## Stack details
+
+### Django
 
 Right now, our website is primarily built using Python, particularly the Django web development framework. If you would like to develop tools using a different language or framework, please reach out to tech@stldsa.org and set up a meeting with a Tech Committee Chair so we can help you get started.
 
@@ -18,99 +72,11 @@ Right now, our website is primarily built using Python, particularly the Django 
 
  If you'd like to learn the basics of Django, their [official tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial01/) is excellent.
 
-### Wagtail CMS
+## Wagtail (CMS)
 
 Many pages on our site are built with Wagtail, which is a nice Django-based content management system (CMS) designed to make it easier for non-programmers to update content on the site - read about the [Zen of Wagtail](https://docs.wagtail.io/en/stable/getting_started/the_zen_of_wagtail.html) to get the idea.
 
-## Getting Set Up
-
-The easiest way to get started with your local development environment is through our Docker Setup, which is outlined below. If these instructions do not work (or if you'd like to set up your own environment and have questions), please reach out to tech@stldsa.org or [open a GitHub issue](https://github.com/stldsa/site/issues/new/choose).
-
-> Tip: The commands in this guide assume you are using a UNIX shell, i.e. on macOS or Ubuntu. If you're a Windows user, you might be able to get by with Git Bash (which comes with [Git for Windows](https://gitforwindows.org/)) or [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10). 
-
-### 1. Clone the repository
-
-    $ git clone https://github.com/stldsa/site.git stldsa && cd stldsa
-
-### 2. [Install Docker](https://docs.docker.com/engine/install/) (if you haven't already)
-
-### 3. Build the Docker Image
-
-    $ docker-compose build
-
- This command builds **images** for both your database container (from the standard DockerHub postgres repository) and your web service container (from the Dockerfile). These images essentially provide a starting point for Docker containers to run off of so that they can be quick and painless. Thus, building them will take a few minutes the first time while it does things like set up the operating system and install package dependencies. Subsequent builds will use a cache and should execute faster - you should only have to rebuild if you make changes to the Dockerfile. 
-
-### 4. Create and run the service containers
-
-    $ docker-compose up
-
- This creates two **containers** (again, one for the database and one for the web service), which are designed to be ephemeral, modifiable instantiations of the images. It also contains an additional temporary container to run database integrations using the `init-db.sh` script. The web and database containers will keep running so that a) the web service can access the database and b) and we can access the web server in our browser at [localhost:8000](http://localhost:8000). Go ahead and check it out! Magic!
- 
- When you are done using the browser, you can run `docker-compose stop django` if you want to stop the services, which will free up port 8000 and some memory. `docker-compose start django` will spin it back up again. 
- 
- > Note: specifying the service name `django` prevents the migration service from running again. 
- 
- Run `docker-compose down` to stop *and* delete all containers (which will also delete the database). Or just keep it running forever! 🤷
-
-
-If you're using [VS Code](https://code.visualstudio.com/) as your IDE, you can also perform many of these tasks with the Docker extension whenever you might prefer using a GUI. Additionally the repo includes a `.devcontainer` settings folder so you can try out VS Code's Development Containers feature, though developing in this environment hasn't been fully tested.
-
-## Developing
-
-Most commands that you'll need to run on a regular basis you should perform in a new container:
-
-    $ docker-compose run django <command>
-
-> Tip: You may want to append an alias function in your `.bashrc` / `.bash_profile`:
-
-Linux/Ubuntu:
-
-     $ echo 'function stldsa() { docker-compose run django "$@"; }' >> ~/.bashrc` 
-
-macOS:    
-
-     $ echo 'function stldsa() { docker-compose run django "$@"; }' >> ~/.bash_profile`
-
-This will allow you to run commands with the much simpler `stldsa <command>`.
-
-**The rest of this guide uses the `stldsa` alias as described in the above tip**
-
-## More common/useful commands
-
-- Open bash shells inside the container with:
-
-      $ stldsa bash
-
-- Open python shells inside the container with
-
-      $ stldsa python manage.py shell
-
-- Add dependencies from the Python Package Index with
-
-      $ poetry add <package>
-        
- You may need to rebuild your Docker images with `docker-compose build`.
-        
-- Run tests:
-
-      $ stldsa pytest
-
-- When you change any model fields, you must make some new migrations:
-
-      $ stldsa python manage.py makemigrations
-      $ stldsa python manage.py migrate
-
-<!-- - Re-seed your database:
-
-      $ stldsa python manage.py flush
-      $ stldsa python manage.py seed-db -->
-
-- More helpful aliases:
-
-      $ echo 'function stldsa-manage() { stldsa python manage.py "$@"; }' >> ~/.bashrc
-      $ echo 'function docker-reset() { docker-compose down && docker-compose up; }' >> ~/.bashrc
-
-## Browse Wagtail CMS
+### Browse Wagtail
 
 The startup scripts create an admin user with the email `admin@example.com` and the password `stldsa` (You can [override these settings](https://docs.djangoproject.com/en/3.0/ref/django-admin/#createsuperuser) using your environment variables if you really want to).  Go to http://localhost:8000/cms and enter these credentials to open the Wagtail admin interface. Browse around, navigate the site tree, and try making a page yourself! Notice that upon returning to the "front end" of the website, if you're viewing a page that uses Wagtail (which is most of them), you can now see a nifty shortcut icon the lower-right corner.
 
