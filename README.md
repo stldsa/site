@@ -7,7 +7,7 @@ Welcome to the codebase for the St Louis DSA website! We hope this guide will ma
 
 ## Quickstart
 
-The quickest and easiest way to get plugged into our development environment is with VS Code Dev Containers. If you have a strong preference to use a different IDE, consider looking into their compatibility with "dev containers" and consider making a pull request to support your IDE of choice. 
+The quickest and easiest way to get plugged into our development environment is with VS Code Dev Containers. If you'd like to try out a different IDE, you may try either tunneling into the docker container created by `.devcontainer/docker-compose.yaml` or by installing the Python, Poetry, and Postgres dependencies yourself.  
 
 ### Creating and developing in your Dev Container
 
