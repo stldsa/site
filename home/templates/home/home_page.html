@@ -27,7 +27,7 @@
         <h2 class="my-4">Weekly Digest:</h2>
         <h1>{{ update.title }}</h1>
         <!-- <h3>Posted: {{ update.last_published_at|date:"M j, Y" }}</h3> -->
-        <p style="font-family: 'Manifold DSA'">{{ update.main_story_copy|richtext }}</p>
+        <p style="font-family: 'Manifold DSA'">{{ update.body|richtext }}</p>
 
         <h1>Upcoming Events:</h1>
         <ul>
