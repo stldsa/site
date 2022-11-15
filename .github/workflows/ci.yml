@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: '3.11'
           cache: "poetry"
-      - run: 
+      - run: |
         poetry env use 3.11
         poetry install
 
