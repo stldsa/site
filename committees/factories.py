@@ -25,3 +25,6 @@ class CommitteeFactory(DjangoModelFactory):
     email = fake("email")
     show_in_menus = True
     leader_name = fake("name")
+    sign_up_form_endpoint = (
+        "https://actionnetwork.org/api/v2/forms/2c71ef03-f4c3-400b-b7ba-1d3f9bd0c283/"
+    )

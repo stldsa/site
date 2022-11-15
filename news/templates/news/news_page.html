@@ -1,15 +1,30 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
+    <div class="col-10 mx-auto">
     <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date }}</p>
 
-    {{ page.body|richtext }}
-
-    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
-
+    <div>{% image page.main_story_image scale-100 %}</div>
+    {% if page.main_story_heading %}
+        <h2>{{ page.main_story_heading }}</h2>
+    {% endif %}
+    <div>
+    {{ page.main_story_copy|richtext }}
+    </div>
+    {% for block in page.related_stories %}
+        <div class="row">
+            <div class="col-sm-4 my-auto">
+                {% image block.value.image scale-100 %}
+            </div>
+            <div class="col-sm">
+                    <h3>{{ block.value.heading }}</h3>
+                    <p>{{ block.value.copy }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}

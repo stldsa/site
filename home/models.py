@@ -2,7 +2,6 @@ from home.views import EmailFormView
 from django.db import models
 from datetime import datetime
 from wagtail.models import Page
-from django.shortcuts import render
 from wagtail.admin.panels import FieldPanel
 from events.models import Event
 from news.models import NewsPage
@@ -30,11 +29,11 @@ class HomePage(Page):
     def get_context(self, request):
         context = super(HomePage, self).get_context(request)
         context["events"] = (
-            Event.objects.filter(start__gte=datetime.today().date())
+            Event.objects.filter(start__gte=datetime.now().date())
             .exclude(title__icontains="members only")
             .order_by("start")[:4]
         )
-        context["update"] = NewsPage.objects.all().order_by("-date")[0]
+        context["update"] = NewsPage.objects.live().latest("last_published_at")
         return context
 
     def serve(self, request):

@@ -11,6 +11,7 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
 from wagtailmenus.models import MenuPage
 from datetime import datetime
+import requests
 
 
 class Person(models.Model):
@@ -71,13 +72,27 @@ class CommitteePage(Page):
     def get_context(self, request):
         context = super().get_context(request)
         context["upcoming_events"] = list(self.events.filter(start__gt=datetime.now()))
-        # embed_code = embeds["embed_standard_layout_only_styles"]
-        # context["embed_code"] = embed_code
+        if self.sign_up_form_endpoint:
+            print(self.sign_up_form_endpoint)
+            print(self.slug)
+            print(settings.ACTIONNETWORK_API_KEYS)
+            print(settings.ACTIONNETWORK_API_KEYS.get(self.slug))
+            embeds = requests.get(
+                f"{self.sign_up_form_endpoint}embed",
+                headers={
+                    "OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS.get(self.slug)
+                },
+            ).json()
+            print(embeds)
+            embed_code = embeds["embed_standard_layout_only_styles"]
+        else:
+            embed_code = None
+        context["embed_code"] = embed_code
 
         return context
 
     def __str__(self):
-        return self.title.title() + " " + self.get_formation_type_display()
+        return f"{self.title.title()} {self.get_formation_type_display()}"
 
 
 class CommitteesPage(MenuPage):
@@ -118,7 +133,8 @@ class ResourcesPage(Page):
                     ]
                 ),
             )
-        ]
+        ],
+        use_json_field=True,
     )
     content_panels = Page.content_panels + [
         FieldPanel("resources"),
