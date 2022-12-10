@@ -84,13 +84,6 @@ class People:
         ).json()
         return cls(data)
 
-    @property
-    def list(self):
-        if self.json is None:
-            logger.error("error with People.list!", self)
-            return None
-        return self.json["_embedded"]["osdi:people"]
-
 
 class Taggings:
     def __init__(self, person_uuid):
