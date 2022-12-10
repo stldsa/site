@@ -66,7 +66,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def membership_status(self):
         custom_fields = an.Person(self.uuid).custom_fields
-        return custom_fields["DSA Member Status"]
+        return custom_fields.get("DSA Member Status") if custom_fields else None
 
     @property
     def is_member(self):

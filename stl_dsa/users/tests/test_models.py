@@ -41,6 +41,18 @@ def test_user_is_not_member(faker):
 
 
 @responses.activate
+def test_nonexistent_an_person_is_member(faker):
+    uuid = faker.uuid4()
+    user = User(uuid=uuid)
+    responses.add(
+        responses.GET,
+        url=f"https://actionnetwork.org/api/v2/people/{uuid}",
+        json={},
+    )
+    assert not user.is_member
+
+
+@responses.activate
 def test_get_uuid_when_doesnt_have_one(faker):
     uuid = faker.uuid4()
     email = faker.email()
