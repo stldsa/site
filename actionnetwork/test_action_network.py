@@ -84,10 +84,7 @@ def test_taggings_has_tag(faker):
 
 def test_uuid(faker):
     uuid = faker.uuid4()
-    assert (
-        an.Person({"identifiers": ["salsa:1234", f"action_network:{uuid}"]}).uuid
-        == uuid
-    )
+    assert an.Person(uuid).uuid == uuid
 
 
 @responses.activate
@@ -121,3 +118,16 @@ def test_get_tag_from_uuid(faker, monkeypatch):
     )
     tag = an.Tag.from_uuid(uuid).json
     assert tag["identifiers"][0].split(":")[1] == uuid
+
+
+@responses.activate
+def test_dsa_member_status(faker):
+    uuid = faker.uuid4()
+    responses.add(
+        responses.GET,
+        url=f"https://actionnetwork.org/api/v2/people/{uuid}",
+        json={"custom_fields": {"DSA Member Status": "member in good standing"}},
+    )
+    assert (
+        an.Person(uuid).custom_fields["DSA Member Status"] == "member in good standing"
+    )

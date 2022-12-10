@@ -133,17 +133,15 @@ class Tag:
 
 
 class Person:
-    def __init__(self, data):
-        self.uuid = [
-            id.split(":")[1]
-            for id in data.get("identifiers", [])
-            if id.split(":")[0] == "action_network"
-        ][0]
+    def __init__(self, uuid):
+        self.uuid = uuid
 
-    @classmethod
-    def from_uuid(cls, uuid):
-        uri = urljoin(cls.people_endpoint, uuid)
-        return cls(call_api(uri))
+    @property
+    def json(self):
+        return requests.get(
+            f"https://actionnetwork.org/api/v2/people/{self.uuid}",
+            headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS["main"]},
+        ).json()
 
     @classmethod
     def first_from_people(cls, people: People):
@@ -154,9 +152,9 @@ class Person:
         return cls(call_api(URI))
 
     @property
-    def URI(self):
-        return self.people_endpoint + self.uuid
-
-    @property
     def taggings(self):
         return Taggings(self.uuid)
+
+    @property
+    def custom_fields(self):
+        return self.json["custom_fields"]

@@ -64,8 +64,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.uuid
 
     @property
+    def membership_status(self):
+        custom_fields = an.Person(self.uuid).custom_fields
+        return custom_fields["DSA Member Status"]
+
+    @property
     def is_member(self):
-        return VOTING_MEMBER_TAG_ID in an.Taggings(self.uuid or self.get_uuid()).tags
+        return self.membership_status in ["member in good standing"]
 
     def update_membership(self):
         member_group = Group.objects.get(name="Members")
