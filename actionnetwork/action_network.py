@@ -157,4 +157,4 @@ class Person:
 
     @property
     def custom_fields(self):
-        return self.json["custom_fields"]
+        return self.json.get("custom_fields")
