@@ -24,7 +24,8 @@
 				"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
 				"files.exclude": {
 					".venv": true
-				}
+				},
+				"python.defaultInterpreterPath": ".venv"
 			},
 			"extensions": [
 				"ms-python.python",
