@@ -29,7 +29,6 @@ class Command(BaseCommand):
     """
 
     help = "creates initial wagtail cms page tree"
-    requires_system_checks = False
 
     def _setup(self):
         Page.objects.filter(id=2).delete()

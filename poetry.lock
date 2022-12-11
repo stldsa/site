@@ -638,28 +638,6 @@ rjsmin = "1.1.0"
 six = ">=1.12.0"
 
 [[package]]
-name = "django-configurations"
-version = "2.4"
-description = "A helper for organizing Django settings."
-category = "main"
-optional = false
-python-versions = ">=3.7, <4.0"
-files = [
-    {file = "django-configurations-2.4.tar.gz", hash = "sha256:22b9964e6b657dafc7a35410a115d20f1451149a82737adc6c331ec365888196"},
-    {file = "django_configurations-2.4-py3-none-any.whl", hash = "sha256:d10bac11d71e29e8ea89548e2d5d2e91e1595667b3859989f50727dcbe7a8c80"},
-]
-
-[package.dependencies]
-django = ">=3.2"
-
-[package.extras]
-cache = ["django-cache-url"]
-database = ["dj-database-url"]
-email = ["dj-email-url"]
-search = ["dj-search-url"]
-testing = ["dj-database-url", "dj-email-url", "dj-search-url", "django-cache-url (>=1.0.0)"]
-
-[[package]]
 name = "django-coverage-plugin"
 version = "2.0.4"
 description = "Django template coverage.py plugin"
@@ -2682,4 +2660,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "3.11.0"
-content-hash = "e246c5518ed45e294f88b529ddf4ed71c928bb09fa9447d992c10820fe82c3bf"
+content-hash = "98ea9def74858a2466c872cd3e775b03c2e10d7bde5a2dba83a9cd45a40db47a"

@@ -23,7 +23,6 @@ django-scheduler = "^0.9.3"
 wagtailfontawesome = "^1.2.1"
 requests = "^2.26.0"
 python-dateutil = "^2.8.2"
-django-configurations = "^2.3.2"
 dj-database-url = "^0.5.0"
 django-cache-url = "^3.2.3"
 validators = "^0.18.2"
@@ -64,14 +63,8 @@ pytest-vcr = "^1.0.2"
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q --disable-socket --no-migrations"
-DJANGO_SETTINGS_MODULE = "config.settings"
-DJANGO_CONFIGURATION = "Test"
+DJANGO_SETTINGS_MODULE = "config.settings_test"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
-filterwarnings = [
-    "ignore::django.utils.deprecation.RemovedInDjango40Warning",
-    "ignore::django.utils.deprecation.RemovedInDjango41Warning",
-    "ignore::DeprecationWarning",
-]
 
 [tool.flake8]
 max-line-length = 88

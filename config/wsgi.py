@@ -15,10 +15,9 @@ framework.
 """
 import os
 import sys
-from configurations.wsgi import get_wsgi_application
+from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
-os.environ.setdefault("DJANGO_CONFIGURATION", "Production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings_prod")
 
 # This allows easy placement of apps within the interior
 # stl_dsa directory.

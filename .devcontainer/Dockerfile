@@ -7,5 +7,5 @@ ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 
 RUN pipx install poetry 
 COPY pyproject.toml poetry.lock .
-RUN poetry install
+RUN poetry install --no-root
 COPY .venv .venv
