@@ -10,7 +10,7 @@ APPS_DIR = ROOT_DIR.path("stl_dsa")
 BASE_DIR = ROOT_DIR
 if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=False):
     env.read_env(str(ROOT_DIR.path(".env")))
-DEBUG = os.getenv("DEBUG", True)
+DEBUG = True
 
 WAGTAIL_SITE_NAME = "St Louis DSA"
 # SITE_ID = {"domain": "https://stldsa.org", "name": "St Louis DSA"}
@@ -90,7 +90,8 @@ PASSWORD_HASHERS = [
 ]
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+        "NAME": "django.contrib.auth.password_validation."
+        + "UserAttributeSimilarityValidator"
     },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
