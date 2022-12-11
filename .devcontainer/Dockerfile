@@ -6,3 +6,4 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 ENV DJANGO_SUPERUSER_USERNAME=admin@example.com
 ENV DJANGO_SUPERUSER_EMAIL=admin@example.com
 ENV DJANGO_SUPERUSER_PASSWORD=stldsa
+ENV POETRY_VIRTUALENVS_IN_PROJECT=true
