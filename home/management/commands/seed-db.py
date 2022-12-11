@@ -135,7 +135,8 @@ class Command(BaseCommand):
         checks = [Page.objects.all().count() > 2]
         if any(checks):
             # YOU SHOULD NEVER RUN THIS COMMAND WITHOUT PRIOR DB DUMP
-            raise RuntimeError("Pages exists. Aborting.")
+            print("Pages exist. Skipping Wagtail page generation.")
+            return
 
         self._setup()
         if verbosity > 0:
