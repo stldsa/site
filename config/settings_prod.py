@@ -1,4 +1,6 @@
-from config.settings_base import *
+import dj_database_url
+from config.settings_base import env, TEMPLATES, INSTALLED_APPS
+
 
 DEBUG = False
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
@@ -20,7 +22,6 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 )
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-TEMPLATES = Base.TEMPLATES
 TEMPLATES[-1]["OPTIONS"]["loaders"] = [  # type: ignore[index] # noqa F405
     (
         "django.template.loaders.cached.Loader",
@@ -39,17 +40,15 @@ EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[STL DSA]")
 
 # Anymail (Mailgun)
 # ------------------------------------------------------------------------------
-INSTALLED_APPS = Base.INSTALLED_APPS + ["anymail"]  # noqa F405
+INSTALLED_APPS = INSTALLED_APPS + ["anymail"]  # noqa F405
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 
 
-@property
-def ANYMAIL(self):
-    return {
-        "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
-        "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
-        "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
-    }
+ANYMAIL = {
+    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
+    "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
+}
 
 
 # LOGGING
