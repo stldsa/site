@@ -37,11 +37,11 @@ jobs:
 
       - name: Run migrations
         env:
-          DJANGO_SETTINGS_MODULE: config.settings_test
+          DJANGO_SETTINGS_MODULE: config.settings
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
         run: poetry run python manage.py migrate
 
       - env:
-          DJANGO_SETTINGS_MODULE: config.settings_test
+          DJANGO_SETTINGS_MODULE: config.settings
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
         run: poetry run pytest

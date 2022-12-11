@@ -1,19 +1,18 @@
 import os
-import environ
 import json
+import environ
 import secrets
 
 env = environ.Env()
+
 
 ROOT_DIR = environ.Path(__file__) - 2
 APPS_DIR = ROOT_DIR.path("stl_dsa")
 BASE_DIR = ROOT_DIR
 if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=False):
     env.read_env(str(ROOT_DIR.path(".env")))
-DEBUG = True
 
 WAGTAIL_SITE_NAME = "St Louis DSA"
-# SITE_ID = {"domain": "https://stldsa.org", "name": "St Louis DSA"}
 TIME_ZONE = "America/Chicago"
 SITE_ID = 1
 WAGTAIL_I18N_ENABLED = True
@@ -45,8 +44,7 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "rest_framework",
     "rest_framework.authtoken",
-    "home",  # home app before wagtail.admin overrides admin template
-    # "search",
+    "home",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.modeladmin",
@@ -232,3 +230,7 @@ ACTIONNETWORK_API_KEYS = json.loads(
 )  # The default key is not real
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
+
+LOCAL_SERVE_MEDIA_FILES = True
+
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
