@@ -1,7 +1,8 @@
+"""Django Settings"""
 import os
 import json
-import environ
 import secrets
+import environ
 
 env = environ.Env()
 
@@ -245,3 +246,5 @@ DATABASES = {
         "PORT": env("POSTGRES_PORT", default="5432"),
     }
 }
+
+WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL")
