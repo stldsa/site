@@ -79,7 +79,10 @@ select = "C,E,F,W,B,B950"
 extend-ignore = "E203, E501"
 
 [tool.black]
-exclude = '^.*\b(migrations)\b.*$'
+extend_exclude = '^.*\b(migrations)\b.*$'
+
+[tool.mypy]
+exclude = ['/.venv/']
 
 [build-system]
 requires = ["poetry>=1.1.6"]
