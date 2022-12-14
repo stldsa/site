@@ -42,19 +42,22 @@
     {% if user.is_leader %}{% wagtailuserbar %}{% endif %}
     <div class="bg-white">
         <header id="pageheader" class="container" role="banner">
-            <div class="row py-3 align-items-center">
+            <div class="row py-3 align-items-center justify-content-between">
                 <div class="col-6 col-sm-5">
                     <div class="row justify-content-center justify-content-sm-start px-0">
-                        <a class="navbar-brand ml-sm-4" href="/">
-                            <div class="row">
-                                <img src="{% static 'images/FLAG_VERSION.svg' %}" class="header-logo" alt="St Louis DSA">
-                                <span class="header-logo-text my-auto py-auto">St Louis<br><span style="color:black;">Democratic<br>Socialists of<br>America</span></span>
-                            </div>
+                        <div class="d-flex">
+                        <a href="/">
+                            <img src="{% static 'images/FLAG_VERSION.svg' %}" class="header-logo" alt="St Louis DSA">
                         </a>
+                            <div class="d-flex flex-column header-logo-text">
+                                <h1 class="header-logo-text my-auto py-auto">Saint Louis</h1><br>
+                                <h3 class="header-logo-text my-auto py-auto">Democratic Socialists of America</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6 col-sm-7">
-                    <div class="row align-items-center justify-content-center justify-content-sm-end pl-0 pr-sm-3">
+                    <div class="row align-items-center justify-content-center justify-content-sm-end pl-0">
                         <div class="p-0 mx-3 d-sm-block">
                             <div style="display:flex;">
                                 <a href="https://facebook.com/STLDSA" target="_blank"

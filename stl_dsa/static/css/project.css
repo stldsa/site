@@ -1980,8 +1980,8 @@ header button {
 }
 
 .btn {
-  font-family: "Styrene B";
-  font-weight: 600 !important;
+  font-family: "Styrene B Black";
+  font-weight: 400 !important;
   border-width: 2px;
   border-radius: 4px;
   line-height: 1;
@@ -2069,7 +2069,7 @@ header button {
   margin-right: 10px;
   color: #241f20;
   font-family: "Styrene B";
-  font-weight: 600;
+  font-weight: 400;
 }
 .nav-link:hover, .nav-link:focus {
   color: #ec1f27;
