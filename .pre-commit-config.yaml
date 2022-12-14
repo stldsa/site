@@ -33,3 +33,4 @@ repos:
     language: system
     stages: [push]
     pass_filenames: false
+    always_run: true
