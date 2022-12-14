@@ -42,14 +42,12 @@ Text Domain: dsa-v2
   src: url(../fonts/StyreneB/StyreneB-Regular.otf);
 }
 @font-face {
-  font-family: "Styrene B";
+  font-family: "Styrene B Bold";
   src: url(../fonts/StyreneB/StyreneB-Bold.otf);
-  font-weight: 700;
 }
 @font-face {
-  font-family: "Styrene B";
+  font-family: "Styrene B Black";
   src: url(../fonts/StyreneB/StyreneB-Black.otf);
-  font-weight: 900;
 }
 html,
 body,
@@ -207,8 +205,12 @@ h4 {
   font-family: "Manifold DSA", Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
 }
 
-.header-logo-text, #campaignheader, #hdrnav, #mainmenu .burger span, .stronglink {
+#campaignheader, #hdrnav, #mainmenu .burger span, .stronglink {
   font-family: "Styrene B", sans-serif;
+}
+
+.header-logo-text {
+  font-family: "Styrene B Bold", sans-serif;
 }
 
 img {

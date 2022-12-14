@@ -88,14 +88,12 @@ $text-5xl: 3em;
   src: url(../fonts/StyreneB/StyreneB-Regular.otf);
 }
 @font-face {
-  font-family: "Styrene B";
+  font-family: "Styrene B Bold";
   src: url(../fonts/StyreneB/StyreneB-Bold.otf);
-  font-weight: 700;
 }
 @font-face {
-  font-family: "Styrene B";
+  font-family: "Styrene B Black";
   src: url(../fonts/StyreneB/StyreneB-Black.otf);
-  font-weight: 900;
 }
 
 // CSS RESET
@@ -253,6 +251,9 @@ button {
 }
 %font-styrene {
   font-family: "Styrene B", sans-serif;
+}
+%font-styrene-bold {
+  font-family: "Styrene B Bold", sans-serif;
 }
 %font-headers {
   font-family: "Open Sans Condensed", Impact, Haettenschweiler, sans-serif;
@@ -2252,7 +2253,7 @@ header button {
 }
 
 .header-logo-text {
-  @extend %font-styrene;
+  @extend %font-styrene-bold;
 
   @media #{$mobile-query} {
     font-size: 2rem;
