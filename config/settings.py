@@ -236,7 +236,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
 
 LOCAL_SERVE_MEDIA_FILES = True
 
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", ["localhost", "0.0.0.0", "127.0.0.1"])
 
 DATABASES = {
     "default": dj_database_url.config(
