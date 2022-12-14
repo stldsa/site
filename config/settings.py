@@ -3,6 +3,7 @@ import os
 import json
 import secrets
 import environ
+import dj_database_url
 
 env = environ.Env()
 
@@ -238,14 +239,9 @@ LOCAL_SERVE_MEDIA_FILES = True
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("POSTGRES_DB", default="postgres"),
-        "USER": env("POSTGRES_USER", default="postgres"),
-        "PASSWORD": env("POSTGRES_PASSWORD", default="postgres"),
-        "HOST": env("POSTGRES_HOST", default="localhost"),
-        "PORT": env("POSTGRES_PORT", default="5432"),
-    }
+    "default": dj_database_url.config(
+        default="postgres://postgres:postgres@localhost:5432/postgres"
+    )
 }
 
 WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL", default="https://localhost:8000")
