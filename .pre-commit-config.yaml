@@ -32,4 +32,5 @@ repos:
     entry: pytest
     language: system
     stages: [push]
+    types: [python]
     pass_filenames: false
