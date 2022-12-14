@@ -5,7 +5,7 @@ import secrets
 import environ
 import dj_database_url
 
-env = environ.Env()
+env = environ.Env(ALLOWED_HOSTS=(list, ["localhost", "0.0.0.0", "127.0.0.1"]))
 
 DEBUG = os.environ.get("DEBUG", True)
 
@@ -236,7 +236,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
 
 LOCAL_SERVE_MEDIA_FILES = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", ["localhost", "0.0.0.0", "127.0.0.1"])
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS")
 
 DATABASES = {
     "default": dj_database_url.config(
