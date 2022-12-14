@@ -1,4 +1,5 @@
 import datetime
+from django import forms
 from django.db import models
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.conf import settings
@@ -6,9 +7,8 @@ from wagtail.search import index
 from wagtail import blocks
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
-from wagtail.blocks import BlockQuoteBlock, CharBlock
-from wagtail.admin.panels import FieldPanel
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.blocks import BlockQuoteBlock, CharBlock, RichTextBlock
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from events.models import Event
 from actionnetwork import email
 from render_block import render_block_to_string
@@ -58,44 +58,52 @@ def upcoming_events_as_related_stories():
     ]
 
 
-class RelatedStoryBlock(blocks.StructBlock):
-    heading = blocks.CharBlock(required=False)
-    copy = blocks.TextBlock(required=False)
-    image = ImageChooserBlock(required=False)
-
-
 class NewsPage(Page):
-    main_story_image = models.ForeignKey(
+    """A Wagtail Page for our weekly newsletter"""
+
+    banner_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    main_story_heading = models.CharField(max_length=500, null=True, blank=True)
-    main_story_copy = RichTextField(blank=True)
+    main_copy = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
-    related_stories = StreamField(
-        [("related_story", RelatedStoryBlock())],
+    stories = StreamField(
+        [("related_story", RichTextBlock())],
         null=True,
         blank=True,
         collapsed=False,
-        default=upcoming_events_as_related_stories,
         use_json_field=True,
     )
 
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
     search_fields = Page.search_fields + [
-        index.SearchField("main_story_copy"),
+        index.SearchField("main_copy"),
     ]
 
-    content_panels = Page.content_panels + [
+    title_widget = forms.TextInput(
+        attrs={"placeholder": "An attention grabbing subject header!"}
+    )
+    content_panels = [
         FieldPanel(
-            "main_story_image",
+            "title",
+            heading="Subject",
+            widget=title_widget,
+            help_text=(
+                "This field will be used as both the email subject header "
+                "and as the title for the landing page."
+            ),
         ),
-        FieldPanel("main_story_heading"),
-        FieldPanel("main_story_copy", classname="full"),
-        FieldPanel("related_stories"),
+        MultiFieldPanel(
+            (
+                FieldPanel("banner_image"),
+                FieldPanel("main_copy"),
+            ),
+            "Main Story",
+        ),
+        FieldPanel("stories", heading="Other Stories"),
     ]
 
     def save(self, *args, **kwargs):

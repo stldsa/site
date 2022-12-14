@@ -273,15 +273,12 @@ h5 {
   h1 {
     font-size: 2em;
   }
-
   h2 {
     font-size: 1.5em;
   }
-
   h3 {
     font-size: 1em;
   }
-
   h4 {
     font-size: 0.625em;
   }
@@ -646,26 +643,21 @@ a .stronglink:hover {
     float: right;
     margin: 0 0 1em 1em;
   }
-
   img.alignleft {
     float: left;
     margin: 0 1em 1em 0;
   }
-
   img.aligncenter {
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
-
   .alignright {
     float: right;
   }
-
   .alignleft {
     float: left;
   }
-
   .aligncenter {
     display: block;
     margin-left: auto;
@@ -687,24 +679,16 @@ a .stronglink:hover {
 }
 
 #overlay {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  /* Stay in place */
-  z-index: 2000;
-  /* Sit on top */
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2000; /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%;
-  /* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
-  background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 #modal {
@@ -1073,17 +1057,17 @@ textarea {
 }
 @media screen and ( min-width: 1024px ) {
   #hdrnav .mainnav > div:hover .sub-menu,
-#hdrnav .mainnav > div .hdrnavhover .sub-menu {
+  #hdrnav .mainnav > div .hdrnavhover .sub-menu {
     visibility: visible;
   }
 }
 @media screen and ( min-width: 1024px ) {
   #hdrnav .mainnav > div:hover,
-#hdrnav .mainnav .hdrnavhover {
+  #hdrnav .mainnav .hdrnavhover {
     background: #000;
   }
   #hdrnav .mainnav > div:hover a,
-#hdrnav .mainnav .hdrnavhover a {
+  #hdrnav .mainnav .hdrnavhover a {
     color: #fff;
   }
 }
@@ -1154,7 +1138,7 @@ main .grid-social .button-donate {
 }
 @media screen and ( min-width: 1024px ) {
   main .grid-social .button-joindsa,
-main .grid-social .button-donate {
+  main .grid-social .button-donate {
     font-size: 1.25em;
   }
 }
@@ -1228,7 +1212,7 @@ main #swagad #swagad-2 {
     justify-content: space-between;
   }
   main #swagad #swagad-1,
-main #swagad #swagad-2 {
+  main #swagad #swagad-2 {
     flex: 0 0 45%;
   }
   main #swagad #swagad-3 {
@@ -1673,16 +1657,16 @@ footer {
 }
 @media screen and ( max-width: 1024px ) {
   .swiper-container-horizontal .swiper-pagination-bullets,
-.swiper-container-horizontal .swiper-pagination-custom,
-.swiper-container-horizontal .swiper-pagination-fraction {
+  .swiper-container-horizontal .swiper-pagination-custom,
+  .swiper-container-horizontal .swiper-pagination-fraction {
     top: 0;
     right: 0;
   }
 }
 @media screen and ( min-width: 1024px ) {
   .swiper-container-horizontal .swiper-pagination-bullets,
-.swiper-container-horizontal .swiper-pagination-custom,
-.swiper-container-horizontal .swiper-pagination-fraction {
+  .swiper-container-horizontal .swiper-pagination-custom,
+  .swiper-container-horizontal .swiper-pagination-fraction {
     bottom: 0 !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
@@ -2052,7 +2036,7 @@ header button {
 }
 
 .navbar {
-  background-color: rgba(236, 31, 39, 0.1);
+  background-color: #e4e4e8;
   justify-content: start;
 }
 
@@ -2095,7 +2079,7 @@ header button {
 
 .dropdown-menu {
   margin-top: 0px;
-  background-color: rgba(236, 31, 39, 0.1);
+  background-color: #6d6d6d;
 }
 
 .dropdown-item {
@@ -2189,11 +2173,6 @@ header button {
   }
 }
 
-.header-logo-text {
-  color: #241f20;
-  font-weight: 700;
-  padding-top: 0.5rem;
-}
 @media screen and ( max-width: 1024px ) {
   .header-logo-text {
     font-size: 2rem;
@@ -2349,7 +2328,6 @@ figcaption {
     display: block;
     text-align: center;
   }
-
   .fc-header-toolbar .fc-toolbar-chunk {
     display: block;
     margin: 5px;

@@ -6,7 +6,8 @@
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/poetry:1": {},
 		"ghcr.io/devcontainers-contrib/features/heroku-cli:1": {},
-		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {}
+		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {},
+		"ghcr.io/devcontainers/features/node:1": {}
 	},
 	"customizations": {
 		"vscode": {
@@ -34,6 +35,7 @@
 		}
 	},
 	"onCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py createsuperuser --noinput && poetry run python manage.py autopopulate_main_menus",
-	"postCreateCommand": "pre-commit install",
+	"postCreateCommand": "pre-commit install && npm install -g sass",
+	"postAttachCommand": "sass --watch stl_dsa/static/sass:stl_dsa/static/css &",
 	"remoteUser": "vscode"
 }

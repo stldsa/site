@@ -2109,7 +2109,7 @@ header button {
 }
 
 .navbar {
-  background-color: $dsaredtrans-2x;
+  background-color: $dsamidgrey;
   justify-content: start;
 }
 
@@ -2153,7 +2153,7 @@ header button {
 
 .dropdown-menu {
   margin-top: 0px;
-  background-color: $dsaredtrans-2x;
+  background-color: $black-light-2x;
   //margin-left: -17px;
 }
 
@@ -2252,9 +2252,6 @@ header button {
 }
 
 .header-logo-text {
-  color: $dsablack;
-  font-weight: 700;
-  padding-top: .5rem;
   @extend %font-styrene;
 
   @media #{$mobile-query} {

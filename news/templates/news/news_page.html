@@ -15,7 +15,7 @@
     <div>
     {{ page.main_story_copy|richtext }}
     </div>
-    {% for block in page.related_stories %}
+    {% for block in page.stories %}
         <div class="row">
             <div class="col-sm-4 my-auto">
                 {% image block.value.image scale-100 %}
