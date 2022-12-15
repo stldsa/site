@@ -272,7 +272,8 @@ body {
   font: 400 1em/1 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: $black-light-1x;
   margin-bottom: 40px;
-  // background-color: $dsalitegrey;
+  background-image: linear-gradient($dsamidgrey, $darkdsared);
+  min-height: 100%;
 }
 
 em,
@@ -2427,11 +2428,6 @@ figcaption {
   }
 }
 
-.banner {
-  background-image: linear-gradient($dsamidgrey, $darkdsared);
-  background-size: cover;
-  background-position: center top 50% ;
-}
 
 .banner h1 {
   margin-top: 10px;
