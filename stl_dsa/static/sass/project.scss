@@ -2077,6 +2077,19 @@ header button {
   color: white;
 }
 
+.btn-primary:hover {
+  background-color: $darkdsared;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active {
+  background-color: $darkdsared;
+  border-color: $dsablack;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus {
+  box-shadow: $dsalightred;
+}
+
 .btn-outline-dark {
   color: $dsablack;
   border-color: $dsablack;

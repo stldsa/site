@@ -7,7 +7,7 @@ import dj_database_url
 
 env = environ.Env()
 
-DEBUG = os.environ.get("DEBUG", True)
+DEBUG = env.bool("DEBUG", True)
 
 ROOT_DIR = environ.Path(__file__) - 2
 APPS_DIR = ROOT_DIR.path("stl_dsa")
