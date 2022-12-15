@@ -11,7 +11,7 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
     DJANGO_SUPERUSER_EMAIL=admin@example.com \
     DJANGO_SUPERUSER_PASSWORD=stldsa \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
-    DEBUG=true
+    DEBUG=True
 
 RUN pipx install poetry 
 COPY pyproject.toml poetry.lock .

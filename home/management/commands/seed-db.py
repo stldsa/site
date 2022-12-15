@@ -71,7 +71,7 @@ class Command(BaseCommand):
             title="Events", show_in_menus=True, link_url="/events/"
         )
         homepage.add_child(instance=event_menu_page)
-        formation_index = InfoPage(title="All Formation Groups", show_in_menus=True)
+        formation_index = InfoPage(title="Get Involved", show_in_menus=True)
         homepage.add_child(instance=formation_index)
         for formation_type_name in [
             "Priority Resolutions",

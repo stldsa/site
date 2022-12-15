@@ -21,13 +21,22 @@
 {% block content %}
   <div class="row">
     <div class="col-sm-8">
-    <div class="p-3 mb-3 rounded">
-
-        <h2 class="my-4">Weekly Digest:</h2>
-        <h1>{{ update.title }}</h1>
-        <!-- <h3>Posted: {{ update.last_published_at|date:"M j, Y" }}</h3> -->
-        <p style="font-family: 'Manifold DSA'">{{ update.main_story_copy|richtext }}</p>
-
+      <div class="p-3 mb-3 rounded">
+        <div class="card text-center">
+          <div class="card-header text-left">
+            What's new?
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ update.title }}</h5>
+            <p class="card-text">{{ update.main_copy|richtext }}</p>
+            <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
+          </div>
+          <div class="card-footer text-muted text-left">
+            <a href="{% pageurl update %}" >
+              {{ update.last_published_at|date:"D, M jS Y" }}
+            </a>
+          </div>
+        </div>
         <h1>Upcoming Events:</h1>
         <ul>
           {% if events %}
