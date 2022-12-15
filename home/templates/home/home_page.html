@@ -1,33 +1,18 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block banner %}
   <div class='container col-md-auto d-block pb-4 banner' style='text-align:center;'>
-    <div class='bgred'>
-    </div>
-    <div class="row justify-content-center">
-      <div class='col-sm-4'>
-        <h2>Our Mission</h2>
-        <p class="text-center">{{ page.mission_statement }}</p>
-      </div>
-      <div class='col-sm-4'>
-        <h2>We Believe</h2>
-        <p class="text-center">{{ page.values_statement }}</p>
-      </div>
-    </div>
-  </div>
-{% endblock %}
-
-{% block content %}
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="p-3 mb-3 rounded">
-        <div class="card text-center">
-          <div class="card-header text-left">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card text-center my-4">
+          <div class="card-header text-left" style="font-family:'Styrene B Black';">
             What's new?
           </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ update.title }}</h5>
+          {% image update.banner_image min-500x200 as banner %}
+          <div class="card-body main-story">
+            
+            <h2 class="card-title">{{ update.title }}</h2>
             <p class="card-text">{{ update.main_copy|richtext }}</p>
             <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
           </div>
@@ -37,23 +22,47 @@
             </a>
           </div>
         </div>
-        <h1>Upcoming Events:</h1>
-        <ul>
-          {% if events %}
-            {% for event in events %}
-              <li><b><a href='{{ event.url }}'>{{ event.title }}</a></b> | {{ event.start|date:"D, M j" }}</li>
-            {% endfor %}
-          {% else %}
-              <p>No upcoming events.</p>
-          {% endif %}
-        </ul> 
+        <div class="card">
+          <div class="card-header text-left" style="font-family:'Styrene B Bold';">
+            Upcoming Events
+          </div>
+          <div class="card-body">
+            <ul class="d-flex">
+              {% if events %}
+                {% for event in events %}
+                  <li class="card">
+                    <div class="card-header">
+                      {{ event.start|date:"D, M j" }}
+                    </div>
+                    <div class="card-body">
+                      <div class="card-title">
+                        {{ event.title }}
+                      </div>
+                      <div class="card-subtitle">
+                        {{ event.location|default_if_none:"" }}
+                      </div>
+                      <button href="{{ event.url }}" class="btn btn-primary">RSVP</button>
+                    </div>
+                  </li>
+                {% endfor %}
+              {% else %}
+                  <p>No upcoming events.</p>
+              {% endif %}
+            </ul> 
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-header text-center" style="font-family:'Styrene B Black';">{{ page.highlighted_campaign }}</div>
+          <div class="card-body">
+            <p class="card-text">{{ page.highlighted_description|richtext }}</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-sm-4 my-3">
-      <h2>{{ page.highlighted_campaign }}</h2>
-      <p>{{ page.highlighted_description|richtext }}</p>
-    </div>
-
   </div>
-<!-- /.row -->
+{% endblock %}
+
+{% block content %}
 {% endblock %}

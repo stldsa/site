@@ -1177,14 +1177,10 @@ textarea {
 }
 
 #maincontent {
-  background-color: white;
+  background-color: #9f0005;
   max-width: 1080px;
   padding: 0 2em 4em 2em;
   line-height: 1.25;
-}
-
-main {
-  background-color: #f6f6f6;
 }
 
 main .grid-table {
@@ -2579,21 +2575,13 @@ figcaption {
 }
 
 .banner {
-  background-image: linear-gradient(rgba(236, 31, 39, 0.1), #ec1f27), url(../images/banner.png);
+  background-image: linear-gradient(#e4e4e8, #9f0005);
   background-size: cover;
-  background-position: center top 20%;
+  background-position: center top 50%;
 }
 
 .banner h1 {
   margin-top: 10px;
-}
-
-.banner h1, .banner h2 {
-  color: #f6f6f6;
-}
-
-.banner p {
-  color: #e4e4e8;
 }
 
 img.navbar-item {
@@ -2604,4 +2592,9 @@ img.navbar-item {
   .responsiverow {
     flex-direction: column;
   }
+}
+
+.card-body .main-story {
+  background-image: radial-gradient(#9f0005, transparent), url("{{ banner.url }}");
+  background-repeat: no-repeat;
 }

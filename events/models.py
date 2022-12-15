@@ -15,6 +15,7 @@ class Event(models.Model):
     description = models.TextField()
     start = models.DateTimeField()
     end_time = models.TimeField(null=True, blank=True)
+    location = models.CharField(max_length=255, null=True, blank=True)
     address = models.CharField(max_length=30, null=True, blank=True)
     city = models.CharField(max_length=30, null=True, blank=True)
     state = models.CharField(max_length=2, null=True, blank=True)

@@ -88,8 +88,8 @@
                 </svg>
             </a>
             <div class="p-0 dropdown">
-                <button class="btn btn-red header-cta-btn px-4 mx-3" data-toggle="dropdown">
-                    Join Us
+                <button class="btn btn-primary mx-3" data-toggle="dropdown">
+                    Join the Movement
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <form class="px-4 py-3">
@@ -120,7 +120,7 @@
 <body class="home blog et_bloom et_monarch chrome">
     {% if user.is_leader %}{% wagtailuserbar %}{% endif %}
     {% block banner %}{% endblock %}
-    <main class='container shadow pb-4'>
+    <main class='shadow pb-4'>
         {% block content %}
         {% endblock %}
     </main>
@@ -129,7 +129,7 @@
     {% endblock %}
     <footer class="footer">
         <div class="container">
-            <p>© St Louis DSA - <a href="mailto:info@stldsa.org">info@stldsa.org</a>. Send bug reports to: <a href="mailto:tech@stldsa.org">tech@stldsa.org</a></a></p>
+            <p>© St Louis DSA - <a href="mailto:info@stldsa.org">info@stldsa.org</a>. Site help: <a href="mailto:tech@stldsa.org">tech@stldsa.org</a></a></p>
         </div>
     </footer> 
     </div>
