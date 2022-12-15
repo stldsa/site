@@ -1,6 +1,7 @@
 {% load static %}
 
 <div class="navbar-nav ml-auto align-items-center flex-row">
+
     {% if request.user.is_authenticated %}
         <li class="nav-item">
             <a class="btn btn-red my-2 my-sm-0 mr-2" href="{% url 'users:detail'  %}">My DSA</a>
@@ -14,9 +15,10 @@
             </a>
         </li>
     {% else %}
-    <form class="form-inline" method="post" action="/en/" autocomplete="username">{% csrf_token %}
+    <button class="btn btn-red my-2 my-sm-0 mr-2" type="submit">Join</button>
+    <!-- <form class="form-inline" method="post" action="/en/" autocomplete="username">{% csrf_token %}
         <input class="form-control mr-sm-2" type="email" id="email" name="email" placeholder="E-mail Address" aria-label="login">
-        <button class="btn btn-outline-dark my-2 my-sm-0 mr-2" type="submit">Log In / Sign Up</button>
-    </form>
+        
+    </form> -->
     {% endif %}
 </div>

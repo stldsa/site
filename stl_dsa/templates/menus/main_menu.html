@@ -1,11 +1,11 @@
 {% load menu_tags %}
 
-<div class="navbar-nav mr-auto flex-column flex-sm-row">
+<div class="navbar-nav flex-column flex-sm-row">
     {% for item in menu_items %}
         {% if item.sub_menu %}
             <li class="nav-item dropdown">
                 <button class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" type="button" data-toggle="dropdown">
-                    🌹 {{ item }}
+                    {{ item }}
                 </button>
                 <div class="dropdown-menu">
                     {% for sub_item in item.sub_menu.items %}
@@ -14,7 +14,7 @@
                 </div>
             </li>
         {% else %}
-            <a class="nav-link" href="{{ item.href }}">🌹 {{ item }}</a>
+            <a class="nav-link" href="{{ item.href }}">{{ item }}</a>
         {% endif %}
     {% endfor %}
 </div>
