@@ -11,10 +11,16 @@
           </div>
           {% image update.banner_image min-500x200 as banner %}
           <div class="card-body main-story">
-            
-            <h2 class="card-title">{{ update.title }}</h2>
-            <p class="card-text">{{ update.main_copy|richtext }}</p>
-            <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
+            <div class="row">
+              {% if update.banner_image %}
+                <div class="col-4">{% image update.banner_image min-500x300 %}</div>
+              {% endif %}
+              <div class="col">
+                <h2 class="card-title">{{ update.title }}</h2>
+                <p class="card-text">{{ update.main_copy|richtext }}</p>
+                <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
+              </div>
+            </div>
           </div>
           <div class="card-footer text-muted text-left">
             <a href="{% pageurl update %}" >

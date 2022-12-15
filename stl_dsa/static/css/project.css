@@ -231,6 +231,8 @@ body {
   font: 400 1em/1 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #323232;
   margin-bottom: 40px;
+  background-image: linear-gradient(#e4e4e8, #9f0005);
+  background-size: cover;
 }
 
 em,
@@ -2572,12 +2574,6 @@ figcaption {
     margin: 5px;
     margin-bottom: 7px;
   }
-}
-
-.banner {
-  background-image: linear-gradient(#e4e4e8, #9f0005);
-  background-size: cover;
-  background-position: center top 50%;
 }
 
 .banner h1 {
