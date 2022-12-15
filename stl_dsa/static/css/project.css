@@ -901,10 +901,6 @@ form fieldset + fieldset {
 button {
   padding: 0.5em 1em;
 }
-button:hover {
-  background-color: #fafafa;
-  border-color: #6d6d6d;
-}
 
 input,
 textarea,
@@ -2076,7 +2072,6 @@ header button {
 }
 .nav-link:focus {
   border-radius: 4px;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .dropdown-menu {

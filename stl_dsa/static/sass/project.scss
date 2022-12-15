@@ -907,11 +907,6 @@ form {
 }
 button {
   padding: 0.5em 1em;
-  //margin: 1em 0;
-  &:hover {
-    background-color: $white-dark-1x;
-    border-color: $black-light-2x;
-  }
 }
 
 input,
@@ -2146,10 +2141,6 @@ header button {
     color: $dsared;
   }
 
-  &:focus {
-    border-radius: 4px;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  }
 }
 
 .dropdown-menu {

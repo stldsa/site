@@ -836,6 +836,22 @@ files = [
 djangorestframework = "*"
 
 [[package]]
+name = "django-sass"
+version = "1.1.0"
+description = "The absolute simplest way to use Sass with Django. Pure Python, minimal dependencies, and no special configuration required!"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-sass-1.1.0.tar.gz", hash = "sha256:da163cd7ad7b9c2f1f10f2ec8b76939640d5b32d21ee74a240ca50a059c5fe7a"},
+    {file = "django_sass-1.1.0-py3-none-any.whl", hash = "sha256:992f39d97a7b2d7d891255e5f99512ffd616b2e0aae1ca9b76983c5ecd603342"},
+]
+
+[package.dependencies]
+django = "*"
+libsass = "*"
+
+[[package]]
 name = "django-scheduler"
 version = "0.9.6"
 description = "A calendaring app for Django."
@@ -1217,6 +1233,21 @@ files = [
     {file = "lazy_object_proxy-1.8.0-pp37-pypy37_pp73-any.whl", hash = "sha256:ae032743794fba4d171b5b67310d69176287b5bf82a21f588282406a79498891"},
     {file = "lazy_object_proxy-1.8.0-pp38-pypy38_pp73-any.whl", hash = "sha256:7e1561626c49cb394268edd00501b289053a652ed762c58e1081224c8d881cec"},
     {file = "lazy_object_proxy-1.8.0-pp39-pypy39_pp73-any.whl", hash = "sha256:ce58b2b3734c73e68f0e30e4e725264d4d6be95818ec0a0be4bb6bf9a7e79aa8"},
+]
+
+[[package]]
+name = "libsass"
+version = "0.22.0"
+description = "Sass for Python: A straightforward binding of libsass for Python."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "libsass-0.22.0-cp36-abi3-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:f1efc1b612299c88aec9e39d6ca0c266d360daa5b19d9430bdeaffffa86993f9"},
+    {file = "libsass-0.22.0-cp37-abi3-macosx_10_15_x86_64.whl", hash = "sha256:081e256ab3c5f3f09c7b8dea3bf3bf5e64a97c6995fd9eea880639b3f93a9f9a"},
+    {file = "libsass-0.22.0-cp37-abi3-win32.whl", hash = "sha256:89c5ce497fcf3aba1dd1b19aae93b99f68257e5f2026b731b00a872f13324c7f"},
+    {file = "libsass-0.22.0-cp37-abi3-win_amd64.whl", hash = "sha256:65455a2728b696b62100eb5932604aa13a29f4ac9a305d95773c14aaa7200aaf"},
+    {file = "libsass-0.22.0.tar.gz", hash = "sha256:3ab5ad18e47db560f4f0c09e3d28cf3bb1a44711257488ac2adad69f4f7f8425"},
 ]
 
 [[package]]
@@ -2757,4 +2788,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "3.11.0"
-content-hash = "46bd0bd1fd5dedb6b2b9013e5671e9e957ec0f9bf123a73f9bc65d27a2453693"
+content-hash = "c1b2bef1341067d201acd544071ce256256483b3ab2b94358168f33e71102c68"
