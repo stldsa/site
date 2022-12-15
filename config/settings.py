@@ -178,6 +178,12 @@ EMAIL_BACKEND = env(
 EMAIL_TIMEOUT = 5
 MAILGUN_API_KEY = env("MAILGUN_API_KEY", default=None)
 MAILGUN_DOMAIN = env("MAILGUN_DOMAIN", default=None)
+MAILGUN_PUBLIC_KEY = env("MAILGUN_PUBLIC_KEY", default=None)
+MAILGUN_SMTP_LOGIN = env("MAILGUN_SMTP_LOGIN", default=None)
+MAILGUN_SMTP_PASSWORD = env("MAILGUN_SMTP_PASSWORD", default=None)
+MAILGUN_SMTP_PORT = env("MAILGUN_SMTP_PORT", default=None)
+MAILGUN_SMTP_SERVER = env("MAILGUN_SMTP_SERVER", default=None)
+
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -249,3 +255,4 @@ DATABASES = {
 }
 
 WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL", default="https://localhost:8000")
+CACHE_URL = env("CACHE_URL", default=None)
