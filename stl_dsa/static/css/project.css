@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* CSS Document */
 /*!
 Theme Name: DSA Wordpress Theme
@@ -17,38 +16,46 @@ Text Domain: dsa-v2
   font-family: "Manifold DSA";
   src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Regular.woff);
 }
+
 @font-face {
   font-family: "Manifold DSA";
   src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Light.woff);
   font-weight: 100;
 }
+
 @font-face {
   font-family: "Manifold DSA";
   src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Bold.woff);
   font-weight: 600;
 }
+
 @font-face {
   font-family: "Manifold DSA";
   src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-ExtraBold.woff);
   font-weight: 700;
 }
+
 @font-face {
   font-family: "Manifold DSA";
   src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Heavy.woff);
   font-weight: 900;
 }
+
 @font-face {
   font-family: "Styrene B";
   src: url(../fonts/StyreneB/StyreneB-Regular.otf);
 }
+
 @font-face {
   font-family: "Styrene B Bold";
   src: url(../fonts/StyreneB/StyreneB-Bold.otf);
 }
+
 @font-face {
   font-family: "Styrene B Black";
   src: url(../fonts/StyreneB/StyreneB-Black.otf);
 }
+
 html,
 body,
 div,
@@ -164,6 +171,7 @@ blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before,
 q:after {
@@ -271,7 +279,7 @@ h5 {
   font-weight: bold;
 }
 
-@media screen and ( max-width: 1024px ) {
+@media screen and (max-width: 1024px ) {
   h1 {
     font-size: 2em;
   }
@@ -285,6 +293,7 @@ h5 {
     font-size: 0.625em;
   }
 }
+
 table td {
   padding: 0.5em;
 }
@@ -294,6 +303,7 @@ hr {
   width: 100%;
   margin: 1em auto;
 }
+
 hr.fullwidth {
   width: calc(100% - 2px);
 }
@@ -314,9 +324,11 @@ p {
   line-height: 1.5;
   margin-bottom: 1em;
 }
+
 p + p {
   margin-top: 1em;
 }
+
 p:last-of-type {
   margin-bottom: 0;
 }
@@ -325,15 +337,19 @@ a {
   color: #ec1f27;
   text-decoration: none;
 }
+
 a:hover {
   color: #ec1f27;
 }
+
 a:focus {
   outline: 0;
 }
+
 a:hover, a:active {
   outline: 0;
 }
+
 a:hover img {
   filter: brightness(130%);
 }
@@ -424,6 +440,7 @@ input:focus {
   text-align: justify;
   margin: 0 5% 1em 5%;
 }
+
 .ul-discs li,
 .ul-squares li {
   margin: 0.5em 0 0.5em 1.5em;
@@ -436,9 +453,11 @@ input:focus {
 .ul-discs {
   list-style: disc outside;
 }
+
 .ul-discs ul {
   list-style: circle outside;
 }
+
 .ul-discs li {
   margin: 0.5em 0 0.5em 1em;
 }
@@ -447,17 +466,21 @@ input:focus {
   list-style: decimal inside;
   text-align: justify;
 }
+
 .ol-numbers li {
   padding: 0.5em 0 0 1em;
   margin-left: 1em;
 }
+
 .ol-numbers ol {
   margin-left: 1em;
   list-style: decimal-inside;
 }
+
 .ol-numbers ol ol {
   list-style: lower-alpha inside;
 }
+
 .ol-numbers ol ol ol {
   list-style: lower-roman inside;
 }
@@ -571,19 +594,19 @@ input:focus {
   flex: 0 0 100%;
 }
 
-@media screen and ( min-width: 1024px ) {
+@media screen and (min-width: 1024px ) {
   .flex-threequarter {
     flex: 1 1 75%;
   }
 }
 
-@media screen and ( min-width: 1024px ) {
+@media screen and (min-width: 1024px ) {
   .flex-half {
     flex: 1 1 50%;
   }
 }
 
-@media screen and ( min-width: 1024px ) {
+@media screen and (min-width: 1024px ) {
   .flex-quarter {
     flex: 1 1 25%;
   }
@@ -613,6 +636,7 @@ input:focus {
   background: #000;
   color: #fff;
 }
+
 a .stronglink:hover {
   color: #d4373d;
   background-color: #323232;
@@ -640,7 +664,7 @@ a .stronglink:hover {
   margin: 0.5em auto;
 }
 
-@media screen and ( min-width: 1024px ) {
+@media screen and (min-width: 1024px ) {
   img.alignright {
     float: right;
     margin: 0 0 1em 1em;
@@ -666,6 +690,7 @@ a .stronglink:hover {
     margin-right: auto;
   }
 }
+
 .clear:before,
 .clear:after {
   content: " ";
@@ -681,16 +706,24 @@ a .stronglink:hover {
 }
 
 #overlay {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 2000; /* Sit on top */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 2000;
+  /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
 }
 
 #modal {
@@ -707,7 +740,8 @@ a .stronglink:hover {
   transform: translate(-50%, -50%);
   overflow-y: auto;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   #modal {
     width: 90%;
   }
@@ -716,6 +750,7 @@ a .stronglink:hover {
 #modalcontent {
   margin-top: 2em;
 }
+
 #modalcontent .modalcontent {
   display: block;
 }
@@ -729,6 +764,7 @@ a .stronglink:hover {
   top: 0.5em;
   right: 0.5em;
 }
+
 #modalclose:hover {
   color: #ec1f27;
   cursor: pointer;
@@ -738,7 +774,8 @@ a .stronglink:hover {
   width: 95%;
   margin: 0 auto;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   .wrapper {
     padding: 1em;
     margin-top: 1em;
@@ -753,14 +790,16 @@ a .stronglink:hover {
   width: 95%;
   margin: 0 auto 8px auto;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   #mainmenu {
     display: none;
     margin-top: 24px;
     max-width: 1200px;
   }
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   #mainmenu {
     display: flex;
     top: 0;
@@ -770,6 +809,7 @@ a .stronglink:hover {
     background: #fff;
   }
 }
+
 #mainmenu .burger {
   flex: 1 auto;
   color: #ec1f27;
@@ -777,22 +817,26 @@ a .stronglink:hover {
   transition: 0.2s all;
   line-height: 48px;
 }
+
 #mainmenu .burger:hover {
   cursor: pointer;
   color: rgba(236, 31, 39, 0.5);
 }
+
 #mainmenu .burger span {
   font-weight: bold;
   font-size: 0.8em;
   line-height: 48px;
   vertical-align: top;
 }
+
 #mainmenu #stickylogo {
   vertical-align: text-bottom;
   height: 48px;
   display: none;
   max-width: 60%;
 }
+
 #mainmenu #menucontents {
   display: none;
   position: absolute;
@@ -804,30 +848,36 @@ a .stronglink:hover {
   color: #fff;
   font-size: 1.1em;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   #mainmenu #menucontents {
     max-height: calc(100vh - 48px);
     overflow-y: scroll;
   }
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   #mainmenu #menucontents {
     margin-top: 8px;
     border: 1px solid #69090d;
   }
 }
+
 #mainmenu #menucontents #navsearch {
   margin-left: 1em;
   margin-bottom: 2em;
 }
+
 #mainmenu #menucontents #navsearch .searchfield {
   max-width: 80%;
 }
+
 #mainmenu #menucontents #navsearch .searchsubmit {
   font-size: 1.5em;
   vertical-align: middle;
   padding-left: 0.25em;
 }
+
 #mainmenu #menucontents .navsites li {
   padding: 0.75em 0.5em 0.75em 0;
   -webkit-user-select: none;
@@ -838,62 +888,75 @@ a .stronglink:hover {
   display: flex;
   line-height: 1.25;
 }
+
 #mainmenu #menucontents .navsites li:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.25);
 }
+
 #mainmenu #menucontents .navsites li.selected {
   background-color: rgba(0, 0, 0, 0.25);
 }
+
 #mainmenu #menucontents .navsites li.selected:hover {
   cursor: default;
   background-color: rgba(0, 0, 0, 0.25) !important;
 }
+
 #mainmenu #menucontents .navsites li img {
   width: 80px;
   margin-right: 20px;
   vertical-align: middle;
   flex: 0 0 auto;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   #mainmenu #menucontents .navsites li img {
     width: 50px;
   }
 }
+
 #mainmenu #menucontents h1 {
   font-size: 1.25em;
   color: #fff;
 }
+
 #mainmenu #menucontents a {
   color: #fff;
   display: flex;
   align-items: center;
 }
+
 #mainmenu #menucontents #navmenu {
   font-size: 1.25em;
   font-weight: bold;
 }
+
 #mainmenu #menucontents #navmenu a {
   color: #fff;
   padding: 0.25em;
   margin: 0.5em;
 }
+
 #mainmenu #menucontents .sub-menu {
   margin-left: 1em;
 }
 
-@media screen and ( max-width: 1024px ) {
+@media screen and (max-width: 1024px ) {
   form section {
     flex: 1 0 100%;
   }
 }
+
 form fieldset fieldset {
   margin: 1em 0 0 1em;
 }
+
 form fieldset legend {
   font-size: 1.5em;
   color: #6d6d6d;
 }
+
 form fieldset + fieldset {
   margin-top: 2em;
 }
@@ -909,36 +972,38 @@ select {
   font-family: "Open Sans", sans-serif;
 }
 
-input[type=text],
-input[type=search],
-input[type=password],
-input[type=email],
-input[type=tel],
-input[type=submit],
-input[type=zip],
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="submit"],
+input[type="zip"],
 textarea,
 select {
   padding: 0.5em;
   border: 1px solid #a0a0a0;
 }
-input[type=text]:hover,
-input[type=search]:hover,
-input[type=password]:hover,
-input[type=email]:hover,
-input[type=tel]:hover,
-input[type=submit]:hover,
-input[type=zip]:hover,
+
+input[type="text"]:hover,
+input[type="search"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+input[type="submit"]:hover,
+input[type="zip"]:hover,
 textarea:hover,
 select:hover {
   border-color: #d4373d;
 }
-input[type=text]:focus,
-input[type=search]:focus,
-input[type=password]:focus,
-input[type=email]:focus,
-input[type=tel]:focus,
-input[type=submit]:focus,
-input[type=zip]:focus,
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="submit"]:focus,
+input[type="zip"]:focus,
 textarea:focus,
 select:focus {
   border-color: #ddd;
@@ -963,10 +1028,12 @@ textarea {
   flex-flow: row wrap;
   justify-content: space-between;
 }
+
 .inputwrapper label {
   padding: 0.25em 0;
   flex-basis: 100%;
 }
+
 .inputwrapper input,
 .inputwrapper select {
   flex: 1 1 40%;
@@ -975,6 +1042,7 @@ textarea {
 .radiowrapper {
   margin: 0.5em 0;
 }
+
 .radiowrapper input {
   margin-right: 0.5em;
 }
@@ -997,16 +1065,20 @@ textarea {
   margin: 0.25em 0;
   position: relative;
 }
+
 #hdrnav a {
   color: #000;
 }
+
 #hdrnav .mainnav {
   display: none;
 }
+
 #hdrnav .mainnav .sub-menu {
   margin-left: -0.5em;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   #hdrnav .mainnav {
     display: inline-flex;
     flex-flow: row wrap;
@@ -1032,43 +1104,50 @@ textarea {
     background-color: #ec1f27;
   }
 }
+
 #hdrnav .mainnav div {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   #hdrnav .mainnav div {
     margin-top: 0.5em;
   }
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   #hdrnav .mainnav div {
     white-space: nowrap;
   }
 }
+
 #hdrnav .mainnav > div {
   position: relative;
   z-index: 1000;
   padding: 0.5em;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   #hdrnav .mainnav > div:hover .sub-menu,
-  #hdrnav .mainnav > div .hdrnavhover .sub-menu {
+#hdrnav .mainnav > div .hdrnavhover .sub-menu {
     visibility: visible;
   }
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   #hdrnav .mainnav > div:hover,
-  #hdrnav .mainnav .hdrnavhover {
+#hdrnav .mainnav .hdrnavhover {
     background: #000;
   }
   #hdrnav .mainnav > div:hover a,
-  #hdrnav .mainnav .hdrnavhover a {
+#hdrnav .mainnav .hdrnavhover a {
     color: #fff;
   }
 }
+
 #hdrnav #navsearch {
   padding: 0.25em;
   position: absolute;
@@ -1076,16 +1155,19 @@ textarea {
   bottom: 0;
   text-align: right;
 }
+
 #hdrnav #navsearch:hover input {
   width: 160px;
   opacity: 1;
 }
+
 #hdrnav #navsearch input {
   opacity: 0;
   width: 0;
   padding: 0.25em;
   transition: 0.5s all;
 }
+
 #hdrnav #navsearch .searchsubmit:hover {
   cursor: pointer;
 }
@@ -1104,26 +1186,31 @@ textarea {
 main {
   background-color: #F6F4E7;
 }
+
 main .grid-table {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: flex-start;
 }
+
 main .grid-table > * {
   margin: 0.5em;
 }
+
 main .grid-social {
   display: grid;
   grid-template-columns: repeat(8, minmax(20px, 1fr));
   grid-auto-rows: 50px;
   grid-gap: 10px;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   main .grid-social {
     grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
   }
 }
+
 main .grid-social .button-joindsa,
 main .grid-social .button-donate {
   background-color: #ec1f27;
@@ -1134,51 +1221,63 @@ main .grid-social .button-donate {
   font-size: 1.5em;
   transition: 0.2s all;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   main .grid-social .button-joindsa,
-  main .grid-social .button-donate {
+main .grid-social .button-donate {
     font-size: 1.25em;
   }
 }
+
 main .grid-social .button-joindsa:hover,
 main .grid-social .button-donate:hover {
   opacity: 0.75;
 }
+
 main .grid-social .button-donate {
   background-color: #6d6d6d;
 }
+
 main .grid-social .grid-button-l {
   grid-column: span 2;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   main .grid-social .grid-button-l {
     grid-row: span 2;
   }
 }
+
 main .grid-social svg {
   font-size: 1.5em;
   transition: 0.2s all;
   width: 100% !important;
   height: 100% !important;
 }
+
 main .grid-social svg:hover {
   transform: scale(1.2);
 }
+
 main .grid-social .fa-twitter {
   color: #1da1f2;
 }
+
 main .grid-social .fa-facebook {
   color: #3b5998;
 }
+
 main .grid-social .fa-rss {
   color: #ee802f;
 }
+
 main .grid-social .fa-envelope {
   color: #ed4147;
 }
+
 main #swagad {
   width: 100%;
   margin: 1em auto;
@@ -1189,6 +1288,7 @@ main #swagad {
   flex-flow: row wrap;
   position: relative;
 }
+
 main #swagad a {
   display: block;
   position: absolute;
@@ -1197,51 +1297,63 @@ main #swagad a {
   left: 0;
   right: 0;
 }
+
 main #swagad:hover {
   border-color: #ec1f27;
   cursor: pointer;
 }
+
 main #swagad #swagad-1,
 main #swagad #swagad-2 {
   margin-bottom: 2em;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   main #swagad {
     justify-content: space-between;
   }
   main #swagad #swagad-1,
-  main #swagad #swagad-2 {
+main #swagad #swagad-2 {
     flex: 0 0 45%;
   }
   main #swagad #swagad-3 {
     flex: 0 0 100%;
   }
 }
+
 main #sidebar {
   flex: 1 0 330px;
 }
+
 main #sidebar h2 {
   font-size: 1.5em;
 }
+
 main #sidebar .menu-item {
   font-size: 1.5em;
   font-weight: lighter;
 }
+
 main #sidebar .menu-item + .menu-item {
   margin-top: 0.5em;
 }
+
 main #sidebar .byline {
   margin: -0.25em 0 0.25em;
 }
+
 main #sidebar .newsitem .content {
   font-size: 0.8em;
 }
+
 main #sidebar .newsitem + .newsitem {
   margin-top: 2em;
 }
+
 main #sidebar .fb-share-button > span {
   vertical-align: baseline !important;
 }
+
 main #sidebar .sharebutton {
   width: 74px;
   background: #ea2127;
@@ -1250,9 +1362,11 @@ main #sidebar .sharebutton {
   height: 28px;
   border-radius: 4px;
 }
+
 main #sidebar .sharebutton:hover {
   background-color: #c71118;
 }
+
 main #sidebar .sharebutton a {
   color: #fff;
   font-size: 0.8em;
@@ -1266,6 +1380,7 @@ main #sidebar .sharebutton a {
   text-align: center;
   line-height: 28px;
 }
+
 main #sidebar .sidebar-sitelinks .item {
   display: flex;
   flex-flow: row nowrap;
@@ -1276,69 +1391,86 @@ main #sidebar .sidebar-sitelinks .item {
   padding: 0.5em 0;
   border-bottom: 1px solid #ddd;
 }
+
 main #sidebar .sidebar-sitelinks .item:last-of-type {
   padding-bottom: 0;
   margin-bottom: 0;
   border-bottom: 0;
 }
+
 main #sidebar .sidebar-sitelinks .item.selected {
   background-color: #efefef;
   border: 2px solid #ddd;
   margin: -2px;
   padding-right: 0.5em;
 }
+
 main #sidebar .sidebar-sitelinks .item a {
   position: absolute;
   display: block;
   width: 100%;
   height: 100%;
 }
+
 main #sidebar .sidebar-sitelinks .item .thumb {
   flex: 0 0 20%;
   margin-right: 0.5em;
 }
+
 main #sidebar .sidebar-sitelinks .item .content {
   flex: 0 1 78%;
 }
+
 main #sidebar .sidebar-sitelinks .item .content .title {
   display: block;
   color: #ec1f27;
   font-size: 1.25em;
 }
+
 main #sidebar .sidebar-sitelinks .item .content p {
   font-size: 0.8em;
 }
+
 main #sidebar .sidebar-widget ul {
   list-style: disc outside none;
   margin-left: 2em;
 }
+
 main #sidebar .sidebar-widget ul > ul {
   list-style-type: circle;
 }
+
 main #sidebar .sidebar-widget ul > ul > ul {
   list-style-type: square;
 }
+
 main #sidebar .sidebar-widget ol {
   list-style: decimal outside none;
   margin-left: 2em;
 }
+
 main #sidebar .sidebar-widget ol > ol {
   list-style-type: lower-latin;
 }
+
 main #sidebar .sidebar-widget ol > ol > ol {
   list-style-type: lower-roman;
 }
+
 main #sidebar .sidebar-widget li {
   margin: 0.75em 0;
   line-height: 1.5;
 }
+
 main #sidebar .sidebar-calendar .item {
   margin-bottom: 1em;
 }
+
 main #sidebar .sidebar-calendar .item .event-banner {
   display: flex;
   flex-flow: column nowrap;
 }
+
 main #sidebar .sidebar-calendar .item .event-name {
   margin: 0.25em 0 0.25em 0.5em;
   font-size: 1.25em !important;
@@ -1346,6 +1478,7 @@ main #sidebar .sidebar-calendar .item .event-name {
   font-weight: 600;
   text-transform: capitalize;
 }
+
 main #sidebar .sidebar-calendar .item .event-date {
   width: unset !important;
   flex: 1 1 100%;
@@ -1358,22 +1491,27 @@ main #sidebar .sidebar-calendar .item .event-date {
   align-items: center;
   border-bottom: 1px solid #ddd;
 }
+
 main #sidebar .sidebar-calendar .item .event-date span {
   display: unset !important;
 }
+
 main #sidebar .sidebar-calendar .item .event-date .date {
   font-size: 1.25em;
   font-weight: 600;
 }
+
 main #sidebar .sidebar-calendar .item .event-date .dayandtime {
   font-size: 1em;
   font-weight: 100;
   text-align: right;
 }
+
 main #sidebar .sidebar-calendar .item .event-desc {
   width: 100% !important;
   padding: 0 0.5em 0.5em !important;
 }
+
 main #sidebar .sidebar-calendar .item .event-desc .event-address {
   width: auto !important;
   white-space: normal !important;
@@ -1381,11 +1519,13 @@ main #sidebar .sidebar-calendar .item .event-desc .event-address {
   flex-flow: row nowrap;
   align-items: baseline;
 }
+
 main #sidebar .sidebar-calendar .item .event-desc .event-address i {
   margin-right: 0.5em;
   width: unset !important;
   text-align: unset !important;
 }
+
 main #sidebar .featuredimage {
   margin-top: 3em;
 }
@@ -1393,6 +1533,7 @@ main #sidebar .featuredimage {
 .thumbnailwrapper {
   display: flex;
 }
+
 .thumbnailwrapper .thumbnail {
   flex: 0 0 150px;
   margin-right: 1em;
@@ -1401,6 +1542,7 @@ main #sidebar .featuredimage {
 .postloop article {
   margin: 3em 0;
 }
+
 .postloop article h1,
 .postloop article h2,
 .postloop article h3 {
@@ -1410,16 +1552,19 @@ main #sidebar .featuredimage {
 article {
   line-height: 1.25;
 }
+
 article .byline {
   margin: 0.5em 0;
   text-transform: uppercase;
   font-size: 1.25em;
 }
+
 article header {
   margin: 3em 0 1em;
   padding-bottom: 0.5em;
   border-bottom: 2px solid #ec1f27;
 }
+
 article header h1 {
   margin: 0;
 }
@@ -1427,6 +1572,7 @@ article header h1 {
 #pre-footer {
   max-width: 1080px;
 }
+
 #pre-footer .menu-item {
   margin-left: 1em;
 }
@@ -1435,10 +1581,12 @@ article header h1 {
   list-style: none;
   margin-left: 2em;
 }
+
 .footer-menu ol {
   list-style: none;
   margin-left: 2em;
 }
+
 .footer-menu li {
   margin: 0;
   line-height: 1;
@@ -1447,36 +1595,45 @@ article header h1 {
 article h1 {
   border-bottom: 0;
 }
+
 article ul {
   list-style: disc outside none;
   margin-left: 2em;
 }
+
 article ul > ul {
   list-style-type: circle;
 }
+
 article ul > ul > ul {
   list-style-type: square;
 }
+
 article ol {
   list-style: decimal outside none;
   margin-left: 2em;
 }
+
 article ol > ol {
   list-style-type: lower-latin;
 }
+
 article ol > ol > ol {
   list-style-type: lower-roman;
 }
+
 article li {
   margin: 0.75em 0;
   line-height: 1.5;
 }
+
 article blockquote {
   padding: 1em 2em;
   position: relative;
 }
+
 article blockquote:before {
-  content: "“";
+  content: "\201C";
   position: absolute;
   top: 0;
   left: 0;
@@ -1485,6 +1642,7 @@ article blockquote:before {
   z-index: -1;
   font-family: georgia, serif;
 }
+
 article .wp-caption-text {
   font-size: 0.8em;
   text-align: right;
@@ -1515,22 +1673,26 @@ footer {
   text-transform: uppercase;
   justify-content: space-between;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   #sitemap {
     flex-flow: row nowrap;
   }
 }
+
 #sitemap a {
   display: block;
   padding: 0.5em 0;
   white-space: nowrap;
   font-size: 1.25em;
 }
-@media screen and ( max-width: 400px ) {
+
+@media screen and (max-width: 400px ) {
   #sitemap a {
     white-space: normal;
   }
 }
+
 #sitemap .sub-menu {
   text-transform: none;
   font-size: 0.8em;
@@ -1553,17 +1715,20 @@ footer {
   margin: 0 auto;
   max-height: 400px;
 }
+
 #carousel .fpbanner {
   position: relative;
   height: 160px;
   overflow: hidden;
 }
+
 #carousel .fpbanner.fpbannerbg {
   background-size: contain;
   background-position: top center;
   background-repeat: no-repeat;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   #carousel .fpbanner {
     height: 340px;
   }
@@ -1572,6 +1737,7 @@ footer {
     background-position: center center;
   }
 }
+
 #carousel .fpbanner .bannerfulllink {
   display: block;
   position: absolute;
@@ -1580,6 +1746,7 @@ footer {
   left: 0;
   top: 0;
 }
+
 #carousel .fpbanner .bannercontent {
   position: absolute;
   z-index: 10;
@@ -1588,17 +1755,20 @@ footer {
   color: #fff;
   font-size: 1rem;
 }
+
 #carousel .fpbanner .bannercontent a {
   color: #fff;
   text-decoration: underline;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   #carousel .fpbanner .bannercontent {
     width: 100%;
     bottom: 0;
   }
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   #carousel .fpbanner .bannercontent {
     bottom: 2em;
     font-size: 1.25em;
@@ -1626,9 +1796,11 @@ footer {
     padding: 5%;
   }
 }
+
 #carousel .fpbanner .bannercontent h1 {
   border-bottom: 0;
 }
+
 #carousel .fpbanner .bannervideo {
   position: absolute;
   z-index: 10;
@@ -1653,33 +1825,38 @@ footer {
   padding: 0.5em !important;
   background: rgba(255, 255, 255, 0.5) !important;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   .swiper-container-horizontal .swiper-pagination-bullets,
-  .swiper-container-horizontal .swiper-pagination-custom,
-  .swiper-container-horizontal .swiper-pagination-fraction {
+.swiper-container-horizontal .swiper-pagination-custom,
+.swiper-container-horizontal .swiper-pagination-fraction {
     top: 0;
     right: 0;
   }
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   .swiper-container-horizontal .swiper-pagination-bullets,
-  .swiper-container-horizontal .swiper-pagination-custom,
-  .swiper-container-horizontal .swiper-pagination-fraction {
+.swiper-container-horizontal .swiper-pagination-custom,
+.swiper-container-horizontal .swiper-pagination-fraction {
     bottom: 0 !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
   }
 }
+
 .swiper-container-horizontal .swiper-pagination-bullet {
   width: 16px;
   height: 16px;
   border: 2px solid #ec1f27;
   background: unset;
 }
+
 .swiper-container-horizontal .swiper-pagination-bullet-active {
   background: none;
   position: relative;
 }
+
 .swiper-container-horizontal .swiper-pagination-bullet-active::before {
   position: absolute;
   width: 70%;
@@ -1694,28 +1871,34 @@ footer {
 #announcements {
   margin-bottom: 2em;
 }
+
 #announcements h1 {
   border-bottom: 0;
   margin-top: 0;
 }
+
 #announcements .announcement {
   font-size: 0.8em;
   position: relative;
   border: 2px solid #efefef;
   transition: 0.2s all;
 }
+
 #announcements .announcement:hover {
   background-color: #fafafa;
   border-color: #ddd;
   cursor: pointer;
 }
+
 #announcements .announcement h2 {
   margin-top: 0;
 }
+
 #announcements .announcement h2 i,
 #announcements .announcement h2 svg {
   margin-right: 0.25em;
 }
+
 #announcements .announcement a {
   display: block;
   position: absolute;
@@ -1723,22 +1906,27 @@ footer {
   height: 100%;
   z-index: 100;
 }
+
 #announcements .announcement .announcementcontent {
   padding: 0.5em 1em;
 }
+
 #announcements .announcement + .announcement {
   margin-top: 2em;
 }
+
 #announcements .urgent {
   border-color: #ec1f27;
   display: flex;
   align-items: stretch;
 }
+
 #announcements .urgent .urgenticon {
   background: #ec1f27;
   color: #fff;
   position: relative;
 }
+
 #announcements .urgent .urgenticon i,
 #announcements .urgent .urgenticon svg {
   font-size: 6em;
@@ -1779,9 +1967,11 @@ footer {
   justify-content: space-between;
   align-items: baseline;
 }
+
 #campaignheader a {
   color: inherit;
 }
+
 #campaignheader i {
   margin-right: 0.5em;
 }
@@ -1791,22 +1981,27 @@ footer {
   flex-flow: column wrap;
   align-items: baseline;
 }
+
 .calevent + .calevent {
   margin-top: 2em;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   .calevent {
     flex-flow: row wrap;
   }
 }
+
 .calevent h2 {
   margin: 0 0 0.25em;
 }
+
 .calevent i,
 .calevent svg {
   margin-right: 0.5em;
   color: #a0a0a0;
 }
+
 .calevent .datetime {
   flex: 0 1 auto;
   display: flex;
@@ -1814,35 +2009,42 @@ footer {
   align-items: center;
   justify-content: space-between;
 }
+
 .calevent .datetime .date {
   font-size: 2em;
 }
+
 .calevent .datetime .time {
   font-size: 1.5em;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   .calevent .datetime {
     align-self: stretch;
     margin-bottom: 1em;
   }
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   .calevent .datetime {
     flex-flow: column nowrap;
     line-height: 1.5;
     align-items: flex-start;
   }
 }
+
 .calevent .deets {
   flex: 1;
 }
+
 .calevent .deets .location,
 .calevent .deets .conf {
   display: block;
   font-size: 1.25em;
   margin: 0.25em 0;
 }
-@media screen and ( min-width: 1024px ) {
+
+@media screen and (min-width: 1024px ) {
   .calevent .deets {
     border-left: 2px solid #a0a0a0;
     padding-left: 3%;
@@ -1856,22 +2058,26 @@ footer {
   color: #ec1f27;
   font-size: 1.25em;
 }
+
 #eventfilters #eventcalkeywords {
   border: 1px solid #6d6d6d;
   padding: 0.25em;
   color: #6d6d6d;
   width: 100%;
 }
+
 #eventfilters #eventcaldatepicker {
   color: #6d6d6d;
   border: 1px solid #6d6d6d;
   padding-bottom: 0.5em;
 }
+
 #eventfilters #datepickeryears {
   width: 80%;
   margin: 0 auto;
   text-align: center;
 }
+
 #eventfilters #datepickeryears #prevyear,
 #eventfilters #datepickeryears #nextyear {
   display: none;
@@ -1882,15 +2088,18 @@ footer {
   font-size: 1.5em;
   padding: 0 0.5em;
 }
+
 #eventfilters #datepickeryears #prevyear:hover,
 #eventfilters #datepickeryears #nextyear:hover {
   color: rgba(236, 31, 39, 0.5);
   cursor: pointer;
 }
+
 #eventfilters #datepickeryears div.placeholder {
   width: 25%;
   display: inline-block;
 }
+
 #eventfilters #yearvalue {
   border: 0;
   width: 3em;
@@ -1902,9 +2111,11 @@ footer {
   color: #6d6d6d;
   background: none;
 }
+
 #eventfilters #datepickermonths {
   padding: 0 1em;
 }
+
 #eventfilters #datepickermonths div {
   width: 25%;
   display: inline-block;
@@ -1912,17 +2123,20 @@ footer {
   text-align: center;
   text-transform: uppercase;
 }
+
 #eventfilters #datepickermonths div:not(.filteredmonth):hover {
   padding: calc(1em - 1px) 0;
   background-color: #ddd;
   border: 1px solid #6d6d6d;
   cursor: pointer;
 }
+
 #eventfilters #datepickermonths .filteredmonth {
   cursor: default;
   background-color: rgba(236, 31, 39, 0.5);
   color: #fff;
 }
+
 #eventfilters #eventcalfiltersubmit {
   padding: 0.75rem 0.75rem 0.625rem;
   border-color: #d0181f;
@@ -1935,22 +2149,27 @@ article.event header {
   margin-top: 1em;
   border-bottom: 4px solid #a0a0a0;
 }
+
 article.event header div {
   font-size: 1.5em;
   line-height: 1.5;
   margin-bottom: 0.5em;
 }
+
 article.event section {
   margin: 0 1em;
 }
+
 article.event .eventinfo .conf span {
   display: block;
   margin: 0.5em 0;
   font-size: 1.25em;
 }
+
 article.event h1 {
   margin: 0;
 }
+
 article.event h2 {
   margin: 0.5em 0;
 }
@@ -1958,6 +2177,7 @@ article.event h2 {
 #contactresult {
   margin-top: 1em;
 }
+
 #contactresult h2 {
   margin-top: 0;
 }
@@ -1966,6 +2186,7 @@ article.event h2 {
   display: flex;
   flex-flow: row wrap;
 }
+
 .statelist a {
   flex: 0 0 10%;
   padding: 0.5em 0;
@@ -1993,7 +2214,8 @@ header button {
   color: white;
   border-color: #ec1f27;
 }
-@media screen and ( max-width: 400px ) {
+
+@media screen and (max-width: 400px ) {
   .btn-red, .btn-primary {
     white-space: normal;
   }
@@ -2009,6 +2231,7 @@ header button {
   color: #241f20;
   border-color: #241f20;
 }
+
 .btn-outline-dark:hover {
   background-color: #241f20;
   border-color: #241f20;
@@ -2038,7 +2261,7 @@ header button {
   justify-content: start;
 }
 
-@media screen and ( max-width: 400px ) {
+@media screen and (max-width: 400px ) {
   .navbar-right {
     margin-right: auto;
   }
@@ -2054,7 +2277,8 @@ header button {
   padding-right: 8px;
   border-radius: 4px;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   .nav-item {
     padding-left: 0px;
     padding-right: 0px;
@@ -2067,11 +2291,9 @@ header button {
   font-family: "Styrene B";
   font-weight: 400;
 }
+
 .nav-link:hover, .nav-link:focus {
   color: #ec1f27;
-}
-.nav-link:focus {
-  border-radius: 4px;
 }
 
 .dropdown-menu {
@@ -2083,19 +2305,24 @@ header button {
   font-family: "Styrene B";
   font-weight: 600;
 }
+
 .dropdown-item:hover {
   background-color: rgba(255, 226, 214, 0.48);
 }
+
 .dropdown-item:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
+
 .dropdown-item.active, .dropdown-item:active {
   background-color: #ec1f27;
   color: white;
 }
+
 .dropdown-item.active .navbar-dsa-icon, .dropdown-item:active .navbar-dsa-icon {
   display: none;
 }
+
 .dropdown-item.active .nav-item-desc, .dropdown-item:active .nav-item-desc {
   color: #ec1f27;
 }
@@ -2156,25 +2383,27 @@ header button {
   padding-left: 1.5rem;
   padding-right: 0.9rem;
 }
-@media screen and ( max-width: 1024px ) {
+
+@media screen and (max-width: 1024px ) {
   .header-logo {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
 }
 
-@media screen and ( max-width: 400px ) {
+@media screen and (max-width: 400px ) {
   .header-cta-button {
     font-size: 0.8rem;
     padding: 0.75rem 0.5rem;
   }
 }
 
-@media screen and ( max-width: 1024px ) {
+@media screen and (max-width: 1024px ) {
   .header-logo-text {
     font-size: 2rem;
   }
 }
+
 @media screen and (max-width: 400px) {
   .header-logo-text {
     font-size: 0.8rem;
@@ -2331,6 +2560,7 @@ figcaption {
     margin-bottom: 7px;
   }
 }
+
 .banner {
   background-image: linear-gradient(rgba(236, 31, 39, 0.1), #ec1f27), url(../images/banner.png);
   background-size: cover;
@@ -2358,5 +2588,3 @@ img.navbar-item {
     flex-direction: column;
   }
 }
-
-/*# sourceMappingURL=project.css.map */

@@ -65,6 +65,7 @@ THIRD_PARTY_APPS = [
     "wagtailfontawesome",
     "wagtailmenus",
     "storages",
+    "django_sass",
 ]
 
 LOCAL_APPS = [
