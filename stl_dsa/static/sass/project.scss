@@ -273,8 +273,7 @@ body {
   color: $black-light-1x;
   margin-bottom: 40px;
   background-image: linear-gradient($dsamidgrey, $darkdsared);
-  background-size: cover;
-  // background-color: $dsalitegrey;
+  min-height: 100%;
 }
 
 em,

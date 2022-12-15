@@ -232,7 +232,7 @@ body {
   color: #323232;
   margin-bottom: 40px;
   background-image: linear-gradient(#e4e4e8, #9f0005);
-  background-size: cover;
+  min-height: 100%;
 }
 
 em,
