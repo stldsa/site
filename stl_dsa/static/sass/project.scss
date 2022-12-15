@@ -2061,6 +2061,10 @@ header button {
   border-width: 1px;
 }
 
+.btn:focus {
+  box-shadow: $dsamidgrey;
+}
+
 .btn-red, .btn-primary{
   background-color: $dsared;
   color: white;

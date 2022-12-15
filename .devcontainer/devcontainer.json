@@ -4,9 +4,13 @@
 	"service": "app",
 	"workspaceFolder": "/workspace",
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/poetry:1": {},
+		"ghcr.io/devcontainers-contrib/features/poetry:1": {
+			"version": "1.2.0"
+		},
 		"ghcr.io/devcontainers-contrib/features/heroku-cli:1": {},
-		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {},
+		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {
+			"version": "1.2.0"
+		}
 	},
 	"customizations": {
 		"vscode": {
@@ -27,7 +31,7 @@
 			]
 		}
 	},
-	"onCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py createsuperuser --noinput && poetry run python manage.py autopopulate_main_menus",
+	"onCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py autopopulate_main_menus",
 	"postCreateCommand": "pre-commit install",
 	"remoteUser": "vscode"
 }

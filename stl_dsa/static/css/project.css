@@ -2209,6 +2209,10 @@ header button {
   border-width: 1px;
 }
 
+.btn:focus {
+  box-shadow: #e4e4e8;
+}
+
 .btn-red, .btn-primary {
   background-color: #ec1f27;
   color: white;
