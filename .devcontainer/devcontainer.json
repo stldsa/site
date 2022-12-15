@@ -43,6 +43,6 @@
 		}
 	},
 	"onCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py autopopulate_main_menus",
-	"postCreateCommand": "pre-commit install",
+	"postCreateCommand": "pre-commit install && pre-commit install --hook-type pre-push",
 	"remoteUser": "vscode"
 }
