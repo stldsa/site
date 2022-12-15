@@ -175,8 +175,8 @@ EMAIL_BACKEND = env(
     "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
 )
 EMAIL_TIMEOUT = 5
-MAILGUN_API_KEY = env("MAILGUN_API_KEY")
-MAILGUN_DOMAIN = env("MAILGUN_DOMAIN")
+MAILGUN_API_KEY = env("MAILGUN_API_KEY", default=None)
+MAILGUN_DOMAIN = env("MAILGUN_DOMAIN", default=None)
 
 # ADMIN
 # ------------------------------------------------------------------------------
