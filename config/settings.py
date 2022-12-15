@@ -168,7 +168,7 @@ SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = "DENY"
-DJANGO_SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT", default=False)
+SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT", default=False)
 
 # EMAIL
 # ------------------------------------------------------------------------------
