@@ -13,18 +13,10 @@
         <h2>{{ page.main_story_heading }}</h2>
     {% endif %}
     <div>
-    {{ page.main_story_copy|richtext }}
+    {{ page.main_copy|richtext }}
     </div>
     {% for block in page.stories %}
-        <div class="row">
-            <div class="col-sm-4 my-auto">
-                {% image block.value.image scale-100 %}
-            </div>
-            <div class="col-sm">
-                    <h3>{{ block.value.heading }}</h3>
-                    <p>{{ block.value.copy }}</p>
-            </div>
-        </div>
+        {{ block.value.related_story }}
     {% endfor %}
     </div>
 {% endblock %}
