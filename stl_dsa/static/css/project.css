@@ -1980,7 +1980,7 @@ header button {
 }
 
 .btn {
-  font-family: "Styrene B Black";
+  font-family: "Styrene B Bold";
   font-weight: 400 !important;
   border-width: 2px;
   border-radius: 4px;
@@ -2081,7 +2081,7 @@ header button {
 
 .dropdown-menu {
   margin-top: 0px;
-  background-color: #6d6d6d;
+  background-color: #f6f6f6;
 }
 
 .dropdown-item {
