@@ -191,6 +191,18 @@ files = [
 ]
 
 [[package]]
+name = "boto"
+version = "2.49.0"
+description = "Amazon Web Services Library"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "boto-2.49.0-py2.py3-none-any.whl", hash = "sha256:147758d41ae7240dc989f0039f27da8ca0d53734be0eb869ef16e3adcfa462e8"},
+    {file = "boto-2.49.0.tar.gz", hash = "sha256:ea0d3b40a2d852767be77ca343b58a9e3a4b00d9db440efb8da74b4e58025e5a"},
+]
+
+[[package]]
 name = "boto3"
 version = "1.26.30"
 description = "The AWS SDK for Python"
@@ -2862,4 +2874,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "3.11.1"
-content-hash = "3c446c6a54b5423397ce85e638178733425b25bd40cac0585b947f49c38ca30e"
+content-hash = "1f2e36c2ebbcfd5adbb03ad2bbfb354901531f3c2476b3a9705a925015c2a7aa"
