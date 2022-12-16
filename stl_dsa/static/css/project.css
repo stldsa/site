@@ -159,8 +159,7 @@ section {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+  height: 100%;
 }
 
 a {
@@ -229,10 +228,9 @@ img {
 
 body {
   font: 400 1em/1 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #323232;
-  margin-bottom: 40px;
-  background-image: linear-gradient(#e4e4e8, #9f0005);
-  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 em,
@@ -1183,6 +1181,12 @@ textarea {
   max-width: 1080px;
   padding: 0 2em 4em 2em;
   line-height: 1.25;
+}
+
+main {
+  background-image: linear-gradient(#e4e4e8, #9f0005);
+  background-attachment: fixed;
+  flex: auto;
 }
 
 main .grid-table {
