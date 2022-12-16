@@ -16,7 +16,7 @@
                 <div class="col">{% image update.banner_image min-500x300 %}</div>
               {% endif %}
               <div class="col">
-                <h2 class="card-title">{{ update.title }}</h2>
+                <h2 class="card-title text-wrap">{{ update.title }}</h2>
                 <p class="card-text">{{ update.main_copy|richtext }}</p>
                 <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
               </div>
