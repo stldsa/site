@@ -11,9 +11,9 @@
           </div>
           {% image update.banner_image min-500x200 as banner %}
           <div class="card-body">
-            <div class="row-sm">
+            <div class="d-sm-flex">
               {% if update.banner_image %}
-                <div class="col">{% image update.banner_image min-500x300 %}</div>
+                <div>{% image update.banner_image min-500x300 %}</div>
               {% endif %}
               <div class="col">
                 <h2 class="card-title text-wrap">{{ update.title }}</h2>
@@ -33,7 +33,7 @@
             Upcoming Events
           </div>
           <div class="card-body">
-            <ul class="d-flex-sm">
+            <ul class="d-sm-flex">
               {% if events %}
                 {% for event in events %}
                   <li class="card">
