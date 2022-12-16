@@ -2444,9 +2444,3 @@ img.navbar-item {
     flex-direction: column;
   }
 }
-
-.card-body .main-story {
-  background-image:radial-gradient($darkdsared, transparent),url('{{ banner.url }}');
-  background-repeat:no-repeat;
-
-}

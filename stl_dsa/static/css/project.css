@@ -2589,8 +2589,3 @@ img.navbar-item {
     flex-direction: column;
   }
 }
-
-.card-body .main-story {
-  background-image: radial-gradient(#9f0005, transparent), url("{{ banner.url }}");
-  background-repeat: no-repeat;
-}
