@@ -21,10 +21,10 @@
 	"customizations": {
 		"vscode": {
 			"settings": {
+				"editor.formatOnSave": true,
 				"python.linting.enabled": true,
 				"python.linting.pylintEnabled": true,
 				"python.linting.flake8Enabled": true,
-				"python.formatOnSave": true,
 				"python.formatting.provider": "black",
 				"files.exclude": {
 					".venv": true

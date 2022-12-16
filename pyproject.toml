@@ -44,6 +44,7 @@ dj-database-url = "^1.2.0"
 django-sass = "^1.1.0"
 pylint = "^2.15.8"
 boto = {extras = ["crt"], version = "^2.49.0"}
+j2lint = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 psycopg2-binary = "^2.8.5"
