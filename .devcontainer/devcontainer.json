@@ -4,16 +4,8 @@
 	"service": "app",
 	"workspaceFolder": "/workspace",
 	"features": {
-		"ghcr.io/devcontainers/features/common-utils:1": {
-			"installZsh": "true",
-			"username": "vscode",
-			"uid": "1000",
-			"gid": "1000",
-			"upgradePackages": "false"
-		},
-		"ghcr.io/devcontainers/features/git:1": {
-			"version": "1.1.0",
-			"ppa": "false"
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "3.11.1"
 		},
 		"ghcr.io/devcontainers-contrib/features/poetry:1": {
 			"version": "1.3.1"
