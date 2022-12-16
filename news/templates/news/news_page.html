@@ -13,7 +13,7 @@
     {{ page.main_copy|richtext }}
     </div>
     {% for block in page.stories %}
-        {{ block.related_story|richtext }}
+        {{ block.related_story.value|richtext }}
     {% endfor %}
     </div>
 {% endblock %}
