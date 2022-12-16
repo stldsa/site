@@ -246,6 +246,8 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
 
 LOCAL_SERVE_MEDIA_FILES = True
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", None)
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", None)
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "0.0.0.0", "127.0.0.1"])
 
