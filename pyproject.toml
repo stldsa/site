@@ -43,6 +43,7 @@ boto = {extras = ["crt"], version = "^2.49.0"}
 j2lint = "^1.0.0"
 stringcase = "^1.2.0"
 pytest-django = "^4.5.2"
+factory-boy = "^3.2.1"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"

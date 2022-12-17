@@ -2593,3 +2593,7 @@ img.navbar-item {
     flex-direction: column;
   }
 }
+
+.can_embed #can_embed_form_inner {
+  display: row;
+}

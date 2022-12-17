@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% block banner %}
-  <div class='container col-md-auto d-block pb-4 banner' style='text-align:center;'>
+{% block content %}
+  <script src='https://actionnetwork.org/widgets/v5/form/stldsa?format=js&source=widget'>
+  </script>
+  <div class='container col-md-auto d-block pb-4 banner' style='text-align:center;'>  
+    <div id='can-form-area-stldsa' style='width: 100%;display:inline-grid'>
+    </div>
     <div class="row">
       <div class="col-sm-8">
         <div class="card text-center my-4">
@@ -60,7 +64,9 @@
       </div>
       <div class="col">
         <div class="card">
-          <div class="card-header text-center" style="font-family:'Styrene B Black';">{{ page.highlighted_campaign }}</div>
+          <div class="card-header text-center" style="font-family:'Styrene B Black';">
+            {{ page.highlighted_campaign }}
+          </div>
           <div class="card-body">
             <p class="card-text">{{ page.highlighted_description|richtext }}</p>
           </div>
@@ -68,7 +74,4 @@
       </div>
     </div>
   </div>
-{% endblock %}
-
-{% block content %}
 {% endblock %}
