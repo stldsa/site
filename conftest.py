@@ -1,7 +1,4 @@
-from stl_dsa.users.models import User
 import pytest
-from django.contrib.auth.models import Group
-from stl_dsa.users.tests.factories import UserFactory
 from model_bakery import baker
 import responses
 
@@ -51,7 +48,10 @@ def member_taggings_response():
         {
             "_links": {
                 "osdi:tag": {
-                    "href": "https://actionnetwork.org/api/v2/tags/7cb02320-3ecc-4479-898e-67769a1bf7be"
+                    "href": (
+                        "https://actionnetwork.org/api/v2/tags/"
+                        "7cb02320-3ecc-4479-898e-67769a1bf7be"
+                    )
                 }
             }
         }

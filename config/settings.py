@@ -3,7 +3,6 @@ import os
 import json
 import secrets
 import environ
-import dj_database_url
 
 env = environ.Env()
 
@@ -253,9 +252,7 @@ AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", default=None)
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "0.0.0.0", "127.0.0.1"])
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default="postgres://postgres:postgres@localhost:5432/postgres"
-    )
+    "default": env.db(default="postgres://postgres:postgres@localhost:5432/postgres")
 }
 
 WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL", default="https://localhost:8000")
