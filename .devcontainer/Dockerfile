@@ -10,4 +10,4 @@ ENV PYTHONFAULTHANDLER=1 \
     DJANGO_SUPERUSER_PASSWORD=stldsa \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     DEBUG=True
-COPY pyproject.toml poetry.lock .
+COPY pyproject.toml poetry.lock ./
