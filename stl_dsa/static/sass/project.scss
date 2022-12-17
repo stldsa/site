@@ -272,6 +272,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-image: linear-gradient($dsamidgrey, $darkdsared);
+  background-attachment: fixed;
 }
 
 em,
@@ -1088,21 +1090,9 @@ textarea {
   padding: 0 2em 4em 2em;
   line-height: 1.25;
 }
+
 main {
-  // border: solid $dsalitegrey;
-  // border-width: 0px 2px;
 
-  // margin-right: 0;
-  // flex: 1 0 100%;
-  // @media #{$desktop-query} {
-  // 	flex: 1 0 64%;
-  // 	margin-right: 2em;
-  // }
-  // max-width: 960px
-  // SIDEBAR
-
-  background-image: linear-gradient($dsamidgrey, $darkdsared);
-  background-attachment: fixed;
   flex: auto;
   .grid-table {
     display: flex;

@@ -231,6 +231,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-image: linear-gradient(#e4e4e8, #9f0005);
+  background-attachment: fixed;
 }
 
 em,
@@ -1184,8 +1186,6 @@ textarea {
 }
 
 main {
-  background-image: linear-gradient(#e4e4e8, #9f0005);
-  background-attachment: fixed;
   flex: auto;
 }
 
