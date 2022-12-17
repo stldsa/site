@@ -1,4 +1,3 @@
-from stl_dsa.users.views import UserSignupView, UserLoginView
 from django.conf import settings
 from django.urls import include, path
 from django.conf.urls.static import static
@@ -10,9 +9,10 @@ from rest_framework.authtoken.views import obtain_auth_token
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
-from events.api import urls as events_api_urls
 
-# from sphinxdoc import urls as sphinxdoc_urls
+from events.api import urls as events_api_urls
+from actionnetwork import views
+from stl_dsa.users.views import UserSignupView, UserLoginView
 
 
 urlpatterns = (
@@ -29,6 +29,11 @@ urlpatterns = (
             "fullcalendar/",
             TemplateView.as_view(template_name="fullcalendar.html"),
             name="fullcalendar",
+        ),
+        path(
+            "person-helper/",
+            views.person_helper,
+            name="person-helper",
         ),
         path("api/", include(events_api_urls)),
         path("auth-token/", obtain_auth_token),
@@ -48,8 +53,6 @@ if settings.LOCAL_SERVE_MEDIA_FILES:
 
 
 if settings.DEBUG:
-    # This allows the error pages to be debugged during development, just visit
-    # these url in browser to see how these error pages look like.
     urlpatterns += [
         path(
             "400/",

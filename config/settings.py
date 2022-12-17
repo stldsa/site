@@ -1,6 +1,4 @@
 """Django Settings"""
-import os
-import json
 import secrets
 import environ
 
@@ -237,9 +235,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-ACTIONNETWORK_API_KEYS = json.loads(
-    os.environ.get("ACTIONNETWORK_API_KEYS", '{"main": "1234567890abcdefg"}')
-)  # The default key is not real
+ACTIONNETWORK_API_KEYS = env.dict("ACTIONNETWORK_API_KEYS")
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
 

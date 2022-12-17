@@ -21,11 +21,10 @@ class Resource:
         return settings.ACTIONNETWORK_API_KEYS[group]
 
     def get_response(self, href, api_key):
-        response = requests.get(
+        return requests.get(
             href,
             headers={"OSDI-API-Token": api_key},
         )
-        return response
 
 
 class Events:

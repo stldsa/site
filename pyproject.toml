@@ -74,6 +74,8 @@ extend-ignore = "E203, E501"
 [tool.black]
 extend_exclude = '^.*\b(migrations)\b.*$'
 
+[tool.mypy]
+python_executable = ".venv/bin/python"
 
 [build-system]
 requires = ["poetry>=1.1.6"]

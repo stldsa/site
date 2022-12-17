@@ -14,6 +14,7 @@
 				"editor.formatOnSave": true,
 				"python.linting.enabled": true,
 				"python.linting.pylintEnabled": true,
+				"python.linting.pylintPath": ".venv/Scripts/pylint",
 				"python.linting.flake8Enabled": true,
 				"python.formatting.provider": "black",
 				"files.exclude": {
