@@ -2593,16 +2593,3 @@ img.navbar-item {
     flex-direction: column;
   }
 }
-
-#can_embed_form_inner {
-  display: inline-flex;
-  justify-content: center;
-}
-
-.can_embed #logo_wrap, #action_info, .floatlabel-label, .ajax-loading, h4 {
-  display: none;
-}
-
-.can_embed li {
-  list-style: none;
-}
