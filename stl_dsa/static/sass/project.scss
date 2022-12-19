@@ -229,6 +229,7 @@ button {
 }
 .container {
   padding-top: 20px;
+  background-color: white;
 }
 .div {
   margin-top: 10px;
@@ -2424,7 +2425,6 @@ figcaption {
 }
 
 
-
 img.navbar-item {
   border-radius: 6px;
 }
@@ -2435,3 +2435,6 @@ img.navbar-item {
   }
 }
 
+.page-content {
+  background-color: white;
+}

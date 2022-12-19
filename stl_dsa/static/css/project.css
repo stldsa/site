@@ -192,6 +192,7 @@ button {
 
 .container {
   padding-top: 20px;
+  background-color: white;
 }
 
 .div {
@@ -2590,4 +2591,8 @@ img.navbar-item {
   .responsiverow {
     flex-direction: column;
   }
+}
+
+.page-content {
+  background-color: white;
 }
