@@ -74,10 +74,8 @@
               <form class="form" action="/person-helper/" method="post">
                 {% csrf_token %}
                 <label for="email" class="py-1">E-mail</label>
-                <div class="col form-group">
-                  <div class="input-group">
-                    <input required type="email" id="email" name="email" class="form-control">
-                  </div>
+                <div class="input-group">
+                  <input required type="email" id="email" name="email" class="form-control">
                 </div>
                 <label for="zip" class="py-1">ZIP code</label>
                 <div class="input-group justify-content-center align-items-center">
