@@ -102,6 +102,16 @@ class Command(BaseCommand):
                     formation=formation,
                 )
                 future_event.save()
+                future_event_2 = Event(
+                    title="Event Title 2",
+                    description=fake.paragraph(),
+                    start=fake.future_datetime(
+                        end_date=datetime.timedelta(days=6),
+                        tzinfo=datetime.timezone.utc,
+                    ),
+                    formation=formation,
+                )
+                future_event_2.save()
 
             revision = formation_type.save_revision()
             revision.publish()
