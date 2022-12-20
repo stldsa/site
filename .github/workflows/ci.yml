@@ -25,10 +25,10 @@ jobs:
 
       - name: Install Poetry
         run: pipx install poetry
-      - name: Set up Python 3.11.0
+      - name: Set up Python 3.11.1
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11.0'
+          python-version: '3.11.1'
           cache: "poetry"
       - run: poetry install
 
