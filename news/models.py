@@ -8,7 +8,7 @@ from wagtail import blocks
 from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
-from wagtail.admin.panels import FieldPanel, FieldRowPanel, InlinePanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from modelcluster.fields import ParentalKey
 from events.models import Event
 from committees.models import CommitteePage
@@ -99,7 +99,7 @@ class NewsPage(Page):
             widget=title_widget,
             help_text=("Email subject line doubles as page title."),
         ),
-        FieldRowPanel(
+        MultiFieldPanel(
             [FieldPanel("banner_image"), FieldPanel("main_copy")], heading="Main Story"
         ),
         InlinePanel("related_stories", heading="Related Stories", label="Story"),
