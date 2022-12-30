@@ -30,8 +30,8 @@ class NewsIndexPage(Page):
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
-        blogpages = self.get_children().live().order_by("-last_published_at")
-        paginator = Paginator(blogpages, 5)
+        updates = self.get_children().live().order_by("-last_published_at")
+        paginator = Paginator(updates, 5)
         page = request.GET.get("page")
         try:
             resources = paginator.page(page)
@@ -39,7 +39,7 @@ class NewsIndexPage(Page):
             resources = paginator.page(1)
         except EmptyPage:
             resources = paginator.page(paginator.num_pages)
-        context["blogpages"] = resources
+        context["updates"] = resources
         return context
 
 

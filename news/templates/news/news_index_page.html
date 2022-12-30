@@ -11,20 +11,19 @@
     
         <div class="message">{{ message.intro|richtext }}</div>
     
-        {% for post in blogpages %}
-            <div class="row">
+        <div class="card-deck">
+            {% for update in updates %}
                 <div class="card shadow">
-                    <div class="card-header">
-                        <h5>{{ post.specific.date|date }}</h5>
-                    </div>
                     <div class="card-body">
-                        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-                        {{ post.specific.message }}
-                        {{ post.specific.body|richtext }}
+                        <h2><a href="{% pageurl update %}">{{ update.title }}</a></h2>
+                        
+                        <h5>{{ update.date|date }}</h5>
+                        {{ update.specific.message }}
+                        {{ update.specific.body|richtext }}
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
