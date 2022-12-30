@@ -83,18 +83,12 @@ class NewsPage(Page):
         index.SearchField("main_copy"),
     ]
 
-    title_widget = forms.TextInput(
-        attrs={"placeholder": "An attention grabbing subject header!"}
-    )
+    title_widget = forms.TextInput()
     content_panels = [
         FieldPanel(
             "title",
             heading="Subject",
             widget=title_widget,
-            help_text=(
-                "This field will be used as both the email subject header "
-                "and as the title for the landing page."
-            ),
         ),
         MultiFieldPanel(
             (
