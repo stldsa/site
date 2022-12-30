@@ -12,6 +12,7 @@
 	"customizations": {
 		"vscode": {
 			"settings": {
+				"python.defaultInterpreterPath": ".venv/bin/python",
 				"python.analysis.typeCheckingMode": "basic",
 				"python.linting.pylintEnabled": false,
 				"python.formatOnSave": true,
