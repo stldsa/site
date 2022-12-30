@@ -85,6 +85,13 @@ class NewsPage(Page):
         related_name="+",
     )
     main_copy = RichTextField(blank=True)
+    main_event = models.ForeignKey(
+        Event,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name="main_event",
+    )
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
     search_fields = Page.search_fields + [
@@ -100,7 +107,12 @@ class NewsPage(Page):
             help_text=("Email subject line doubles as page title."),
         ),
         MultiFieldPanel(
-            [FieldPanel("banner_image"), FieldPanel("main_copy")], heading="Main Story"
+            [
+                FieldPanel("banner_image"),
+                FieldPanel("main_copy"),
+                FieldPanel("main_event"),
+            ],
+            heading="Main Story",
         ),
         InlinePanel("related_stories", heading="Related Stories", label="Story"),
     ]
