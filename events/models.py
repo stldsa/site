@@ -37,7 +37,7 @@ class Event(models.Model):
     ]
 
     def __str__(self):
-        return f"{self.title} {str(self.start)}"
+        return f"{self.title} {str(self.start.date())}"
 
 
 class EventsPage(AbstractLinkPage):
