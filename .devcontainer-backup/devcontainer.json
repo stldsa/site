@@ -1,0 +1,31 @@
+{
+	"name": "STL DSA",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/poetry:1": {},
+		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {}
+	},
+	"postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py autopopulate_main_menus && poetry run pre-commit install && poetry run pre-commit install --hook-type pre-push",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"editor.formatOnSave": true,
+				"python.linting.enabled": true,
+				"python.linting.pylintEnabled": true,
+				"python.linting.pylintPath": ".venv/Scripts/pylint",
+				"python.linting.flake8Enabled": true,
+				"python.formatting.provider": "black",
+				"files.exclude": {
+					".venv": true
+				},
+				"python.defaultInterpreterPath": ".venv/bin/python"
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance"
+			]
+		}
+	}
+}

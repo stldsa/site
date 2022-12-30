@@ -2218,6 +2218,7 @@ header button {
   background-color: #ec1f27;
   color: white;
   border-color: #ec1f27;
+  margin: 0.75rem;
 }
 
 @media screen and (max-width: 400px ) {

@@ -2,15 +2,14 @@ version: '3.8'
 
 services:
   app:
+    &app
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
-
+    env_file: devcontainer.env
     volumes:
       - ../..:/workspaces:cached
-    
     command: sleep infinity
-
     network_mode: service:db
 
   db:
@@ -22,6 +21,11 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: postgres
+
+  sass:
+    <<: *app
+    command: python /workspaces/manage.py sass stl_dsa/static/sass stl_dsa/static/css --watch
+    # command: ls /workspaces
 
 volumes:
   postgres-data:

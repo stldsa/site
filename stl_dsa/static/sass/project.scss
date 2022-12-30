@@ -2060,7 +2060,8 @@ header button {
   background-color: $dsared;
   color: white;
   border-color: $dsared;
-
+  margin: 0.75rem;
+  
   @media #{$small-mobile-query} {
     white-space: normal;
   }

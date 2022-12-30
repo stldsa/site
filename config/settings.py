@@ -9,7 +9,7 @@ DEBUG = env.bool("DJANGO_DEBUG", True)
 ROOT_DIR = environ.Path(__file__) - 2
 APPS_DIR = ROOT_DIR.path("stl_dsa")
 BASE_DIR = ROOT_DIR
-if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=False):
+if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=True):
     env.read_env(str(ROOT_DIR.path(".env")))
 
 WAGTAIL_SITE_NAME = "St Louis DSA"
