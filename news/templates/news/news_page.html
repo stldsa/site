@@ -5,12 +5,23 @@
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
-    <div class="col-10 mx-auto">
+    <div class="card col-10 mx-auto">
         <h1>{{ page.title }}</h1>
         <div>{% image page.banner_image scale-100 %}</div>
-        <div>{{ page.main_copy|richtext }}</div>
-        {% for block in page.stories %}
-            {{ block.value|richtext }}
-        {% endfor %}
+        <div class="row">
+            <div class="col">{{ page.main_copy|richtext }}</div>
+                {% for block in page.stories %}
+                    {{ block.value|richtext }}
+                {% endfor %}
+            <div class="col-3">
+                <div class="card m-3">
+                    <div class="card-body">
+                        {{ page.main_event.start }}
+                        test
+                    </div>
+                    <a class="btn btn-red" href="{{ page.url }}">RSVP</a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

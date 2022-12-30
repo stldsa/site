@@ -90,7 +90,6 @@ class NewsPage(Page):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        related_name="main_event",
     )
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
