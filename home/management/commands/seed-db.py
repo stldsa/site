@@ -66,6 +66,12 @@ class Command(BaseCommand):
             show_in_menus=False,
         )
         newsindexpage.add_child(instance=newspage)
+        newspage2 = NewsPage(
+            title=fake.sentence(),
+            main_copy=fake.paragraph(10),
+            show_in_menus=False,
+        )
+        newsindexpage.add_child(instance=newspage2)
 
         event_menu_page = EventsPage(
             title="Events", show_in_menus=True, link_url="/events/"
