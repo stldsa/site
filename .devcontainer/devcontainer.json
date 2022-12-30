@@ -9,5 +9,17 @@
 		"ghcr.io/devcontainers-contrib/features/poetry:1": {},
 		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {}
 	},
-	"postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py autopopulate_main_menus && pre-commit install && pre-commit install --hook-type pre-push"
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.analysis.typeCheckingMode": "basic",
+				"python.linting.pylintEnabled": false,
+				"python.formatOnSave": true,
+				"python.formatting.provider": "black",
+				"python.linting.mypyEnabled": true
+			}
+		}
+	},
+	"postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py autopopulate_main_menus && pre-commit install && pre-commit install --hook-type pre-push",
+	"postStartCommand": "poetry run python manage.py createsuperuser --noinput"
 }
