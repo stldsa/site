@@ -13,7 +13,6 @@
 		"vscode": {
 			"settings": {
 				"python.defaultInterpreterPath": ".venv/bin/python",
-				"python.analysis.typeCheckingMode": "basic",
 				"python.linting.pylintEnabled": false,
 				"python.formatOnSave": true,
 				"python.formatting.provider": "black",
@@ -21,6 +20,6 @@
 			}
 		}
 	},
-	"postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py autopopulate_main_menus && pre-commit install && pre-commit install --hook-type pre-push",
-	"postStartCommand": "poetry run python manage.py createsuperuser --noinput"
+	"postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py autopopulate_main_menus && pre-commit install && pre-commit install --hook-type pre-push"
+	// "postStartCommand": "poetry run python manage.py createsuperuser --noinput"
 }
