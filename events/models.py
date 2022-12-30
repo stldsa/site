@@ -25,11 +25,9 @@ class Event(models.Model):
         null=True,
         on_delete=models.CASCADE,
         blank=True,
-        related_name="events",
     )
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
-    id = models.CharField(max_length=50, primary_key=True)
 
     panels = [
         FieldPanel("title"),

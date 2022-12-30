@@ -5,13 +5,11 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.conf import settings
 from wagtail.search import index
 from wagtail import blocks
-from wagtail.models import Page, Orderable
+from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
-from modelcluster.fields import ParentalKey
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from events.models import Event
-from committees.models import CommitteePage
 from actionnetwork import email
 from render_block import render_block_to_string
 from django.utils import timezone
@@ -60,20 +58,6 @@ def upcoming_events_as_related_stories():
     ]
 
 
-class Story(models.Model):
-    description = RichTextField(null=True, blank=True)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
-    committee = models.ForeignKey(
-        CommitteePage, on_delete=models.CASCADE, null=True, blank=True
-    )
-
-
-class NewsPageRelatedStories(Orderable, Story):
-    page = ParentalKey(
-        "news.NewsPage", on_delete=models.CASCADE, related_name="related_stories"
-    )
-
-
 class NewsPage(Page):
     """A Wagtail Page for our weekly newsletter"""
 
@@ -86,13 +70,14 @@ class NewsPage(Page):
     )
     main_copy = RichTextField(blank=True)
     main_event = models.ForeignKey(
-        Event,
+        "events.Event",
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
+        related_name="update",
     )
     action_network_href = models.URLField(blank=True, null=True)
-    parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
+    parent_page_type = ["news.NewsIndexPage"]
     search_fields = Page.search_fields + [
         index.SearchField("main_copy"),
     ]
@@ -113,7 +98,7 @@ class NewsPage(Page):
             ],
             heading="Main Story",
         ),
-        InlinePanel("related_stories", heading="Related Stories", label="Story"),
+        # InlinePanel("related_stories", heading="Related Stories", label="Story"),
     ]
 
     def save(self, *args, **kwargs):
