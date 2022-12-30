@@ -34,8 +34,3 @@ repos:
     stages: [push]
     types: [python]
     pass_filenames: false
-
-- repo: https://github.com/aristanetworks/j2lint.git
-  rev: v1.0.0
-  hooks:
-  - id: j2lint
