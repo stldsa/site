@@ -7,11 +7,13 @@
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/poetry:1": {},
-		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {}
+		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {},
+		"ghcr.io/devcontainers/features/node:1": {}
 	},
 	"customizations": {
 		"vscode": {
 			"settings": {
+				"terminal.integrated.defaultProfile.linux": "zsh",
 				"python.defaultInterpreterPath": ".venv/bin/python",
 				"python.linting.pylintEnabled": false,
 				"python.formatOnSave": true,
