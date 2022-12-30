@@ -74,7 +74,6 @@ class Command(BaseCommand):
         formation_index = InfoPage(title="Formations", show_in_menus=True)
         homepage.add_child(instance=formation_index)
         for formation_type_name in [
-            "Priority Resolutions",
             "Committees",
             "Working Groups",
             "Caucuses",

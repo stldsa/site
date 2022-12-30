@@ -5,11 +5,13 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.conf import settings
 from wagtail.search import index
 from wagtail import blocks
-from wagtail.models import Page
+from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
-from wagtail.blocks import BlockQuoteBlock, CharBlock, RichTextBlock
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.blocks import BlockQuoteBlock, CharBlock
+from wagtail.admin.panels import FieldPanel, FieldRowPanel, InlinePanel
+from modelcluster.fields import ParentalKey
 from events.models import Event
+from committees.models import CommitteePage
 from actionnetwork import email
 from render_block import render_block_to_string
 from django.utils import timezone
@@ -58,6 +60,20 @@ def upcoming_events_as_related_stories():
     ]
 
 
+class Story(models.Model):
+    description = RichTextField(null=True, blank=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
+    committee = models.ForeignKey(
+        CommitteePage, on_delete=models.CASCADE, null=True, blank=True
+    )
+
+
+class NewsPageRelatedStories(Orderable, Story):
+    page = ParentalKey(
+        "news.NewsPage", on_delete=models.CASCADE, related_name="related_stories"
+    )
+
+
 class NewsPage(Page):
     """A Wagtail Page for our weekly newsletter"""
 
@@ -70,14 +86,6 @@ class NewsPage(Page):
     )
     main_copy = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
-    stories = StreamField(
-        [("related_story", RichTextBlock())],
-        null=True,
-        blank=True,
-        collapsed=False,
-        use_json_field=True,
-    )
-
     parent_page_type = ["news.NewsIndexPage"]  # appname.ModelName
     search_fields = Page.search_fields + [
         index.SearchField("main_copy"),
@@ -89,15 +97,12 @@ class NewsPage(Page):
             "title",
             heading="Subject",
             widget=title_widget,
+            help_text=("Email subject line doubles as page title."),
         ),
-        MultiFieldPanel(
-            (
-                FieldPanel("banner_image"),
-                FieldPanel("main_copy"),
-            ),
-            "Main Story",
+        FieldRowPanel(
+            [FieldPanel("banner_image"), FieldPanel("main_copy")], heading="Main Story"
         ),
-        FieldPanel("stories", heading="Other Stories"),
+        InlinePanel("related_stories", heading="Related Stories", label="Story"),
     ]
 
     def save(self, *args, **kwargs):
