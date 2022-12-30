@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/stldsa/site/issues"
   },
-  "homepage": "https://github.com/stldsa/site#readme"
+  "homepage": "https://github.com/stldsa/site#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
 }
