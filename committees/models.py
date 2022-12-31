@@ -30,7 +30,6 @@ class Person(models.Model):
 
 class CommitteePage(Page):
     parent_page_types = ["CommitteesPage"]
-    subpage_types = []
 
     COMMITTEE = "CT"
     WORKING_GROUP = "WG"
@@ -104,7 +103,6 @@ class CommitteesPage(MenuPage):
     ]
 
     def get_context(self, request):
-        # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         committees = CommitteePage.objects.all().order_by("title")
         context["committees"] = committees

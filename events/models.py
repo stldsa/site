@@ -10,6 +10,7 @@ class APICalls(models.Model):
 
 
 class Event(models.Model):
+    id = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
     start = models.DateTimeField()
