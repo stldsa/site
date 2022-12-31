@@ -37,7 +37,7 @@ def get_events():
 
 def save_event(event):
     apps.get_model("events", "Event").objects.update_or_create(
-        id=event["identifiers"][0].split(":")[1],
+        uuid=event["identifiers"][0].split(":")[1],
         defaults={
             "title": event["title"],
             "start": event["start_date"],
@@ -154,9 +154,9 @@ class Person:
     @property
     def uuid(self):
         return [
-            id.split(":")[1]
-            for id in self.json.get("identifiers", [])
-            if id.split(":")[0] == "action_network"
+            uuid.split(":")[1]
+            for uuid in self.json.get("identifiers", [])
+            if uuid.split(":")[0] == "action_network"
         ][0]
 
     @property
