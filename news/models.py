@@ -69,7 +69,7 @@ class NewsPage(Page):
         related_name="+",
     )
     description = RichTextField(blank=True)
-    main_event = models.ForeignKey(
+    related_event = models.ForeignKey(
         "events.Event",
         on_delete=models.SET_NULL,
         blank=True,
@@ -97,7 +97,7 @@ class NewsPage(Page):
             [
                 FieldPanel("featured_image"),
                 FieldPanel("description"),
-                FieldPanel("main_event"),
+                FieldPanel("related_event"),
                 PageChooserPanel("formation"),
             ],
             heading="Main Story",

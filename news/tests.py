@@ -2,7 +2,7 @@ from news.models import NewsPage
 from events.models import Event
 
 
-def test_save_main_event(db):
+def test_save_related_event(db):
     event = Event()
-    update = NewsPage(main_event=event)
-    assert update.main_event == event
+    update = NewsPage(related_event=event)
+    assert update.related_event == event
