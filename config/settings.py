@@ -165,7 +165,7 @@ SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT", default=False)
 # EMAIL
 # ------------------------------------------------------------------------------
 EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
+    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
 )
 EMAIL_TIMEOUT = 5
 MAILGUN_API_KEY = env("MAILGUN_API_KEY", default=None)
