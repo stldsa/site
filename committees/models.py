@@ -72,17 +72,12 @@ class CommitteePage(Page):
         context = super().get_context(request)
         context["upcoming_events"] = list(self.events.filter(start__gt=datetime.now()))
         if self.sign_up_form_endpoint:
-            print(self.sign_up_form_endpoint)
-            print(self.slug)
-            print(settings.ACTIONNETWORK_API_KEYS)
-            print(settings.ACTIONNETWORK_API_KEYS.get(self.slug))
             embeds = requests.get(
                 f"{self.sign_up_form_endpoint}embed",
                 headers={
                     "OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS.get(self.slug)
                 },
             ).json()
-            print(embeds)
             embed_code = embeds["embed_standard_layout_only_styles"]
         else:
             embed_code = None
@@ -92,6 +87,9 @@ class CommitteePage(Page):
 
     def __str__(self):
         return f"{self.title.title()} {self.get_formation_type_display()}"
+
+    class Meta:
+        verbose_name = "Formation"
 
 
 class CommitteesPage(MenuPage):
