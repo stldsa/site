@@ -68,7 +68,7 @@ class NewsPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    main_copy = RichTextField(blank=True)
+    description = RichTextField(blank=True)
     main_event = models.ForeignKey(
         "events.Event",
         on_delete=models.SET_NULL,
@@ -82,7 +82,7 @@ class NewsPage(Page):
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_type = ["news.NewsIndexPage"]
     search_fields = Page.search_fields + [
-        index.SearchField("main_copy"),
+        index.SearchField("description"),
     ]
 
     title_widget = forms.TextInput()
@@ -96,7 +96,7 @@ class NewsPage(Page):
         MultiFieldPanel(
             [
                 FieldPanel("featured_image"),
-                FieldPanel("main_copy"),
+                FieldPanel("description"),
                 FieldPanel("main_event"),
                 PageChooserPanel("formation"),
             ],

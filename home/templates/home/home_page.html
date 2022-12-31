@@ -9,15 +9,15 @@
           <div class="card-header text-left" style="font-family:'Styrene B Black';">
             What's new?
           </div>
-          {% image update.banner_image min-500x200 as banner %}
+          {% image update.featured_image min-500x200 as banner %}
           <div class="card-body align-items-center">
             <div class="d-sm-flex align-items-center">
-              {% if update.banner_image %}
-                <div>{% image update.banner_image min-500x300 %}</div>
+              {% if update.featured_image %}
+                <div>{% image update.featured_image min-500x300 %}</div>
               {% endif %}
               <div class="flex-column justify-content-center">
                 <h2 class="card-title text-wrap mx-2">{{ update.title }}</h2>
-                <p class="card-text">{{ update.main_copy|richtext }}</p>
+                <p class="card-text">{{ update.description|richtext }}</p>
                 <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
               </div>
             </div>
