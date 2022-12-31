@@ -4,7 +4,7 @@ import environ
 
 env = environ.Env()
 
-DEBUG = env.bool("DJANGO_DEBUG", True)
+DEBUG = env.bool("DJANGO_DEBUG", default=True)
 
 ROOT_DIR = environ.Path(__file__) - 2
 APPS_DIR = ROOT_DIR.path("stl_dsa")
