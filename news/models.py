@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.conf import settings
 from wagtail.search import index
 from wagtail import blocks
-from wagtail.models import Page
+from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.panels import (
@@ -13,8 +13,9 @@ from wagtail.admin.panels import (
     MultiFieldPanel,
     PageChooserPanel,
     FieldRowPanel,
+    InlinePanel,
 )
-
+from modelcluster.fields import ParentalKey
 from events.models import Event
 from actionnetwork import email
 from render_block import render_block_to_string
@@ -62,6 +63,28 @@ def upcoming_events_as_related_stories():
             )
         )
     ]
+
+
+class RelatedStory(models.Model):
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="related_image",
+    )
+    description = RichTextField()
+
+    panels = [FieldPanel("image"), FieldPanel("description")]
+
+    class Meta:
+        abstract = True
+
+
+class NewsPageRelatedStory(Orderable, RelatedStory):
+    page = ParentalKey(
+        "news.NewsPage", on_delete=models.CASCADE, related_name="related_stories"
+    )
 
 
 class NewsPage(Page):
@@ -112,7 +135,7 @@ class NewsPage(Page):
             ],
             heading="Main Story",
         ),
-        # InlinePanel("related_stories", heading="Related Stories", label="Story"),
+        InlinePanel("related_stories", heading="Related Stories", label="Story"),
     ]
 
     def save(self, *args, **kwargs):
@@ -132,7 +155,6 @@ class NewsPage(Page):
         else:
             response = email.create(
                 self.title,
-                # main_story_html + "".join(related_stories_html),
                 render_block_to_string(
                     "news/news_page.html", "content", context={"page": self}
                 ),
