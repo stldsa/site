@@ -8,7 +8,7 @@ from wagtail import blocks
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, PageChooserPanel
 from events.models import Event
 from actionnetwork import email
 from render_block import render_block_to_string
@@ -61,7 +61,7 @@ def upcoming_events_as_related_stories():
 class NewsPage(Page):
     """A Wagtail Page for our weekly newsletter"""
 
-    banner_image = models.ForeignKey(
+    featured_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -95,9 +95,10 @@ class NewsPage(Page):
         ),
         MultiFieldPanel(
             [
-                FieldPanel("banner_image"),
+                FieldPanel("featured_image"),
                 FieldPanel("main_copy"),
                 FieldPanel("main_event"),
+                PageChooserPanel("formation"),
             ],
             heading="Main Story",
         ),
