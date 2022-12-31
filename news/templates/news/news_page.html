@@ -8,19 +8,23 @@
     <div class="card col-10 mx-auto">
         <h1>{{ page.title }}</h1>
         <div>{% image page.featured_image scale-100 %}</div>
-        <div class="row">
-            <div class="col">{{ page.description|richtext }}</div>
-                {% for block in page.stories %}
-                    {{ block.value|richtext }}
-                {% endfor %}
-            <div class="col-3">
-                <div class="card m-3">
-                    <div class="card-body">
-                        {{ page.related_event.start }}
-                    </div>
-                    <a class="btn btn-red" href="{{ page.url }}">RSVP</a>
-                </div>
+        <div class="row m-4">
+            <div class="col-6">
+                {{ page.description|richtext }}
             </div>
+            {% for block in page.stories %}
+                {{ block.value|richtext }}
+            {% endfor %}
+            {% if page.related_event %}
+                <div class="col-3">
+                    <div class="card m-3">
+                        <div class="card-body">
+                            {{ page.related_event.start }}
+                        </div>
+                        <a class="btn btn-red" href="{{ page.url }}">RSVP</a>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
