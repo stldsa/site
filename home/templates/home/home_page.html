@@ -65,7 +65,7 @@
           <div class="card-header">
             Sign up for our weekly newsletter!
           </div>
-          <div class="card-body mx-5">
+          <div class="card-body mx-5 align-items-start">
             {% if messages %}
               {% for message in messages %}
                 <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
@@ -77,14 +77,12 @@
                 <div class="input-group">
                   <input required type="email" id="email" name="email" class="form-control">
                 </div>
-                <label for="zip" class="py-1">ZIP code*</label>
-                <div class="input-group justify-content-center align-items-center">
+                <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP*</label>
+                <div class="input-group flex-nowrap">
                   <input required type="text" name="zip" class="form-control" id="zip">
-                  <div class="input-group-append">
-                    <button type="submit" class="btn btn-primary">
-                      Subscribe
-                    </button>
-                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    Subscribe
+                  </button>
                 </div>
               </form>
             {% endif %}
