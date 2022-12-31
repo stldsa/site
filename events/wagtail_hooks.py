@@ -6,6 +6,7 @@ class EventAdmin(ModelAdmin):
     model = Event
     base_url_path = "events"
     list_display = ("title",)
+    menu_icon = "date"
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)

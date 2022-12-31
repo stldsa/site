@@ -8,6 +8,7 @@ class CommitteeAdmin(ModelAdmin):
     menu_order = 300
     add_to_settings_menu = False
     exclude_from_explorer = False
+    menu_icon = "group"
 
 
 modeladmin_register(CommitteeAdmin)
