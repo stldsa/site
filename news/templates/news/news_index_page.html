@@ -16,10 +16,9 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h2><a href="{% pageurl update %}">{{ update.title }}</a></h2>
-                        
-                        <h5>{{ update.date|date }}</h5>
-                        {{ update.specific.message }}
-                        {{ update.specific.body|richtext }}
+                    </div>
+                    <div class="card-footer">
+                        {{ update.latest_revision_created_at }}
                     </div>
                 </div>
             {% endfor %}
