@@ -135,7 +135,7 @@ class NewsPage(Page):
             ],
             heading="Main Story",
         ),
-        InlinePanel("more_stories", heading="Related Stories", label="Story"),
+        InlinePanel("more_stories", heading="Other Stories", label="Story"),
     ]
 
     def save(self, *args, **kwargs):
