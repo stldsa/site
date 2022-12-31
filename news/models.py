@@ -8,7 +8,13 @@ from wagtail import blocks
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel, PageChooserPanel
+from wagtail.admin.panels import (
+    FieldPanel,
+    MultiFieldPanel,
+    PageChooserPanel,
+    FieldRowPanel,
+)
+
 from events.models import Event
 from actionnetwork import email
 from render_block import render_block_to_string
@@ -95,10 +101,14 @@ class NewsPage(Page):
         ),
         MultiFieldPanel(
             [
-                FieldPanel("featured_image"),
+                FieldRowPanel(
+                    [
+                        FieldPanel("featured_image"),
+                        PageChooserPanel("formation"),
+                        FieldPanel("related_event"),
+                    ]
+                ),
                 FieldPanel("description"),
-                FieldPanel("related_event"),
-                PageChooserPanel("formation"),
             ],
             heading="Main Story",
         ),
