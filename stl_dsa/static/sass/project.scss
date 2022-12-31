@@ -940,9 +940,6 @@ textarea {
   min-height: 8em;
 }
 
-#zip {
-  max-width: 7em;
-}
 
 #intotherentry {
   margin-left: 1em;
@@ -2125,8 +2122,6 @@ header button {
 
 .nav-item {
   font-weight: 600;
-  padding-left: 8px;
-  padding-right: 8px;
   border-radius: 4px;
 
   @media #{$mobile-query} {
@@ -2136,7 +2131,6 @@ header button {
 }
 
 .nav-link {
-  margin-right: 10px;
   color: $dsablack;
   font-family: "Styrene B";
   font-weight: 400;
