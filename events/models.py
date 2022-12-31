@@ -29,7 +29,7 @@ class Event(models.Model):
     )
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     panels = [
         FieldPanel("title"),
