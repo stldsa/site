@@ -7,23 +7,24 @@
 <div class="container">
 
   <div class="d-flex justify-content-center responsiverow">
-      <div class="card col-sm-4 m-3">
-        <div class="card-body">
-
-          <h2 class="card-title">Hi{% if object.first_name %}, {{ object.first_name }}{% endif %}!</h2>
-          <h3 class="card-subtitle">Your membership status: </h3> 
-          {% if object.is_member %}
-           <h1 style='color:red'>Active</h1>
-           <p class="card-text"><a href='https://actionnetwork.org/forms/11-interest-form/'>Meet one-on-one with an organizer</a> to gain access to more chapter resources!</p>
-          {% else %}
-            <p class="card-text my-2">
-              <i>
-                No active membership found at this email.
-              </i>
-            </p>
-          {% endif %}
-          <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-          <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">My E-Mails</a>
+      <div class="col-sm-4 m-3">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Hi{% if object.first_name %}, {{ object.first_name }}{% endif %}!</h2>
+            <h3 class="card-subtitle">Your membership status: </h3> 
+            {% if object.is_member %}
+             <h1 style='color:red'>Active</h1>
+             <p class="card-text"><a href='https://actionnetwork.org/forms/11-interest-form/'>Meet one-on-one with an organizer</a> to gain access to more chapter resources!</p>
+            {% else %}
+              <p class="card-text my-2">
+                <i>
+                  No active membership found at this email.
+                </i>
+              </p>
+            {% endif %}
+            <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
+            <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">My E-Mails</a>
+          </div>
         </div>
       </div>
       <div class="card col-sm-6">
