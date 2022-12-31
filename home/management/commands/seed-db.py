@@ -97,14 +97,13 @@ class Command(BaseCommand):
                 revision.publish()
                 formation.save()
 
-                future_event = Event(
+                future_event = Event.objects.create(
                     title="Event Title",
                     description=fake.paragraph(),
                     start=fake.future_datetime(
                         end_date=datetime.timedelta(days=6),
                         tzinfo=datetime.timezone.utc,
                     ),
-                    formation=formation,
                 )
                 future_event.save()
                 future_event_2 = Event(
@@ -114,7 +113,6 @@ class Command(BaseCommand):
                         end_date=datetime.timedelta(days=6),
                         tzinfo=datetime.timezone.utc,
                     ),
-                    formation=formation,
                 )
                 future_event_2.save()
 

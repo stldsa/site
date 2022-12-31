@@ -37,7 +37,7 @@ class Events:
 
 def save_event(event):
     apps.get_model("events", "Event").objects.update_or_create(
-        id=event["identifiers"][0].split(":")[1],
+        uuid=event["identifiers"][0].split(":")[1],
         defaults={
             "title": event["title"],
             "start": event["start_date"],

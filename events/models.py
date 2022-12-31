@@ -21,6 +21,7 @@ class Event(models.Model):
     zip = models.IntegerField(null=True, blank=True)
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
+    uuid = models.UUIDField(null=True)
 
     panels = [
         FieldPanel("title"),
