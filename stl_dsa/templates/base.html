@@ -86,7 +86,7 @@
                 </svg>
             </a>
             {% if user.is_authenticated %}
-                <a class="btn btn-primary mx-3" href="/myDSA/">
+                <a class="btn btn-primary mx-3" href="{% url 'users:detail' %}">
                     myDSA
                 </a>
             {% else %}
@@ -126,11 +126,9 @@
     </main>
     {% block extra_js %}
     {% endblock %}
-    <!-- <footer class="footer">
-        <div class="container">
-            <p>© St Louis DSA - General Inquiries: <a href="mailto:info@stldsa.org">info@stldsa.org</a>. Site support: <a href="mailto:tech@stldsa.org">tech@stldsa.org</a></a></p>
-        </div>
-    </footer>  -->
+    <footer class="d-flex footer justify-content-center ">
+        <p>© St Louis DSA - General Inquiries: <a href="mailto:info@stldsa.org">info@stldsa.org</a>. Site support: <a href="mailto:tech@stldsa.org">tech@stldsa.org</a></a></p>
+    </footer> 
     </div>
     {# Global javascript #}
     <script type="text/javascript" src="{% static 'js/stldsa.js' %}"></script>
