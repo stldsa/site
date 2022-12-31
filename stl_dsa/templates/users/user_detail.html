@@ -30,8 +30,8 @@
         
         {% if object.is_member %}
           <br>
-          <h5><emph>Check out your STL DSA Membership Handbook! </emph></h5>
-          <div class="embed-responsive embed-responsive-1by1">
+          <h5 class="card-title">Check out your STL DSA Membership Handbook!</h5>
+          <div class="card-body embed-responsive embed-responsive-1by1">
             <div class="embed-responsive-item" id="adobe-dc-view"></div>
           </div>
           <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -44,7 +44,7 @@
               }, {embedMode: "SIZED_CONTAINER"});
             });
           </script>
-          <h4>You may use the menu buttons above to download/print a PDF copy of the handbook or view in full screen mode. Additionally you can view the handbook in its own webpage <a href="{% static 'pdf/STLDSA_MemberHandbook.pdf' %}">here.</a></h4>
+          <h4 class="card-text">You may use the menu buttons above to download/print a PDF copy of the handbook or view in full screen mode. Additionally you can view the handbook in its own webpage <a href="{% static 'pdf/STLDSA_MemberHandbook.pdf' %}">here.</a></h4>
         {% else %}
           <div class="card-body">
             <h1 class="card-title">Why join DSA?</h1>
