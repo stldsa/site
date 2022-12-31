@@ -190,10 +190,10 @@ class NewsPage(Page):
                 self.go_live_at,
                 settings.ACTIONNETWORK_API_KEYS["main"],
             )
-        super().save(*args, **kwargs)  # Call the "real" save() method.
+        super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name = "Updates"
+        verbose_name = "Update"
 
 
 class InfoPage(Page):
