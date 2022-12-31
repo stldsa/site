@@ -1,6 +1,5 @@
 from datetime import datetime
 from django.db import models
-from committees.models import CommitteePage
 from wagtail.models import Page
 from wagtailmenus.models import AbstractLinkPage
 from wagtail.admin.panels import FieldPanel
@@ -20,12 +19,6 @@ class Event(models.Model):
     city = models.CharField(max_length=30, null=True, blank=True)
     state = models.CharField(max_length=2, null=True, blank=True)
     zip = models.IntegerField(null=True, blank=True)
-    formation = models.ForeignKey(
-        CommitteePage,
-        null=True,
-        on_delete=models.CASCADE,
-        blank=True,
-    )
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
 

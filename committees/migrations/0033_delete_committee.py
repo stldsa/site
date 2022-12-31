@@ -6,12 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events', '0022_alter_event_formation'),
-        ('committees', '0032_remove_committeepage_name'),
+        ("committees", "0032_remove_committeepage_name"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='Committee',
+            name="Committee",
         ),
     ]

@@ -8,7 +8,6 @@ import modelcluster.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("events", "0025_alter_event_formation"),
         ("news", "0043_alter_newspage_main_event"),
     ]
 

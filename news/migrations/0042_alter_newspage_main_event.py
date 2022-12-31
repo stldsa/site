@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("events", "0025_alter_event_formation"),
         ("news", "0041_alter_newspage_main_event"),
     ]
 

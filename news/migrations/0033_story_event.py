@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("events", "0024_event_location"),
         ("news", "0032_remove_story_copy_story_description"),
     ]
 

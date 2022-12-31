@@ -9,7 +9,6 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("events", "0025_alter_event_formation"),
         ("committees", "0051_alter_resourcespage_resources"),
         ("news", "0039_remove_story_committee_remove_story_event_and_more"),
     ]
