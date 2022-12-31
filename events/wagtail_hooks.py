@@ -7,5 +7,9 @@ class EventAdmin(ModelAdmin):
     base_url_path = "events"
     list_display = ("title",)
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.exclude(title__contains="Tech Committee Drop In Hours")
+
 
 modeladmin_register(EventAdmin)

@@ -22,7 +22,7 @@ class NewsIndexPage(Page):
 
     content_panels = Page.content_panels + [FieldPanel("message", classname="full")]
     subpage_types = [
-        "news.NewsPage",  # appname.ModelName
+        "news.NewsPage",
     ]
 
     def get_context(self, request):
