@@ -76,6 +76,9 @@ class NewsPage(Page):
         null=True,
         related_name="update",
     )
+    formation = models.ForeignKey(
+        "committees.CommitteePage", null=True, blank=True, on_delete=models.SET_NULL
+    )
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_type = ["news.NewsIndexPage"]
     search_fields = Page.search_fields + [
