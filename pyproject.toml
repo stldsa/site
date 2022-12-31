@@ -45,6 +45,7 @@ factory-boy = "^3.2.1"
 ruff = "^0.0.201"
 ipython = "^8.7.0"
 django-extensions = "^3.2.1"
+werkzeug = "^2.2.2"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"

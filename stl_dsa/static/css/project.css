@@ -11,11 +11,6 @@ License URI: https://www.gnu.org/licenses/gpl.html
 Tags: fluid-layout responsive-layout
 Text Domain: dsa-v2
 */
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:300,400,600");
 @font-face {
   font-family: "Manifold DSA";
@@ -2289,10 +2284,6 @@ header button {
   .navbar-right {
     margin-right: auto;
   }
-}
-
-.navbar-nav {
-  flex-direction: row;
 }
 
 .nav-item {
