@@ -4,6 +4,7 @@ from committees.models import CommitteePage
 from wagtail.models import Page
 from wagtailmenus.models import AbstractLinkPage
 from wagtail.admin.panels import FieldPanel
+import uuid
 
 
 class APICalls(models.Model):
@@ -28,7 +29,7 @@ class Event(models.Model):
     )
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
-    id = models.UUIDField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
 
     panels = [
         FieldPanel("title"),
