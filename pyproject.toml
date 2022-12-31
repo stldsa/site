@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "stl-dsa"
+name = "stldsa"
 version = "0.1.0"
 description = "A Django + Wagtail based website for the St Louis Chapter of DSA"
 authors = ["Tyler Schlichenmeyer <tyler.schlichenmeyer@gmail.com>"]

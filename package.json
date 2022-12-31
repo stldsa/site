@@ -1,5 +1,5 @@
 {
-  "name": "stl-dsa",
+  "name": "stldsa",
   "version": "1.0.0",
   "description": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/schlich/stldsa-site)",
   "main": "index.js",
