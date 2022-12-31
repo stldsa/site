@@ -120,7 +120,7 @@ class NewsPage(Page):
             "title",
             heading="Subject",
             widget=title_widget,
-            help_text=("Email subject line doubles as page title."),
+            help_text=("Email subject line doubles as page title/main story heading."),
         ),
         MultiFieldPanel(
             [
