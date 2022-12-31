@@ -3,13 +3,21 @@
 
 
 {% block content %}
-    <div class="page-content">
-        <h2>{{ page.title }}</h2>
-        <h4>{{ page.description|richtext }}</h4>
+<div class="container">
+
+    <h1 class="mb-3">{{ page.title }}</h1>
+    <h4>{{ page.description|richtext }}</h4>
+
+    <div class="row row-cols-4">
         {% for formation in page.get_children %}
-            <ul style="list-style-type: none">
-                <li><div class="title"><h5><a href="{% pageurl formation %}">{{ formation.title }}</a></h5></div></li>
-            </ul>
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2><a href="{% pageurl formation %}">{{ formation.title }}</a></h2>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
     </div>
+</div>
 {% endblock %}

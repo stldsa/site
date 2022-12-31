@@ -11,14 +11,16 @@
     
         <div class="message">{{ message.intro|richtext }}</div>
     
-        <div class="card-deck">
+        <div class="row row-cols-2">
             {% for update in updates %}
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h2><a href="{% pageurl update %}">{{ update.title }}</a></h2>
-                    </div>
-                    <div class="card-footer">
-                        {{ update.go_live_at|date }}
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h2><a href="{% pageurl update %}">{{ update.title }}</a></h2>
+                        </div>
+                        <div class="card-footer">
+                            {{ update.go_live_at|date }}
+                        </div>
                     </div>
                 </div>
             {% endfor %}
