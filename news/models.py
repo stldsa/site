@@ -83,7 +83,7 @@ class RelatedStory(models.Model):
 
 class NewsPageRelatedStory(Orderable, RelatedStory):
     page = ParentalKey(
-        "news.NewsPage", on_delete=models.CASCADE, related_name="related_stories"
+        "news.NewsPage", on_delete=models.CASCADE, related_name="more_stories"
     )
 
 
@@ -135,7 +135,7 @@ class NewsPage(Page):
             ],
             heading="Main Story",
         ),
-        InlinePanel("related_stories", heading="Related Stories", label="Story"),
+        InlinePanel("more_stories", heading="Related Stories", label="Story"),
     ]
 
     def save(self, *args, **kwargs):
