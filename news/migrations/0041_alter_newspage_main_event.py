@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("news", "0040_newspagerelatedstories"),
+        ("news", "0039_remove_story_committee_remove_story_event_and_more"),
     ]
 
     operations = [
