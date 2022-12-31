@@ -291,11 +291,10 @@ h3,
 h4 {
   display: block;
   @extend %font-manifold;
-  margin: 1em 0 1em;
+  margin: 0 0 0;
   font-weight: 400;
   font-weight: bold;
   line-height: 1;
-  padding-top: 10px;
 }
 $h1: $text-4xl;
 h1 {
