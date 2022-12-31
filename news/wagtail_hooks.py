@@ -1,5 +1,6 @@
 from wagtail import hooks
 from wagtail.admin.menu import MenuItem
+from news.views import update_viewset
 
 
 @hooks.register("construct_explorer_page_queryset")
@@ -13,4 +14,9 @@ def show_my_profile_only(parent_page, pages, request):
 
 @hooks.register("register_admin_menu_item")
 def register_updates_menu_item():
-    return MenuItem("Updates", "/cms/news/", icon_name="mail")
+    return MenuItem("Updates", "/cms/updates", icon_name="mail")
+
+
+@hooks.register("register_admin_viewset")
+def register_updates_viewset():
+    return update_viewset

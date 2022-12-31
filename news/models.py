@@ -47,6 +47,9 @@ class NewsIndexPage(Page):
         context["updates"] = resources
         return context
 
+    class Meta:
+        verbose_name = "Updates"
+
 
 def upcoming_events_as_related_stories():
     return [
@@ -188,6 +191,9 @@ class NewsPage(Page):
                 settings.ACTIONNETWORK_API_KEYS["main"],
             )
         super().save(*args, **kwargs)  # Call the "real" save() method.
+
+    class Meta:
+        verbose_name = "Updates"
 
 
 class InfoPage(Page):
