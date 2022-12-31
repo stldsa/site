@@ -35,9 +35,6 @@ class Command(BaseCommand):
         root = Page.get_first_root_node()
         homepage = HomePage(
             title="St Louis DSA",
-            banner_title="Welcome to St Louis DSA!",
-            mission_statement=fake.sentence(10),
-            values_statement=fake.sentence(10),
             highlighted_campaign=f"{' '.join(fake.words(2)).title()} Campaign",
             highlighted_description=fake.paragraph(5),
         )
