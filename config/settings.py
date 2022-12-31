@@ -15,14 +15,9 @@ if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=True):
 WAGTAIL_SITE_NAME = "St Louis DSA"
 TIME_ZONE = "America/Chicago"
 SITE_ID = 1
-WAGTAIL_I18N_ENABLED = True
-USE_I18N = True
+WAGTAIL_I18N_ENABLED = False
+USE_I18N = False
 USE_TZ = True
-WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
-    ("en", "English"),
-    ("es", "Spanish"),
-    ("bs", "Bosnian"),
-]
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 DJANGO_APPS = [

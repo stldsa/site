@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.urls import include, path
 from django.conf.urls.static import static
-from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
@@ -15,38 +14,32 @@ from actionnetwork import views
 from stl_dsa.users.views import UserSignupView, UserLoginView
 
 
-urlpatterns = (
-    [
-        # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-        # Django Admin, use {% url 'admin:index' %}
-        path(settings.ADMIN_URL, admin.site.urls),
-        path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
-        path("signup/", UserSignupView.as_view(), name="account_signup"),
-        path("login/", UserLoginView.as_view(), name="account_login"),
-        path("", include("allauth.urls")),
-        path("events/", include("events.urls")),
-        path(
-            "fullcalendar/",
-            TemplateView.as_view(template_name="fullcalendar.html"),
-            name="fullcalendar",
-        ),
-        path(
-            "person-helper/",
-            views.person_helper,
-            name="person-helper",
-        ),
-        path("api/", include(events_api_urls)),
-        path("auth-token/", obtain_auth_token),
-        # re_path(r"^docs/", include(sphinxdoc_urls)),
-        path("cms/", include(wagtailadmin_urls)),
-        path("documents/", include(wagtaildocs_urls)),
-    ]
-    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    + i18n_patterns(
-        # path("search/", search_views.search, name="search"),
-        path("", include(wagtail_urls)),
-    )
-)
+urlpatterns = [
+    # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    # Django Admin, use {% url 'admin:index' %}
+    path(settings.ADMIN_URL, admin.site.urls),
+    path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
+    path("signup/", UserSignupView.as_view(), name="account_signup"),
+    path("login/", UserLoginView.as_view(), name="account_login"),
+    path("", include("allauth.urls")),
+    path("events/", include("events.urls")),
+    path(
+        "fullcalendar/",
+        TemplateView.as_view(template_name="fullcalendar.html"),
+        name="fullcalendar",
+    ),
+    path(
+        "person-helper/",
+        views.person_helper,
+        name="person-helper",
+    ),
+    path("api/", include(events_api_urls)),
+    path("auth-token/", obtain_auth_token),
+    # re_path(r"^docs/", include(sphinxdoc_urls)),
+    path("cms/", include(wagtailadmin_urls)),
+    path("documents/", include(wagtaildocs_urls)),
+    path("", include(wagtail_urls)),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.LOCAL_SERVE_MEDIA_FILES:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

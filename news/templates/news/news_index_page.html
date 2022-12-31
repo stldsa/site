@@ -18,7 +18,7 @@
                         <h2><a href="{% pageurl update %}">{{ update.title }}</a></h2>
                     </div>
                     <div class="card-footer">
-                        {{ update.latest_revision_created_at }}
+                        {{ update.go_live_at|date }}
                     </div>
                 </div>
             {% endfor %}
