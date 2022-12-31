@@ -44,6 +44,7 @@ pytest-django = "^4.5.2"
 factory-boy = "^3.2.1"
 ruff = "^0.0.201"
 ipython = "^8.7.0"
+django-extensions = "^3.2.1"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"

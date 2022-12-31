@@ -62,6 +62,7 @@ THIRD_PARTY_APPS = [
     "wagtailmenus",
     "storages",
     "django_sass",
+    "django_extensions",
 ]
 
 LOCAL_APPS = [

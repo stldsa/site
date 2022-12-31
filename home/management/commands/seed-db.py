@@ -56,6 +56,8 @@ class Command(BaseCommand):
             show_in_menus=True,
         )
         homepage.add_child(instance=newsindexpage)
+        aboutuspage = InfoPage(title="About Us", slug="about-us", show_in_menus=True)
+        homepage.add_child(instance=aboutuspage)
         newsindexpage.has_children_in_menu = False
         newsindexpage.sub_menu = None
 
