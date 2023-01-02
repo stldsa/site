@@ -1,0 +1,12 @@
+:root {
+    --w-color-primary: #9f0005;
+    --w-color-secondary: #ec1f27;
+}
+
+.sidebar__inner {
+    background-color: #241f20;
+}
+
+.w-summary {
+    color: #241f20;
+}
