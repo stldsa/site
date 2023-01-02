@@ -8,6 +8,8 @@ class UpdatesAdmin(ModelAdmin):
     menu_label = "Updates"
     menu_icon = "mail"
     base_url_path = "updates"
+    list_display = ("__str__", "first_published_at")
+    ordering = ("-first_published_at",)
 
 
 modeladmin_register(UpdatesAdmin)
