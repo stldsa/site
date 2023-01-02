@@ -14,7 +14,7 @@ modeladmin_register(UpdatesAdmin)
 
 
 @hooks.register("construct_explorer_page_queryset")
-def show_my_profile_only(parent_page, pages, request):
+def order_updates_reverse_chron(parent_page, pages, request):
     if parent_page.slug == "updates":
         pages = pages.order_by("-first_published_at")
 

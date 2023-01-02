@@ -11,7 +11,6 @@ from wagtail.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.panels import (
     FieldPanel,
     MultiFieldPanel,
-    PageChooserPanel,
     FieldRowPanel,
     InlinePanel,
 )
@@ -108,9 +107,6 @@ class NewsPage(Page):
         null=True,
         related_name="update",
     )
-    formation = models.ForeignKey(
-        "committees.CommitteePage", null=True, blank=True, on_delete=models.SET_NULL
-    )
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_type = ["news.NewsIndexPage"]
     search_fields = Page.search_fields + [
@@ -130,7 +126,6 @@ class NewsPage(Page):
                 FieldRowPanel(
                     [
                         FieldPanel("featured_image"),
-                        PageChooserPanel("formation"),
                         FieldPanel("related_event"),
                     ]
                 ),
