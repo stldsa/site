@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.urls import include, path
 from django.conf.urls.static import static
-from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rest_framework.authtoken.views import obtain_auth_token
@@ -15,9 +14,6 @@ from stl_dsa.users.views import UserSignupView, UserLoginView
 
 
 urlpatterns = [
-    # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    # Django Admin, use {% url 'admin:index' %}
-    path(settings.ADMIN_URL, admin.site.urls),
     path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
     path("signup/", UserSignupView.as_view(), name="account_signup"),
     path("login/", UserLoginView.as_view(), name="account_login"),
@@ -36,7 +32,7 @@ urlpatterns = [
     path("api/", include(events_api_urls)),
     path("auth-token/", obtain_auth_token),
     # re_path(r"^docs/", include(sphinxdoc_urls)),
-    path("cms/", include(wagtailadmin_urls)),
+    path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("", include(wagtail_urls)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
