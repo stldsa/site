@@ -64,16 +64,9 @@ def upcoming_events_as_related_stories():
 
 
 class RelatedStory(models.Model):
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="related_image",
-    )
     description = RichTextField()
 
-    panels = [FieldPanel("image"), FieldPanel("description")]
+    panels = [FieldPanel("description")]
 
     class Meta:
         abstract = True
@@ -102,7 +95,7 @@ class NewsPage(Page):
             "title",
             heading="Subject",
             widget=title_widget,
-            help_text=("Email subject line doubles as page title."),
+            help_text=("Email subject line / page title."),
         ),
         InlinePanel("stories", heading="Stories", label="Story"),
     ]
