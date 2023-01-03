@@ -6,7 +6,8 @@
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/poetry:1": {},
 		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {},
-		"ghcr.io/devcontainers/features/node:1": {}
+		"ghcr.io/devcontainers/features/node:1": {},
+		"ghcr.io/devcontainers-contrib/features/heroku-cli:1": {}
 	},
 	"customizations": {
 		"vscode": {

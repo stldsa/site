@@ -18,7 +18,6 @@ urlpatterns = [
     path("signup/", UserSignupView.as_view(), name="account_signup"),
     path("login/", UserLoginView.as_view(), name="account_login"),
     path("", include("allauth.urls")),
-    path("events/", include("events.urls")),
     path(
         "fullcalendar/",
         TemplateView.as_view(template_name="fullcalendar.html"),
@@ -35,6 +34,7 @@ urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("", include(wagtail_urls)),
+    path("events/", include("events.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.LOCAL_SERVE_MEDIA_FILES:
