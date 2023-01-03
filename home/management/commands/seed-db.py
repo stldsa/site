@@ -50,19 +50,15 @@ class Command(BaseCommand):
         newsindexpage = NewsIndexPage(
             title="Updates",
             slug="updates",
-            show_in_menus=True,
         )
         homepage.add_child(instance=newsindexpage)
-        aboutuspage = InfoPage(title="About Us", slug="about-us", show_in_menus=True)
+        aboutuspage = InfoPage(title="About Us", slug="about-us")
         homepage.add_child(instance=aboutuspage)
-        newsindexpage.has_children_in_menu = False
-        newsindexpage.sub_menu = None
 
         NewsPage = apps.get_model("news.NewsPage")
         newspage = NewsPage(
             title=fake.sentence(),
             description=fake.paragraph(10),
-            show_in_menus=False,
         )
         newsindexpage.add_child(instance=newspage)
         newspage2 = NewsPage(
@@ -72,7 +68,7 @@ class Command(BaseCommand):
         )
         newsindexpage.add_child(instance=newspage2)
 
-        formation_index = InfoPage(title="Formations", show_in_menus=True)
+        formation_index = InfoPage(title="Formations")
         homepage.add_child(instance=formation_index)
         for formation_type_name in [
             "Committees",
@@ -81,8 +77,8 @@ class Command(BaseCommand):
         ]:
             formation_type = CommitteesPage(
                 title=formation_type_name,
+                description=fake.paragraph(),
                 slug=stringcase.spinalcase(formation_type_name),
-                show_in_menus=True,
             )
             formation_index.add_child(instance=formation_type)
             formation_list = CommitteeFactory.build_batch(4)

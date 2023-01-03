@@ -3,10 +3,9 @@
 
 
 {% block content %}
-<div class="container">
 
-    <h1 class="mb-3">{{ page.title }}</h1>
-    <h4>{{ page.description|richtext }}</h4>
+    <h1 class="mb-3">{{ page }}</h1>
+    <div class="container">{{ page.description|richtext }}</div>
 
     <div class="card-group">
         {% for formation in page.get_children %}
@@ -17,5 +16,5 @@
             </div>
         {% endfor %}
     </div>
-</div>
+
 {% endblock %}
