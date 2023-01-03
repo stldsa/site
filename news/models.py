@@ -1,4 +1,5 @@
 import datetime
+from typing import Any, List
 from django import forms
 from django.db import models
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -102,6 +103,7 @@ class NewsPage(Page):
     description = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_type = ["news.NewsIndexPage"]
+    subpage_types: List[Any] = []
     search_fields = Page.search_fields + [
         index.SearchField("description"),
     ]
