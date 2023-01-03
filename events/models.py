@@ -23,17 +23,21 @@ class Event(models.Model):
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
     uuid = models.UUIDField(null=True)
+    formation = models.ForeignKey(
+        "committees.CommitteePage", on_delete=models.CASCADE, null=True, blank=True
+    )
 
-    panels = [
-        FieldPanel("title"),
-        FieldPanel("description"),
-    ]
+    panels = [FieldPanel("title"), FieldPanel("description"), FieldPanel("formation")]
 
     def __str__(self):
         return f"{self.title} {str(self.start.date())}"
 
     class Meta:
         ordering = ["-start"]
+
+
+class EventPage(Page):
+    panels = [FieldPanel("title")]
 
 
 class EventsPage(AbstractLinkPage):

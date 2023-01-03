@@ -5,7 +5,7 @@ from events.models import Event
 class EventAdmin(ModelAdmin):
     model = Event
     base_url_path = "events"
-    list_display = ("title",)
+    list_display = ("title", "start")
     menu_icon = "date"
 
     def get_queryset(self, request):
