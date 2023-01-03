@@ -14,6 +14,7 @@ from stl_dsa.users.views import UserSignupView, UserLoginView
 
 
 urlpatterns = [
+    path("events/", include("events.urls")),
     path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
     path("signup/", UserSignupView.as_view(), name="account_signup"),
     path("login/", UserLoginView.as_view(), name="account_login"),
@@ -33,7 +34,6 @@ urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("", include(wagtail_urls)),
-    path("events/", include("events.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.LOCAL_SERVE_MEDIA_FILES:
