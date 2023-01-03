@@ -11,13 +11,13 @@
                 <div class='card-body'>
                     <div class="row">
                         {% if story.related_image %}
-                        <div class="col">
+                        <div class="d-flex justify-contents-center">
                             {% image story.related_image max-300x500 %}
                         </div>
                         {% endif %}
                         <div class="col">
                             {{ story.description|richtext }}
-                            <a class='btn btn-primary' href="{{ story.related_event.url }}">
+                            <a class='btn btn-primary col-4 text-center' href="{{ story.related_event.url }}">
                                 RSVP
                             </a>
                         </div>
