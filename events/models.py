@@ -25,7 +25,7 @@ class Event(models.Model):
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
     uuid = models.UUIDField(null=True)
-    formation = models.ForeignKey(
+    formation_group = models.ForeignKey(
         CommitteePage, on_delete=models.SET_NULL, null=True, blank=True
     )
 
@@ -39,10 +39,6 @@ class Event(models.Model):
 
     class Meta:
         ordering = ["-start"]
-
-
-class EventPage(Page):
-    panels = [FieldPanel("title")]
 
 
 class EventsPage(AbstractLinkPage):
