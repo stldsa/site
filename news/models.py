@@ -57,7 +57,10 @@ def upcoming_events_as_related_stories():
     ]
 
 
-class RelatedStory(models.Model):
+class NewsPageRelatedStory(Orderable):
+    page = ParentalKey(
+        "news.NewsPage", on_delete=models.CASCADE, related_name="stories"
+    )
     description = RichTextField(null=True, blank=True)
     related_event = models.ForeignKey(
         Event,
@@ -68,15 +71,6 @@ class RelatedStory(models.Model):
     )
 
     panels = [FieldPanel("description"), FieldPanel("related_event")]
-
-    class Meta:
-        abstract = True
-
-
-class NewsPageRelatedStory(Orderable, RelatedStory):
-    page = ParentalKey(
-        "news.NewsPage", on_delete=models.CASCADE, related_name="stories"
-    )
 
 
 class NewsPage(Page):
