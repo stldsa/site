@@ -3,7 +3,7 @@
 
 {% block content %}
   <div class='col-md-auto d-block pb-4'>  
-    <div class="card-deck">
+    <div class="row">
       <div class="col-sm-8 banner">
         <div class="card shadow text-center my-4">
           <div class="card-header text-left" style="font-family:'Styrene B Black';">
@@ -17,7 +17,7 @@
               {% endif %}
               <div class="flex-column justify-content-center">
                 <h2 class="card-title text-wrap mx-2">{{ update.title }}</h2>
-                <p class="card-text">{{ update.description|richtext }}</p>
+                <p class="card-text mb-3">{{ update.description|richtext }}</p>
                 <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
               </div>
             </div>
