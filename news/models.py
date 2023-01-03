@@ -3,7 +3,6 @@ from typing import Any, List
 from django import forms
 from django.db import models
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.conf import settings
 from wagtail.search import index
 from wagtail import blocks
 from wagtail.models import Page, Orderable
@@ -12,11 +11,6 @@ from wagtail.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from modelcluster.fields import ParentalKey
 from events.models import Event
-from actionnetwork import email
-from render_block import render_block_to_string
-from django.utils import timezone
-import polling2 as polling
-import requests
 
 
 class NewsIndexPage(Page):
@@ -100,57 +94,6 @@ class NewsPage(Page):
         ),
         InlinePanel("stories", heading="Stories", label="Story"),
     ]
-
-    def save(self, *args, **kwargs):
-        if self.action_network_href:
-            email.edit(
-                self.action_network_href,
-                {
-                    "subject": self.title,
-                    "body": render_block_to_string(
-                        "news/news_page.html", "content", context={"page": self}
-                    ),
-                    "from": "STL DSA",
-                    "reply_to": "info@stldsa.org",
-                },
-                settings.ACTIONNETWORK_API_KEYS["main"],
-            )
-        else:
-            response = email.create(
-                self.title,
-                render_block_to_string(
-                    "news/news_page.html", "content", context={"page": self}
-                ),
-                "STL DSA",
-                "info@stldsa.org",
-                settings.ACTIONNETWORK_API_KEYS["main"],
-            )
-            links = response.json().get("_links")
-            if links:
-                action_network_href = links["self"]["href"]
-            else:
-                action_network_href = None
-            self.action_network_href = action_network_href
-
-        if self.go_live_at and self.go_live_at > timezone.now():
-            polling.poll(
-                lambda: requests.get(
-                    self.action_network_href,
-                    headers={"OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS["main"]},
-                )
-                .json()
-                .get("total_targeted", 0)
-                > 0,
-                step=1,
-                timeout=10,
-                step_function=lambda step: step + 2,
-            )
-            email.schedule(
-                f"{self.action_network_href}/schedule",
-                self.go_live_at,
-                settings.ACTIONNETWORK_API_KEYS["main"],
-            )
-        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Update"
