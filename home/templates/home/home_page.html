@@ -61,33 +61,35 @@
         </div>
       </div>
       <div class="col">
-        <div class="card shadow my-3">
-          <div class="card-header">
-            Sign up for our weekly newsletter!
+        {% if not user.is_authenticated %}
+          <div class="card shadow my-3">
+            <div class="card-header">
+              Sign up for our weekly newsletter!
+            </div>
+            <div class="card-body m-3 pt-0 align-items-start">
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+                {% endfor %}
+              {% else %}
+                <form class="form" action="/person-helper/" method="post">
+                  {% csrf_token %}
+                  <label for="email" class="py-1">E-mail*</label>
+                  <div class="input-group">
+                    <input required type="email" id="email" name="email" class="form-control">
+                  </div>
+                  <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP*</label>
+                  <div class="input-group flex-nowrap align-items-center">
+                    <input required type="text" name="zip" class="form-control" id="zip">
+                    <button type="submit" class="btn btn-primary">
+                      Subscribe
+                    </button>
+                  </div>
+                </form>
+              {% endif %}
+            </div>
           </div>
-          <div class="card-body m-3 pt-0 align-items-start">
-            {% if messages %}
-              {% for message in messages %}
-                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
-              {% endfor %}
-            {% else %}
-              <form class="form" action="/person-helper/" method="post">
-                {% csrf_token %}
-                <label for="email" class="py-1">E-mail*</label>
-                <div class="input-group">
-                  <input required type="email" id="email" name="email" class="form-control">
-                </div>
-                <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP*</label>
-                <div class="input-group flex-nowrap align-items-center">
-                  <input required type="text" name="zip" class="form-control" id="zip">
-                  <button type="submit" class="btn btn-primary">
-                    Subscribe
-                  </button>
-                </div>
-              </form>
-            {% endif %}
-          </div>
-        </div>
+        {% endif %}
         <div class="card shadow my-4">
           <div class="card-header text-center" style="font-family:'Styrene B Black';">
             {{ page.highlighted_campaign }}
