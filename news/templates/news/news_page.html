@@ -15,6 +15,9 @@
             <div class="col">
                 {{ page.description|richtext }}
             </div>
+            {% for story in page.stories.values %}
+            {{ story.description|richtext }}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
