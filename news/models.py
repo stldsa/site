@@ -62,7 +62,7 @@ class NewsPageRelatedStory(Orderable):
         "news.NewsPage", on_delete=models.CASCADE, related_name="stories"
     )
     description = RichTextField(null=True, blank=True)
-    image = models.ForeignKey(
+    related_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
@@ -77,7 +77,11 @@ class NewsPageRelatedStory(Orderable):
         related_name="related_event",
     )
 
-    panels = [FieldPanel("description"), FieldPanel("related_event")]
+    panels = [
+        FieldPanel("description"),
+        FieldPanel("related_event"),
+        FieldPanel("related_image"),
+    ]
 
 
 class NewsPage(Page):
