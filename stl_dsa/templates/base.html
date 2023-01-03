@@ -48,7 +48,30 @@
                 </p>
             </div>
         </a>
-        {% main_menu max_levels=2 add_sub_menus_inline=True %}
+        <div class="row justify-content-center mx-4">    
+            <li class="nav-item dropdown list-unstyled">
+                <button class="btn nav-link dropdown-toggle" id="navbarDropdownMenuLink" type="button" data-toggle="dropdown">
+                    About Us
+                </button>
+                <div class="dropdown-menu position-absolute">
+                    <a class="dropdown-item" href="/about-us/ec">Executive Committee</a>
+                    <a class="dropdown-item" href="/about-us/bylaws">Bylaws</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown list-unstyled">
+                <button class="btn nav-link dropdown-toggle" id="navbarDropdownMenuLink" type="button" data-toggle="dropdown">
+                    Formations
+                </button>
+                <div class="dropdown-menu position-absolute">
+                    <a class="dropdown-item" href="/formations/committees">Committees</a>
+                    <a class="dropdown-item" href="/formations/working--groups">Working Groups</a>
+                    <a class="dropdown-item" href="/formations/caucuses">Caucuses<a>
+                </div>
+            </li>
+            <a class="btn nav-link" href="/updates">Updates</a>
+            <a class="btn nav-link" href="/events">Events</a>
+        </div>
+        
         <div class="d-flex align-items-center">
             <a 
                 href="https://facebook.com/STLDSA"
