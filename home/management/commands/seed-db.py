@@ -91,28 +91,28 @@ class Command(BaseCommand):
                 revision.publish()
                 formation.save()
 
-                future_event = Event.objects.create(
-                    title="Event 1",
-                    description=fake.paragraph(),
-                    start=fake.future_datetime(
-                        end_date=datetime.timedelta(days=6),
-                        tzinfo=datetime.timezone.utc,
-                    ),
-                )
-                future_event.save()
-                future_event_2 = Event(
-                    title="Event 2",
-                    description=fake.paragraph(),
-                    start=fake.future_datetime(
-                        end_date=datetime.timedelta(days=6),
-                        tzinfo=datetime.timezone.utc,
-                    ),
-                )
-                future_event_2.save()
-
             revision = formation_type.save_revision()
             revision.publish()
             formation_type.save()
+
+        future_event = Event.objects.create(
+            title="New Member Orientation",
+            description=fake.paragraph(),
+            start=fake.future_datetime(
+                end_date=datetime.timedelta(days=6),
+                tzinfo=datetime.timezone.utc,
+            ),
+        )
+        future_event.save()
+        future_event_2 = Event(
+            title="Monthly Drop-In",
+            description=fake.paragraph(),
+            start=fake.future_datetime(
+                end_date=datetime.timedelta(days=6),
+                tzinfo=datetime.timezone.utc,
+            ),
+        )
+        future_event_2.save()
         formation_index.save()
 
         Group.objects.create(name="Members")

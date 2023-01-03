@@ -33,7 +33,7 @@ class Event(models.Model):
     ]
 
     def __str__(self):
-        return f"{self.title} {str(self.start.date())}"
+        return f"{self.id} -- {self.title} -- {str(self.start.date())}"
 
     class Meta:
         ordering = ["-start"]
