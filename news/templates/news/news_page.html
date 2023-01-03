@@ -22,6 +22,8 @@
                 </div>
                 {% if story.related_event %}
                     <div class='col-md-2'>
+                        <h2>{{ story.related_event.start|date:"l" }}</h2>
+                        <h1 class="mb-2">{{ story.related_event.start|date:"M j" }}</h1>
                         <a class='btn btn-primary' href="{{ story.related_event.url }}">
                             RSVP
                         </a>
