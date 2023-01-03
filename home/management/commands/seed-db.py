@@ -97,7 +97,7 @@ class Command(BaseCommand):
                 formation.save()
 
                 future_event = Event.objects.create(
-                    title="Event Title",
+                    title="Event 1",
                     description=fake.paragraph(),
                     start=fake.future_datetime(
                         end_date=datetime.timedelta(days=6),
@@ -106,7 +106,7 @@ class Command(BaseCommand):
                 )
                 future_event.save()
                 future_event_2 = Event(
-                    title="Event Title 2",
+                    title="Event 2",
                     description=fake.paragraph(),
                     start=fake.future_datetime(
                         end_date=datetime.timedelta(days=6),
