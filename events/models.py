@@ -4,6 +4,8 @@ from wagtail.models import Page
 from wagtailmenus.models import AbstractLinkPage
 from wagtail.admin.panels import FieldPanel
 
+from committees.models import CommitteePage
+
 
 class APICalls(models.Model):
     datetime = models.DateTimeField(default=datetime.min)
@@ -23,6 +25,9 @@ class Event(models.Model):
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
     uuid = models.UUIDField(null=True)
+    formation = models.ForeignKey(
+        CommitteePage, on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     panels = [
         FieldPanel("title"),
