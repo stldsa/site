@@ -23,11 +23,15 @@ class Event(models.Model):
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
     uuid = models.UUIDField(null=True)
-    formation = models.ForeignKey(
+    formation_group = models.ForeignKey(
         "committees.CommitteePage", on_delete=models.SET_NULL, null=True, blank=True
     )
 
-    panels = [FieldPanel("title"), FieldPanel("description"), FieldPanel("formation")]
+    panels = [
+        FieldPanel("title"),
+        FieldPanel("description"),
+        FieldPanel("formation_group"),
+    ]
 
     def __str__(self):
         return f"{self.title} {str(self.start.date())}"
