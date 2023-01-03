@@ -4,30 +4,30 @@
 
 {% block content %}
     {% wagtailuserbar %}
-    <div class="col-md-10">
-        <h1 class="my-5">{{ page.title }}</h1>
-        {% for story in page.stories.all %}
-            <div class="card mb-3 mx-4">
-                <div class="row g-0 align-items-center">
-                    {% if story.related_image %}
-                        <div class="col-md-4">
-                            {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
-                        </div>
-                    {% endif %} 
-                    <div class="col md-8">
-                        <div class='card-body'>
-                            <div class='card-text'>
-                                {{ story.description|richtext }}
-                                {% if story.related_event %}
-                                    <a class='btn btn-primary col-4 text-center' href="{{ story.related_event.url }}">
-                                        RSVP
-                                    </a>
-                                {% endif %}
-                            </div>
+    <h1 class="m-4">{{ page.title }}</h1>
+    {% for story in page.stories.all %}
+        <div class="card mb-3 mx-4">
+            <div class="row g-0 align-items-center">
+                {% if story.related_image %}
+                    <div class="col-md-4">
+                        {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
+                    </div>
+                {% endif %} 
+                <div class="col md-8">
+                    <div class='card-body'>
+                        <div class='card-text'>
+                            {{ story.description|richtext }}
                         </div>
                     </div>
                 </div>
+                {% if story.related_event %}
+                    <div class='col-md-2'>
+                        <a class='btn btn-primary' href="{{ story.related_event.url }}">
+                            RSVP
+                        </a>
+                    </div>
+                {% endif %}
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
 {% endblock %}
