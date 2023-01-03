@@ -17,6 +17,9 @@
                         {% endif %}
                         <div class="col">
                             {{ story.description|richtext }}
+                            <a class='btn btn-primary' href="{{ story.related_event.url }}">
+                                RSVP
+                            </a>
                         </div>
                     </div>
                 </div>
