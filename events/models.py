@@ -12,7 +12,6 @@ class APICalls(models.Model):
 
 
 class Event(models.Model):
-    id = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
     start = models.DateTimeField()
@@ -24,7 +23,6 @@ class Event(models.Model):
     zip = models.IntegerField(null=True, blank=True)
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
-    uuid = models.UUIDField(null=True)
     host_formation = models.ForeignKey(
         CommitteePage, on_delete=models.SET_NULL, null=True, blank=True
     )
