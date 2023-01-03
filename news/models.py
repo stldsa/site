@@ -58,7 +58,7 @@ def upcoming_events_as_related_stories():
 
 
 class RelatedStory(models.Model):
-    description = RichTextField()
+    description = RichTextField(null=True, blank=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, blank=True, null=True)
 
     panels = [FieldPanel("description"), FieldPanel("event")]

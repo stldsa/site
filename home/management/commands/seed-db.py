@@ -68,7 +68,6 @@ class Command(BaseCommand):
         newspage2 = NewsPage(
             title=fake.sentence(),
             description=fake.paragraph(10),
-            show_in_menus=False,
         )
         newsindexpage.add_child(instance=newspage2)
 
