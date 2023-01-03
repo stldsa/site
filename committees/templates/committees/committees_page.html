@@ -5,16 +5,19 @@
 {% block content %}
 
     <h1 class="mb-3">{{ page }}</h1>
-    <div class="container">{{ page.description|richtext }}</div>
-
-    <div class="card-group">
-        {% for formation in page.get_children %}
+    <div class="row">
+        <div class="col">
+            {{ page.description|richtext }}    
+        </div>
+        <div class="col card-group">
+            {% for formation in page.get_children %}
             <div class="card">
                 <div class="card-body">
                     <h2><a href="{% pageurl formation %}">{{ formation }}</a></h2>
                 </div>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
