@@ -9,12 +9,7 @@ from wagtail import blocks
 from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
 from wagtail.blocks import BlockQuoteBlock, CharBlock
-from wagtail.admin.panels import (
-    FieldPanel,
-    MultiFieldPanel,
-    FieldRowPanel,
-    InlinePanel,
-)
+from wagtail.admin.panels import FieldPanel, InlinePanel
 from modelcluster.fields import ParentalKey
 from events.models import Event
 from actionnetwork import email
@@ -86,20 +81,13 @@ class RelatedStory(models.Model):
 
 class NewsPageRelatedStory(Orderable, RelatedStory):
     page = ParentalKey(
-        "news.NewsPage", on_delete=models.CASCADE, related_name="more_stories"
+        "news.NewsPage", on_delete=models.CASCADE, related_name="stories"
     )
 
 
 class NewsPage(Page):
     """A Wagtail Page for our weekly newsletter"""
 
-    featured_image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
     description = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_types = ["news.NewsIndexPage"]
@@ -114,20 +102,9 @@ class NewsPage(Page):
             "title",
             heading="Subject",
             widget=title_widget,
-            help_text=("Email subject line doubles as page title/main story heading."),
+            help_text=("Email subject line doubles as page title."),
         ),
-        MultiFieldPanel(
-            [
-                FieldRowPanel(
-                    [
-                        FieldPanel("featured_image"),
-                    ]
-                ),
-                FieldPanel("description"),
-            ],
-            heading="Main Story",
-        ),
-        InlinePanel("more_stories", heading="Other Stories", label="Story"),
+        InlinePanel("stories", heading="Stories", label="Story"),
     ]
 
     def save(self, *args, **kwargs):
