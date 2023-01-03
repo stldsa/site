@@ -9,7 +9,6 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
-from wagtailmenus.models import MenuPage
 from datetime import datetime
 import requests
 
@@ -92,7 +91,7 @@ class CommitteePage(Page):
         verbose_name = "Formation"
 
 
-class CommitteesPage(MenuPage):
+class CommitteesPage(Page):
     subpage_types = ["CommitteePage"]
     description = RichTextField(null=True, blank=True)
 

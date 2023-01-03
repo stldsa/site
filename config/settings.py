@@ -55,7 +55,6 @@ THIRD_PARTY_APPS = [
     "modelcluster",
     "taggit",
     "wagtailfontawesome",
-    "wagtailmenus",
     "storages",
     "django_sass",
     "django_extensions",
@@ -141,7 +140,6 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "stl_dsa.utils.context_processors.settings_context",
                 "wagtail.contrib.settings.context_processors.settings",
-                "wagtailmenus.context_processors.wagtailmenus",
             ],
         },
     }

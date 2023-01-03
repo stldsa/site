@@ -6,7 +6,7 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
-from events.models import Event, EventsPage
+from events.models import Event
 from home.models import HomePage
 from news.models import NewsIndexPage, InfoPage
 from committees.models import CommitteesPage
@@ -72,10 +72,6 @@ class Command(BaseCommand):
         )
         newsindexpage.add_child(instance=newspage2)
 
-        event_menu_page = EventsPage(
-            title="Events", show_in_menus=True, link_url="/events/"
-        )
-        homepage.add_child(instance=event_menu_page)
         formation_index = InfoPage(title="Formations", show_in_menus=True)
         homepage.add_child(instance=formation_index)
         for formation_type_name in [
