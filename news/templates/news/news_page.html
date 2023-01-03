@@ -17,9 +17,11 @@
                         {% endif %}
                         <div class="col">
                             {{ story.description|richtext }}
-                            <a class='btn btn-primary col-4 text-center' href="{{ story.related_event.url }}">
-                                RSVP
-                            </a>
+                            {% if story.related_event %}
+                                <a class='btn btn-primary col-4 text-center' href="{{ story.related_event.url }}">
+                                    RSVP
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
