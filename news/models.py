@@ -62,6 +62,13 @@ class NewsPageRelatedStory(Orderable):
         "news.NewsPage", on_delete=models.CASCADE, related_name="stories"
     )
     description = RichTextField(null=True, blank=True)
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     related_event = models.ForeignKey(
         Event,
         on_delete=models.CASCADE,
