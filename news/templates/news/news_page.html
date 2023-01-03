@@ -4,24 +4,26 @@
 
 {% block content %}
     {% wagtailuserbar %}
-    <div class="col-10">
-        <h1 class="mb-3">{{ page.title }}</h1>
+    <div class="col-md-10">
+        <h1 class="m-3">{{ page.title }}</h1>
         {% for story in page.stories.all %}
-            <div class="card">
-                <div class='card-body'>
-                    <div class="row">
+            <div class="card mb-3">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-4">
                         {% if story.related_image %}
-                        <div class="d-flex justify-contents-center">
-                            {% image story.related_image max-300x500 %}
-                        </div>
+                            {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
                         {% endif %}
-                        <div class="col">
-                            {{ story.description|richtext }}
-                            {% if story.related_event %}
-                                <a class='btn btn-primary col-4 text-center' href="{{ story.related_event.url }}">
-                                    RSVP
-                                </a>
-                            {% endif %}
+                    </div>
+                    <div class="col md-8">
+                        <div class='card-body'>
+                            <div class='card-text'>
+                                {{ story.description|richtext }}
+                                {% if story.related_event %}
+                                    <a class='btn btn-primary col-4 text-center' href="{{ story.related_event.url }}">
+                                        RSVP
+                                    </a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
