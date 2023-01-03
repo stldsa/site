@@ -26,6 +26,7 @@ class Event(models.Model):
     host_formation = models.ForeignKey(
         CommitteePage, on_delete=models.SET_NULL, null=True, blank=True
     )
+    uuid = models.UUIDField(null=True, blank=True)
 
     panels = [
         FieldPanel("title"),
