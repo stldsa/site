@@ -25,13 +25,14 @@ class Event(models.Model):
     url = models.URLField()
     status = models.CharField(max_length=50, null=True, blank=True)
     uuid = models.UUIDField(null=True)
-    formation_group = models.ForeignKey(
+    host_formation = models.ForeignKey(
         CommitteePage, on_delete=models.SET_NULL, null=True, blank=True
     )
 
     panels = [
         FieldPanel("title"),
         FieldPanel("description"),
+        FieldPanel("host_formation"),
     ]
 
     def __str__(self):
