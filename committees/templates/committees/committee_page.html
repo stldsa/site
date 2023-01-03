@@ -5,24 +5,26 @@
 
 <div class='container'>
     <div class='row'>
-        <div class='col-sm'>
-            <h2>{{ page }}</h2>
-            <h4>Current Chair(s):</h4>
-            <p>{{ page.leader_name }} | {{ page.email|urlize }}</p>
-            <h4>Description:</h4>
-            <p>{{ page.description|richtext }}</p>
-            <h4>Upcoming Events:</h4>
-            <div class='container'>
-                {% if upcoming_events %}
-                    {% for event in upcoming_events %}
-                        <a href='{{ event.browser_url }}'>
-                            {{ event.title }}
-                        </a>
-                        {{ event.date|date:"D, M j" }} | {{ event.start }} | <b><a href={{ event.browser_url }}>RSVP</a></b>
-                    {% endfor %}
-                {% else %}
-                    <p>No upcoming events yet.</p>
-                {% endif %}
+        <div class="col-sm">
+            <div class='card'>
+                <h2 class="card-header">{{ page }}</h2>
+                <div class="card-body">
+                    <h3>Current Chair(s):</h3>
+                    <p>{{ page.leader_name }} | {{ page.email|urlize }}</p>
+                    <h3>Description:</h3>
+                    <p>{{ page.description|richtext }}</p>
+                    {% if upcoming_events %}
+                        <h3>Upcoming Events:</h3>
+                        <div>
+                            {% for event in upcoming_events %}
+                                <a href='{{ event.browser_url }}'>
+                                    {{ event.title }}
+                                </a>
+                                {{ event.date|date:"D, M j" }} | {{ event.start }} | <b><a href={{ event.browser_url }}>RSVP</a></b>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
         <div class='col-sm'>

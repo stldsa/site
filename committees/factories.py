@@ -20,7 +20,7 @@ class CommitteeFactory(DjangoModelFactory):
 
     title = fake("word")
     description = fake("paragraph")
-    formation_type = fake("random_element", elements={"CT", "WG", "CU", "PR"})
+    formation_type = fake("random_element", elements={"CT", "WG", "CU"})
     slug = LazyAttribute(lambda o: o.title)
     email = fake("email")
     show_in_menus = True

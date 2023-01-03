@@ -9,7 +9,6 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
-from datetime import datetime
 import requests
 
 
@@ -33,12 +32,10 @@ class CommitteePage(Page):
     COMMITTEE = "CT"
     WORKING_GROUP = "WG"
     CAUCUS = "CU"
-    PRIORITY = "PR"
     FORMATION_CHOICES = [
         (COMMITTEE, "Committee"),
         (WORKING_GROUP, "Working Group"),
         (CAUCUS, "Caucus"),
-        (PRIORITY, "Priority"),
     ]
 
     description = RichTextField()
@@ -69,7 +66,6 @@ class CommitteePage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        context["upcoming_events"] = list(self.events.filter(start__gt=datetime.now()))
         if self.sign_up_form_endpoint:
             embeds = requests.get(
                 f"{self.sign_up_form_endpoint}embed",
@@ -77,7 +73,7 @@ class CommitteePage(Page):
                     "OSDI-API-Token": settings.ACTIONNETWORK_API_KEYS.get(self.slug)
                 },
             ).json()
-            embed_code = embeds["embed_standard_layout_only_styles"]
+            embed_code = embeds.get("embed_standard_layout_only_styles")
         else:
             embed_code = None
         context["embed_code"] = embed_code
