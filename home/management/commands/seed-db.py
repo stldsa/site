@@ -56,6 +56,8 @@ class Command(BaseCommand):
         homepage.add_child(instance=aboutuspage)
         ecpage = InfoPage(title="Executive Committee", slug="ec")
         aboutuspage.add_child(instance=ecpage)
+        bylawspage = InfoPage(title="Bylaws", slug="bylaws")
+        aboutuspage.add_child(instance=bylawspage)
 
         NewsPage = apps.get_model("news.NewsPage")
         newspage = NewsPage(
