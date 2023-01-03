@@ -15,7 +15,7 @@
             {% for block in page.stories %}
                 {{ block.value|richtext }}
             {% endfor %}
-            {% if page.related_event %}
+            <!-- {% if page.related_event %}
                 <div class="col-3">
                     <div class="card m-3">
                         <div class="card-body">
@@ -24,7 +24,7 @@
                         <a class="btn btn-red" href="{{ page.url }}">RSVP</a>
                     </div>
                 </div>
-            {% endif %}
+            {% endif %} -->
         </div>
     </div>
 {% endblock %}

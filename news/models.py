@@ -100,13 +100,6 @@ class NewsPage(Page):
         related_name="+",
     )
     description = RichTextField(blank=True)
-    related_event = models.ForeignKey(
-        "events.Event",
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-        related_name="update",
-    )
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_type = ["news.NewsIndexPage"]
     search_fields = Page.search_fields + [
@@ -126,7 +119,6 @@ class NewsPage(Page):
                 FieldRowPanel(
                     [
                         FieldPanel("featured_image"),
-                        FieldPanel("related_event"),
                     ]
                 ),
                 FieldPanel("description"),
