@@ -9,11 +9,11 @@
         {% for story in page.stories.all %}
             <div class="card mb-3 mx-4">
                 <div class="row g-0 align-items-center">
-                    <div class="col-md-4">
-                        {% if story.related_image %}
+                    {% if story.related_image %}
+                        <div class="col-md-4">
                             {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
-                        {% endif %}
-                    </div>
+                        </div>
+                    {% endif %} 
                     <div class="col md-8">
                         <div class='card-body'>
                             <div class='card-text'>
