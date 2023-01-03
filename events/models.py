@@ -24,7 +24,7 @@ class Event(models.Model):
     status = models.CharField(max_length=50, null=True, blank=True)
     uuid = models.UUIDField(null=True)
     formation = models.ForeignKey(
-        "committees.CommitteePage", on_delete=models.CASCADE, null=True, blank=True
+        "committees.CommitteePage", on_delete=models.SET_NULL, null=True, blank=True
     )
 
     panels = [FieldPanel("title"), FieldPanel("description"), FieldPanel("formation")]
