@@ -30,7 +30,6 @@ urlpatterns = [
     ),
     path("api/", include(events_api_urls)),
     path("auth-token/", obtain_auth_token),
-    # re_path(r"^docs/", include(sphinxdoc_urls)),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("", include(wagtail_urls)),
