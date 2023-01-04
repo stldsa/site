@@ -12,12 +12,14 @@ class HomePage(Page):
     highlighted_campaign = models.CharField(max_length=100, blank=False, null=True)
     highlighted_description = RichTextField(blank=False, null=True)
     action_network_embed_api_endpoint = models.URLField(blank=True, null=True)
+    call_to_action = models.URLField(blank=True, null=True)
 
     max_count = 1
 
     content_panels = Page.content_panels + [
         FieldPanel("highlighted_campaign"),
         FieldPanel("highlighted_description"),
+        FieldPanel("call_to_action"),
     ]
 
     def get_context(self, request):
