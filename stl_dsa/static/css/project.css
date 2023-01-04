@@ -2216,13 +2216,17 @@ header button {
 .btn-red, .btn-primary {
   background-color: #ec1f27;
   color: white;
-  border-color: #9f0005;
+  border-color: #ec1f27;
 }
 
 @media screen and (max-width: 400px ) {
   .btn-red, .btn-primary {
     white-space: normal;
   }
+}
+
+.select {
+  color: #9f0005;
 }
 
 .btn-red:hover {
@@ -2267,7 +2271,7 @@ header button {
 }
 
 .dropdown-toggle::after {
-  color: #ec1f27;
+  color: #9f0005;
   vertical-align: 1px;
   border-width: 7px;
   border-radius: 4px;

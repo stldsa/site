@@ -2055,11 +2055,15 @@ header button {
 .btn-red, .btn-primary{
   background-color: $dsared;
   color: white;
-  border-color: $darkdsared;
+  border-color: $dsared;
   
   @media #{$small-mobile-query} {
     white-space: normal;
   }
+}
+
+.select {
+  color: $darkdsared;
 }
 
 .btn-red:hover {
@@ -2102,7 +2106,7 @@ header button {
 }
 
 .dropdown-toggle::after {
-  color: $dsared;
+  color: $darkdsared;
   vertical-align: 1px;
   border-width: 7px;
   border-radius: 4px;
