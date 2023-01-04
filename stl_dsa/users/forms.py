@@ -37,3 +37,9 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ("email", "password")
+
+
+class LoginForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+        self.fields["login"].label = "email"

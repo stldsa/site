@@ -17,8 +17,9 @@ class UserSignupView(SignupView):
 
 class UserLoginView(LoginView):
     def get_initial(self):
-        email = self.request.session.get("email")
-        return {"email": email} if email else {}
+        post = self.request.POST.copy()
+        post["login"] = post["email"]
+        self.request.POST = post
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
