@@ -204,7 +204,7 @@ html {
 a {
   text-decoration: none;
 }
-ol, ul { list-style: none; }
+
 blockquote,
 q {
   quotes: none;
@@ -412,9 +412,6 @@ input:focus {
 }
 .text-4xl {
   font-size: $text-4xl !important;
-}
-.text-center {
-  text-align: center;
 }
 .text-right {
   text-align: right;
