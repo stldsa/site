@@ -178,9 +178,6 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
-  padding: 0;
-  border: 0;
   font-family: "Manifold DSA";
   vertical-align: baseline;
 }
@@ -269,7 +266,6 @@ img {
 }
 
 body {
-  font: 400 1em/1 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -289,12 +285,9 @@ h1,
 h2,
 h3,
 h4 {
-  display: block;
   @extend %font-manifold;
-  margin: 0 0 0;
   font-weight: 400;
   font-weight: bold;
-  line-height: 1;
 }
 $h1: $text-4xl;
 h1 {
