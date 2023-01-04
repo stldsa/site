@@ -67,25 +67,24 @@
               Sign up for our weekly newsletter!
             </div>
             <div class="card-body m-3 pt-0 align-items-start">
+              <form class="form" action="/person-helper/" method="post">
+                {% csrf_token %}
+                <label for="email" class="py-1">E-mail*</label>
+                <div class="input-group">
+                  <input required type="email" id="email" name="email" class="form-control">
+                </div>
+                <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP*</label>
+                <div class="input-group flex-nowrap align-items-center">
+                  <input required type="text" name="zip" class="form-control" id="zip">
+                  <button type="submit" class="btn btn-primary">
+                    Subscribe
+                  </button>
+                </div>
+              </form>
               {% if messages %}
                 {% for message in messages %}
                   <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
                 {% endfor %}
-              {% else %}
-                <form class="form" action="/person-helper/" method="post">
-                  {% csrf_token %}
-                  <label for="email" class="py-1">E-mail*</label>
-                  <div class="input-group">
-                    <input required type="email" id="email" name="email" class="form-control">
-                  </div>
-                  <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP*</label>
-                  <div class="input-group flex-nowrap align-items-center">
-                    <input required type="text" name="zip" class="form-control" id="zip">
-                    <button type="submit" class="btn btn-primary">
-                      Subscribe
-                    </button>
-                  </div>
-                </form>
               {% endif %}
             </div>
           </div>
