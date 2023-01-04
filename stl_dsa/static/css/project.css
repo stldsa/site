@@ -2225,10 +2225,6 @@ header button {
   }
 }
 
-.select {
-  color: #9f0005;
-}
-
 .btn-red:hover {
   background-color: #9f0005;
   border-color: rgba(0, 0, 0, 0);
@@ -2238,6 +2234,20 @@ header button {
 .btn-primary:hover {
   background-color: #9f0005;
   border-color: #747380;
+}
+
+.btn-primary:active {
+  background-color: #9f0005;
+  border-color: #241f20;
+}
+
+.btn-primary:focus {
+  background-color: #9f0005;
+  border-color: #241f20;
+}
+
+.btn-primary:focus::after {
+  color: #241f20;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active {
