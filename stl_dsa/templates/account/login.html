@@ -12,7 +12,7 @@
 
   <div class="card-body">
     <h1 class="card-title">{% trans "Log In" %}</h1>
-
+    <p class="card-subtitle">Log into your myDSA account for your membership status, and more.</p>
     {% get_providers as socialaccount_providers %}
     
     {% if socialaccount_providers %}
@@ -34,7 +34,7 @@
     
     {% endif %}
     
-    <form class="login" method="POST" action="{% url 'account_login' %}">
+    <form class="login my-3" method="POST" action="{% url 'account_login' %}">
       {% csrf_token %}
       {{ form|crispy }}
       {% if redirect_field_value %}

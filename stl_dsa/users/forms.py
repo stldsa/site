@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django import forms
-from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 User = get_user_model()
@@ -32,24 +31,9 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-class UserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(
-        label="Password confirmation", widget=forms.PasswordInput
-    )
+class SignUpForm(forms.ModelForm):
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ("email",)
-
-
-class SignUpForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = (
-            "first_name",
-            "last_name",
-            "email",
-            "password1",
-            "password2",
-        )
+        fields = ("email", "password")

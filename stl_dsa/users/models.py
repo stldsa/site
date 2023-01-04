@@ -85,4 +85,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         return "Leadership" in [group.name for group in list(self.groups.all())]
 
     def __str__(self):
-        return f"{str(self.first_name)} {str(self.last_name)}"
+        return self.email
