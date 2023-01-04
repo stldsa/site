@@ -187,15 +187,6 @@ button {
   cursor: pointer;
 }
 
-.container {
-  padding-top: 20px;
-  background-color: #f6f6f6;
-}
-
-.div {
-  margin-top: 10px;
-}
-
 *,
 *:after,
 *:before {
@@ -310,20 +301,6 @@ hr.fullwidth {
 
 .col-4 hr {
   width: 100%;
-}
-
-p {
-  text-align: left;
-  line-height: 1;
-  margin-bottom: 1em;
-}
-
-p + p {
-  margin-top: 1em;
-}
-
-p:last-of-type {
-  margin-bottom: 0;
 }
 
 a {

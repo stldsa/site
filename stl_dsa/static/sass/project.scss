@@ -224,13 +224,6 @@ button {
   border: 0;
   cursor: pointer;
 }
-.container {
-  padding-top: 20px;
-  background-color: $dsalitegrey;
-}
-.div {
-  margin-top: 10px;
-}
 *,
 *:after,
 *:before {
@@ -351,17 +344,6 @@ hr {
   width: 100%;
 }
 
-p {
-  text-align: left;
-  line-height: 1;
-  margin-bottom: 1em;
-  & + & {
-    margin-top: 1em;
-  }
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-}
 
 a {
   color: $dsared;

@@ -5,20 +5,24 @@
   <div class='col-md-auto d-block pb-4'>  
     <div class="row">
       <div class="col-sm-8 banner">
-        <div class="card shadow my-4">
+        <div class="card text-center shadow my-4">
+          <div col-8>
           <h2 class="card-header" style="font-family:'Styrene B Bold';">
             What's new at STL DSA?
           </h2>
           {% image update.featured_image min-500x200 as banner %}
-          <div class="card-body col-8 justify-content-start">
-            <div class="d-sm-flex align-items-center">
+
+            <div class="card-body justify-content-start">
+              <div class="d-sm-flex align-items-center">
               {% if update.featured_image %}
-                <div>{% image update.featured_image min-500x300 %}</div>
+              <div>{% image update.featured_image min-500x300 %}</div>
               {% endif %}
               <div class="flex-column justify-content-center">
                 <h2 class="card-title text-wrap">{{ update.title }}</h2>
                 <p class="card-text mb-3">{{ update.description|richtext }}</p>
-                <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
+                <div class='d-flex justify-content-center'>
+                  <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
+                </div>
               </div>
             </div>
           </div>
@@ -27,6 +31,7 @@
               {{ update.first_published_at|date:"D, M jS Y" }}
             </a>
           </div>
+        </div>
         </div>
         <div class="card shadow">
           <div class="card-body">
@@ -93,12 +98,14 @@
           </div>
         {% endif %}
         <div class="card shadow my-4">
-          <div class="card-header text-center" style="font-family:'Styrene B Black';">
-            {{ page.highlighted_campaign }}
-          </div>
           <div class="card-body">
+            <div class="card-title text-center" style="font-family:'Styrene B Black';">
+              {{ page.highlighted_campaign }}
+            </div>
             <p class="card-text mb-3">{{ page.highlighted_description|richtext }}</p>
-            <a class="card-link btn btn-primary" href="{{ page.call_to_action }}">I'm Interested</a>
+            <div class="d-flex justify-content-center">
+              <a class="card-link btn btn-primary" href="{{ page.call_to_action }}">I'm Interested</a>
+            </div>
           </div>
         </div>
       </div>
