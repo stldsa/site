@@ -2055,7 +2055,7 @@ header button {
 .btn-red, .btn-primary{
   background-color: $dsared;
   color: white;
-  border-color: $dsared;
+  border-color: $darkdsared;
   
   @media #{$small-mobile-query} {
     white-space: normal;

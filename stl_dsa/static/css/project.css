@@ -2216,7 +2216,7 @@ header button {
 .btn-red, .btn-primary {
   background-color: #ec1f27;
   color: white;
-  border-color: #ec1f27;
+  border-color: #9f0005;
 }
 
 @media screen and (max-width: 400px ) {

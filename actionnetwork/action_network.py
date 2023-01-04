@@ -40,7 +40,7 @@ def save_event(event):
         uuid=event["identifiers"][0].split(":")[1],
         defaults={
             "title": event["title"],
-            "start": event["start_date"],
+            "start": event["start_date"][:-1],
             "url": event["browser_url"],
             "description": event["description"],
             "status": event["status"],
