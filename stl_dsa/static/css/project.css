@@ -236,7 +236,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-image: linear-gradient(#e4e4e8, #9f0005);
+  background-image: linear-gradient(#f6f6f6, #ec1f27);
   background-attachment: fixed;
 }
 
