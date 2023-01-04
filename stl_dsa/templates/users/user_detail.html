@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags %}
 
-{% block title %}Hi, {{ object.first_name }}!{% endblock %}
+{% block title %}Hello{% if object.first_name %}, {{ object.first_name }}{% endif %}!{% endblock %}
 
 {% block content %}
 <div class="container">
 
   <div class="d-flex justify-content-center responsiverow">
       <div class="col-sm-4 m-3">
-        <div class="card">
+        <div class="card my-2">
           <div class="card-body">
             <h2 class="card-title">Hi{% if object.first_name %}, {{ object.first_name }}{% endif %}!</h2>
             <h3 class="card-subtitle">Your membership status: </h3> 
@@ -22,47 +22,71 @@
                 </i>
               </p>
             {% endif %}
-            <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            Your Information
+          </div>
+          <div class="card-body">
+            <div class="card-text mb-3">
+              <h3 class="d-inline">
+                First/Given name:
+              </h3>
+              <span>
+                {{ object.first_name|default:"" }}
+              </span>
+            </div>            
+            <div class="card-text mb-3">
+              <h3 class="d-inline">
+                Last/Family name:
+              </h3>
+              <span>
+                {{ object.last_name|default:"" }}
+              </span>
+            </div>
+            <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">Update</a>
           </div>
         </div>
       </div>
-      <div class="card col-sm-6">
-        
-        {% if object.is_member %}
-          <br>
-          <h5 class="card-title">Check out your STL DSA Membership Handbook!</h5>
-          <div class="card-body embed-responsive embed-responsive-1by1">
-            <div class="embed-responsive-item" id="adobe-dc-view"></div>
-          </div>
-          <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-          <script type="text/javascript">
-            document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
-              var adobeDCView = new AdobeDC.View({clientId: "54c85e8ada824ec7a102b119a0b50ecf", divId: "adobe-dc-view"});
-              adobeDCView.previewFile({
-                content:{location: {url: "{% static 'pdf/STLDSA_MemberHandbook.pdf' %}"}},
-                metaData:{fileName: "STL DSA"}
-              }, {embedMode: "SIZED_CONTAINER"});
-            });
-          </script>
-          <h4 class="card-text">You may use the menu buttons above to download/print a PDF copy of the handbook or view in full screen mode. Additionally you can view the handbook in its own webpage <a href="{% static 'pdf/STLDSA_MemberHandbook.pdf' %}">here.</a></h4>
-        {% else %}
-          <div class="card-body">
-            <h1 class="card-title">Why join DSA?</h1>
-            <p class="card-text">Joining DSA means making a commitment to cooperation and solidarity. Join and help us build working class power, further democratic socialist ideas in the United States, and fight to democratize our economy and society.</p>
-            <p class="card-text">
-              <i>
-                <b>
-                  DSA is entirely member funded.
-                </b>
-              </i>
-              We believe this helps keep the organization accountable to its members and gives everyone a stake.
-            </p>
-            <div class='row justify-content-center align-items-center m-3'>
-              <h3 class="col card-text">Ready to get started?</h3>
-              <a class='col btn btn-primary' href="/join">Join DSA</a>
+      <div class="col-sm-6">
+        <div class="card">
+          {% if object.is_member %}
+            <br>
+            <h5 class="card-title">Check out your STL DSA Membership Handbook!</h5>
+            <div class="card-body embed-responsive embed-responsive-1by1">
+              <div class="embed-responsive-item" id="adobe-dc-view"></div>
             </div>
-          </div>
-        {% endif %}
+            <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+            <script type="text/javascript">
+              document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
+                var adobeDCView = new AdobeDC.View({clientId: "54c85e8ada824ec7a102b119a0b50ecf", divId: "adobe-dc-view"});
+                adobeDCView.previewFile({
+                  content:{location: {url: "{% static 'pdf/STLDSA_MemberHandbook.pdf' %}"}},
+                  metaData:{fileName: "STL DSA"}
+                }, {embedMode: "SIZED_CONTAINER"});
+              });
+            </script>
+            <h4 class="card-text">You may use the menu buttons above to download/print a PDF copy of the handbook or view in full screen mode. Additionally you can view the handbook in its own webpage <a href="{% static 'pdf/STLDSA_MemberHandbook.pdf' %}">here.</a></h4>
+          {% else %}
+            <div class="card-body">
+              <h1 class="card-title">Why join DSA?</h1>
+              <p class="card-text">Joining DSA means making a commitment to cooperation and solidarity. Join and help us build working class power, further democratic socialist ideas in the United States, and fight to democratize our economy and society.</p>
+              <p class="card-text">
+                <i>
+                  <b>
+                    DSA is entirely member funded.
+                  </b>
+                </i>
+                We believe this helps keep the organization accountable to its members and gives everyone a stake.
+              </p>
+              <div class='row justify-content-center align-items-center m-3'>
+                <h3 class="col card-text">Ready to get started?</h3>
+                <a class='col btn btn-primary' href="/join">Join DSA</a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
       </div>
   </div>
 
