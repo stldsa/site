@@ -2237,11 +2237,12 @@ header button {
 
 .btn-primary:hover {
   background-color: #9f0005;
+  border-color: #747380;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active {
   background-color: #9f0005;
-  border-color: #241f20;
+  border-color: #747380;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus {
@@ -2268,6 +2269,10 @@ header button {
 
 .dropdown:active > .dropdown-menu {
   display: block;
+}
+
+.navbar-nav .dropdown-toggle::after {
+  color: #ec1f27;
 }
 
 .dropdown-toggle::after {

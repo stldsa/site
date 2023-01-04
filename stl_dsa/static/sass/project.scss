@@ -2074,11 +2074,12 @@ header button {
 
 .btn-primary:hover {
   background-color: $darkdsared;
+  border-color: $dsadarkgrey;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active {
   background-color: $darkdsared;
-  border-color: $dsablack;
+  border-color: $dsadarkgrey;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus {
@@ -2105,12 +2106,17 @@ header button {
   display: block;
 }
 
+.navbar-nav .dropdown-toggle::after {
+  color: $dsared;
+}
+
 .dropdown-toggle::after {
   color: $darkdsared;
   vertical-align: 1px;
   border-width: 7px;
   border-radius: 4px;
 }
+
 
 .navbar {
   background-color: $dsamidgrey;
