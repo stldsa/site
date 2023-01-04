@@ -219,7 +219,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-image: linear-gradient(#f6f6f6, #ec1f27);
+  background-color: #e4e4e8;
   background-attachment: fixed;
 }
 
