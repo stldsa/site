@@ -18,7 +18,7 @@ class UserSignupView(SignupView):
 class UserLoginView(LoginView):
     def get_initial(self):
         post = self.request.POST.copy()
-        post["login"] = post["email"]
+        post["login"] = post.get("email")
         self.request.POST = post
 
 
