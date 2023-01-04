@@ -113,9 +113,9 @@
                 </a>
                 {% if user.is_authenticated %}
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary ms-3" href="{% url 'users:detail' %}">
+                        <a class="btn btn-primary ms-3" href="{% url 'users:detail' %}">
                             myDSA
-                        </button>
+                        </a>
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                             <ul class="dropdown-menu dropdown-menu-end">
@@ -127,33 +127,31 @@
                             </ul>
                     </div>
                 {% else %}
-                    <div class="p-0 dropdown">
-                        <button class="btn btn-primary ms-3" data-toggle="dropdown">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary ms-3">
                             myDSA
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right">\
-                            <div class="nav-tabs">
-                                <div class="nav-item">
-                                    
+                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                                
+                            <form class="dropdown-item px-4 py-3" method="POST" action="/login/">
+                                {% csrf_token %}
+                                <div class="form-group py-1">
+                                    <label for="exampleDropdownFormEmail1">Email</label>
+                                    <input type="email" class="form-control py-1" id="exampleDropdownFormEmail1" placeholder="email@example.com" name="login">
                                 </div>
-                                <form class="px-4 py-3" method="POST" action="/login/">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="exampleDropdownFormEmail1">Email</label>
-                                    <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" name="login">
-                                    </div>
-                                    <div class="form-group">
+                                <div class="form-group py-1">
                                     <label for="exampleDropdownFormPassword1">Password</label>
-                                    <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="col text-nowrap">
-                                        <button type="submit" class="btn btn-red px-3 mx-1">Log In</button>
-                                        <button type="submit" class="btn btn-outline-dark" formaction="/signup">Sign Up</a>
-                                    </div>
-                                </form>
-                            </div>
-                            
-                        </div>
+                                    <input type="password" name="password" class="form-control py-1" id="exampleDropdownFormPassword1" placeholder="Password">
+                                </div>
+                                <div class="col text-nowrap py-2">
+                                    <a type="submit" class="btn btn-red px-3 mx-1">Log In</a>
+                                    <a type="submit" class="btn btn-outline-dark" formaction="/signup">Sign Up</a>
+                                </div>
+                            </form>
+                        
+                        </ul>
                     </div>
                 {% endif %}
             </div>
