@@ -38,8 +38,8 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(null=True, blank=False, max_length=30)
-    last_name = models.CharField(null=True, blank=False, max_length=30)
+    first_name = models.CharField(null=True, blank=True, max_length=30)
+    last_name = models.CharField(null=True, blank=True, max_length=30)
     email = models.EmailField(null=False, blank=False, unique=True)
     uuid = models.UUIDField(null=True)
     is_active = models.BooleanField(default=True)
