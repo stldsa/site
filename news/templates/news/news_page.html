@@ -14,7 +14,7 @@
                         {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
                     </div>
                 {% endif %} 
-                <div class="col md-8">
+                <div class="col">
                     <div class='card-body'>
                         <div class='card-text'>
                             {{ story.description|richtext }}
@@ -23,12 +23,14 @@
                 </div>
                 {% if story.related_event %}
                     <div class='col-md-2'>
-                        <h2>{{ story.related_event.start|date:"l" }}</h2>
-                        <h1 class="mb-2">{{ story.related_event.start|date:"M j" }}</h1>
-                        <p class="mb-2">{{ story.related_event.start|date:"P" }}</p>
-                        <a class='btn btn-primary' href="{{ story.related_event.url }}">
-                            RSVP
-                        </a>
+                        <div class='card-body'>
+                            <h2>{{ story.related_event.start|date:"l" }}</h2>
+                            <h1 class="mb-2">{{ story.related_event.start|date:"M j" }}</h1>
+                            <p class="mb-2">{{ story.related_event.start|date:"P" }}</p>
+                            <a class='btn btn-primary' href="{{ story.related_event.url }}">
+                                RSVP
+                            </a>
+                        </div>
                     </div>
                 {% endif %}
             </div>
