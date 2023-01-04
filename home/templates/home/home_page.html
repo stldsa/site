@@ -5,18 +5,18 @@
   <div class='col-md-auto d-block pb-4'>  
     <div class="row">
       <div class="col-sm-8 banner">
-        <div class="card shadow text-center my-4">
-          <div class="card-header text-left" style="font-family:'Styrene B Black';">
-            What's new?
-          </div>
+        <div class="card shadow my-4">
+          <h2 class="card-header text-left" style="font-family:'Styrene B Black';">
+            What's happening in STL DSA this week?
+          </h2>
           {% image update.featured_image min-500x200 as banner %}
-          <div class="card-body justify-content-start">
+          <div class="card-body col-8 justify-content-start">
             <div class="d-sm-flex align-items-center">
               {% if update.featured_image %}
                 <div>{% image update.featured_image min-500x300 %}</div>
               {% endif %}
               <div class="flex-column justify-content-center">
-                <h2 class="card-title text-wrap mx-2">{{ update.title }}</h2>
+                <h2 class="card-title text-wrap">{{ update.title }}</h2>
                 <p class="card-text mb-3">{{ update.description|richtext }}</p>
                 <a class='btn btn-primary' href="{% pageurl update %}">Read More</a>
               </div>
