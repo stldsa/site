@@ -97,7 +97,7 @@ class CommitteesPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        committees = CommitteePage.objects.all().order_by("title")
+        committees = CommitteePage.objects.live().order_by("title")
         context["committees"] = committees
 
         return context
