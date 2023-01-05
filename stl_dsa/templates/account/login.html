@@ -1,45 +1,24 @@
 {% extends "account/base.html" %}
 
-{% load i18n %}
 {% load account socialaccount %}
-{% load crispy_forms_tags %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
-
-{% block inner %}
-
+{% block content %}
 <div class="card">
 
   <div class="card-body">
-    <h1 class="card-title">{% trans "Log In" %}</h1>
-    <p class="card-subtitle">Log into your myDSA account for your membership status, and more.</p>
+    <h1 class="card-title">Log In</h1>
+    <p class="card-subtitle">Log into your myDSA account for your membership status and more!</p>
     {% get_providers as socialaccount_providers %}
+
     
-    {% if socialaccount_providers %}
-    <p>{% blocktrans with site.name as site_name %}Please sign in with one
-    of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-    for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-    
-    <div class="socialaccount_ballot">
-    
-      <ul class="socialaccount_providers">
-        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-      </ul>
-    
-      <div class="login-or">{% trans 'or' %}</div>
-    
-    </div>
-    
-    {% include "socialaccount/snippets/login_extra.html" %}
-    
-    {% endif %}
-    
-    <form class="login my-3" method="POST" action="{% url 'account_login' %}">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <button class="btn btn-primary my-2" type="submit">{% trans "Log In" %}</button>
+    <form class="login my-3 min-w-md" method="POST" action="{% url 'account_login' %}">
+      <div class="flex flex-col">
+        {% csrf_token %}
+        {{ form }}
+      </div>
+      <button class="btn btn-primary self-center my-2" type="submit">Log In</button>
       <br>
-      <a class="button secondaryAction py-2" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+      <a class="button secondaryAction py-2" href="{% url 'account_reset_password' %}">Forgot Password?</a>
       <br>
       <p>Don't have an account? <a href="{% url 'account_signup' %}">Sign up here</a>.</p>
     </form>
