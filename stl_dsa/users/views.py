@@ -15,13 +15,6 @@ class UserSignupView(SignupView):
         return {"email": email} if email else {}
 
 
-class UserLoginView(LoginView):
-    def get_initial(self):
-        post = self.request.POST.copy()
-        post["login"] = post.get("email")
-        self.request.POST = post
-
-
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
 
@@ -47,3 +40,12 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
             self.request, messages.INFO, _("Info successfully updated")
         )
         return super().form_valid(form)
+
+
+class UserLoginView(LoginView):
+    model = User
+
+    def get_context_data(self, **kwargs):
+        if kwargs.get("email"):
+            kwargs["login"] = kwargs["email"]
+        return super().get_context_data(**kwargs)

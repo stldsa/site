@@ -112,7 +112,7 @@
                     </svg>
                 </a>
                 {% if user.is_authenticated %}
-                    <div class="btn-group">
+                    <div class="btn-group me-4">
                         <a class="btn btn-primary ms-3 pe-1" href="{% url 'users:detail' %}">
                             myDSA
                         </a>
@@ -127,7 +127,7 @@
                             </ul>
                     </div>
                 {% else %}
-                    <div class="btn-group">
+                    <div class="btn-group me-4">
                         <button type="button" class="btn btn-primary ms-3 pe-1">
                             myDSA
                         </button>
