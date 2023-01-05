@@ -32,7 +32,7 @@
 
 <body class="h-full bg-gray-50 bg-fixed">
 
-    <nav class="md:flex flex-row justify-between items-center py-4 xl:px-20">
+    <nav class="md:flex flex-row justify-between items-center py-4 xl:px-20 bg-white shadow">
               
         <a class="flex justify-center items-center" href="/">
         
@@ -40,11 +40,11 @@
             
             <span class="d-flex flex-column justify-content-center mx-2">
                 
-                <h2 style="font-family:'Styrene B Black'; color:#241f20;">
+                <h1 style="font-family:'Styrene B Black'; color:#241f20;">
                     St Louis
-                </h2>
+                </h1>
                 
-                <h4 class='text-wrap' style="color:#241f20;">
+                <h4 class='text-wrap' style="color:#241f20; font-family: Styrene B Bold">
                     Democratic Socialists of America
                 </h4>
 
@@ -54,7 +54,7 @@
 
         <ul class="flex flex-wrap justify-evenly mb-2 mb-lg-0 ">
             <li class="dropdown list-unstyled">
-                <button class="btn nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     About Us
                 </button>
                 <div class="dropdown-menu position-absolute">
@@ -63,7 +63,7 @@
                 </div>
             </li>
             <li class="dropdown list-unstyled">
-                <button class="btn nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Formations
                 </button>
                 <ul class="dropdown-menu position-absolute">
@@ -73,10 +73,10 @@
                 </ul>
             </li>
             <li>
-                <a class="btn nav-link" href="/updates">Updates</a>
+                <a class="btn " href="/updates">Updates</a>
             </li>
             <li>
-                <a class="btn nav-link" href="/events">Events</a>
+                <a class="btn" href="/events">Events</a>
             </li>
         </ul>
             <div class="flex justify-center">
@@ -119,32 +119,27 @@
                             </ul>
                     </div>
                 {% else %}
-                    <div class="btn-group me-4">
-                        <button type="button" class="btn btn-primary ms-3 pe-1">
-                            myDSA
-                        </button>
-                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split px-1" data-bs-toggle="dropdown" aria-expanded="false">
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                                
-                            <form class="px-4 py-3" method="POST" action="/login/">
-                                {% csrf_token %}
-                                <div class="form-group py-1">
-                                    <label for="DropdownFormEmail">Email</label>
-                                    <input type="email" name="username" class="form-control py-1" id="DropdownFormEmail" >
-                                </div>
-                                <div class="form-group py-1">
-                                    <label for="DropdownFormPassword">Password</label>
-                                    <input type="password" name="password" class="form-control py-1" id="DropdownFormPassword">
-                                </div>
-                                <div class="col text-nowrap py-2">
-                                    <button type="submit" class="btn btn-red px-3 mx-1">Log In</button>
-                                    <button type="submit" class="btn btn-outline-dark" formaction="/signup/">Sign Up</button>
-                                </div>
-                            </form>
-                        
-                        </ul>
-                    </div>
+                    <button type="button" class="btn btn-primary ms-3 p-2 dropdown-toggle px-3" data-bs-toggle="dropdown" aria-expanded="false">
+                        myDSA
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                            
+                        <form class="px-4 py-3" method="POST" action="/login/">
+                            {% csrf_token %}
+                            <div class="form-group py-1">
+                                <label for="DropdownFormEmail">Email</label>
+                                <input type="email" name="username" class="form-control py-1" id="DropdownFormEmail" >
+                            </div>
+                            <div class="form-group py-1">
+                                <label for="DropdownFormPassword">Password</label>
+                                <input type="password" name="password" class="form-control py-1" id="DropdownFormPassword">
+                            </div>
+                            <div class="col text-nowrap py-2">
+                                <button type="submit" class="btn btn-red px-3 mx-1">Log In</button>
+                                <button type="submit" class="btn btn-outline-dark" formaction="/signup/">Sign Up</button>
+                            </div>
+                        </form>
+                    </ul>
                 {% endif %}
             </div>
         </div>
