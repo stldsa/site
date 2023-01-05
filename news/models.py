@@ -85,7 +85,6 @@ class NewsPageRelatedStory(Orderable):
 
 
 class NewsPage(Page):
-    """A Wagtail Page for our weekly newsletter"""
 
     description = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)

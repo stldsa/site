@@ -1,4 +1,3 @@
-from typing import Any, List
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -49,7 +48,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
     EMAIL_FIELD = "email"
-    REQUIRED_FIELDS: List[Any] = []
 
     def has_module_perms(self, app_label):
         return True

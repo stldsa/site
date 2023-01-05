@@ -1,18 +1,11 @@
-from allauth.account.views import LoginView, SignupView
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, CreateView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
-
-
-class UserSignupView(SignupView):
-    def get_initial(self):
-        email = self.request.session.get("email")
-        return {"email": email} if email else {}
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
@@ -42,10 +35,6 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class UserLoginView(LoginView):
+class UserCreateView(CreateView):
     model = User
-
-    def get_context_data(self, **kwargs):
-        if kwargs.get("email"):
-            kwargs["login"] = kwargs["email"]
-        return super().get_context_data(**kwargs)
+    fields = ["email", "password"]

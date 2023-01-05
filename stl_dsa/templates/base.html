@@ -2,8 +2,7 @@
 
 
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-    
+<html class="no-js h-full" lang="en">
     <head>
         <meta charset="utf-8" />
         <title>
@@ -25,69 +24,62 @@
     {% block fullcalendar_css %}
     {# Override this in templates to add extra stylesheets #}
     {% endblock %}
-    {# Global stylesheets #}
-    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 
-<div>
-    {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center align-items-center">
+<body class="h-full bg-gray-50 bg-fixed">
+
+    <nav class="md:flex flex-row justify-between items-center py-4 xl:px-20">
+              
+        <a class="flex justify-center items-center" href="/">
         
-        <div class="d-flex container-fluid justify-content-between ">
+            <img class="d-inline-block" src="{% static 'images/FLAG_VERSION.svg' %}" width="60" alt="St Louis DSA">
             
-            <a class="navbar-brand d-flex align-content-center" href="/">
+            <span class="d-flex flex-column justify-content-center mx-2">
                 
+                <h2 style="font-family:'Styrene B Black';">
+                    St Louis
+                </h2>
                 
-                
-                <img class="d-inline-block" src="{% static 'images/FLAG_VERSION.svg' %}" width="60" alt="St Louis DSA">
-                <span class="d-flex flex-column justify-content-center mx-2">
-                    
-                    <span style="font-family:'Styrene B Black';">St Louis</span>
-                    
-                    <span class='text-wrap' style="color:black;font-size:1rem;">
-                        Democratic Socialists of America
-                    </span>
-                </span>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <!-- Hamburger Menu -->
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">    
-                <ul class="navbar-nav mb-2 mb-lg-0 ">
-                    <li class="nav-item dropdown list-unstyled">
-                        <button class="btn nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            About Us
-                        </button>
-                        <div class="dropdown-menu position-absolute">
-                            <a class="dropdown-item" href="/about-us/ec">Executive Committee</a>
-                            <a class="dropdown-item" href="/about-us/bylaws">Bylaws</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown list-unstyled">
-                        <button class="btn nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Formations
-                        </button>
-                        <ul class="dropdown-menu position-absolute">
-                            <a class="dropdown-item" href="/formations/committees">Committees</a>
-                            <a class="dropdown-item" href="/formations/working-groups">Working Groups</a>
-                            <a class="dropdown-item" href="/formations/caucuses">Caucuses<a>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn nav-link" href="/updates">Updates</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn nav-link" href="/events">Events</a>
-                    </li>
+                <h4 class='text-wrap' style="color:black;">
+                    Democratic Socialists of America
+                </h4>
+
+            </span>
+
+        </a>
+
+        <ul class="flex flex-wrap justify-evenly mb-2 mb-lg-0 ">
+            <li class="dropdown list-unstyled">
+                <button class="btn nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    About Us
+                </button>
+                <div class="dropdown-menu position-absolute">
+                    <a class="dropdown-item" href="/about-us/ec">Executive Committee</a>
+                    <a class="dropdown-item" href="/about-us/bylaws">Bylaws</a>
+                </div>
+            </li>
+            <li class="dropdown list-unstyled">
+                <button class="btn nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Formations
+                </button>
+                <ul class="dropdown-menu position-absolute">
+                    <a class="dropdown-item" href="/formations/committees">Committees</a>
+                    <a class="dropdown-item" href="/formations/working-groups">Working Groups</a>
+                    <a class="dropdown-item" href="/formations/caucuses">Caucuses<a>
                 </ul>
-            </div>
-            <div class="d-flex align-items-center">
+            </li>
+            <li>
+                <a class="btn nav-link" href="/updates">Updates</a>
+            </li>
+            <li>
+                <a class="btn nav-link" href="/events">Events</a>
+            </li>
+        </ul>
+            <div class="flex justify-center">
                 <a href="https://facebook.com/STLDSA" target="_blank" rel="noopener noreferrer" style="text-decoration:none;border:0;width:36px;height:36px;padding:2px;margin:5px;color:#ffffff;border-radius:50%;background-color:#ec1f27;">
                     <svg class="niftybutton-facebook" style="display:block;fill:currentColor" data-tag="fac" data-name="Facebook" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
                         <path d="M211.9 197.4h-36.7v59.9h36.7V433.1h70.5V256.5h49.2l5.2-59.1h-54.4c0 0 0-22.1 0-33.7 0-13.9 2.8-19.5 16.3-19.5 10.9 0 38.2 0 38.2 0V82.9c0 0-40.2 0-48.8 0 -52.5 0-76.1 23.1-76.1 67.3C211.9 188.8 211.9 197.4 211.9 197.4z">
@@ -139,7 +131,7 @@
                                 {% csrf_token %}
                                 <div class="form-group py-1">
                                     <label for="DropdownFormEmail">Email</label>
-                                    <input type="email" name="email" class="form-control py-1" id="DropdownFormEmail" >
+                                    <input type="email" name="username" class="form-control py-1" id="DropdownFormEmail" >
                                 </div>
                                 <div class="form-group py-1">
                                     <label for="DropdownFormPassword">Password</label>
@@ -158,18 +150,13 @@
         </div>
 
     </nav>
-    {% endblock %}
-</div>
-<body class="home blog et_bloom et_monarch chrome">
     {% if user.is_leader %}{% wagtailuserbar %}{% endif %}
-    {% block banner %}{% endblock %}
-    <main class='container pb-4'>
-        {% block content %}
-        {% endblock %}
+    <main class='max-w-7xl min-h-full self-center py-8 mx-10 sm:px-6 lg:px-8'>
+            {% block content %}
+            {% endblock %}
     </main>
     {% block extra_js %}
     {% endblock %}
-    </div>
     {# Global javascript #}
     <script type="text/javascript" src="{% static 'js/stldsa.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -177,9 +164,6 @@
         crossorigin="anonymous"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-
-
 
 </body>
 

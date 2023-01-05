@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+    <h1>
+        Sign Up
+    </h1>
+    <form class="min-w-md">
+        <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">
+                Email
+            </label>
+            <input type="email" class="form-control" id="exampleInputEmail">
+        </div>
+        <div class="mb-4">
+            <label for="InputPassword1" class="form-label">
+                Password
+            </label>
+            <input type="password" class="form-control" id="InputPassword">
+        </div>
+        <button type="submit" class="btn btn-primary">
+            Submit
+        </button>
+        <p>
+            Already have an account?
+            <br>
+            <a href="{{ login_url }}">
+                Sign in here.
+            </a>
+        </p>
+    </form>
+
+{% endblock %}
+

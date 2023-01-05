@@ -1,14 +1,37 @@
-from stl_dsa.users.views import UserSignupView, UserUpdateView
+from stl_dsa.users.views import UserUpdateView
 from stl_dsa.users.models import User
+from allauth.account.views import LoginView
+
+import pytest
 
 
-def test_signup_view_from_homepage(rf):
-    request = rf.get("/signup/")
-    request.session = {"email": "test@example.com"}
-    view = UserSignupView()
+@pytest.mark.django_db
+def test_signup_view_post(client):
+    response = client.post("/signup/", {"username": "a@abc.com", "password": "help123"})
+    assert response.status_code == 200
+
+
+def test_login_view_get(rf):
+    request = rf.get("/login/")
+    view = LoginView()
     view.setup(request)
     initial = view.get_initial()
-    assert initial["email"] == "test@example.com"
+    assert initial == {}
+
+
+@pytest.mark.django_db
+def test_login_view_post(client):
+    response = client.post(
+        "/login/", {"username": "admin@example.com", "password": "password"}
+    )
+
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_login_view_post_blank(client):
+    response = client.post("/login/")
+    assert response.status_code == 200
 
 
 def test_update_routes_to_myDSA(rf, faker):

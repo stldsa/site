@@ -24,7 +24,8 @@
 				"ms-python.vscode-pylance",
 				"ms-python.isort",
 				"eamodio.gitlens",
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"esbenp.prettier-vscode"
 			]
 		}
 	},

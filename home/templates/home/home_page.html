@@ -1,5 +1,8 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+{% block styling %}
+<link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
   <div class='col-md-auto d-block pb-4'>  
@@ -77,11 +80,11 @@
             <div class="card-body m-3 pt-0 align-items-start">
               <form class="form" action="/person-helper/" method="post">
                 {% csrf_token %}
-                <label for="email" class="py-1">E-mail*</label>
+                <label for="email" class="py-1">E-mail</label>
                 <div class="input-group">
                   <input required type="email" id="email" name="email" class="form-control">
                 </div>
-                <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP*</label>
+                <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP</label>
                 <div class="input-group flex-nowrap align-items-center">
                   <input required type="text" name="zip" class="form-control" id="zip">
                   <button type="submit" class="btn btn-primary">

@@ -3,21 +3,29 @@ from django.urls import include, path
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from django.contrib.auth.views import LoginView
 from rest_framework.authtoken.views import obtain_auth_token
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
-
 from events.api import urls as events_api_urls
 from actionnetwork import views
-from stl_dsa.users.views import UserSignupView, UserLoginView
 
+from stl_dsa.users.views import UserCreateView
 
 urlpatterns = [
     path("events/", include("events.urls")),
     path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
-    path("signup/", UserSignupView.as_view(), name="account_signup"),
-    path("login/", UserLoginView.as_view(), name="account_login"),
+    path(
+        "signup/",
+        UserCreateView.as_view(template_name="users/user_create.html"),
+        name="usersaccount_signup",
+    ),
+    path(
+        "login/",
+        LoginView.as_view(template_name="account/login.html"),
+        name="account_login",
+    ),
     path("", include("allauth.urls")),
     path(
         "fullcalendar/",

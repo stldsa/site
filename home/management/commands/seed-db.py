@@ -8,7 +8,8 @@ from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
 from events.models import Event
 from home.models import HomePage
-from news.models import NewsIndexPage, InfoPage
+from news.models import NewsIndexPage, InfoPage, NewsPageRelatedStory
+from about.models import ExecutiveCommitteePage
 from committees.models import CommitteesPage
 from committees.factories import CommitteeFactory
 from django.contrib.auth.models import Group
@@ -52,9 +53,11 @@ class Command(BaseCommand):
             slug="updates",
         )
         homepage.add_child(instance=newsindexpage)
-        aboutuspage = InfoPage(title="About Us", slug="about-us")
+        aboutuspage = InfoPage(title="About Us", slug="about")
         homepage.add_child(instance=aboutuspage)
-        ecpage = InfoPage(title="Executive Committee", slug="ec")
+        ecpage = ExecutiveCommitteePage(
+            title="Executive Committee", slug="ec", description=fake.paragraphs(2)
+        )
         aboutuspage.add_child(instance=ecpage)
         bylawspage = InfoPage(title="Bylaws", slug="bylaws")
         aboutuspage.add_child(instance=bylawspage)
@@ -62,12 +65,14 @@ class Command(BaseCommand):
         NewsPage = apps.get_model("news.NewsPage")
         newspage = NewsPage(
             title=fake.sentence(),
-            description=fake.paragraph(10),
+            stories=[
+                NewsPageRelatedStory(description=paragraph)
+                for paragraph in fake.paragraphs(4)
+            ],
         )
         newsindexpage.add_child(instance=newspage)
         newspage2 = NewsPage(
             title=fake.sentence(),
-            description=fake.paragraph(10),
         )
         newsindexpage.add_child(instance=newspage2)
 
