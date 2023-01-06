@@ -5,6 +5,8 @@ services:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
+    
+    user: vscode
 
     volumes:
       - ../..:/workspaces:cached
