@@ -230,7 +230,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-ACTIONNETWORK_API_KEYS = env.dict("ACTIONNETWORK_API_KEYS", default={})
+ACTIONNETWORK_API_KEYS = env.dict("ACTIONNETWORK_API_KEYS", default={"main": None})
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
 
