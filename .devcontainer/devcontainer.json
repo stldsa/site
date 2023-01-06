@@ -3,6 +3,7 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"remoteUser": "vscode",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/poetry:1": {},
 		"ghcr.io/devcontainers-contrib/features/pre-commit:1": {},
