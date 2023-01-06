@@ -21,8 +21,6 @@
 			},
 			"extensions": [
 				"ms-python.python",
-				"ms-python.vscode-pylance",
-				"ms-python.isort",
 				"eamodio.gitlens",
 				"GitHub.copilot",
 				"esbenp.prettier-vscode"
