@@ -144,8 +144,10 @@
         </div>
 
     </nav>
-    {% if user.is_leader %}{% wagtailuserbar %}{% endif %}
-    <main class='max-w-7xl min-h-full py-8 mx-10 sm:px-6 lg:px-8 flex-row md:flex-col'>
+    {% if user.is_leader %}
+        {% wagtailuserbar %}
+    {% endif %}
+    <main class='max-w-7xl min-h-full py-8 mx-10 sm:px-6 lg:px-8 flex-row md:flex-col items-center'>
         {% block content %}
         {% endblock %}
     </main>
