@@ -5,29 +5,67 @@
 {% endblock %}
 
 {% block content %}
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row align-items-center g-lg-5 pb-5">
+    <div class="col-lg-7 text-center text-lg-start mb-5">
+      <h1 class="display-4 fw-bold lh-1 mb-3">
+        {{ update.title }}
+      </h1>
+      <p class="col-lg-10 fs-4">
+        
+      </p>
+      
+      <a class='btn btn-primary btn-lg px-4 me-md-2 fw-bold' href="{% pageurl update %}">
+        Read More
+      </a>
+    </div>
+    <div class="col-md-10 mx-auto col-lg-5">
+      {% if not user.is_authenticated %}
+        <form class="p-4 p-md-5 border rounded-3 bg-light" action="/person-helper/" method="post">
+          <h2 class="mb-3">Sign up for our weekly newsletter!</h2>
+          <div class="form-floating mb-3">
+            <input required id="email" type="email" name="email" placeholder="name@example.com" class="form-control">
+            <label for="email">Email address</label>
+          </div>
+          <div class="row align-items-center">
+            <div class="col">
+              <div class="form-floating">
+                <input required id="zip" type="text" name="zip" placeholder="90210"  class="form-control">
+                <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP</label>
+              </div>
+            </div> 
+            <div class="col">
+              <button type="submit" class="btn btn-primary shadow rounded">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </form>
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% else %}
+        <div class="m-3 p-3 bg-white rounded shadow">
+          <div class="text-wrap" style="font-family:'Styrene B Black';">
+            {{ page.highlighted_campaign }}
+          </div>
+          <p class="card-text mb-3">{{ page.highlighted_description|richtext }}</p>
+          <div class="d-flex justify-content-center">
+            <a class="card-link btn btn-primary shadow" href="{{ page.call_to_action }}">
+              I'm Interested
+            </a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
 <div class="flex flex-row md:flex-col">
   <div class="col-8 me-4">
-    <h2 class="pb-2" style="font-family:'Styrene B Bold';">
-      What's new with STL DSA?
-    </h2>
-    <div class="grid grid-cols-4">
-      <div class="col-span-3 justify-center p-4 my-3 bg-white shadow rounded">
-        <h2 class="my-3">
-          {{ update.title }}
-        </h2>
-        <p class="mb-4">
-          {{ update.description|richtext }}
-        </p>
-        <div class='flex items-center'>
-          <a class='btn btn-primary mb-4 shadow' href="{% pageurl update %}">
-            Read More
-          </a>
-        </div>
-        <a class="text-muted text-left" href="{% pageurl update %}" >
-          {{ update.first_published_at|date:"D, M jS Y" }}
-        </a>
-      </div>
-    </div>
     <h2 class="text-left mb-2 py-4" style="font-family:'Styrene B Bold';">
       Upcoming Events
     </h2>
@@ -64,51 +102,6 @@
       {% else %}
         <p>No upcoming events.</p>
       {% endif %}
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="shadow m-3 p-3 bg-white rounded shadow">
-      {% if not user.is_authenticated %}
-        <h2 >
-          Sign up for our weekly newsletter!
-        </h2>
-        <div class="m-3 pt-0 align-items-start">
-          <form class="form" action="/person-helper/" method="post">
-            {% csrf_token %}
-            <label for="email" class="py-1">
-              E-mail
-            </label>
-            <div class="input-group">
-              <input required type="email" id="email" name="email" class="form-control">
-            </div>
-            <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP</label>
-            <div class="input-group flex-nowrap align-items-center">
-              <input required type="text" name="zip" class="form-control" id="zip">
-              <button type="submit" class="btn btn-primary shadow">
-                Subscribe
-              </button>
-            </div>
-          </form>
-          {% if messages %}
-            {% for message in messages %}
-            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
-              {{ message }}
-            </div>
-            {% endfor %}
-          {% endif %}
-        </div>
-      {% endif %}
-    </div>
-    <div class="m-3 p-3 bg-white rounded shadow">
-      <div class="text-wrap" style="font-family:'Styrene B Black';">
-        {{ page.highlighted_campaign }}
-      </div>
-      <p class="card-text mb-3">{{ page.highlighted_description|richtext }}</p>
-      <div class="d-flex justify-content-center">
-        <a class="card-link btn btn-primary shadow" href="{{ page.call_to_action }}">
-          I'm Interested
-        </a>
-      </div>
     </div>
   </div>
 </div>

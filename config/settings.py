@@ -69,6 +69,7 @@ LOCAL_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 MIGRATION_MODULES = {"sites": "stl_dsa.contrib.sites.migrations"}
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
@@ -106,7 +107,6 @@ MIDDLEWARE = [
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 # STATIC
@@ -249,3 +249,10 @@ DATABASES = {
 
 WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL", default="https://localhost:8000")
 CACHE_URL = env("CACHE_URL", default=None)
+
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
+    INTERNAL_IPS = [
+        "127.0.0.1",
+    ]

@@ -50,6 +50,7 @@ if settings.LOCAL_SERVE_MEDIA_FILES:
 
 if settings.DEBUG:
     urlpatterns += [
+        path("__debug__/", include("debug_toolbar.urls")),
         path(
             "400/",
             default_views.bad_request,
@@ -67,8 +68,3 @@ if settings.DEBUG:
         ),
         path("500/", default_views.server_error),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-    if "debug_toolbar" in settings.INSTALLED_APPS:
-        import debug_toolbar
-
-        urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns

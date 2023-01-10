@@ -24,6 +24,7 @@
     {% block fullcalendar_css %}
     {% endblock %}
     <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'css/project.css' %}" rel="stylesheet"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
@@ -147,7 +148,7 @@
     {% if user.is_leader %}
         {% wagtailuserbar %}
     {% endif %}
-    <main class='max-w-7xl min-h-full py-8 mx-10 sm:px-6 lg:px-8 flex-row md:flex-col items-center'>
+    <main class='min-h-full mx-10 sm:px-6 lg:px-8'>
         {% block content %}
         {% endblock %}
     </main>
