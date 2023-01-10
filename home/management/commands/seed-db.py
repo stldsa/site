@@ -56,7 +56,7 @@ class Command(BaseCommand):
         aboutuspage = InfoPage(title="About Us", slug="about")
         homepage.add_child(instance=aboutuspage)
         ecpage = ExecutiveCommitteePage(
-            title="Executive Committee", slug="ec", description=fake.paragraphs(2)
+            title="Executive Committee", slug="ec", description=fake.paragraph()
         )
         aboutuspage.add_child(instance=ecpage)
         bylawspage = InfoPage(title="Bylaws", slug="bylaws")
