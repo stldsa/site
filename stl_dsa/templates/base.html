@@ -22,7 +22,6 @@
     <link rel="shortcut icon" type="image/svg" href="{% static 'images/LINEOWORK-RED.svg' %}" />
     <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
     {% block fullcalendar_css %}
-    {# Override this in templates to add extra stylesheets #}
     {% endblock %}
     <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +35,7 @@
               
         <a class="flex justify-center items-center" href="/">
         
-            <img class="d-inline-block" src="{% static 'images/FLAG_VERSION.svg' %}" width="60" alt="St Louis DSA">
+            <img class="inline-block shadow" src="{% static 'images/FLAG_VERSION.svg' %}" width="60" alt="St Louis DSA">
             
             <span class="d-flex flex-column justify-content-center mx-2">
                 
@@ -104,22 +103,22 @@
                     </svg>
                 </a>
                 {% if user.is_authenticated %}
-                    <div class="btn-group me-4">
-                        <a class="btn btn-primary ms-3 pe-1" href="{% url 'users:detail' %}">
+                    <div class="btn-group align-items-center me-4">
+                        <a class="btn btn-primary ms-3 pe-1 shadow" href="{% url 'users:detail' %}">
                             myDSA
                         </a>
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split px-1" data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li>
-                                    <a class="btn dropdown-item" href="/logout/">
-                                        Log Out
-                                    </a>
-                                </li>
-                            </ul>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="btn dropdown-item" href="/logout/">
+                                    Log Out
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 {% else %}
-                    <button type="button" class="btn btn-primary ms-3 p-2 dropdown-toggle px-3" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn btn-primary ms-3 dropdown-toggle px-3 shadow" data-bs-toggle="dropdown" aria-expanded="false">
                         myDSA
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -145,20 +144,24 @@
         </div>
 
     </nav>
-    {% if user.is_leader %}{% wagtailuserbar %}{% endif %}
-    <main class='max-w-7xl min-h-full self-center py-8 mx-10 sm:px-6 lg:px-8'>
-            {% block content %}
-            {% endblock %}
+    {% if user.is_leader %}
+        {% wagtailuserbar %}
+    {% endif %}
+    <main class='max-w-7xl min-h-full py-8 mx-10 sm:px-6 lg:px-8 flex-row md:flex-col items-center'>
+        {% block content %}
+        {% endblock %}
     </main>
+    
+    
     {% block extra_js %}
     {% endblock %}
-    {# Global javascript #}
+    
     <script type="text/javascript" src="{% static 'js/stldsa.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 

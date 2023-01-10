@@ -58,6 +58,7 @@ THIRD_PARTY_APPS = [
     "storages",
     "django_sass",
     "django_extensions",
+    "debug_toolbar",
 ]
 
 LOCAL_APPS = [
@@ -106,6 +107,7 @@ MIDDLEWARE = [
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 # STATIC

@@ -17,6 +17,9 @@ module.exports = {
         200: '#8C8989',
         100: '#C1C0BF'
       }
+    },
+    fontFamily: {
+
     }
   },
   plugins: [

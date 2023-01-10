@@ -1,4 +1,3 @@
-from home.views import EmailFormView
 from django.db import models
 from datetime import datetime
 from wagtail.models import Page
@@ -31,10 +30,3 @@ class HomePage(Page):
         )
         context["update"] = NewsPage.objects.live().latest("last_published_at")
         return context
-
-    def serve(self, request):
-        if request.method != "POST":
-            return super().serve(request)
-
-        request.session["email"] = request.POST["email"]
-        return EmailFormView.as_view()(request)
