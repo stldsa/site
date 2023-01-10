@@ -9,7 +9,7 @@ services:
     user: vscode
 
     volumes:
-      - ../..:/workspaces:cached
+      - ..:/workspaces:cached
     
     command: sleep infinity
 
