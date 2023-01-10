@@ -58,7 +58,6 @@ THIRD_PARTY_APPS = [
     "storages",
     "django_sass",
     "django_extensions",
-    "debug_toolbar",
 ]
 
 LOCAL_APPS = [
