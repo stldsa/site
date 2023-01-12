@@ -50,7 +50,6 @@ if settings.LOCAL_SERVE_MEDIA_FILES:
 
 if settings.DEBUG:
     urlpatterns += [
-        path("__debug__/", include("debug_toolbar.urls")),
         path(
             "400/",
             default_views.bad_request,

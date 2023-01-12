@@ -1,7 +1,6 @@
 import datetime
 import logging
 from faker import Faker
-import stringcase
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
@@ -76,29 +75,15 @@ class Command(BaseCommand):
         )
         newsindexpage.add_child(instance=newspage2)
 
-        formation_index = InfoPage(title="Formations")
+        formation_index = CommitteesPage(title="Formations")
         homepage.add_child(instance=formation_index)
-        for formation_type_name in [
-            "Committees",
-            "Working Groups",
-            "Caucuses",
-        ]:
-            formation_type = CommitteesPage(
-                title=formation_type_name,
-                description=fake.paragraph(),
-                slug=stringcase.spinalcase(formation_type_name),
-            )
-            formation_index.add_child(instance=formation_type)
-            formation_list = CommitteeFactory.build_batch(4)
-            for formation in formation_list:
-                formation_type.add_child(instance=formation)
-                revision = formation.save_revision()
-                revision.publish()
-                formation.save()
 
-            revision = formation_type.save_revision()
+        formation_list = CommitteeFactory.build_batch(4)
+        for formation in formation_list:
+            formation_index.add_child(instance=formation)
+            revision = formation.save_revision()
             revision.publish()
-            formation_type.save()
+            formation.save()
 
         future_event = Event.objects.create(
             title="New Member Orientation",
