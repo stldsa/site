@@ -6,7 +6,7 @@ authors = ["Tyler Schlichenmeyer <tyler.schlichenmeyer@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "3.11.1"
-Django = "^4.1.4"
+Django = "^4.1.5"
 django-allauth = "^0.51.0"
 django-crispy-forms = "^1.14.0"
 django-environ = "^0.9.0"
