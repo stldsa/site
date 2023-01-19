@@ -58,6 +58,7 @@ THIRD_PARTY_APPS = [
     "storages",
     "django_sass",
     "django_extensions",
+    "anymail",
 ]
 
 LOCAL_APPS = [
@@ -184,7 +185,6 @@ EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[STL DSA]")
 
 # Anymail (Mailgun)
 # ------------------------------------------------------------------------------
-INSTALLED_APPS = Base.INSTALLED_APPS + ["anymail"]  # noqa F405
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 
 
