@@ -18,8 +18,8 @@ urlpatterns = [
     path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
     path(
         "signup/",
-        UserCreateView.as_view(template_name="users/user_create.html"),
-        name="usersaccount_signup",
+        UserCreateView.as_view(template_name="account/signup.html"),
+        name="account_signup",
     ),
     path(
         "login/",
