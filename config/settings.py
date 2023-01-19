@@ -176,7 +176,26 @@ MAILGUN_SMTP_LOGIN = env("MAILGUN_SMTP_LOGIN", default=None)
 MAILGUN_SMTP_PASSWORD = env("MAILGUN_SMTP_PASSWORD", default=None)
 MAILGUN_SMTP_PORT = env("MAILGUN_SMTP_PORT", default=None)
 MAILGUN_SMTP_SERVER = env("MAILGUN_SMTP_SERVER", default=None)
+DEFAULT_FROM_EMAIL = env(
+        "DJANGO_DEFAULT_FROM_EMAIL", default="STL DSA <noreply@stldsa.org>"
+    )
+SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
+EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[STL DSA]")
 
+# Anymail (Mailgun)
+# ------------------------------------------------------------------------------
+INSTALLED_APPS = Base.INSTALLED_APPS + ["anymail"]  # noqa F405
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+
+@property
+def ANYMAIL(self):
+    return {
+        "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+        "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
+        "MAILGUN_API_URL": env(
+            "MAILGUN_API_URL", default="https://api.mailgun.net/v3"
+        ),
+    }
 
 # ADMIN
 # ------------------------------------------------------------------------------
