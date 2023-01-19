@@ -4,6 +4,7 @@ import environ
 
 env = environ.Env()
 
+
 DEBUG = env.bool("DJANGO_DEBUG", default=True)
 
 ROOT_DIR = environ.Path(__file__) - 2
@@ -189,8 +190,8 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 
 
 ANYMAIL = {
-    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
-    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
+    "MAILGUN_API_KEY": env("MAILGUN_API_KEY", default=""),
+    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN", default=""),
     "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
 }
 
