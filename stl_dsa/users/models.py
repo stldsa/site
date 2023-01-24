@@ -63,13 +63,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.uuid
 
     @property
-    def membership_status(self):
-        custom_fields = an.Person(self.uuid).custom_fields
-        return custom_fields.get("DSA Member Status") if custom_fields else None
-
-    @property
     def is_member(self):
-        return self.membership_status in ["member in good standing"]
+        custom_fields = an.Person(self.uuid).custom_fields
+        return (
+            custom_fields.get("actionkit_is_member_in_good_standing") == "True"
+            if custom_fields
+            else None
+        )
 
     def update_membership(self):
         member_group = Group.objects.get(name="Members")
