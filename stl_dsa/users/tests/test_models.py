@@ -41,7 +41,7 @@ def test_nonexistent_an_person_is_member(faker):
 
 
 @responses.activate
-def test_get_uuid_when_doesnt_have_one(faker):
+def test_get_uuid_when_doesnt_have_one(faker, db):
     uuid = faker.uuid4()
     email = faker.email()
     url = "https://actionnetwork.org/api/v2/people"
@@ -52,4 +52,4 @@ def test_get_uuid_when_doesnt_have_one(faker):
         json={"_links": {"osdi:people": [{"href": f"{url}/{uuid}"}]}},
     )
 
-    # assert User(email=email).get_uuid() == uuid
+    assert User(email=email).get_uuid() == uuid

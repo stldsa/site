@@ -64,6 +64,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def is_member(self):
+        if not self.uuid:
+            self.get_uuid()
         custom_fields = an.Person(self.uuid).custom_fields
         return (
             custom_fields.get("actionkit_is_member_in_good_standing") == "True"
