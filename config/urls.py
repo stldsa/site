@@ -9,7 +9,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from events.api import urls as events_api_urls
-from allauth.account.views import SignupView
+from stl_dsa.users.views import UserSignupView
 from actionnetwork import views
 
 
@@ -18,7 +18,7 @@ urlpatterns = [
     path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
     path(
         "signup/",
-        SignupView.as_view(),
+        UserSignupView.as_view(),
         name="account_signup",
     ),
     path(
