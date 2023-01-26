@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from wagtail.models import Page, Site
 from events.models import Event
-from home.models import HomePage
+from home.models import HomePage, JoinPage
 from news.models import NewsIndexPage, InfoPage, NewsPageRelatedStory
 from about.models import ExecutiveCommitteePage
 from committees.models import CommitteesPage
@@ -46,6 +46,9 @@ class Command(BaseCommand):
             site_name="stldsa.org",
         )
         site.save()
+
+        joinpage = JoinPage(title="Join", slug="join", description=fake.paragraph())
+        homepage.add_child(instance=joinpage)
 
         newsindexpage = NewsIndexPage(
             title="Updates",
