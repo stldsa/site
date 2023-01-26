@@ -30,3 +30,14 @@ class HomePage(Page):
         )
         context["update"] = NewsPage.objects.live().latest("last_published_at")
         return context
+
+
+class JoinPage(Page):
+    max_count = 1
+    description = RichTextField(blank=False, null=True)
+    form_html = models.TextField(blank=True, null=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("description"),
+        FieldPanel("form_html"),
+    ]
