@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
@@ -14,6 +15,7 @@ from actionnetwork import views
 
 
 urlpatterns = [
+    path(settings.ADMIN_URL, admin.site.urls),
     path("events/", include("events.urls")),
     path("myDSA/", include("stl_dsa.users.urls", namespace="users")),
     path(
