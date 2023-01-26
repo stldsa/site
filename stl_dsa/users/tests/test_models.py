@@ -5,25 +5,13 @@ from stl_dsa.users.models import User
 
 
 @responses.activate
-def test_membership_status(faker):
-    uuid = faker.uuid4()
-    user = User(uuid=uuid)
-    responses.add(
-        responses.GET,
-        url=f"https://actionnetwork.org/api/v2/people/{uuid}",
-        json={"custom_fields": {"DSA Member Status": "member in good standing"}},
-    )
-    assert user.membership_status == "member in good standing"
-
-
-@responses.activate
 def test_user_is_member(faker):
     uuid = faker.uuid4()
     user = User(uuid=uuid)
     responses.add(
         responses.GET,
         url=f"https://actionnetwork.org/api/v2/people/{uuid}",
-        json={"custom_fields": {"DSA Member Status": "member in good standing"}},
+        json={"custom_fields": {"actionkit_is_member_in_good_standing": "True"}},
     )
     assert user.is_member
 
@@ -35,7 +23,7 @@ def test_user_is_not_member(faker):
     responses.add(
         responses.GET,
         url=f"https://actionnetwork.org/api/v2/people/{uuid}",
-        json={"custom_fields": {"DSA Member Status": "lapsed"}},
+        json={"custom_fields": {"actionkit_is_member_in_good_standing": "False"}},
     )
     assert not user.is_member
 
