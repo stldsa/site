@@ -36,9 +36,11 @@
     {% if user.is_leader %}
         {% wagtailuserbar %}
     {% endif %}
-    <main class='min-h-full mx-10 sm:px-6 lg:px-8'>
-        {% block content %}
-        {% endblock %}
+    <main class='container'>
+        <div class="mt-5">
+            {% block content %}
+            {% endblock %}
+        </div>
     </main>
     
     
