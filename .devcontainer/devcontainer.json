@@ -5,7 +5,6 @@
   "workspaceFolder": "/workspaces",
   "remoteUser": "vscode",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers-contrib/features/poetry:1": {},
     "ghcr.io/devcontainers-contrib/features/pre-commit:1": {},
     "ghcr.io/devcontainers-contrib/features/heroku-cli:1": {}
@@ -24,10 +23,9 @@
         "ms-python.python",
         "eamodio.gitlens",
         "GitHub.copilot",
-        "esbenp.prettier-vscode",
-        "bradlc.vscode-tailwindcss"
+        "esbenp.prettier-vscode"
       ]
     }
   },
-  "postCreateCommand": "npm install -D tailwindcss && poetry install && poetry run python manage.py reset_db --noinput && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py createsuperuser --noinput && pre-commit install && pre-commit install --hook-type pre-push"
+  "postCreateCommand": "poetry install && poetry run python manage.py reset_db --noinput && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py createsuperuser --noinput && pre-commit install && pre-commit install --hook-type pre-push && pre-commit install --hook-type commit-msg"
 }

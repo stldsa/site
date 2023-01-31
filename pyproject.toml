@@ -44,6 +44,7 @@ ruff = "^0.0.201"
 ipython = "^8.7.0"
 django-extensions = "^3.2.1"
 werkzeug = "^2.2.2"
+conventional-pre-commit = "^2.1.1"
 
 [tool.poetry.group.dev.dependencies]
 psycopg2-binary = "^2.9.5"
