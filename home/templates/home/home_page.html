@@ -69,7 +69,7 @@
         {% if events %}
         {% for event in events %}
         <div class="d-flex p-4 me-4 rounded bg-white shadow">
-          <div class="d-flex flex-col justify-items-center align-items-center">
+          <div class="d-flex flex-col justify-items-center align-items-center ">
             <div>
               <p>
                 {{ event.start|date:"D" }}
@@ -87,7 +87,7 @@
               </div>
               {% endif %}
             </div>
-            <div class="d-flex flex-column justify-content-around event-subtitle mb-3 ps-3">
+            <div class="d-flex flex-column justify-content-around event-subtitle mb-3 ps-3 text-end">
               <span>
                 {{ event.title }}
               </span>
