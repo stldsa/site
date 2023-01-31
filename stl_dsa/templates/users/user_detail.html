@@ -4,10 +4,9 @@
 {% block title %}Hello{% if object.first_name %}, {{ object.first_name }}{% endif %}!{% endblock %}
 
 {% block content %}
-<div class="container">
 
-  <div class="d-flex justify-content-center responsiverow">
-      <div class="col-sm-4 m-3">
+  <div class="d-flex justify-content-between">
+      <div class="col-sm-4 mx-3">
         <div class="card my-2">
           <div class="card-body">
             <h2 class="card-title">Hi{% if object.first_name %}, {{ object.first_name }}{% endif %}!</h2>
@@ -49,13 +48,13 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6 h-100">
-        <div class="card p-3 h-100">
+      <div class="col-sm-6">
+        <div class="card p-3">
           {% if object.is_member %}
             <br>
             <h5 class="card-title">Check out your STL DSA Membership Handbook!</h5>
-            <div class="card-body embed-responsive embed-responsive-1by1 ">
-              <div class="embed-responsive-item h-100" id="adobe-dc-view"></div>
+            <div class="card-body ratio" style="--bs-aspect-ratio:200%">
+              <div id="adobe-dc-view"></div>
             </div>
             <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
             <script type="text/javascript">
@@ -103,6 +102,5 @@
 {% endif %}
 
 
-</div>
 {% endblock content %}
 
