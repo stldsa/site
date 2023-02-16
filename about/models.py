@@ -33,3 +33,25 @@ class ExecutiveCommitteePage(Page):
         FieldPanel("description"),
         InlinePanel("executive_committee", heading="Executive Committee"),
     ]
+
+
+class BylawArticle(Orderable):
+    def display_index(self):
+        return self.sort_order + 1
+
+    page = ParentalKey(
+        "about.BylawsPage", on_delete=models.CASCADE, related_name="bylaws"
+    )
+
+    name = models.CharField(max_length=100, null=False)
+    body = models.TextField()
+
+
+class BylawsPage(Page):
+    description = RichTextField()
+
+    content_panels = [
+        FieldPanel("title"),
+        FieldPanel("description"),
+        InlinePanel("bylaws", heading="Bylaws"),
+    ]

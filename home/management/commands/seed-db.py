@@ -8,7 +8,7 @@ from wagtail.models import Page, Site
 from events.models import Event
 from home.models import HomePage, JoinPage
 from news.models import NewsIndexPage, InfoPage, NewsPageRelatedStory
-from about.models import ExecutiveCommitteePage
+from about.models import ExecutiveCommitteePage, BylawsPage
 from committees.models import CommitteesPage
 from committees.factories import CommitteeFactory
 from django.contrib.auth.models import Group
@@ -61,7 +61,9 @@ class Command(BaseCommand):
             title="Executive Committee", slug="ec", description=fake.paragraph()
         )
         aboutuspage.add_child(instance=ecpage)
-        bylawspage = InfoPage(title="Bylaws", slug="bylaws")
+        bylawspage = BylawsPage(
+            title="Bylaws", slug="bylaws", description="Bylaws of the chapter."
+        )
         aboutuspage.add_child(instance=bylawspage)
 
         NewsPage = apps.get_model("news.NewsPage")
