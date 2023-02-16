@@ -17,7 +17,7 @@
                     </h2>
                     <div id="collapse{{ bylaw.sort_order }}" class="accordion-collapse collapse" aria-labelledby="heading{{ bylaw.sort_order }}" data-bs-parent="#bylawsAccodrion">
                         <div class="accordion-body">
-                            {{ bylaw.body }}
+                            {{ bylaw.body|safe }}
                         </div>
                     </div>
                 </div>
