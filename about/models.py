@@ -44,7 +44,7 @@ class BylawArticle(Orderable):
     )
 
     name = models.CharField(max_length=100, null=False)
-    body = models.TextField()
+    body = RichTextField()
 
 
 class BylawsPage(Page):
