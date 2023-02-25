@@ -11,6 +11,7 @@ from wagtail.blocks import BlockQuoteBlock, CharBlock
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from modelcluster.fields import ParentalKey
 from events.models import Event
+from committees.models import CommitteePage
 
 
 class NewsIndexPage(Page):
@@ -77,11 +78,18 @@ class NewsPageRelatedStory(Orderable):
         null=True,
         related_name="related_event",
     )
-
+    sponsoring_formation = models.ForeignKey(
+        CommitteePage,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name="sponsoring_formation",
+    )
     panels = [
         FieldPanel("title"),
         FieldPanel("description"),
         FieldPanel("related_event"),
+        FieldPanel("sponsoring_formation"),
         FieldPanel("related_image"),
     ]
 
