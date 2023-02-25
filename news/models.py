@@ -79,6 +79,7 @@ class NewsPageRelatedStory(Orderable):
     )
 
     panels = [
+        FieldPanel("title"),
         FieldPanel("description"),
         FieldPanel("related_event"),
         FieldPanel("related_image"),

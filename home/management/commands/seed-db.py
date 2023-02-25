@@ -70,8 +70,10 @@ class Command(BaseCommand):
         newspage = NewsPage(
             title=fake.sentence(),
             stories=[
-                NewsPageRelatedStory(description=paragraph)
-                for paragraph in fake.paragraphs(4)
+                NewsPageRelatedStory(
+                    title=fake.sentence(), description=fake.paragraph()
+                )
+                for _ in range(4)
             ],
         )
         newsindexpage.add_child(instance=newspage)
