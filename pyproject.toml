@@ -107,6 +107,9 @@ max-complexity = 10
 [tool.black]
 extend_exclude = '^.*\b(migrations)\b.*$'
 
+[tool.mypy]
+python_executable = '.venv/bin/python'
+
 [build-system]
 requires = ["poetry>=1.1.6"]
 build-backend = "poetry.masonry.api"

@@ -61,6 +61,7 @@ class NewsPageRelatedStory(Orderable):
     page = ParentalKey(
         "news.NewsPage", on_delete=models.CASCADE, related_name="stories"
     )
+    title = models.CharField(max_length=255, null=True, blank=True)
     description = RichTextField(null=True, blank=True)
     related_image = models.ForeignKey(
         "wagtailimages.Image",

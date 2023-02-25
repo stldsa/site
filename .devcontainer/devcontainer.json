@@ -1,11 +1,10 @@
 {
-  "name": "Python 3 & PostgreSQL",
+  "name": "STL DSA",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspaces",
-  "remoteUser": "vscode",
+  "workspaceFolder": "/workspaces/stldsa",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/poetry:1": {},
+    "ghcr.io/devcontainers-contrib/features/poetry:2": {},
     "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
     "ghcr.io/devcontainers-contrib/features/heroku-cli:1": {}
   },
