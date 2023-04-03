@@ -5,7 +5,7 @@ description = "A Django + Wagtail based website for the St Louis Chapter of DSA"
 authors = ["Tyler Schlichenmeyer <tyler.schlichenmeyer@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "3.11.1"
+python = "3.11.2"
 Django = "^4.1.7"
 django-allauth = "^0.51.0"
 django-crispy-forms = "^1.14.0"
