@@ -84,7 +84,7 @@ class CommitteePage(Page):
         else:
             embed_code = None
         context["embed_code"] = embed_code
-        context["formation_types"] = self.objects.get_children().live()
+        context["formation_types"] = CommitteePage.objects.child_of(self).live()
 
         return context
 
