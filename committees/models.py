@@ -115,7 +115,9 @@ class FormationsPage(Page):
         context = super().get_context(request, *args, **kwargs)
         formation_types = self.get_children().live().specific()
         for formation_type in formation_types:
-            formation_type.formations = formation_type.get_children().live().specific()
+            formation_type.formations = (
+                formation_type.get_children().order_by("title").live().specific()
+            )
         context["formation_types"] = formation_types
         return context
 
