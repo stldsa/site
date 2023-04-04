@@ -63,7 +63,11 @@ class NewsPageRelatedStory(Orderable):
         "news.NewsPage", on_delete=models.CASCADE, related_name="stories"
     )
     title = models.CharField(max_length=255, null=True, blank=True)
-    description = RichTextField(null=True, blank=True)
+    description = RichTextField(
+        null=True,
+        blank=True,
+        help_text="Avoid unnecessary copy such as 'RSVP Here' if attached to an event.",
+    )
     related_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -97,7 +101,6 @@ class NewsPageRelatedStory(Orderable):
 class NewsPage(Page):
     description = RichTextField(
         blank=True,
-        help_text="Avoid unnecessary copy such as 'RSVP Here' if attached to an event.",
     )
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_types = ["news.NewsIndexPage"]
