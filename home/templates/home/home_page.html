@@ -7,7 +7,8 @@
     <div class="col-lg-7 text-center text-lg-start mb-5 bg-light p-5 shadow">
       <h1 class="fw-bold lh-1 mb-3">
         {{ update.title }}
-      </h1>      
+      </h1>
+        {% image update.featured_image max-400x300 %}      
       <a class='btn btn-primary btn-lg px-4 me-md-2 fw-bold' href="{% pageurl update %}">
         Read More
       </a>

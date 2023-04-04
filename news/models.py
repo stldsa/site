@@ -108,7 +108,13 @@ class NewsPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField("description"),
     ]
-
+    featured_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     title_widget = forms.TextInput()
     content_panels = [
         FieldPanel(
@@ -116,6 +122,9 @@ class NewsPage(Page):
             heading="Subject",
             widget=title_widget,
             help_text=("Email subject line (might be same as first story title)"),
+        ),
+        FieldPanel(
+            "featured_image", help_text=("Should be a photograph, not a graphic")
         ),
         InlinePanel("stories", heading="Stories", label="Story"),
     ]
