@@ -66,6 +66,7 @@ class Command(BaseCommand):
             NewsPage = apps.get_model("news.NewsPage")
             newspage = NewsPage(
                 title=fake.sentence(),
+                first_published_at=fake.date_time(),
                 stories=[
                     NewsPageRelatedStory(
                         title=fake.sentence(), description=fake.paragraph()
@@ -75,9 +76,24 @@ class Command(BaseCommand):
             )
             newsindexpage.add_child(instance=newspage)
             newspage2 = NewsPage(
-                title=fake.sentence(),
+                title=fake.sentence(), first_published_at=fake.date_time()
             )
             newsindexpage.add_child(instance=newspage2)
+
+            newspage3 = NewsPage(
+                title=fake.sentence(), first_published_at=fake.date_time()
+            )
+            newsindexpage.add_child(instance=newspage3)
+
+            newspage4 = NewsPage(
+                title=fake.sentence(), first_published_at=fake.date_time()
+            )
+            newsindexpage.add_child(instance=newspage4)
+
+            newspage5 = NewsPage(
+                title=fake.sentence(), first_published_at=fake.date_time()
+            )
+            newsindexpage.add_child(instance=newspage5)
 
             formations_page = FormationsPage(
                 title="Formations", description=fake.paragraphs()

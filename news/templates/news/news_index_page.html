@@ -4,25 +4,23 @@
 
 {% block body_class %}template-blogindexpage{% endblock %}
 {% block content %}
-    {% wagtailuserbar %}
+{% wagtailuserbar %}
 
-        <h1 class="mb-3">{{ page.title }}</h1>
-    
-        <div class="message">{{ message.intro|richtext }}</div>
-    
-        <div class="row row-cols-2">
-            {% for update in updates %}
-                <div class="col">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h2><a href="{% pageurl update %}">{{ update.title }}</a></h2>
-                        </div>
-                        <div class="card-footer">
-                            {{ update.first_published_at|date:"D, M jS Y" }}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+<h1 class="mb-3">{{ page.title }}</h1>
+
+<div class="message">{{ message.intro|richtext }}</div>
+<div class="card-group">
+    {% for update in updates %}
+    <div class="card shadow">
+        <div class="card-body">
+            <h2><a href="{% pageurl update %}">{{ update.title }}</a></h2>
         </div>
+        <div class="card-footer">
+            {{ update.first_published_at|date:"D, M jS Y" }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
 
 {% endblock %}
