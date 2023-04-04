@@ -10,7 +10,8 @@ class UpdatesAdmin(ModelAdmin):
     base_url_path = "updates"
     list_display = ("__str__", "first_published_at")
     ordering = ("-first_published_at",)
-    list_filter = ("has_unpublished_changes",)
+    list_filter = ("has_unpublished_changes", "live")
+    list_per_page = 10
 
 
 modeladmin_register(UpdatesAdmin)
