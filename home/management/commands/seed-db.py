@@ -29,176 +29,179 @@ class Command(BaseCommand):
     def _setup(self):
         Page.objects.filter(id=2).delete()
         root = Page.get_first_root_node()
-        homepage = HomePage(
-            title="St Louis DSA",
-            highlighted_campaign=f"{' '.join(fake.words(2)).title()} Campaign",
-            highlighted_description=fake.paragraph(5),
-        )
-        root.add_child(instance=homepage)
-        site = Site(
-            hostname="localhost",
-            root_page=homepage,
-            is_default_site=True,
-            site_name="stldsa.org",
-        )
-        site.save()
+        if root:
+            homepage = HomePage(
+                title="St Louis DSA",
+                highlighted_campaign=f"{' '.join(fake.words(2)).title()} Campaign",
+                highlighted_description=fake.paragraph(5),
+            )
+            root.add_child(instance=homepage)
+            site = Site(
+                hostname="localhost",
+                root_page=homepage,
+                is_default_site=True,
+                site_name="stldsa.org",
+            )
+            site.save()
 
-        joinpage = JoinPage(title="Join", slug="join", description=fake.paragraph())
-        homepage.add_child(instance=joinpage)
+            joinpage = JoinPage(title="Join", slug="join", description=fake.paragraph())
+            homepage.add_child(instance=joinpage)
 
-        newsindexpage = NewsIndexPage(
-            title="Updates",
-            slug="updates",
-        )
-        homepage.add_child(instance=newsindexpage)
-        aboutuspage = InfoPage(title="About Us", slug="about")
-        homepage.add_child(instance=aboutuspage)
-        ecpage = ExecutiveCommitteePage(
-            title="Executive Committee", slug="ec", description=fake.paragraph()
-        )
-        aboutuspage.add_child(instance=ecpage)
-        bylawspage = BylawsPage(
-            title="Bylaws", slug="bylaws", description="Bylaws of the chapter."
-        )
-        aboutuspage.add_child(instance=bylawspage)
+            newsindexpage = NewsIndexPage(
+                title="Updates",
+                slug="updates",
+            )
+            homepage.add_child(instance=newsindexpage)
+            aboutuspage = InfoPage(title="About Us", slug="about")
+            homepage.add_child(instance=aboutuspage)
+            ecpage = ExecutiveCommitteePage(
+                title="Executive Committee", slug="ec", description=fake.paragraph()
+            )
+            aboutuspage.add_child(instance=ecpage)
+            bylawspage = BylawsPage(
+                title="Bylaws", slug="bylaws", description="Bylaws of the chapter."
+            )
+            aboutuspage.add_child(instance=bylawspage)
 
-        NewsPage = apps.get_model("news.NewsPage")
-        newspage = NewsPage(
-            title=fake.sentence(),
-            stories=[
-                NewsPageRelatedStory(
-                    title=fake.sentence(), description=fake.paragraph()
-                )
-                for _ in range(4)
-            ],
-        )
-        newsindexpage.add_child(instance=newspage)
-        newspage2 = NewsPage(
-            title=fake.sentence(),
-        )
-        newsindexpage.add_child(instance=newspage2)
+            NewsPage = apps.get_model("news.NewsPage")
+            newspage = NewsPage(
+                title=fake.sentence(),
+                stories=[
+                    NewsPageRelatedStory(
+                        title=fake.sentence(), description=fake.paragraph()
+                    )
+                    for _ in range(4)
+                ],
+            )
+            newsindexpage.add_child(instance=newspage)
+            newspage2 = NewsPage(
+                title=fake.sentence(),
+            )
+            newsindexpage.add_child(instance=newspage2)
 
-        formations_page = FormationsPage(
-            title="Formations", description=fake.paragraphs()
-        )
-        homepage.add_child(instance=formations_page)
-        committees_page = CommitteesPage(
-            title="Committees", description=fake.paragraph()
-        )
-        formations_page.add_child(instance=committees_page)
-        working_groups_page = CommitteesPage(
-            title="Working Groups", description=fake.paragraph()
-        )
-        formations_page.add_child(instance=working_groups_page)
-        caucuses_page = CommitteesPage(title="Caucuses", description=fake.paragraph())
-        formations_page.add_child(instance=caucuses_page)
-        priorities_page = CommitteesPage(
-            title="Priority Groups", description=fake.paragraph(), live=False
-        )
-        formations_page.add_child(instance=priorities_page)
+            formations_page = FormationsPage(
+                title="Formations", description=fake.paragraphs()
+            )
+            homepage.add_child(instance=formations_page)
+            committees_page = CommitteesPage(
+                title="Committees", description=fake.paragraph()
+            )
+            formations_page.add_child(instance=committees_page)
+            working_groups_page = CommitteesPage(
+                title="Working Groups", description=fake.paragraph()
+            )
+            formations_page.add_child(instance=working_groups_page)
+            caucuses_page = CommitteesPage(
+                title="Caucuses", description=fake.paragraph()
+            )
+            formations_page.add_child(instance=caucuses_page)
+            priorities_page = CommitteesPage(
+                title="Priority Groups", description=fake.paragraph(), live=False
+            )
+            formations_page.add_child(instance=priorities_page)
 
-        communications_page = CommitteePage(
-            title="Communications",
-            description=fake.paragraph(),
-            formation_type="CT",
-            email=fake.email(),
-            leader_name=fake.name(),
-        )
-        committees_page.add_child(instance=communications_page)
+            communications_page = CommitteePage(
+                title="Communications",
+                description=fake.paragraph(),
+                formation_type="CT",
+                email=fake.email(),
+                leader_name=fake.name(),
+            )
+            committees_page.add_child(instance=communications_page)
 
-        community_page = CommitteePage(
-            title="Community",
-            description=fake.paragraph(),
-            formation_type="CT",
-            email=fake.email(),
-            leader_name=fake.name(),
-        )
-        committees_page.add_child(instance=community_page)
+            community_page = CommitteePage(
+                title="Community",
+                description=fake.paragraph(),
+                formation_type="CT",
+                email=fake.email(),
+                leader_name=fake.name(),
+            )
+            committees_page.add_child(instance=community_page)
 
-        labor_page = CommitteePage(
-            title="Labor",
-            description=fake.paragraph(),
-            formation_type="CT",
-            email=fake.email(),
-            leader_name=fake.name(),
-        )
-        committees_page.add_child(instance=labor_page)
+            labor_page = CommitteePage(
+                title="Labor",
+                description=fake.paragraph(),
+                formation_type="CT",
+                email=fake.email(),
+                leader_name=fake.name(),
+            )
+            committees_page.add_child(instance=labor_page)
 
-        polied_page = CommitteePage(
-            title="Political Education",
-            description=fake.paragraph(),
-            formation_type="CT",
-            email=fake.email(),
-            leader_name=fake.name(),
-        )
-        committees_page.add_child(instance=polied_page)
+            polied_page = CommitteePage(
+                title="Political Education",
+                description=fake.paragraph(),
+                formation_type="CT",
+                email=fake.email(),
+                leader_name=fake.name(),
+            )
+            committees_page.add_child(instance=polied_page)
 
-        tech_page = CommitteePage(
-            title="Tech",
-            description=fake.paragraph(),
-            formation_type="CT",
-            email=fake.email(),
-            leader_name=fake.name(),
-        )
-        committees_page.add_child(instance=tech_page)
+            tech_page = CommitteePage(
+                title="Tech",
+                description=fake.paragraph(),
+                formation_type="CT",
+                email=fake.email(),
+                leader_name=fake.name(),
+            )
+            committees_page.add_child(instance=tech_page)
 
-        electoral_page = CommitteePage(
-            title="Electoral",
-            description=fake.paragraph(),
-            formation_type="WG",
-            email=fake.email(),
-            leader_name=fake.name(),
-        )
-        working_groups_page.add_child(instance=electoral_page)
+            electoral_page = CommitteePage(
+                title="Electoral",
+                description=fake.paragraph(),
+                formation_type="WG",
+                email=fake.email(),
+                leader_name=fake.name(),
+            )
+            working_groups_page.add_child(instance=electoral_page)
 
-        socfem_page = CommitteePage(
-            title="Socialist Feminist",
-            description=fake.paragraph(),
-            formation_type="WG",
-            email=fake.email(),
-            leader_name=fake.name(),
-        )
-        working_groups_page.add_child(instance=socfem_page)
+            socfem_page = CommitteePage(
+                title="Socialist Feminist",
+                description=fake.paragraph(),
+                formation_type="WG",
+                email=fake.email(),
+                leader_name=fake.name(),
+            )
+            working_groups_page.add_child(instance=socfem_page)
 
-        housing_page = CommitteePage(
-            title="Housing Justice",
-            description=fake.paragraph(),
-            formation_type="WG",
-            email=fake.email(),
-            leader_name=fake.name(),
-        )
-        working_groups_page.add_child(instance=housing_page)
+            housing_page = CommitteePage(
+                title="Housing Justice",
+                description=fake.paragraph(),
+                formation_type="WG",
+                email=fake.email(),
+                leader_name=fake.name(),
+            )
+            working_groups_page.add_child(instance=housing_page)
 
-        afrosoc_page = CommitteePage(
-            title="Afrosocialists and Socialists of Color Caucus",
-            description=fake.paragraph(),
-            formation_type="CU",
-            email=fake.email(),
-            leader_name=fake.name(),
-        )
-        caucuses_page.add_child(instance=afrosoc_page)
+            afrosoc_page = CommitteePage(
+                title="Afrosocialists and Socialists of Color Caucus",
+                description=fake.paragraph(),
+                formation_type="CU",
+                email=fake.email(),
+                leader_name=fake.name(),
+            )
+            caucuses_page.add_child(instance=afrosoc_page)
 
-        future_event = Event.objects.create(
-            title="New Member Orientation",
-            description=fake.paragraph(),
-            start=fake.future_datetime(
-                end_date=datetime.timedelta(days=6),
-                tzinfo=datetime.timezone.utc,
-            ),
-        )
-        future_event.save()
-        future_event_2 = Event(
-            title="Monthly Drop-In",
-            description=fake.paragraph(),
-            start=fake.future_datetime(
-                end_date=datetime.timedelta(days=6),
-                tzinfo=datetime.timezone.utc,
-            ),
-        )
-        future_event_2.save()
-        formations_page.save()
+            future_event = Event.objects.create(
+                title="New Member Orientation",
+                description=fake.paragraph(),
+                start=fake.future_datetime(
+                    end_date=datetime.timedelta(days=6),
+                    tzinfo=datetime.timezone.utc,
+                ),
+            )
+            future_event.save()
+            future_event_2 = Event(
+                title="Monthly Drop-In",
+                description=fake.paragraph(),
+                start=fake.future_datetime(
+                    end_date=datetime.timedelta(days=6),
+                    tzinfo=datetime.timezone.utc,
+                ),
+            )
+            future_event_2.save()
+            formations_page.save()
 
-        Group.objects.create(name="Members")
+            Group.objects.create(name="Members")
 
     def handle(self, raise_error=False, *args, **options):
         # Root Page and a default homepage are created by wagtail migrations
