@@ -21,9 +21,11 @@
                         {{ story.title }}
                     </h2>
                     <div class="row g-0 align-items-center">
-                        <div class="col-md-4">
+                        <div class="col-md-4 justify-contents-center">
                             {% if story.related_image %}
                                 {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
+                            {% elif story.sponsoring_formation.image %}
+                                {% image story.sponsoring_formation.image max-300x300 %}
                             {% else %}
                                 <img src="{% static 'images/LINEOWORK-RED.svg' %}" width="100" alt="St Louis DSA">
                             {% endif %}
