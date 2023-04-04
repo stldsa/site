@@ -7,6 +7,7 @@ class EventAdmin(ModelAdmin):
     base_url_path = "events"
     list_display = ("title", "start")
     menu_icon = "date"
+    list_per_page = 15
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
