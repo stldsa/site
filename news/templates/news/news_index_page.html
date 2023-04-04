@@ -1,21 +1,58 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags wagtailuserbar %}
+{% load wagtailcore_tags wagtailimages_tags wagtailuserbar static %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 {% block content %}
 {% wagtailuserbar %}
 
 <div class="message">{{ message.intro|richtext }}</div>
-<div class="card-group ">
-    
     {% for update in updates %}
-    <div class="card shadow">
-        <div class="card-body">
-            <h1><a href="{% pageurl update %}">{{ update.title }}</a></h1>
+        <h1>
+            {{ update.title }}
+        </h1>
+        <p>
+            {{ update.first_published_at }}
+        </p>
+        {% for story in update.stories.all %}
+            <div class="row">
+                <div class="card mb-3 mx-4">
+                    <h2>
+                        {{ story.title }}
+                    </h2>
+                    <div class="row g-0 align-items-center">
+                        <div class="col-md-4">
+                            {% if story.related_image %}
+                                {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
+                            {% else %}
+                                <img src="{% static 'images/LINEOWORK-RED.svg' %}" width="100" alt="St Louis DSA">
+                            {% endif %}
+                        </div>
+                        <div class="col">
+                            <div class='card-body'>
+                                <div class='card-text'>
+                                    {{ story.description|richtext }}
+                                </div>
+                            </div>
+                        </div>
+                        {% if story.related_event %}
+                            <div class='col-md-2'>
+                                <div class='card-body'>
+                                    <h2>{{ story.related_event.start|date:"l" }}</h2>
+                                    <h3 class="mb-2">{{ story.related_event.start|date:"M j" }}</h3>
+                                    <p class="mb-2">{{ story.related_event.start|date:"P" }}</p>
+                                    <a class='btn btn-primary' href="{{ story.related_event.url }}">
+                                        RSVP
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
 </div>
 <div class="row">
     <div class="col">
@@ -26,36 +63,7 @@
     </div>
     <div class="col">
         {{ update.first_published_at|date:"D, M jS Y" }}
-        {% for story in update.stories.all %}
-        <div class="card mb-3 mx-4">
-            <div class="row g-0 align-items-center">
-                {% if story.related_image %}
-                    <div class="col-md-4">
-                        {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
-                    </div>
-                {% endif %} 
-                <div class="col">
-                    <div class='card-body'>
-                        <div class='card-text'>
-                            {{ story.description|richtext }}
-                        </div>
-                    </div>
-                </div>
-                {% if story.related_event %}
-                    <div class='col-md-2'>
-                        <div class='card-body'>
-                            <h2>{{ story.related_event.start|date:"l" }}</h2>
-                            <h3 class="mb-2">{{ story.related_event.start|date:"M j" }}</h3>
-                            <p class="mb-2">{{ story.related_event.start|date:"P" }}</p>
-                            <a class='btn btn-primary' href="{{ story.related_event.url }}">
-                                RSVP
-                            </a>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-        {% endfor %}
+        
     </div>
     <div class="col">
         {% if updates.has_next %}

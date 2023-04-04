@@ -76,22 +76,50 @@ class Command(BaseCommand):
             )
             newsindexpage.add_child(instance=newspage)
             newspage2 = NewsPage(
-                title=fake.sentence(), first_published_at=fake.date_time()
+                title=fake.sentence(),
+                first_published_at=fake.date_time(),
+                stories=[
+                    NewsPageRelatedStory(
+                        title=fake.sentence(), description=fake.paragraph()
+                    )
+                    for _ in range(4)
+                ],
             )
             newsindexpage.add_child(instance=newspage2)
 
             newspage3 = NewsPage(
-                title=fake.sentence(), first_published_at=fake.date_time()
+                title=fake.sentence(),
+                first_published_at=fake.date_time(),
+                stories=[
+                    NewsPageRelatedStory(
+                        title=fake.sentence(), description=fake.paragraph()
+                    )
+                    for _ in range(4)
+                ],
             )
             newsindexpage.add_child(instance=newspage3)
 
             newspage4 = NewsPage(
-                title=fake.sentence(), first_published_at=fake.date_time()
+                title=fake.sentence(),
+                first_published_at=fake.date_time(),
+                stories=[
+                    NewsPageRelatedStory(
+                        title=fake.sentence(), description=fake.paragraph()
+                    )
+                    for _ in range(4)
+                ],
             )
             newsindexpage.add_child(instance=newspage4)
 
             newspage5 = NewsPage(
-                title=fake.sentence(), first_published_at=fake.date_time()
+                title=fake.sentence(),
+                first_published_at=fake.date_time(),
+                stories=[
+                    NewsPageRelatedStory(
+                        title=fake.sentence(), description=fake.paragraph()
+                    )
+                    for _ in range(4)
+                ],
             )
             newsindexpage.add_child(instance=newspage5)
 

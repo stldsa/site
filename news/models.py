@@ -25,7 +25,7 @@ class NewsIndexPage(Page):
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
-        updates = self.get_children().live().order_by("-first_published_at")
+        updates = self.get_children().live().order_by("-first_published_at").specific()
         paginator = Paginator(updates, 1)
         page = request.GET.get("page")
         try:
