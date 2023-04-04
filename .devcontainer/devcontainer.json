@@ -20,6 +20,7 @@
       },
       "extensions": [
         "ms-python.python",
+        "ms-python.vscode-pylance",
         "eamodio.gitlens",
         "GitHub.copilot",
         "esbenp.prettier-vscode"

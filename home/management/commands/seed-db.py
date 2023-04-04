@@ -9,8 +9,7 @@ from events.models import Event
 from home.models import HomePage, JoinPage
 from news.models import NewsIndexPage, InfoPage, NewsPageRelatedStory
 from about.models import ExecutiveCommitteePage, BylawsPage
-from committees.models import CommitteesPage
-from committees.factories import CommitteeFactory
+from committees.models import CommitteesPage, FormationsPage, CommitteePage
 from django.contrib.auth.models import Group
 
 fake = Faker()
@@ -18,9 +17,6 @@ fake = Faker()
 User = get_user_model()
 
 logger = logging.getLogger("setup_page_tree")
-
-
-committee_list = CommitteeFactory.build_batch(8)
 
 
 class Command(BaseCommand):
@@ -82,15 +78,101 @@ class Command(BaseCommand):
         )
         newsindexpage.add_child(instance=newspage2)
 
-        formation_index = CommitteesPage(title="Formations")
-        homepage.add_child(instance=formation_index)
+        formations_page = FormationsPage(
+            title="Formations", description=fake.paragraphs()
+        )
+        homepage.add_child(instance=formations_page)
+        committees_page = CommitteesPage(
+            title="Committees", description=fake.paragraph()
+        )
+        formations_page.add_child(instance=committees_page)
+        working_groups_page = CommitteesPage(
+            title="Working Groups", description=fake.paragraph()
+        )
+        formations_page.add_child(instance=working_groups_page)
+        caucuses_page = CommitteesPage(title="Caucuses", description=fake.paragraph())
+        formations_page.add_child(instance=caucuses_page)
 
-        formation_list = CommitteeFactory.build_batch(4)
-        for formation in formation_list:
-            formation_index.add_child(instance=formation)
-            revision = formation.save_revision()
-            revision.publish()
-            formation.save()
+        communications_page = CommitteePage(
+            title="Communications",
+            description=fake.paragraph(),
+            formation_type="CT",
+            email=fake.email(),
+            leader_name=fake.name(),
+        )
+        committees_page.add_child(instance=communications_page)
+
+        community_page = CommitteePage(
+            title="Community",
+            description=fake.paragraph(),
+            formation_type="CT",
+            email=fake.email(),
+            leader_name=fake.name(),
+        )
+        committees_page.add_child(instance=community_page)
+
+        labor_page = CommitteePage(
+            title="Labor",
+            description=fake.paragraph(),
+            formation_type="CT",
+            email=fake.email(),
+            leader_name=fake.name(),
+        )
+        committees_page.add_child(instance=labor_page)
+
+        polied_page = CommitteePage(
+            title="Political Education",
+            description=fake.paragraph(),
+            formation_type="CT",
+            email=fake.email(),
+            leader_name=fake.name(),
+        )
+        committees_page.add_child(instance=polied_page)
+
+        tech_page = CommitteePage(
+            title="Tech",
+            description=fake.paragraph(),
+            formation_type="CT",
+            email=fake.email(),
+            leader_name=fake.name(),
+        )
+        committees_page.add_child(instance=tech_page)
+
+        electoral_page = CommitteePage(
+            title="Electoral",
+            description=fake.paragraph(),
+            formation_type="WG",
+            email=fake.email(),
+            leader_name=fake.name(),
+        )
+        working_groups_page.add_child(instance=electoral_page)
+
+        socfem_page = CommitteePage(
+            title="Socialist Feminist",
+            description=fake.paragraph(),
+            formation_type="WG",
+            email=fake.email(),
+            leader_name=fake.name(),
+        )
+        working_groups_page.add_child(instance=socfem_page)
+
+        housing_page = CommitteePage(
+            title="Housing Justice",
+            description=fake.paragraph(),
+            formation_type="WG",
+            email=fake.email(),
+            leader_name=fake.name(),
+        )
+        working_groups_page.add_child(instance=housing_page)
+
+        afrosoc_page = CommitteePage(
+            title="Afrosocialists and Socialists of Color Caucus",
+            description=fake.paragraph(),
+            formation_type="CU",
+            email=fake.email(),
+            leader_name=fake.name(),
+        )
+        caucuses_page.add_child(instance=afrosoc_page)
 
         future_event = Event.objects.create(
             title="New Member Orientation",
@@ -110,7 +192,7 @@ class Command(BaseCommand):
             ),
         )
         future_event_2.save()
-        formation_index.save()
+        formations_page.save()
 
         Group.objects.create(name="Members")
 
