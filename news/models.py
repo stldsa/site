@@ -26,7 +26,7 @@ class NewsIndexPage(Page):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
         updates = self.get_children().live().order_by("-first_published_at")
-        paginator = Paginator(updates, 5)
+        paginator = Paginator(updates, 1)
         page = request.GET.get("page")
         try:
             resources = paginator.page(page)
@@ -95,7 +95,6 @@ class NewsPageRelatedStory(Orderable):
 
 
 class NewsPage(Page):
-
     description = RichTextField(blank=True)
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_types = ["news.NewsIndexPage"]
