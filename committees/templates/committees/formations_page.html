@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+
+{% block content %}
+<div class="container">
+
+    <h1 class="mb-3">{{ page }}</h1>
+    <div class="row">
+        <div class="col">
+            <h4>{{ page.description|richtext }}</h4>
+        </div>
+        <div class="col">
+            <link href='https://actionnetwork.org/css/style-embed-whitelabel-v3.css' rel='stylesheet' type='text/css' /><script src='https://actionnetwork.org/widgets/v5/form/formation-sign-up?format=js&source=widget'></script><div id='can-form-area-formation-sign-up' style='width: 600px'><!-- this div is the target for our HTML insertion --></div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
