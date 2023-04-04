@@ -103,6 +103,15 @@ class CommitteesPage(Page):
         return context
 
 
+class FormationsPage(Page):
+    subpage_types = ["CommitteesPage"]
+    description = RichTextField(null=True, blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("description"),
+    ]
+
+
 class ResourcesPage(Page):
     resources = StreamField(
         [
