@@ -52,7 +52,7 @@ class Command(BaseCommand):
                 slug="updates",
             )
             homepage.add_child(instance=newsindexpage)
-            aboutuspage = InfoPage(title="About Us", slug="about")
+            aboutuspage = InfoPage(title="About Us", slug="about-us")
             homepage.add_child(instance=aboutuspage)
             ecpage = ExecutiveCommitteePage(
                 title="Executive Committee", slug="ec", description=fake.paragraph()
