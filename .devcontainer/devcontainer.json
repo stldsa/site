@@ -16,14 +16,25 @@
         "python.linting.pylintEnabled": false,
         "python.formatOnSave": true,
         "python.formatting.provider": "black",
-        "python.linting.mypyEnabled": true
+        "python.linting.mypyEnabled": true,
+        "yaml.schemas": {
+          "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+        },
+        "yaml.customTags": [
+          "!ENV scalar",
+          "!ENV sequence",
+          "tag:yaml.org,2002:python/name:materialx.emoji.to_svg",
+          "tag:yaml.org,2002:python/name:materialx.emoji.twemoji",
+          "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format"
+        ]
       },
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
         "eamodio.gitlens",
         "GitHub.copilot",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml"
       ]
     }
   },

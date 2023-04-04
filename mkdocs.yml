@@ -1,0 +1,13 @@
+site_name: My Docs
+
+theme:
+  name: material
+  logo: FLAG_VERSION.svg
+  favicon: LINEOWORK-RED.svg
+
+plugins: 
+  - search
+
+extra_css:
+  - stylesheets/extra.css
+
