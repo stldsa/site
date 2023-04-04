@@ -13,9 +13,11 @@
                 <p>{{ formation_type.description|richtext }}</p>
                 {% for formation in formation_type.get_children %}
                     <ul>
-                        <li>
-                            <a href="{{ formation.url }}">{{ formation.title }}</a>
-                        </li>
+                        {% if page.live %}
+                            <li>
+                                <a href="{{ formation.url }}">{{ formation.title }}</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 {% endfor %}
             {% endfor %}
