@@ -84,5 +84,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_leader(self):
         return "Leadership" in [group.name for group in list(self.groups.all())]
 
+    @property
+    def anon_name(self):
+        return self.first_name + " " + self.last_name[0] + "."
+
     def __str__(self):
         return self.email

@@ -10,7 +10,7 @@
                 <h2 class="card-header">{{ page }}</h2>
                 <div class="card-body">
                     <h3>Current Chair(s):</h3>
-                    <p>{{ page.leaders }} | {{ page.email|urlize }}</p>
+                    <p>{{ page.leaders.anon_name }} | {{ page.email|urlize }}</p>
                     <h3>Description:</h3>
                     <p>{{ page.description|richtext }}</p>
                     {% if upcoming_events %}
