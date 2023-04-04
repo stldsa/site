@@ -9,17 +9,19 @@
     <div class="row">
         <div class="col">
             {% for formation_type in formation_types %}
+                <div class="card" style="width: 18rem;">
+
+                </div>
                 <h2>{{ formation_type.title }}</h2>
                 <p>{{ formation_type.description|richtext }}</p>
                 {% for formation in formation_type.formations %}
-                    <ul>
-                        {% if formation.live %}
-                            <li>
-                                <a href="{{ formation.url }}">{{ formation.title }}</a>
-                            </li>
-                        {% endif %}
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href="{{ formation.url }}">{{ formation.title }}</a>
+                        </li>
                     </ul>
                 {% endfor %}
+                <hr>
             {% endfor %}
         </div>
         <div class="col">
