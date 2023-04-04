@@ -39,6 +39,13 @@ class CommitteePage(Page):
     ]
 
     description = RichTextField()
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     formation_type = models.CharField(
         max_length=2, choices=FORMATION_CHOICES, default=""
     )
@@ -59,6 +66,7 @@ class CommitteePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("formation_type"),
         FieldPanel("description"),
+        FieldPanel("image"),
         FieldPanel("leader_name"),
         FieldPanel("email"),
         FieldPanel("sign_up_form_endpoint"),
