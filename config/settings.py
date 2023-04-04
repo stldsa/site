@@ -55,7 +55,6 @@ THIRD_PARTY_APPS = [
     "wagtail",
     "modelcluster",
     "taggit",
-    "wagtailfontawesome",
     "storages",
     "django_sass",
     "django_extensions",
