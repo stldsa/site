@@ -18,26 +18,7 @@
     </div>
     <div class="col-md-10 mx-auto col-lg-5">
       {% if not user.is_authenticated %}
-        <form class="p-4 p-md-5 border rounded-3 bg-light" action="/person-helper/" method="post">
-          <h2 class="mb-3">Sign up for our weekly newsletter!</h2>
-          <div class="form-floating mb-3">
-            <input required id="email" type="email" name="email" placeholder="name@example.com" class="form-control">
-            <label for="email">Email address</label>
-          </div>
-          <div class="row align-items-center">
-            <div class="col">
-              <div class="form-floating">
-                <input required id="zip" type="text" name="zip" placeholder="90210"  class="form-control">
-                <label for="zip" class="pt-2 mt-1 pb-0 mb-0">ZIP</label>
-              </div>
-            </div> 
-            <div class="col">
-              <button type="submit" class="btn btn-primary shadow rounded">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </form>
+      <link href='https://actionnetwork.org/css/style-embed-v3.css' rel='stylesheet' type='text/css' /><script src='https://actionnetwork.org/widgets/v5/form/stldsa?format=js&source=widget'></script><div id='can-form-area-stldsa' style='width: 300px'><!-- this div is the target for our HTML insertion --></div>
         {% if messages %}
           {% for message in messages %}
           <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
