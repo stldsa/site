@@ -9,17 +9,19 @@
     <div class="row">
         <div class="col">
             {% for formation_type in page.get_children.specific %}
-                <h2>{{ formation_type.title }}</h2>
-                <p>{{ formation_type.description|richtext }}</p>
-                {% for formation in formation_type.get_children %}
-                    <ul>
-                        {% if page.live %}
-                            <li>
-                                <a href="{{ formation.url }}">{{ formation.title }}</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                {% endfor %}
+                {% if formation_type.live %}
+                    <h2>{{ formation_type.title }}</h2>
+                    <p>{{ formation_type.description|richtext }}</p>
+                    {% for formation in formation_type.get_children %}
+                        <ul>
+                            {% if formation.live %}
+                                <li>
+                                    <a href="{{ formation.url }}">{{ formation.title }}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
         </div>
         <div class="col">

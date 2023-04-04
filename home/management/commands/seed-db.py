@@ -92,6 +92,10 @@ class Command(BaseCommand):
         formations_page.add_child(instance=working_groups_page)
         caucuses_page = CommitteesPage(title="Caucuses", description=fake.paragraph())
         formations_page.add_child(instance=caucuses_page)
+        priorities_page = CommitteesPage(
+            title="Priority Groups", description=fake.paragraph(), live=False
+        )
+        formations_page.add_child(instance=priorities_page)
 
         communications_page = CommitteePage(
             title="Communications",
