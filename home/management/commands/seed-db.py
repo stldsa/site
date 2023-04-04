@@ -149,7 +149,6 @@ class Command(BaseCommand):
                 description=fake.paragraph(),
                 formation_type="CT",
                 email=fake.email(),
-                leader_name=fake.name(),
             )
             committees_page.add_child(instance=communications_page)
 
@@ -158,7 +157,6 @@ class Command(BaseCommand):
                 description=fake.paragraph(),
                 formation_type="CT",
                 email=fake.email(),
-                leader_name=fake.name(),
             )
             committees_page.add_child(instance=community_page)
 
@@ -167,7 +165,6 @@ class Command(BaseCommand):
                 description=fake.paragraph(),
                 formation_type="CT",
                 email=fake.email(),
-                leader_name=fake.name(),
             )
             committees_page.add_child(instance=labor_page)
 
@@ -176,7 +173,6 @@ class Command(BaseCommand):
                 description=fake.paragraph(),
                 formation_type="CT",
                 email=fake.email(),
-                leader_name=fake.name(),
             )
             committees_page.add_child(instance=polied_page)
 
@@ -185,7 +181,6 @@ class Command(BaseCommand):
                 description=fake.paragraph(),
                 formation_type="CT",
                 email=fake.email(),
-                leader_name=fake.name(),
             )
             committees_page.add_child(instance=tech_page)
 
@@ -194,7 +189,6 @@ class Command(BaseCommand):
                 description=fake.paragraph(),
                 formation_type="WG",
                 email=fake.email(),
-                leader_name=fake.name(),
             )
             working_groups_page.add_child(instance=electoral_page)
 
@@ -203,7 +197,6 @@ class Command(BaseCommand):
                 description=fake.paragraph(),
                 formation_type="WG",
                 email=fake.email(),
-                leader_name=fake.name(),
             )
             working_groups_page.add_child(instance=socfem_page)
 
@@ -212,7 +205,6 @@ class Command(BaseCommand):
                 description=fake.paragraph(),
                 formation_type="WG",
                 email=fake.email(),
-                leader_name=fake.name(),
             )
             working_groups_page.add_child(instance=housing_page)
 
@@ -221,9 +213,16 @@ class Command(BaseCommand):
                 description=fake.paragraph(),
                 formation_type="CU",
                 email=fake.email(),
-                leader_name=fake.name(),
             )
             caucuses_page.add_child(instance=afrosoc_page)
+
+            religious_page = CommitteePage(
+                title="Religious Socialism",
+                description=fake.paragraph(),
+                formation_type="CU",
+                email=fake.email(),
+            )
+            caucuses_page.add_child(instance=religious_page)
 
             future_event = Event.objects.create(
                 title="New Member Orientation",

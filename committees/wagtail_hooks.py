@@ -10,6 +10,7 @@ class CommitteeAdmin(ModelAdmin):
     add_to_settings_menu = False
     exclude_from_explorer = False
     menu_icon = "group"
+    list_filter = ("live",)
 
 
 modeladmin_register(CommitteeAdmin)
