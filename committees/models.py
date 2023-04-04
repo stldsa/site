@@ -67,7 +67,6 @@ class CommitteePage(Page):
         FieldPanel("formation_type"),
         FieldPanel("description"),
         FieldPanel("image"),
-        FieldPanel("leaders"),
         FieldPanel("email"),
         FieldPanel("sign_up_form_endpoint"),
     ]
