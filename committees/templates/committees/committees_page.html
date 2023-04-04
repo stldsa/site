@@ -3,39 +3,18 @@
 
 
 {% block content %}
+<div class="container">
 
-<div class="row">
-    <div class="col">
-        <h1 class="my-3">
-            Committees
-        </h1>
-        <p>
-            Committees are ratified by our general membership and their formation and leadership elections are usually held at our Annual General Meeting. In following with the convention established by DSA's National Organization, "committees" are responsible for internal-facing work and other work that is core to moving our chapter's vision forward.
-        </p>
-        <!-- <div class="card-group">
-            {% for formation in page.get_children %}
-            {{ formation.fields }}
-            <div class="card text-center">
-                <div class="card-body">
-                    <h2><a href="{% pageurl formation %}">{{ formation }}</a></h2>
-                </div>
-                {{ formation.description }}
-            </div>
-            {% endfor %}
-        </div> -->
-        <h1 class="my-3">
-            Working Groups
-        </h1>
-        <p>
-            Working groups are established by petition and hold leadership elections as described in its charter. They are often focused on issue-based political work and elections.
-        </p>
-        <h1 class="my-3">
-            Caucuses
-        </h1>
-        <p>
-            Caucuses are informal but chapter-recognized groups of people, often groups sharing an identity or political interest.
-        </p>
+    <h1 class="mb-3">{{ page }}</h1>
+    <div class="row">
+        <div class="col">
+            <h4>{{ page.description|richtext }}</h4>
+        </div>
+        <div class="col">
+            <link href='https://actionnetwork.org/css/style-embed-whitelabel-v3.css' rel='stylesheet' type='text/css' /><script src='https://actionnetwork.org/widgets/v5/form/formation-sign-up?format=js&source=widget'></script><div id='can-form-area-formation-sign-up' style='width: 600px'><!-- this div is the target for our HTML insertion --></div>
+        </div>
     </div>
+
 </div>
 
 {% endblock %}
