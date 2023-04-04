@@ -1,13 +1,23 @@
-site_name: My Docs
+site_name: STL DSA Technical Docs
 
 theme:
   name: material
   logo: FLAG_VERSION.svg
   favicon: LINEOWORK-RED.svg
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+  features:
+   - content.action.edit
 
 plugins: 
   - search
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 extra_css:
   - stylesheets/extra.css
 
+repo_url: https://github.com/stldsa/site
+
+edit_uri: edit/main/docs/
