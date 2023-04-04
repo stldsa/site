@@ -46,6 +46,7 @@ conventional-pre-commit = "^2.1.1"
 mypy = "^1.0.0"
 mkdocs = "^1.4.2"
 mkdocs-material = "^9.1.5"
+wagtailfontawesome = "^1.2.1"
 
 [tool.poetry.group.dev.dependencies]
 psycopg2-binary = "^2.9.5"
