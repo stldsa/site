@@ -1,5 +1,6 @@
 exclude: "docs|node_modules|migrations|.git|.tox"
 default_stages: [commit]
+default_install_hook_types: [pre-commit, pre-push, commit-msg]
 fail_fast: true
 
 repos:
