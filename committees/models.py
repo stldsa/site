@@ -98,8 +98,7 @@ class CommitteesPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        committees = CommitteePage.objects.live().order_by("title")
-        context["committees"] = committees
+        context["committees"] = self.objects.get_children().live().order_by("title")
 
         return context
 
@@ -111,6 +110,14 @@ class FormationsPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("description"),
     ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        formation_types = self.get_children().live().specific()
+        for formation_type in formation_types:
+            formation_type.formations = formation_type.get_children().live().specific()
+        context["formation_types"] = formation_types
+        return context
 
 
 class ResourcesPage(Page):
