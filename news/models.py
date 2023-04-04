@@ -95,7 +95,10 @@ class NewsPageRelatedStory(Orderable):
 
 
 class NewsPage(Page):
-    description = RichTextField(blank=True)
+    description = RichTextField(
+        blank=True,
+        help_text="Avoid unnecessary copy such as 'RSVP Here' if attached to an event.",
+    )
     action_network_href = models.URLField(blank=True, null=True)
     parent_page_types = ["news.NewsIndexPage"]
     subpage_types: List[Any] = []
@@ -109,7 +112,7 @@ class NewsPage(Page):
             "title",
             heading="Subject",
             widget=title_widget,
-            help_text=("Email subject line / page title."),
+            help_text=("Email subject line (might be same as first story title)"),
         ),
         InlinePanel("stories", heading="Stories", label="Story"),
     ]
