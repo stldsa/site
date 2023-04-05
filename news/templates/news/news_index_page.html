@@ -16,10 +16,10 @@
         </p>
         {% for story in update.stories.all %}
             <div class="row">
+                <h2>
+                    {{ story.title }}
+                </h2>
                 <div class="card mb-3 mx-4">
-                    <h2>
-                        {{ story.title }}
-                    </h2>
                     <div class="row g-0 align-items-center">
                         <div class="col-md-4 justify-content-center text-center">
                             {% if story.related_image %}
