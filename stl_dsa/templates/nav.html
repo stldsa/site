@@ -43,7 +43,25 @@
             <a class="btn" href="/events/">Events</a>
         </li>
         <li class="nav-item">
-            <a class="btn" href="https://store.stldsa.org">Store</a>
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Store
+          </button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title mx-auto" id="exampleModalLabel">Entering the Merch Store</h5>
+                </div>
+                <div class="modal-body">
+                  STL DSA's online merchandise store uses a third-party service called Bright Blue Ink to fulfill our merchandise orders. Please be aware that accounts and payment information entered at <i>store.stldsa.org</i> are maintained by the vendor and are completely separate from any accounts or payment information you have stored with the St. Louis DSA. If you have any questions about your account or payment information on <i>store.stldsa.org</i>, please contact Bright Blue Ink directly.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" class="close" aria-label="close"  data-bs-dismiss="modal">Close</button>
+                  <a class="btn btn-primary" href="https://store.stldsa.org" target="_blank">Proceed</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
     </ul>
     <div class="d-flex">
