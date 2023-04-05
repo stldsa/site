@@ -64,165 +64,66 @@ class Command(BaseCommand):
             aboutuspage.add_child(instance=bylawspage)
 
             NewsPage = apps.get_model("news.NewsPage")
-            newspage = NewsPage(
-                title=fake.sentence(),
-                first_published_at=fake.date_time(),
-                stories=[
-                    NewsPageRelatedStory(
-                        title=fake.sentence(), description=fake.paragraph()
-                    )
-                    for _ in range(4)
-                ],
-            )
-            newsindexpage.add_child(instance=newspage)
-            newspage2 = NewsPage(
-                title=fake.sentence(),
-                first_published_at=fake.date_time(),
-                stories=[
-                    NewsPageRelatedStory(
-                        title=fake.sentence(), description=fake.paragraph()
-                    )
-                    for _ in range(4)
-                ],
-            )
-            newsindexpage.add_child(instance=newspage2)
 
-            newspage3 = NewsPage(
-                title=fake.sentence(),
-                first_published_at=fake.date_time(),
-                stories=[
-                    NewsPageRelatedStory(
-                        title=fake.sentence(), description=fake.paragraph()
-                    )
-                    for _ in range(4)
-                ],
-            )
-            newsindexpage.add_child(instance=newspage3)
+            def add_news_page():
+                newspage = NewsPage(
+                    title=fake.sentence(),
+                    first_published_at=fake.date_time(),
+                    stories=[
+                        NewsPageRelatedStory(
+                            title=fake.sentence(), description=fake.paragraph()
+                        )
+                        for _ in range(4)
+                    ],
+                )
+                newsindexpage.add_child(instance=newspage)
 
-            newspage4 = NewsPage(
-                title=fake.sentence(),
-                first_published_at=fake.date_time(),
-                stories=[
-                    NewsPageRelatedStory(
-                        title=fake.sentence(), description=fake.paragraph()
-                    )
-                    for _ in range(4)
-                ],
-            )
-            newsindexpage.add_child(instance=newspage4)
-
-            newspage5 = NewsPage(
-                title=fake.sentence(),
-                first_published_at=fake.date_time(),
-                stories=[
-                    NewsPageRelatedStory(
-                        title=fake.sentence(), description=fake.paragraph()
-                    )
-                    for _ in range(4)
-                ],
-            )
-            newsindexpage.add_child(instance=newspage5)
+            for _ in range(5):
+                add_news_page()
 
             formations_page = FormationsPage(
                 title="Formations", description=fake.paragraphs()
             )
             homepage.add_child(instance=formations_page)
-            committees_page = CommitteesPage(
-                title="Committees", description=fake.paragraph()
-            )
-            formations_page.add_child(instance=committees_page)
-            working_groups_page = CommitteesPage(
-                title="Working Groups", description=fake.paragraph()
-            )
-            formations_page.add_child(instance=working_groups_page)
-            caucuses_page = CommitteesPage(
-                title="Caucuses", description=fake.paragraph()
-            )
-            formations_page.add_child(instance=caucuses_page)
+
+            def add_committees_page(title):
+                committees_page = CommitteesPage(
+                    title=title, description=fake.paragraph()
+                )
+                formations_page.add_child(instance=committees_page)
+
+            for committee in ["Committees", "Working Groups", "Caucuses"]:
+                add_committees_page(committee)
+
             priorities_page = CommitteesPage(
                 title="Priority Groups", description=fake.paragraph(), live=False
             )
             formations_page.add_child(instance=priorities_page)
 
-            communications_page = CommitteePage(
-                title="Communications",
-                description=fake.paragraph(),
-                formation_type="CT",
-                email=fake.email(),
-            )
-            committees_page.add_child(instance=communications_page)
+            committees = {
+                "CT": [
+                    "Communications",
+                    "Community",
+                    "Labor",
+                    "Political Education",
+                    "Tech",
+                ],
+                "WG": ["Electoral", "Socialist Feminist", "Housing Justice"],
+                "CU": ["Afrosocialists & Socialists of Color"],
+            }
 
-            community_page = CommitteePage(
-                title="Community",
-                description=fake.paragraph(),
-                formation_type="CT",
-                email=fake.email(),
-            )
-            committees_page.add_child(instance=community_page)
+            def add_committee_page(title, formation_type):
+                committee_page = CommitteePage(
+                    title=title,
+                    description=fake.paragraph(),
+                    formation_type=formation_type,
+                    email=fake.email(),
+                )
+                formations_page.add_child(instance=committee_page)
 
-            labor_page = CommitteePage(
-                title="Labor",
-                description=fake.paragraph(),
-                formation_type="CT",
-                email=fake.email(),
-            )
-            committees_page.add_child(instance=labor_page)
-
-            polied_page = CommitteePage(
-                title="Political Education",
-                description=fake.paragraph(),
-                formation_type="CT",
-                email=fake.email(),
-            )
-            committees_page.add_child(instance=polied_page)
-
-            tech_page = CommitteePage(
-                title="Tech",
-                description=fake.paragraph(),
-                formation_type="CT",
-                email=fake.email(),
-            )
-            committees_page.add_child(instance=tech_page)
-
-            electoral_page = CommitteePage(
-                title="Electoral",
-                description=fake.paragraph(),
-                formation_type="WG",
-                email=fake.email(),
-            )
-            working_groups_page.add_child(instance=electoral_page)
-
-            socfem_page = CommitteePage(
-                title="Socialist Feminist",
-                description=fake.paragraph(),
-                formation_type="WG",
-                email=fake.email(),
-            )
-            working_groups_page.add_child(instance=socfem_page)
-
-            housing_page = CommitteePage(
-                title="Housing Justice",
-                description=fake.paragraph(),
-                formation_type="WG",
-                email=fake.email(),
-            )
-            working_groups_page.add_child(instance=housing_page)
-
-            afrosoc_page = CommitteePage(
-                title="Afrosocialists and Socialists of Color Caucus",
-                description=fake.paragraph(),
-                formation_type="CU",
-                email=fake.email(),
-            )
-            caucuses_page.add_child(instance=afrosoc_page)
-
-            religious_page = CommitteePage(
-                title="Religious Socialism",
-                description=fake.paragraph(),
-                formation_type="CU",
-                email=fake.email(),
-            )
-            caucuses_page.add_child(instance=religious_page)
+            for formation_type, committees in committees.items():
+                for committee in committees:
+                    add_committee_page(committee, formation_type)
 
             future_event = Event.objects.create(
                 title="New Member Orientation",
