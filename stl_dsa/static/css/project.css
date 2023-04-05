@@ -2247,6 +2247,11 @@ header button {
   display: block;
 }
 
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+}
+
 .navbar-nav .dropdown-toggle::after {
   color: #ec1f27;
 }
