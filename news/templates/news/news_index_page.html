@@ -12,7 +12,7 @@
             {{ update.title }}
         </h1>
         <p>
-            {{ update.first_published_at }}
+            {{ update.first_published_at|date:"D, M jS Y" }}
         </p>
         {% for story in update.stories.all %}
             <div class="row">
