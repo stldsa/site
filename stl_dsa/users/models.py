@@ -86,7 +86,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def anon_name(self):
-        return self.first_name + " " + self.last_name[0] + "."
+        if self.first_name and self.last_name:
+            return self.first_name + " " + self.last_name[0] + "."
 
     def __str__(self):
         return self.email
