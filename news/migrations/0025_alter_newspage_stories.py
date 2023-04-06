@@ -7,7 +7,6 @@ import wagtail.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("news", "0024_alter_newspage_stories"),
     ]
@@ -19,7 +18,6 @@ class Migration(migrations.Migration):
             field=wagtail.fields.StreamField(
                 [("related_story", wagtail.blocks.StreamBlock([]))],
                 blank=True,
-                default=news.models.upcoming_events_as_related_stories,
                 null=True,
                 use_json_field=True,
             ),

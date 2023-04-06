@@ -8,7 +8,6 @@ import wagtail.images.blocks
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("news", "0022_rename_main_story_image_newspage_banner_image"),
     ]
@@ -45,7 +44,6 @@ class Migration(migrations.Migration):
                     )
                 ],
                 blank=True,
-                default=news.models.upcoming_events_as_related_stories,
                 null=True,
                 use_json_field=True,
             ),

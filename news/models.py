@@ -1,4 +1,3 @@
-import datetime
 from typing import Any, List
 from django import forms
 from django.db import models
@@ -39,23 +38,6 @@ class NewsIndexPage(Page):
 
     class Meta:
         verbose_name = "Updates"
-
-
-def upcoming_events_as_related_stories():
-    return [
-        (
-            "related_story",
-            {"heading": event.title, "copy": event.description},
-        )
-        for event in list(
-            Event.objects.filter(
-                start__range=(
-                    datetime.datetime.now(),
-                    datetime.datetime.now() + datetime.timedelta(days=7),
-                )
-            )
-        )
-    ]
 
 
 class NewsPageRelatedStory(Orderable):

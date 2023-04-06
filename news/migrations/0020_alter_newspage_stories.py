@@ -8,7 +8,6 @@ import wagtail.images.blocks
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("news", "0019_alter_newspage_stories"),
     ]
@@ -36,7 +35,6 @@ class Migration(migrations.Migration):
                     )
                 ],
                 blank=True,
-                default=news.models.upcoming_events_as_related_stories,
                 null=True,
                 use_json_field=True,
             ),
