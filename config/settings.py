@@ -268,3 +268,6 @@ DATABASES = {
 
 WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL", default="https://localhost:8000")
 CACHE_URL = env("CACHE_URL", default=None)
+
+# Remove after upgrade to Django 5.0
+FORM_RENDERER = "django.forms.renderers.DjangoDivFormRenderer"
