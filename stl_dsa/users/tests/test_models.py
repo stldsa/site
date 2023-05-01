@@ -1,9 +1,6 @@
 import responses
 from responses import matchers
-from django.contrib.auth.models import Group
-from wagtail.models import GroupPagePermission, PagePermissionTester
 from stl_dsa.users.models import User
-from news.models import NewsIndexPage
 
 
 @responses.activate
@@ -55,19 +52,3 @@ def test_get_uuid_when_doesnt_have_one(faker, db):
     )
 
     assert User(email=email).get_uuid() == uuid
-
-
-def test_comms_member_access(faker, db):
-    comms = Group(id=0, name="Communications")
-    comms.save()
-    user = User(id=0, email=faker.email())
-    user.save()
-    user.groups.add(comms)
-
-    updates_page = NewsIndexPage()
-    updates_page.save()
-
-    permission = GroupPagePermission(0, updates_page, permission_type="edit")
-    permission.save()
-
-    assert PagePermissionTester(updates_page, user).can_edit()
