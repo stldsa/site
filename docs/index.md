@@ -1,17 +1,8 @@
-# St Louis DSA Technical Documentation
+Welcome to our all-purposes documentation website for STL DSA's Tech Tools
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+- Developer documentation for [stldsa.org](https://stldsa.org)
+- Tutorials for our chapter tools such as Zoom and Action Network
+- How-to guides and best practices for members and leaders to make the most out of our tools.
+- Security policy and guidelines
 
-## Commands
-
-- `mkdocs new [dir-name]` - Create a new project.
-- `mkdocs serve` - Start the live-reloading docs server.
-- `mkdocs build` - Build the documentation site.
-- `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+_Note for contributors: No information in this documentation should be assumed to be private or confidential at this time._

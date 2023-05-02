@@ -44,3 +44,5 @@ jobs:
           DJANGO_SETTINGS_MODULE: config.settings
           DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
         run: poetry run pytest
+
+      - run: mkdocs gh-deploy --force
