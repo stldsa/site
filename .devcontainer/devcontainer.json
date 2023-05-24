@@ -2,7 +2,7 @@
   "name": "STL DSA",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspaces/stldsa",
+  "workspaceFolder": "/workspaces/site",
   "features": {
     "ghcr.io/devcontainers-contrib/features/poetry:2": {},
     "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
