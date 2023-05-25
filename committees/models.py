@@ -56,7 +56,7 @@ class CommitteePage(Page):
         on_delete=models.SET_NULL,
         related_name="committee_leader",
     )
-    leaders = models.ManyToManyField(User)
+    leaders = models.ManyToManyField(User, blank=True)
     email = models.EmailField()
     people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
     sign_up_form_endpoint = models.TextField(null=True, blank=True)
