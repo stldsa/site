@@ -2,7 +2,7 @@ Welcome to the STL DSA Tech Handbook, sponsored by the STL DSA Tech Committee! W
 
 Be on the lookout for:
 
-- Developer documentation for [stldsa.org](https://stldsa.org)
+- Documentation for developers
 - Tutorials for our chapter tools such as Zoom and Action Network
 - How-to guides and best practices for members and leaders to make the most out of our tools.
 - Security policy and guidelines
