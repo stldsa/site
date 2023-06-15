@@ -6,7 +6,8 @@
   "features": {
     "ghcr.io/devcontainers-contrib/features/poetry:2": {},
     "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
-    "ghcr.io/devcontainers-contrib/features/heroku-cli:1": {}
+    "ghcr.io/devcontainers-contrib/features/heroku-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {}
   },
   "customizations": {
     "vscode": {
@@ -37,5 +38,5 @@
       ]
     }
   },
-  "postCreateCommand": "poetry install && poetry run python manage.py reset_db --noinput && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py createsuperuser --noinput && pre-commit install"
+  "postCreateCommand": "poetry install && poetry run python manage.py reset_db --noinput && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py createsuperuser --noinput && pre-commit install && npm install cypress --sav-dev"
 }

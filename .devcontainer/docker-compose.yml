@@ -22,5 +22,8 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: postgres
 
+  ui:
+    image: cypress/base:latest
+
 volumes:
   postgres-data:
