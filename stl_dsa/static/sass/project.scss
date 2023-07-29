@@ -13,69 +13,44 @@ Tags: fluid-layout responsive-layout
 Text Domain: dsa-v2
 */
 
-// VARIABLES
-// Media Queries
-$small-mobile-query: "screen and ( max-width: 400px )";
-$mobile-query: "screen and ( max-width: 1024px )";
-$desktop-query: "screen and ( min-width: 1024px )";
-
-// Colors
-$white: #fff;
-$white-dark-1x: #fafafa;
-$white-dark-2x: #efefef;
-$white-dark-3x: #ddd;
-$gray: #a0a0a0;
-$black: #000;
-$black-light-1x: #323232;
-$black-light-2x: #6d6d6d;
-$dsared: #ec1f27;
-$darkdsared: #9f0005;
-$dsalightred: #ffe2d6;
-$dsablack: #241f20;
-$dsadarkgrey: #747380;
-$dsamidgrey: #e4e4e8;
-$dsalitegrey: #f6f6f6;
-$dsaredtrans-1x: rgba($dsared, 0.5);
-$dsaredtrans-2x: rgba($dsared, 0.1);
-$blacktrans-1x: rgba($black, 0.5);
-$blacktrans-2x: rgba($black, 0.25);
-$whitetrans-1x: rgba($white, 0.5);
-$whitetrans-2x: rgba($white, 0.25);
-$lightred: desaturate($dsared, 20%);
-
-// Sizes
-
-$text-xxs: 0.4em;
-$text-xs: 0.6em;
-$text-s: 0.8em;
-$text-l: 1.1em;
-$text-xl: 1.25em;
-$text-2xl: 1.5em;
-$text-3xl: 2em;
-$text-4xl: 2.5em;
-$text-5xl: 3em;
+// Variables
+@import 'variables';
 
 // Custom Fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:300,400,600");
 
-@font-face {
-  font-family: "Manifold DSA";
-  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Regular.woff);
-}
+// Custom UI Elements
+@import 'modules/events-card';
+
 @font-face {
   font-family: "Manifold DSA";
   src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Light.woff);
-  font-weight: 100;
+  font-weight: 300;
 }
 @font-face {
   font-family: "Manifold DSA";
-  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Bold.woff);
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Regular.woff);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Manifold DSA";
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Medium.woff);
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Manifold DSA";
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-DemiBold.woff);
   font-weight: 600;
 }
 @font-face {
   font-family: "Manifold DSA";
-  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-ExtraBold.woff);
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Bold.woff);
   font-weight: 700;
+}
+@font-face {
+  font-family: "Manifold DSA";
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-ExtraBold.woff);
+  font-weight: 800;
 }
 @font-face {
   font-family: "Manifold DSA";
