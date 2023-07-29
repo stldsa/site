@@ -11,32 +11,119 @@ License URI: https://www.gnu.org/licenses/gpl.html
 Tags: fluid-layout responsive-layout
 Text Domain: dsa-v2
 */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:300,400,600");
-@font-face {
-  font-family: "Manifold DSA";
-  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Regular.woff);
+@media screen and (min-width: 768px) {
+  .events-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  background-color: #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 120ms linear;
+}
+
+.event-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (min-width: 768px) {
+  .event-card {
+    width: 316px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .event-card {
+    width: 285px;
+  }
+}
+
+.event-card + .event-card {
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .event-card + .event-card {
+    margin-top: 0;
+  }
+}
+
+.event-card .event-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  flex: 1;
+  padding: .5rem 1rem;
+}
+
+.event-card .event-card-content p {
+  margin: 0;
+}
+
+.event-card .event-card-title {
+  font-size: 1.25em;
+  font-weight: 500;
+}
+
+.event-card .event-card-link {
+  padding-inline: 1rem;
+  padding-block: .5rem;
+  font-size: 1.25em;
+  font-weight: 700;
+  background-color: #ec1f27;
+  color: #fff;
+  transition: color, background-color 120ms linear;
+}
+
+.event-card .event-card-link:hover {
+  background-color: #9f0005;
+}
+
+.event-card .event-card-link:active {
+  background-color: #7f0004;
 }
 
 @font-face {
   font-family: "Manifold DSA";
   src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Light.woff);
-  font-weight: 100;
+  font-weight: 300;
 }
 
 @font-face {
   font-family: "Manifold DSA";
-  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Bold.woff);
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Regular.woff);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Manifold DSA";
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Medium.woff);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Manifold DSA";
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-DemiBold.woff);
   font-weight: 600;
 }
 
 @font-face {
   font-family: "Manifold DSA";
-  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-ExtraBold.woff);
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-Bold.woff);
   font-weight: 700;
+}
+
+@font-face {
+  font-family: "Manifold DSA";
+  src: url(../fonts/manifolddsa/Webfont/ManifoldDSA-ExtraBold.woff);
+  font-weight: 800;
 }
 
 @font-face {
@@ -2245,11 +2332,6 @@ header button {
 
 .dropdown:active > .dropdown-menu {
   display: block;
-}
-
-.navbar-nav {
-  display: flex;
-  flex-direction: row;
 }
 
 .navbar-nav .dropdown-toggle::after {

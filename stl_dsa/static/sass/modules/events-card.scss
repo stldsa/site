@@ -1,0 +1,85 @@
+@import "../variables";
+
+.events-wrapper {
+    @media screen and (min-width: 768px) {
+        & {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    }
+}
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background-color: $white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 120ms linear;
+
+    &:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+            0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        
+
+    }
+
+    @media screen and (min-width: 768px) {
+        & {
+            width: 316px;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        & {
+            width: 285px;
+        }
+    }
+
+    & + & {
+        margin-top: 1rem;
+        @media screen and (min-width: 768px) {
+            margin-top: 0;
+        }
+    }
+
+    .event-card-content {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        flex: 1;
+        padding: .5rem 1rem;
+        
+        p {
+            margin: 0;
+        }
+    }
+
+    // .event-card-date {}
+
+    .event-card-title {
+        font-size: $text-xl;
+        font-weight: 500;
+    }
+
+    .event-card-link {
+        padding-inline: 1rem;
+        padding-block: .5rem;
+        font-size: $text-xl;
+        font-weight: 700;
+        background-color: $dsared;
+        color: $white;
+        transition: color, background-color 120ms linear;
+
+        &:hover {
+            background-color: $darkdsared;
+        }
+
+        &:active {
+            background-color: $darkdsared-1x;
+        }
+    }
+}
+
