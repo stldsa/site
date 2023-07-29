@@ -39,41 +39,30 @@
     </div>
   </div>
   <div class="flex flex-row md:flex-col">
-    <div class="col-8 me-4">
+    <div class="md-col-8 md-me-4">
       <h2 class="text-left mb-2 py-4" style="font-family:'Styrene B Bold';">
         Upcoming Events
       </h2>
-      <div class="d-flex">
+      <div class="events-wrapper">
         {% if events %}
         {% for event in events %}
-        <div class="d-flex p-4 me-4 rounded bg-white shadow">
-          <div class="d-flex flex-col justify-items-center align-items-center ">
-            <div>
-              <p>
-                {{ event.start|date:"D" }}
-              </p>
-              <h1>
-                {{ event.start|date:"j" }}
-              </h1>
-              <p>
-                {{ event.start|date:"M" }}
-              </p>
-              </div>
-              {% if event.formation %}
-              <div class="mb-3">
-                {{ event.formation }}
-              </div>
-              {% endif %}
-            </div>
-            <div class="d-flex flex-column justify-content-around event-subtitle mb-3 ps-3 text-end">
-              <span>
-                {{ event.title }}
-              </span>
-              <a href="{{ event.url }}" class="btn btn-primary align-self-center shadow">
-                RSVP
-              </a>
-            </div>
+        <div class="event-card">
+          <div class="event-card-content">
+            <p class="event-card-date">
+              <span>{{ event.start|date:"l, F" }}</span>
+              <span class="red-text">{{ event.start|date:"j" }}<sup>{{ event.start|date:"S" }}</sup></span>
+            </p>
+            <p class="event-card-title">{{ event.title }}</p>
+            {% if event.formation %}
+            <p class="event-card-formation">
+              {{ event.formation }}
+            </p>
+            {% endif %}
           </div>
+          <a href="{{ event.url }}" class="event-card-link" aria-label="Respond to this event">
+            RSVP
+          </a>
+        </div>
         {% endfor %}
         {% else %}
         <p>No upcoming events.</p>
