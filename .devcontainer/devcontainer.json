@@ -38,5 +38,5 @@
       ]
     }
   },
-  "postCreateCommand": "poetry install && poetry run python manage.py reset_db --noinput && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run python manage.py createsuperuser --noinput && pre-commit install && npm install cypress --sav-dev"
+  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && pre-commit install"
 }
