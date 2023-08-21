@@ -29,9 +29,11 @@
                         </div>
                         <div class="col">
                             <div class='card-body'>
-                                <h2 class="card-title">
-                                        {{ story.title }}
-                                </h2>
+                                {% if story.title %}
+                                    <h2 class="card-title">
+                                            {{ story.title }}
+                                    </h2>
+                                {% endif %}
                                 <div class='card-text'>
                                     {{ story.description|richtext }}
                                 </div>
