@@ -32,7 +32,9 @@
         "GitHub.copilot",
         "esbenp.prettier-vscode",
         "redhat.vscode-yaml",
-        "ms-python.black-formatter"
+        "ms-python.black-formatter",
+        "ms-azuretools.vscode-docker",
+        "tamasfe.even-better-toml"
       ]
     }
   },
