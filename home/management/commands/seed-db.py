@@ -1,10 +1,13 @@
 import datetime
 import logging
+from pathlib import Path
 from faker import Faker
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
+from django.core.files.images import ImageFile
 from wagtail.models import Page, Site
+from wagtail.images.models import Image
 from events.models import Event
 from home.models import HomePage, JoinPage
 from news.models import NewsIndexPage, InfoPage, NewsPageRelatedStory
@@ -65,6 +68,12 @@ class Command(BaseCommand):
 
             NewsPage = apps.get_model("news.NewsPage")
 
+            with Path("stl_dsa/static/images/placeholders/400x250.png").open("rb") as f:
+                featured_image = Image.objects.create(
+                    title=fake.sentence(),
+                    file=ImageFile(f, name="400x250.png"),
+                )
+
             def add_news_page():
                 newspage = NewsPage(
                     title=fake.sentence(),
@@ -75,6 +84,7 @@ class Command(BaseCommand):
                         )
                         for _ in range(4)
                     ],
+                    featured_image=featured_image,
                 )
                 newsindexpage.add_child(instance=newspage)
 
