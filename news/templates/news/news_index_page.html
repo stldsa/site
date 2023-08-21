@@ -9,10 +9,10 @@
 <div class="message">{{ message.intro|richtext }}</div>
     {% for update in updates %}
         <h1 class='col-md-8'>
-            {{ update.title }}
+            Recent Updates
         </h1>
         <p>
-            {{ update.first_published_at|date:"D, M jS Y" }}
+            Last Updated: {{ update.last_published_at|date:"D, M jS Y" }}
         </p>
         {% for story in update.stories.all %}
             <div class="row">
@@ -29,11 +29,9 @@
                         </div>
                         <div class="col">
                             <div class='card-body'>
-                                {% if story.title %}
-                                    <h2 class="card-title">
-                                            {{ story.title }}
-                                    </h2>
-                                {% endif %}
+                                <h2 class="card-title">
+                                    {{ story.title }}
+                                </h2>
                                 <div class='card-text'>
                                     {{ story.description|richtext }}
                                 </div>
