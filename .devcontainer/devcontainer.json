@@ -13,10 +13,7 @@
     "vscode": {
       "settings": {
         "python.defaultInterpreterPath": ".venv/bin/python",
-        "python.linting.pylintEnabled": false,
         "python.formatOnSave": true,
-        "python.formatting.provider": "black",
-        "python.linting.mypyEnabled": true,
         "yaml.schemas": {
           "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
         },
@@ -34,7 +31,8 @@
         "eamodio.gitlens",
         "GitHub.copilot",
         "esbenp.prettier-vscode",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "ms-python.black-formatter"
       ]
     }
   },
