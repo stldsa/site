@@ -8,11 +8,13 @@
     <p class="m-4 text-muted">{{ page.first_published_at|date }}</p>
     {% for story in page.stories.all %}
         <div class="card mb-3 mx-4">
-            <div class="card-title">
-                <h1>
-                    {{ story.title }}
-                </h1>
-            </div>
+            {% if story.title is not None %}
+                <div class="card-title">
+                    <h1>
+                        {{ story.title }}
+                    </h1>
+                </div>
+            {% endif %}
             <div class="row g-0 align-items-center">
                 {% if story.related_image %}
                     <div class="col-md-4">
