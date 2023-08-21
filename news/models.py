@@ -105,9 +105,7 @@ class NewsPage(Page):
             widget=title_widget,
             help_text=("Email subject line (may be used as first story title)"),
         ),
-        FieldPanel(
-            "featured_image", help_text=("Should be a photograph, not a graphic")
-        ),
+        FieldPanel("featured_image"),
         InlinePanel("stories", heading="Stories", label="Story"),
     ]
 
