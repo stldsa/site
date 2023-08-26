@@ -1,16 +1,17 @@
-from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
+from wagtail.snippets.models import register_snippet
+from wagtail.snippets.views.snippets import SnippetViewSet
 from committees.models import CommitteePage
 
 
-class CommitteeAdmin(ModelAdmin):
+class CommitteeViewSet(SnippetViewSet):
     model = CommitteePage
     base_url_path = "formations"
     menu_label = "Formations"
     menu_order = 300
     add_to_settings_menu = False
     exclude_from_explorer = False
-    menu_icon = "group"
+    icon = "group"
     list_filter = ("live",)
 
 
-modeladmin_register(CommitteeAdmin)
+register_snippet(CommitteeViewSet)

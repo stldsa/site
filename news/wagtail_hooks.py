@@ -1,12 +1,13 @@
 from wagtail import hooks
-from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
+from wagtail.snippets.models import register_snippet
+from wagtail.snippets.views.snippets import SnippetViewSet
 from news.models import NewsPage
 
 
-class UpdatesAdmin(ModelAdmin):
+class UpdatesViewSet(SnippetViewSet):
     model = NewsPage
     menu_label = "Updates"
-    menu_icon = "mail"
+    icon = "mail"
     base_url_path = "updates"
     list_display = ("__str__", "first_published_at")
     ordering = ("-first_published_at",)
@@ -14,7 +15,7 @@ class UpdatesAdmin(ModelAdmin):
     list_per_page = 10
 
 
-modeladmin_register(UpdatesAdmin)
+register_snippet(UpdatesViewSet)
 
 
 @hooks.register("construct_explorer_page_queryset")
