@@ -25,14 +25,20 @@
     </div>
     <div class="col-md-10 col-lg-5">
       {% if not user.is_authenticated %}
-      <link href='https://actionnetwork.org/css/style-embed-v3.css' rel='stylesheet' type='text/css' /><script src='https://actionnetwork.org/widgets/v5/form/stldsa?format=js&source=widget'></script><div id='can-form-area-stldsa' style='width: 100%'><!-- this div is the target for our HTML insertion --></div>
-        {% if messages %}
-          {% for message in messages %}
-          <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
-            {{ message }}
+        <div class="bg-white shadow">
+          <link href='https://actionnetwork.org/css/style-embed-v3.css' rel='stylesheet' type='text/css' />
+          <script src='https://actionnetwork.org/widgets/v5/form/stldsa?format=js&source=widget'></script>
+          <div id='can-form-area-stldsa' style='width: 100%'>
+            <!-- this div is the target for HTML insertion -->
           </div>
-          {% endfor %}
-        {% endif %}
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+                {{ message }}
+              </div>
+              {% endfor %}
+            {% endif %}
+        </div>
       {% else %}
         <div class="p-3 bg-white rounded shadow">
           <div class="text-wrap" style="font-family:'Styrene B Black';">
