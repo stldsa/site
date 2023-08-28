@@ -7,7 +7,8 @@
     "ghcr.io/devcontainers-contrib/features/poetry:2": {},
     "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
     "ghcr.io/devcontainers-contrib/features/heroku-cli:1": {},
-    "ghcr.io/devcontainers/features/node:1": {}
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/desktop-lite:1": {}
   },
   "customizations": {
     "vscode": {
@@ -38,5 +39,6 @@
       ]
     }
   },
-  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && pre-commit install"
+  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && pre-commit install && npm install && npx cypress install",
+  "forwardPorts": [6080, 5901]
 }
