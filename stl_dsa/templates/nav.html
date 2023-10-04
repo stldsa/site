@@ -108,7 +108,7 @@
                 </ul>
             </div>
         {% else %}
-            <button type="button" class="btn btn-primary ms-3 dropdown-toggle px-3 shadow" data-bs-toggle="dropdown" aria-expanded="false">
+            <button id="nav-login-dropdown" type="button" class="btn btn-primary ms-3 dropdown-toggle px-3 shadow" data-bs-toggle="dropdown" aria-expanded="false">
                 Log In
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -117,11 +117,11 @@
                     {% csrf_token %}
                     <div class="form-group py-1">
                         <label for="DropdownFormEmail">Email</label>
-                        <input type="email" name="username" class="form-control py-1" id="DropdownFormEmail" >
+                        <input type="email" name="username-nav" class="form-control py-1" id="DropdownFormEmail" >
                     </div>
                     <div class="form-group py-1">
                         <label for="DropdownFormPassword">Password</label>
-                        <input type="password" name="password" class="form-control py-1" id="DropdownFormPassword">
+                        <input type="password" name="password-nav" class="form-control py-1" id="DropdownFormPassword">
                     </div>
                     <div class="col text-nowrap py-2">
                         <button type="submit" class="btn btn-red px-3 mx-1">Log In</button>
