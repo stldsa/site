@@ -169,12 +169,12 @@
     "yallist": "^4.0.0",
     "yauzl": "^2.10.0"
   },
-  "devDependencies": {
-    "cypress": "^12.17.4"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.3.0"
+  }
 }

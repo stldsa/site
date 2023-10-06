@@ -298,3 +298,5 @@ nohup.out
 
 media/
 devcontainer.env
+
+cypress/screenshots
