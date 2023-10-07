@@ -8,15 +8,12 @@ repos:
     rev: "v0.0.292"
     hooks:
       - id: ruff
-        args: ["--force-exclude"]
-        stages: [commit]
 
   - repo: https://github.com/psf/black
     rev: 23.9.1
     hooks:
       - id: black
         language_version: python3.11
-        stages: [commit]
 
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v2.4.0
