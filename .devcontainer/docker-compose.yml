@@ -21,6 +21,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: postgres
+  
+  cypress:
+    image: cypress/included
+
 
 volumes:
   postgres-data:

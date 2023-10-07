@@ -5,25 +5,18 @@
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "features": {
     "ghcr.io/devcontainers-contrib/features/poetry:2": {},
-    "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
     "ghcr.io/devcontainers-contrib/features/heroku-cli:1": {},
-    "ghcr.io/devcontainers/features/node:1": {}
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "customizations": {
     "vscode": {
       "settings": {
         "python.defaultInterpreterPath": ".venv/bin/python",
-        "python.formatOnSave": true,
-        "yaml.schemas": {
-          "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
-        },
-        "yaml.customTags": [
-          "!ENV scalar",
-          "!ENV sequence",
-          "tag:yaml.org,2002:python/name:materialx.emoji.to_svg",
-          "tag:yaml.org,2002:python/name:materialx.emoji.twemoji",
-          "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format"
-        ]
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.formatOnSave": true
+        }
       },
       "extensions": [
         "ms-python.python",
@@ -34,10 +27,11 @@
         "redhat.vscode-yaml",
         "ms-python.black-formatter",
         "ms-azuretools.vscode-docker",
-        "tamasfe.even-better-toml"
+        "tamasfe.even-better-toml",
+        "GitHub.vscode-github-actions"
       ]
     }
   },
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb && yarn add cypress && poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && pre-commit install",
+  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run pre-commit install --install-hooks",
   "forwardPorts": [6080, 5901]
 }
