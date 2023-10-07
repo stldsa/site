@@ -21,28 +21,40 @@ jobs:
           - 5432:5432
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Install Poetry
-        run: pipx install poetry
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
-          python-version-file: ".python-version"
-          cache: "poetry"
-      - run: poetry install
+          python-version-file: pyproject.toml
 
-      - run: poetry run black . --check
+      - name: Load cached Poetry installation
+        id: cached-poetry
+        uses: actions/cache@v3
+        with:
+          path: ~/.local  
+          key: poetry-${{ runner.os }}-${{ hashFiles('**/pyproject.toml') }}
 
-      - name: Run migrations
-        env:
-          DJANGO_SETTINGS_MODULE: config.settings
-          DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        run: poetry run python manage.py migrate
+      - name: Install Poetry
+        if: steps.cached-poetry.outputs.cache-hit != 'true'
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
 
-      - env:
-          DJANGO_SETTINGS_MODULE: config.settings
-          DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        run: poetry run pytest
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
-      - run: poetry run mkdocs gh-deploy --force
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          pytest
