@@ -32,6 +32,6 @@
       ]
     }
   },
-  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && poetry run pre-commit install --install-hooks",
+  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && pre-commit install --install-hooks",
   "forwardPorts": [6080, 5901]
 }
