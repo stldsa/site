@@ -62,4 +62,4 @@ jobs:
 
       - uses: cypress-io/github-action@v6
         with: 
-          start: poetry run python manage.py runserver
+          start: poetry run python manage.py migrate && python manage.py runserver
