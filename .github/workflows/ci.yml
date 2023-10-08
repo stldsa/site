@@ -6,7 +6,7 @@ jobs:
   test:
     env:
       ACTIONNETWORK_API_KEYS: "main=fakekey"
-      DJANGO_SETTINGS_MODULE: config.test_settings.py
+      DJANGO_SETTINGS_MODULE: config.test_settings
     runs-on: ubuntu-latest
     services:
       postgres:
