@@ -797,6 +797,7 @@ files = [
 ]
 
 [package.dependencies]
+boto3 = {version = ">=1.4.4", optional = true, markers = "extra == \"s3\""}
 Django = ">=3.2"
 
 [package.extras]
@@ -2310,4 +2311,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11.3"
-content-hash = "6612c288870865527b162071b74abc35b71d6a93a01714d7a65326724ccb9dd9"
+content-hash = "43c3c8c64c79982ed2e0981196cab12b69787a2eb646b16828a46e6cce8310f3"
