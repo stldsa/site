@@ -59,3 +59,7 @@ jobs:
         run: |
           source .venv/bin/activate
           pytest
+
+      - uses: cypress-io/github-action@v6
+        with: 
+          start: python manage.py runserver
