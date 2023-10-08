@@ -61,5 +61,6 @@ jobs:
           pytest
 
       - uses: cypress-io/github-action@v6
-        with: 
-          start: poetry run python manage.py migrate && poetry run python manage.py runserver
+        with:
+          build: poetry run python manage.py migrate
+          start: poetry run python manage.py runserver
