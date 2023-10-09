@@ -5,7 +5,7 @@ description = "A Django + Wagtail based website for the St Louis Chapter of DSA"
 authors = ["Tyler Schlichenmeyer <tyler.schlichenmeyer@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "~3.12.0"
+python = "~3.11.6"
 Django = "^4.2.4"
 django-allauth = "^0.51.0"
 django-crispy-forms = "^1.14.0"
@@ -39,6 +39,7 @@ werkzeug = "^2.2.2"
 psycopg = "^3.1.10"
 l18n = "^2021.3"
 django-taggit = "^4.0.0"
+pytest-tinybird = "^0.2.0"
 
 [tool.poetry.group.dev.dependencies]
 responses = "^0.22.0"
@@ -52,6 +53,7 @@ django-browser-reload = "^1.6.0"
 ruff = "^0.0.292"
 black = "^23.9.1"
 pytest-django = "^4.5.2"
+pytest-tinybird = "^0.2.0"
 
 [tool.pytest.ini_options]
 minversion = "6.0"

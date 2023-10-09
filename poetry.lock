@@ -1667,6 +1667,21 @@ files = [
 pytest = ">=3.6.3"
 
 [[package]]
+name = "pytest-tinybird"
+version = "0.2.0"
+description = "A pytest plugin to report test results to tinybird"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pytest-tinybird-0.2.0.tar.gz", hash = "sha256:66659b5766af0f74665a8b62037785bebb648111cd1b0f7417dd2a5d0e166723"},
+    {file = "pytest_tinybird-0.2.0-py3-none-any.whl", hash = "sha256:7a2aca479a8f224945f4eb5225202914b7df4490fdf34ac6f9d4934744fdda0e"},
+]
+
+[package.dependencies]
+pytest = ">=3.8.0"
+requests = ">=2.28.1"
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -2310,5 +2325,5 @@ files = [
 
 [metadata]
 lock-version = "2.0"
-python-versions = "~3.12.0"
-content-hash = "28723aad5ad0a4e89f35372fe6a4865a9a3497a05d8a012954e156017af3d9ea"
+python-versions = "~3.11.6"
+content-hash = "baff978b2b2734c0cbf26b47b1d50cd0d1a22934ea5ad9dc2471e6fb1ceadcc0"
