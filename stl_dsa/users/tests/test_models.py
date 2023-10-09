@@ -1,3 +1,4 @@
+import pytest
 import responses
 from responses import matchers
 from stl_dsa.users.models import User
@@ -40,6 +41,7 @@ def test_nonexistent_an_person_is_member(faker):
 
 
 @responses.activate
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
 def test_get_uuid_when_doesnt_have_one(faker, db):
     uuid = faker.uuid4()
     email = faker.email()
