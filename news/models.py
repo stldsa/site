@@ -97,6 +97,7 @@ class NewsPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    introduction = RichTextField(blank=True)
     title_widget = forms.TextInput()
     content_panels = [
         FieldPanel(
@@ -106,6 +107,7 @@ class NewsPage(Page):
             help_text=("Email subject line (may be used as first story title)"),
         ),
         FieldPanel("featured_image"),
+        FieldPanel("introduction"),
         InlinePanel("stories", heading="Stories", label="Story"),
     ]
 
