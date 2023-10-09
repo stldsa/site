@@ -249,7 +249,20 @@ REST_FRAMEWORK = {
     ),
 }
 
-ACTIONNETWORK_API_KEYS = env.dict("ACTIONNETWORK_API_KEYS")
+ACTIONNETWORK_API_KEYS = {
+    "main": env("AN_CHAPTER_KEY"),
+    "comms": env("AN_COMMS_KEY"),
+    "community": env("AN_COMMUNITY_KEY"),
+    "sns": env("AN_SNS_KEY"),
+    "electoral": env("AN_ELECTORAL_KEY"),
+    "tech": env("AN_TECH_KEY"),
+    "transit": env("AN_TRANSIT_KEY"),
+    "housing": env("AN_HOUSING_KEY"),
+    "northcounty": env("AN_NORTH_COUNTY_KEY"),
+    "afrosoc": env("AN_AFROSOC_KEY"),
+    "gnd": env("AN_GND_KEY"),
+    "labor": env("AN_LABOR_KEY"),
+}
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
 
