@@ -3,7 +3,7 @@
 {% load wagtailcore_tags wagtailimages_tags wagtailuserbar %}
 
 {% block content %}
-    <div class="col-lg-8">
+    <div class="col-lg-10">
         <div class="bg-mode p-4">
             
                 
@@ -58,6 +58,18 @@
                         <!-- <a class="small text-secondary" href="#!"> <i class="bi bi-calendar-date pe-1"></i> }}</a> -->
                         </div>
                     </div>
+                    {% if story.related_event %}
+                        <div class='col-md-2'>
+                            <div class='card-body'>
+                                <h2>{{ story.related_event.start|date:"l" }}</h2>
+                                <h3 class="mb-2">{{ story.related_event.start|date:"M j" }}</h3>
+                                <p class="mb-2">{{ story.related_event.start|date:"P" }}</p>
+                                <a class='btn btn-primary' href="{{ story.related_event.url }}">
+                                    RSVP
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
                     </div>
                 </div>
                 <hr class="my-4">
