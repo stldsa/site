@@ -3,43 +3,97 @@
 {% load wagtailcore_tags wagtailimages_tags wagtailuserbar %}
 
 {% block content %}
-    {% wagtailuserbar %}
-    <p class="m-4 text-muted">First published: {{ page.first_published_at|date }}</p>
-    <p class="m-4 text-muted">Last updated: {{ page.last_published_at|date }}</p>
-    {% for story in page.stories.all %}
-        <div class="card mb-3 mx-4">
-            <div class="card-title">
-                <h1>
-                    {{ story.title }}
-                </h1>
+    <div class="col-lg-8">
+        <div class="bg-mode p-4">
+            
+                
+            {% wagtailuserbar %}
+            <h1 class="h-4 mb-4">What's New</h1>
+            <div class="card card-body">
+            {% image page.featured_image max-400x250 class="card-img rounded" %}
+            <div class="mt-4">
+                <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">EC Newsletter</a>
             </div>
-            <div class="row g-0 align-items-center">
-                {% if story.related_image %}
-                    <div class="col-md-4">
-                        {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
+            <h1 class="mb-2 h2">
+                {{ page.title }}
+            </h1>
+            <ul class="nav nav-stack gap-3 align-items-center">
+                <li class="nav-item">
+                    <div class="nav-link">
+                        from the <a href="#" class="text-reset btn-link">Executive Committee</a>
                     </div>
-                {% endif %} 
-                <div class="col">
-                    
-                    <div class='card-body'>
-                        <div class='card-text'>
-                            {{ story.description|richtext }}
+                </li>
+                <li class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-date pe-1" viewBox="0 0 16 16">
+                        <path d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z"/>
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                      </svg>{{ page.first_published_at|date }}
+                </li>
+            </ul>
+            <p class="mt-4">
+                {{ page.introduction|richtext }}
+            </p>
+            {% for story in page.stories.all %}
+                <div class="card bg-transparent border-0">
+                    <div class="row g-3">
+                    <div class="col-4">
+                        <!-- Blog image -->
+                        {% image story.related_image max-500x300 class="rounded" src="assets/images/post/4by3/03.jpg" alt="" %}
+                    </div>
+                    <div class="col">
+                        <!-- Blog caption -->
+                        {% if story.sponsoring_formation %}
+                            <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">
+                                {{ story.sponsoring_formation }}
+                            </a>
+                        {% endif %}
+                        <h5>
+                            <a href="blog-details.html" class="btn-link stretched-link text-reset fw-bold">
+                                {{ story.title }}
+                            </a>
+                        </h5>
+                        <div class="d-none d-sm-inline-block">
+                            <p class="mb-2">{{ story.description }}</p>
+                        <!-- BLog date -->
+                        <!-- <a class="small text-secondary" href="#!"> <i class="bi bi-calendar-date pe-1"></i> }}</a> -->
                         </div>
+                    </div>
                     </div>
                 </div>
-                {% if story.related_event %}
-                    <div class='col-md-2'>
-                        <div class='card-body'>
-                            <h2>{{ story.related_event.start|date:"l" }}</h2>
-                            <h3 class="mb-2">{{ story.related_event.start|date:"M j" }}</h3>
-                            <p class="mb-2">{{ story.related_event.start|date:"P" }}</p>
-                            <a class='btn btn-primary' href="{{ story.related_event.url }}">
-                                RSVP
-                            </a>
-                        </div>
+                <hr class="my-4">
+            <!-- 
                     </div>
-                {% endif %}
+                    <div class="row g-0 align-items-center">
+                        {% if story.related_image %}
+                            <div class="col-md-4">
+                                {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
+                            </div>
+                        {% endif %} 
+                        <div class="col">
+                            
+                            <div class='card-body'>
+                                <div class='card-text'>
+                                    {{ story.description|richtext }}
+                                </div>
+                            </div>
+                        </div>
+                        {% if story.related_event %}
+                            <div class='col-md-2'>
+                                <div class='card-body'>
+                                    <h2>{{ story.related_event.start|date:"l" }}</h2>
+                                    <h3 class="mb-2">{{ story.related_event.start|date:"M j" }}</h3>
+                                    <p class="mb-2">{{ story.related_event.start|date:"P" }}</p>
+                                    <a class='btn btn-primary' href="{{ story.related_event.url }}">
+                                        RSVP
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            -->
+            {% endfor %} 
             </div>
         </div>
-    {% endfor %}
+    </div>
 {% endblock %}
