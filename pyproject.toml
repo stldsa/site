@@ -9,7 +9,7 @@ python = "~3.12.0"
 Django = "^4.2.4"
 django-allauth = "^0.51.0"
 django-crispy-forms = "^1.14.0"
-django-environ = "^0.10.0"
+django-environ = "^0.11.2"
 whitenoise = "^6.2.0"
 django-rest-framework = "^0.1.0"
 wagtail = "^5.1.2"
@@ -33,11 +33,12 @@ types-requests = "^2.28.11.5"
 django-sass = "^1.1.0"
 pylint = "^2.15.8"
 boto = {extras = ["crt"], version = "^2.49.0"}
-pytest-django = "^4.5.2"
 factory-boy = "^3.2.1"
 django-extensions = "^3.2.1"
 werkzeug = "^2.2.2"
 psycopg = "^3.1.10"
+l18n = "^2021.3"
+django-taggit = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 responses = "^0.22.0"
@@ -45,17 +46,21 @@ pytest-mock = "^3.10.0"
 model-bakery = "^1.9.0"
 pytest-socket = "^0.5.1"
 pre-commit = "^2.20.0"
-faker = "^15.3.4"
+faker = "^19.6.2"
 pytest = "^7.2.0"
 django-browser-reload = "^1.6.0"
 ruff = "^0.0.292"
 black = "^23.9.1"
+pytest-django = "^4.5.2"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -q --disable-socket --no-migrations"
 DJANGO_SETTINGS_MODULE = "config.settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
+filterwarnings = [
+    "ignore::django.utils.deprecation.RemovedInDjango51Warning",
+]
 
 [tool.ruff]
 line-length = 88
