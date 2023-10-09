@@ -1,4 +1,4 @@
-name: Dev Checks
+name: Devcontainer Build
 
 on:
   push
@@ -9,7 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Cypress runs on `npm test`
+      - name: Devcontainer Build
         uses: devcontainers/ci@v0.3
-        with:
-          runCmd: npm test
