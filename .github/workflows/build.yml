@@ -1,0 +1,15 @@
+name: Dev Checks
+
+on:
+  push
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Cypress runs on `npm test`
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: npm test

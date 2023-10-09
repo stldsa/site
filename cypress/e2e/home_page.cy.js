@@ -3,3 +3,10 @@ describe('The Home Page', () => {
       cy.visit('/')
     })
   })
+
+
+describe('The Admin Updates Page', () => {
+  it('successfully loads', () => {
+    cy.visit('/admin/updates')
+  })
+})

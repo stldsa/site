@@ -1,8 +1,35 @@
-describe('Logging In', function () {
+describe('/login', () => {
 
-    it('on login page', () => {
+    beforeEach(() => {
         cy.visit('/login/')
-        cy.get('#id_username').type('admin@example.com')
-        cy.get('#id_password').type(`password{enter}`)        
+    })
+
+    it('greets with Sign In', () => {
+        cy.contains('h1', 'Log In')
+    })
+
+    it ('links to /signup', () => {
+        cy.contains('Sign up here').should('have.attr', 'href', '/signup/')
+    })
+
+    // it('requires email', () => {
+    //     cy.get('form').contains('Log In').click()
+    //     cy.get('.error-messages').should('contain', 'email con\'t be blank')
+    // })
+    //     cy.get('#id_username').type('admin@example')
+    //     cy.get('.errorlist').should('have.length', 1)
+    // })
+    // it('requires password', () => {
+    //     cy.get('#id_username').type('admin@example')
+    //     cy.get('.errorlist').should('have.length', 1)
+    // })
+
+})
+
+describe('/myDSA', () => {
+    beforeEach(() => {
+        cy.login()
+        cy.url().should('eq', '/myDSA/');
+      
     })
 })

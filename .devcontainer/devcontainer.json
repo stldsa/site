@@ -5,10 +5,10 @@
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "features": {
     "ghcr.io/devcontainers-contrib/features/poetry:2": {},
-    "ghcr.io/devcontainers-contrib/features/heroku-cli:1": {},
     "ghcr.io/devcontainers/features/node:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers-contrib/features/pre-commit:2": {}
+    "ghcr.io/devcontainers-contrib/features/act:1": {},
+    "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+    "ghcr.io/schlich/cst-devcontainer-feature/container-structure-test:1": {}
   },
   "customizations": {
     "vscode": {
@@ -33,6 +33,6 @@
       ]
     }
   },
-  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && pre-commit install --install-hooks",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb && poetry install && poetry run python manage.py migrate && poetry run python manage.py seed-db && pre-commit install --install-hooks && npm install && npx cypress install",
   "forwardPorts": [6080, 5901]
 }
