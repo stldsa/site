@@ -92,45 +92,15 @@
         <a class="btn btn-primary mx-3 shadow" href="/join/">
             Join DSA
         </a>
-        <!-- {% if user.is_authenticated %}
-            <div class="btn-group align-items-center me-4">
-                <a class="btn btn-primary ms-3 pe-1 shadow" href="{% url 'users:detail' %}">
-                    myDSA
-                </a>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split px-1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="btn dropdown-item" href="/logout/">
-                            Log Out
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary ms-3 pe-1 shadow" href="{% url 'users:detail' %}">
+                myDSA
+            </a>
         {% else %}
-            <button id="nav-login-dropdown" type="button" class="btn btn-primary ms-3 dropdown-toggle px-3 shadow" data-bs-toggle="dropdown" aria-expanded="false">
+            <a id="login" href="/login/" class="btn btn-primary">
                 Log In
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                    
-                <form class="px-4 py-3" method="POST" action="/login/">
-                    {% csrf_token %}
-                    <div class="form-group py-1">
-                        <label for="DropdownFormEmail">Email</label>
-                        <input type="email" name="username-nav" class="form-control py-1" id="DropdownFormEmail" >
-                    </div>
-                    <div class="form-group py-1">
-                        <label for="DropdownFormPassword">Password</label>
-                        <input type="password" name="password-nav" class="form-control py-1" id="DropdownFormPassword">
-                    </div>
-                    <div class="col text-nowrap py-2">
-                        <button type="submit" class="btn btn-red px-3 mx-1">Log In</button>
-                        <button type="submit" class="btn btn-outline-dark" formaction="/signup/">Sign Up</button>
-                    </div>
-                </form>
-            </ul>
-        {% endif %} -->
+            </a>
+        {% endif %}
         </div>
 
 </nav>

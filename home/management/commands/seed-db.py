@@ -68,10 +68,18 @@ class Command(BaseCommand):
 
             NewsPage = apps.get_model("news.NewsPage")
 
-            with Path("stl_dsa/static/images/placeholders/400x250.png").open("rb") as f:
+            placeholder = "stl_dsa/static/images/placeholders/400x250.png"
+            with Path(placeholder).open("rb") as f:
                 featured_image = Image.objects.create(
                     title=fake.sentence(),
                     file=ImageFile(f, name="400x250.png"),
+                )
+
+            placeholder_1800 = "stl_dsa/static/images/placeholders/1800x1800.png"
+            with Path(placeholder_1800).open("rb") as f:
+                related_image = Image.objects.create(
+                    title=fake.sentence(),
+                    file=ImageFile(f, name="1800x1800.png"),
                 )
 
             def add_news_page():
@@ -80,7 +88,9 @@ class Command(BaseCommand):
                     first_published_at=fake.date_time(),
                     stories=[
                         NewsPageRelatedStory(
-                            title=fake.sentence(), description=fake.paragraph()
+                            title=fake.sentence(),
+                            description=fake.paragraph(),
+                            related_image=related_image,
                         )
                         for _ in range(4)
                     ],

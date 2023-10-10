@@ -1,8 +1,6 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
-from factory import django, post_generation, Sequence, List
+from factory import django, post_generation, Sequence
 from faker import Faker
-from model_bakery import baker
 
 faker = Faker()
 User = get_user_model()
@@ -18,6 +16,10 @@ class UserFactory(django.DjangoModelFactory):
     is_member = True
 
     @post_generation
-    def password(self, create, extracted, **kwargs):
+    def password(
+        self,
+        _,
+        extracted,
+    ):
         password = extracted or faker.password()
         self.set_password(password)
