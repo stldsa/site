@@ -13,7 +13,7 @@
 Cypress.Commands.add('login', () => { 
     cy.request({
         method: 'POST',
-        url: '/api/users/login/',
+        url: '/login/',
         body: {
             user: {
                 email: 'admin@example.com',

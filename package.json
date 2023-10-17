@@ -170,11 +170,12 @@
     "yauzl": "^2.10.0"
   },
   "scripts": {
-    "test": "npx cypress run"
+    "test": "npx cypress run",
+    "cypress": "npx cypress open"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.3.0"
+    "cypress": "^13.3.1"
   }
 }

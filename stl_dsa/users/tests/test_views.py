@@ -1,6 +1,7 @@
 from stl_dsa.users.views import UserUpdateView
 from stl_dsa.users.models import User
 from allauth.account.views import LoginView
+from django.contrib.auth.models import Group
 
 import pytest
 
@@ -49,3 +50,21 @@ def test_update_routes_to_myDSA(rf, faker):
     view.setup(request)
 
     assert view.get_success_url() == "/myDSA/"
+
+
+def test_mydsa_unauthorized_redirect(client):
+    response = client.get("/myDSA/")
+    assert response.status_code == 302
+    assert response.url == "/login/?next=/myDSA/"
+
+
+def test_mydsa_authorized_as_member_success(client, django_user_model, mocker):
+    user = django_user_model.objects.create_user(
+        email="testuser@example.com", password="12345"
+    )
+    mocker.patch("stl_dsa.users.models.User.is_member", return_value=True)
+    member = Group.objects.create(name="Members")
+    user.groups.add(member)
+    client.login(username="testuser@example.com", password="12345")
+    response = client.get("/myDSA/")
+    assert response.status_code == 200

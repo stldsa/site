@@ -165,7 +165,14 @@ class Command(BaseCommand):
             future_event_2.save()
             formations_page.save()
 
-            Group.objects.create(name="Members")
+            members = Group.objects.create(name="Members")
+
+            member = User.objects.create(
+                username="member@example.com",
+                password="member",
+            )
+
+            member.groups.add(members)
 
     def handle(self, raise_error=False, *args, **options):
         # Root Page and a default homepage are created by wagtail migrations

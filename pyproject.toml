@@ -2,7 +2,7 @@
 name = "stldsa"
 version = "0.1.0"
 description = "A Django + Wagtail based website for the St Louis Chapter of DSA"
-authors = ["Tyler Schlichenmeyer <tyler.schlichenmeyer@gmail.com>"]
+authors = ["Tyler Schlichenmeyer <ty.schlich@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "~3.11.6"
@@ -55,10 +55,11 @@ ruff = "^0.0.292"
 black = "^23.9.1"
 pytest-django = "^4.5.2"
 pytest-tinybird = "^0.2.0"
+pytest-pretty = "^1.2.0"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-ra -q --disable-socket --no-migrations"
+addopts = "-ra --disable-socket --no-migrations"
 DJANGO_SETTINGS_MODULE = "config.settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 filterwarnings = [
