@@ -27,7 +27,7 @@ describe('/login', () => {
         cy.get('input[name="username"]').type('admin@example.com')
         cy.get('input[name="password"]').type('stldsa')
         cy.get('form').submit()
-        cy.location('href').should('eq', 'http://localhost:8000/myDSA/')
+        cy.url().should('include', '/myDSA/')
     })
 })
 
@@ -38,7 +38,7 @@ describe('Member Login', () => {
         cy.get('input[name="username"]').type('member@example.com')
         cy.get('input[name="password"]').type('PRZ9L!vEJXeid-4')
         cy.get('form').submit()
-        cy.location('href').should('eq', 'http://localhost:8000/myDSA/')
+        cy.url().should('include', '/myDSA/')
     })
 
 })

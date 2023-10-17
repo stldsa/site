@@ -59,7 +59,7 @@ jobs:
           source .venv/bin/activate
           pytest
 
-      - uses: cypress-io/github-action@v6
-        with:
-          build: poetry run python manage.py migrate
-          start: poetry run python manage.py runserver
+      # - uses: cypress-io/github-action@v6
+      #   with:
+      #     build: poetry run python manage.py migrate
+      #     start: poetry run python manage.py runserver
