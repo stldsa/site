@@ -1,0 +1,19 @@
+[
+    {
+        "model": "news.newsindexpage",
+        "pk": 4,
+        "fields": {
+            "message": ""
+        }
+    },
+    {
+        "model": "news.newspage",
+        "pk": 5,
+        "fields": {
+            "description": "",
+            "action_network_href": null,
+            "featured_image": null,
+            "introduction": ""
+        }
+    }
+]
