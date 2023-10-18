@@ -284,7 +284,6 @@ stl_dsa/media/
 .vscode/*
 .vscode_env/*
 
-*/fixtures/
 
 *Zone.Identifier
 
