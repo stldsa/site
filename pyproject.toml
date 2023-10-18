@@ -41,6 +41,7 @@ l18n = "^2021.3"
 django-taggit = "^4.0.0"
 pytest-tinybird = "^0.2.0"
 pytz = "^2023.3.post1"
+dj-notebook = "^0.5.0"
 
 [tool.poetry.group.dev.dependencies]
 responses = "^0.22.0"
