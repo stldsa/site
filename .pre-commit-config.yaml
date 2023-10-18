@@ -26,3 +26,13 @@ repos:
     hooks:
       - id: poetry-check
       - id: poetry-lock
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: poetry run pytest
+        language: system
+        types: [python]
+        pass_filenames: false
+        stages: [pre-push]
