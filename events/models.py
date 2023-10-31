@@ -1,3 +1,4 @@
+import requests
 from datetime import datetime
 from django.db import models
 from wagtail.admin.panels import FieldPanel
@@ -25,6 +26,7 @@ class Event(models.Model):
         CommitteePage, on_delete=models.SET_NULL, null=True, blank=True
     )
     uuid = models.UUIDField(null=True, blank=True)
+    featured_image_url = models.URLField(null=True, blank=True)
 
     panels = [
         FieldPanel("title"),
@@ -34,6 +36,12 @@ class Event(models.Model):
 
     def __str__(self):
         return f"{str(self.start.date())} -- {self.title}"
+
+    def fetch_embed_html(self):
+        """Fetch widget embed HTML given the API endpoint for the event."""
+        return requests.get("https://actionnetwork.org/oembed/?url=" + self.url).json()[
+            "html"
+        ]
 
     class Meta:
         ordering = ["-start"]

@@ -9,14 +9,18 @@
     "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
     "ghcr.io/schlich/cst-devcontainer-feature/container-structure-test:1": {}
   },
-  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py loaddata users.json && pre-commit install --install-hooks",
+  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py loaddata users.json && pre-commit install",
   "customizations": {
     "vscode": {
       "settings": {
         "python.defaultInterpreterPath": ".venv/bin/python",
         "[python]": {
-          "editor.defaultFormatter": "ms-python.black-formatter",
-          "editor.formatOnSave": true
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll": true,
+            "source.organizeImports": true
+          },
+          "editor.defaultFormatter": "charliermarsh.ruff"
         }
       },
       "extensions": [
@@ -27,7 +31,6 @@
         "GitHub.copilot",
         "esbenp.prettier-vscode",
         "redhat.vscode-yaml",
-        "ms-python.black-formatter",
         "ms-azuretools.vscode-docker",
         "tamasfe.even-better-toml",
         "GitHub.vscode-github-actions",

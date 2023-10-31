@@ -17,7 +17,7 @@ def media_storage(settings, tmpdir):
 def member_update_response(rf, member):
     view = UserUpdateView()
     request = rf.get("/fake-url/")
-    request.user = user
+    request.user = member
     view.request = request
 
 

@@ -45,8 +45,9 @@
             eventClick: function(info) {
               info.jsEvent.preventDefault(); // don't let the browser navigate
 
-              if (info.event.url) {
-                window.open(info.event.url);
+              if (info.event.id) {
+                const internalUrl = `/events/${info.event.id}/`;
+                window.location.href = internalUrl;
               }
             }
         });
