@@ -24,7 +24,6 @@ repos:
     rev: "1.6.1"
     hooks:
       - id: poetry-check
-      - id: poetry-lock
 
   - repo: local
     hooks:
