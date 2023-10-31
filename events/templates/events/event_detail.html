@@ -3,18 +3,7 @@
 {% load wagtailcore_tags wagtailimages_tags wagtailuserbar %}
 
 {% block content %}
-    <article class="row g-4">
-        <div class="col-lg-8">
-            <div class="bg-mode p-4">
-                {% wagtailuserbar %}
-                <h1 class="h-4 mb-4">{{ event.title }}</h1>
-                {% if event.featured_image_url %}
-                    <img src="{{ event.featured_image_url }}" class="img-fluid mb-4" alt="{{ event.title }}"> 
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-lg-4">
-            {{ event.fetch_embed_html|safe }}
-        </div>
-    </article>
+
+{{ event.fetch_embed_html|safe }}
+
 {% endblock %}
