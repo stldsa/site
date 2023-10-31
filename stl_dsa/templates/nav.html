@@ -92,6 +92,15 @@
         <a class="btn btn-primary mx-3 shadow" href="/join/">
             Join DSA
         </a>
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary mx-3 shadow" href="/myDSA/">
+                myDSA
+            </a>
+        {% else %}
+            <a class="btn btn-primary mx-3 shadow" href="/login/">
+                Login
+            </a>
+        {% endif %}
     </div>
 
 </nav>
