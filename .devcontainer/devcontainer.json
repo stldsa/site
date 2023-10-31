@@ -5,12 +5,11 @@
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "features": {
     "ghcr.io/devcontainers-contrib/features/poetry:2": {},
-    "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers-contrib/features/act:1": {},
     "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
     "ghcr.io/schlich/cst-devcontainer-feature/container-structure-test:1": {}
   },
-  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py loaddata users.json && pre-commit install --install-hooks && npm install && npx cypress install",
+  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py loaddata users.json && pre-commit install --install-hooks",
   "customizations": {
     "vscode": {
       "settings": {

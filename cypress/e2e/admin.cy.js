@@ -5,6 +5,6 @@ describe('The superadmin account...', () => {
         cy.get('input[name="password"]').type('stldsa')
         cy.get('form').submit()
         cy.url().should('include', '/myDSA/')
-        cy.visit('/admin/formations/add')
+        cy.visit('/admin/')
     })
 })
