@@ -1,19 +1,37 @@
 [
     {
+        "model": "wagtailcore.page",
+        "pk": 3,
+        "fields": {
+            "title": "Updates",
+            "content_type": [
+                "news",
+                "newsindexpage"
+            ],
+            "depth": 2,
+            "path": "updates"
+        }
+    },
+    {
         "model": "news.newsindexpage",
+        "pk": 3,
+        "fields": {}
+    },
+    {
+        "model": "wagtailcore.page",
         "pk": 4,
         "fields": {
-            "message": ""
+            "title": "Update 1",
+            "content_type": [
+                "news",
+                "newspage"
+            ],
+            "depth": 3
         }
     },
     {
         "model": "news.newspage",
-        "pk": 5,
-        "fields": {
-            "description": "",
-            "action_network_href": null,
-            "featured_image": null,
-            "introduction": ""
-        }
+        "pk": 4,
+        "fields": {}
     }
 ]

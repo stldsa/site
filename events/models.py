@@ -1,5 +1,6 @@
-import requests
 from datetime import datetime
+
+import requests
 from django.db import models
 from wagtail.admin.panels import FieldPanel
 
@@ -42,6 +43,21 @@ class Event(models.Model):
         return requests.get("https://actionnetwork.org/oembed/?url=" + self.url).json()[
             "html"
         ]
+
+    def transform_to_google_calendar(self):
+        """Transform the Event object into a Google Calendar event object."""
+        return {
+            "summary": self.title,
+            "description": self.description,
+            "start": {
+                "dateTime": self.start,
+                "timeZone": "America/Chicago",
+            },
+            "end": {
+                "dateTime": self.end_time,
+                "timeZone": "America/Chicago",
+            },
+        }
 
     class Meta:
         ordering = ["-start"]

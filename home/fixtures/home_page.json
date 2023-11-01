@@ -1,0 +1,43 @@
+[
+    {
+        "model": "wagtailcore.locale",
+        "pk": 1,
+        "fields": {
+            "language_code": "en"
+        }
+    },
+    {
+        "model": "wagtailcore.page",
+        "pk": 1,
+        "fields": {
+            "title": "St Louis DSA",
+            "content_type": [
+                "home",
+                "homepage"
+            ],
+            "depth": 1,
+            "path": "/"
+        }
+    },
+    {
+        "model": "home.homepage",
+        "pk": 1,
+        "fields": {
+            "highlighted_campaign": "Become an internal organizer!",
+            "highlighted_description": "Internal Organizers are active members who take the lead on reaching out regularly to our current and new members to welcome them into the chapter and help them find their role as active members of STL DSA. If you are interested in helping others get involved in our chapter\\'s work, making our chapter a welcoming and accessible organization, and building a stronger organization that can fight for socialism, let us know!",
+            "action_network_embed_api_endpoint": null,
+            "call_to_action": "https://actionnetwork.org/forms/io-interest-form"
+        }
+    },
+    {
+        "model": "wagtailcore.site",
+        "pk": 1,
+        "fields": {
+            "hostname": "stldsa.org",
+            "port": 443,
+            "site_name": "St Louis DSA",
+            "root_page": 1,
+            "is_default_site": true
+        }
+    }
+]

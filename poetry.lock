@@ -685,13 +685,13 @@ test = ["black", "black[jupyter]", "coverage", "django", "django-extensions", "i
 
 [[package]]
 name = "django"
-version = "4.2.6"
+version = "4.2.7"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "Django-4.2.6-py3-none-any.whl", hash = "sha256:a64d2487cdb00ad7461434320ccc38e60af9c404773a2f95ab0093b4453a3215"},
-    {file = "Django-4.2.6.tar.gz", hash = "sha256:08f41f468b63335aea0d904c5729e0250300f6a1907bf293a65499496cdbc68f"},
+    {file = "Django-4.2.7-py3-none-any.whl", hash = "sha256:e1d37c51ad26186de355cbcec16613ebdabfa9689bbade9c538835205a8abbe9"},
+    {file = "Django-4.2.7.tar.gz", hash = "sha256:8e0f1c2c2786b5c0e39fe1afce24c926040fad47c8ea8ad30aaf1188df29fc41"},
 ]
 
 [package.dependencies]
@@ -1266,6 +1266,24 @@ files = [
 [package.dependencies]
 google-auth = "*"
 httplib2 = ">=0.19.0"
+
+[[package]]
+name = "google-auth-oauthlib"
+version = "1.1.0"
+description = "Google Authentication Library"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "google-auth-oauthlib-1.1.0.tar.gz", hash = "sha256:83ea8c3b0881e453790baff4448e8a6112ac8778d1de9da0b68010b843937afb"},
+    {file = "google_auth_oauthlib-1.1.0-py2.py3-none-any.whl", hash = "sha256:089c6e587d36f4803ac7e0720c045c6a8b1fd1790088b8424975b90d0ee61c12"},
+]
+
+[package.dependencies]
+google-auth = ">=2.15.0"
+requests-oauthlib = ">=0.7.0"
+
+[package.extras]
+tool = ["click (>=6.0.0)"]
 
 [[package]]
 name = "googleapis-common-protos"
@@ -4249,4 +4267,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.12.0"
-content-hash = "9743d80b44bfb7e3d58fca286cae4d35cdc3af468f94ced86beb3e74e20ab98a"
+content-hash = "59165b9a62d164af7ee8805298dbaadee7e9a54d894da778e76b5af32f5a8264"

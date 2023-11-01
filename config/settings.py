@@ -19,6 +19,7 @@ SITE_ID = 1
 WAGTAIL_I18N_ENABLED = False
 USE_I18N = False
 USE_TZ = True
+LANGUAGE_CODE = "en"
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 DJANGO_APPS = [
