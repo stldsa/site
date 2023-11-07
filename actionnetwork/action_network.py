@@ -44,7 +44,7 @@ def save_event(event):
             "url": event["browser_url"],
             "description": event["description"],
             "status": event["status"],
-            "featured_image_url": event["featured_image_url"],
+            "featured_image_url": event.get("featured_image_url"),
         },
     )
 
