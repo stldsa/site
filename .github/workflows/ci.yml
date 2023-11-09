@@ -28,38 +28,19 @@ jobs:
         with:
           python-version-file: pyproject.toml
 
-      - name: Load cached Poetry installation
-        id: cached-poetry
-        uses: actions/cache@v3
-        with:
-          path: ~/.local  
-          key: poetry-${{ runner.os }}-${{ hashFiles('**/pyproject.toml') }}
-
-      - name: Install Poetry
-        if: steps.cached-poetry.outputs.cache-hit != 'true'
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
+      - name: Install pdm
+        run: curl -sSL https://pdm-project.org/install-pdm.py | python3 -
 
       - name: Load cached venv
         id: cached-poetry-dependencies
         uses: actions/cache@v3
         with:
           path: .venv
-          key: ${{ hashFiles('**/poetry.lock') }}
+          key: ${{ hashFiles('**/pdm.lock') }}
 
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
+        run: pdm install
 
       - name: Run tests
-        run: |
-          source .venv/bin/activate
-          pytest
-
-      # - uses: cypress-io/github-action@v6
-      #   with:
-      #     build: poetry run python manage.py migrate
-      #     start: poetry run python manage.py runserver
+        run: pdm run pytest
