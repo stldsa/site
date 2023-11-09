@@ -45,7 +45,11 @@ def save_event(event):
             "description": event["description"],
             "status": event["status"],
             "featured_image_url": event.get("featured_image_url"),
-            "location": event["location"].get("venue"),
+            "location": event["location"]["venue"],
+            "address": " ".join(event["location"]["address_lines"]),
+            "city": event["location"]["locality"],
+            "state": event["location"]["region"],
+            "zip": event["location"]["postal_code"],
         },
     )
 
