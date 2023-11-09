@@ -35,7 +35,6 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     "phonenumber_field",
-    "crispy_forms",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -152,7 +151,6 @@ TEMPLATES = [
 ]
 
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
-CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # FIXTURES
 # ------------------------------------------------------------------------------
