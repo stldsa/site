@@ -9,6 +9,7 @@ from datetime import datetime
 import requests
 from django.db import models
 from wagtail.admin.panels import FieldPanel
+from wagtail.models import Page
 
 from committees.models import CommitteePage
 
@@ -92,3 +93,14 @@ class Event(models.Model):
 
     class Meta:
         ordering = ["-start"]
+
+
+class EventPage(Page):
+    event = models.ForeignKey(Event, on_delete=models.PROTECT)
+    needs_childcare = models.BooleanField(default=False)
+    is_public = models.BooleanField(default=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("needs_childcare"),
+        FieldPanel("is_public"),
+    ]
