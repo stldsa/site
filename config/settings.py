@@ -34,7 +34,7 @@ DJANGO_APPS = [
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
-    "phonenumber_field",
+    "crispy_forms",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
