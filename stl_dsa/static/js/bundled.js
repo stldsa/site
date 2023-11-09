@@ -9569,8 +9569,22 @@ window.mobilecheck = function() {
 document.addEventListener("DOMContentLoaded", function() {
   let calendarEl = document.getElementById("calendar");
   let calendar = new Calendar(calendarEl, {
+    customButtons: {
+      gcal: {
+        text: "\u2795 Google Calendar",
+        click: function() {
+          window.open("https://calendar.google.com/calendar/u/0?cid=YWRtaW5Ac3RsZHNhLm9yZw", "_blank").focus();
+        }
+      },
+      ical: {
+        text: "\u2795 iCal",
+        click: function() {
+          window.open("webcals://stldsa.org/events/feed.ics");
+        }
+      }
+    },
     plugins: [index, index2],
-    height: 500,
+    height: 700,
     initialView: window.mobilecheck() ? "listMonth" : "dayGridMonth",
     themeSystem: "bootstrap5",
     displayEventTime: false,
@@ -9595,6 +9609,11 @@ document.addEventListener("DOMContentLoaded", function() {
       start: "dayGridMonth,listMonth",
       center: "title",
       end: "prev,next"
+    },
+    footerToolbar: {
+      start: "",
+      center: "gcal ical",
+      end: ""
     },
     eventClick: function(info) {
       info.jsEvent.preventDefault();

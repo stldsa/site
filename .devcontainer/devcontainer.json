@@ -4,26 +4,26 @@
   "service": "dev",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/poetry:2": {},
+    "ghcr.io/devcontainers-contrib/features/pdm:2": {},
     "ghcr.io/devcontainers-contrib/features/act:1": {},
     "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
-    "ghcr.io/schlich/cst-devcontainer-feature/container-structure-test:1": {},
-    "ghcr.io/audacioustux/devcontainers/bun:1": {}
+    "ghcr.io/audacioustux/devcontainers/bun:1": {},
+    "ghcr.io/schlich/cst-devcontainer-feature/container-structure-test:1": {}
   },
-  "postCreateCommand": "poetry install && poetry run python manage.py migrate && poetry run python manage.py loaddata users.json home_page.json events.json && pre-commit install",
+  "postCreateCommand": "pdm install && pdm run python manage.py migrate && pdm run python manage.py loaddata users.json home_page.json events.json && pre-commit install",
   "customizations": {
     "vscode": {
       "settings": {
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
         "python.defaultInterpreterPath": ".venv/bin/python",
         "[python]": {
-          "editor.formatOnSave": true,
           "editor.codeActionsOnSave": {
             "source.fixAll": true,
             "source.organizeImports": true
           },
           "editor.defaultFormatter": "charliermarsh.ruff"
         },
-        "notebook.formatOnSave.enabled": true,
         "files.insertFinalNewline": true
       },
       "extensions": [
@@ -37,7 +37,8 @@
         "ms-azuretools.vscode-docker",
         "tamasfe.even-better-toml",
         "GitHub.vscode-github-actions",
-        "ms-toolsai.jupyter"
+        "ms-toolsai.jupyter",
+        "samuelcolvin.jinjahtml"
       ]
     }
   }

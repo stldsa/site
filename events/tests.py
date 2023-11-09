@@ -32,4 +32,4 @@ def test_post_event_to_google_calendar():
         title="Workplace Organizing Training Series Part 2",
         description="Trinity has accessible entrances",
     )
-    assert db_event.transform_to_google_calendar() == google_event
+    assert db_event.gcal() == google_event

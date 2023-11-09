@@ -295,5 +295,6 @@ devcontainer.env
 
 cypress/screenshots
 
-google_client_secret.json
+client_secret*.json
 token.json
+.pdm-python

@@ -45,6 +45,7 @@ def save_event(event):
             "description": event["description"],
             "status": event["status"],
             "featured_image_url": event.get("featured_image_url"),
+            "location": event["location"].get("venue"),
         },
     )
 

@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from django.contrib.auth.views import LoginView
 from rest_framework.authtoken.views import obtain_auth_token
@@ -29,11 +28,6 @@ urlpatterns = [
         name="account_login",
     ),
     path("", include("allauth.urls")),
-    path(
-        "fullcalendar/",
-        TemplateView.as_view(template_name="fullcalendar.html"),
-        name="fullcalendar",
-    ),
     path(
         "person-helper/",
         views.person_helper,

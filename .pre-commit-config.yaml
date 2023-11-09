@@ -20,11 +20,6 @@ repos:
       - id: conventional-pre-commit
         stages: [commit-msg]
 
-  - repo: https://github.com/python-poetry/poetry
-    rev: "1.7.0"
-    hooks:
-      - id: poetry-check
-
   - repo: local
     hooks:
       - id: pytest
