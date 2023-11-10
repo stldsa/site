@@ -11,7 +11,7 @@ services:
     command: sleep infinity
 
     network_mode: service:db
-
+ 
   db:
     image: postgres:latest
     restart: unless-stopped
