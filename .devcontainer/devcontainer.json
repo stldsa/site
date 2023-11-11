@@ -25,7 +25,8 @@
           },
           "editor.defaultFormatter": "charliermarsh.ruff"
         },
-        "files.insertFinalNewline": true
+        "files.insertFinalNewline": true,
+        "editor.fontFamily": "'MesloLGS NF'"
       },
       "extensions": [
         "ms-python.python",
