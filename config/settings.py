@@ -251,7 +251,7 @@ REST_FRAMEWORK = {
 }
 
 ACTIONNETWORK_API_KEYS = {
-    "main": env("AN_CHAPTER_KEY"),
+    "main": env("AN_CHAPTER_KEY", default=None),
     "comms": env("AN_COMMS_KEY"),
     "community": env("AN_COMMUNITY_KEY"),
     "sns": env("AN_SNS_KEY"),
