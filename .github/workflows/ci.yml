@@ -2,6 +2,9 @@ name: CI
 
 on: [push]
 
+env:
+  DJANGO_SECRET_KEY=fakekey
+
 jobs:
   test:
     env:
