@@ -64,10 +64,8 @@ class CommitteePage(Page):
     search_fields = Page.search_fields + [index.SearchField("description")]
 
     content_panels = Page.content_panels + [
-        FieldPanel("formation_type"),
         FieldPanel("description"),
         FieldPanel("image"),
-        FieldPanel("email"),
         FieldPanel("sign_up_form_endpoint"),
     ]
 
