@@ -25,6 +25,12 @@ repos:
     hooks:
       - id: check-github-workflows
         args: ["--verbose"]
+  
+  
+  - repo: https://github.com/jazzband/pip-tools
+    rev: 7.3.0
+    hooks:
+      - id: pip-compile
 
   - repo: local
     hooks:
