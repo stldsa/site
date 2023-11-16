@@ -1,7 +1,11 @@
 name: Devcontainer Build
 
 on:
-  push
+  push:
+    branches:
+      - main
+    paths:
+      - '.devcontainer/**'
 
 jobs:
   cypress:
