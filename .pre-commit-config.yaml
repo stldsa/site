@@ -20,6 +20,12 @@ repos:
       - id: conventional-pre-commit
         stages: [commit-msg]
 
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.27.1
+    hooks:
+      - id: check-github-workflows
+        args: ["--verbose"]
+
   - repo: local
     hooks:
       - id: pytest
