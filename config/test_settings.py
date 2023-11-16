@@ -1,5 +1,4 @@
 """Django Settings"""
-import secrets
 import environ
 
 env = environ.Env()
@@ -253,7 +252,7 @@ REST_FRAMEWORK = {
 
 ACTIONNETWORK_API_KEYS = ACTIONNETWORK_API_KEYS = {"main": "12345"}
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 LOCAL_SERVE_MEDIA_FILES = True
 STORAGES = {

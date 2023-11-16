@@ -26,7 +26,7 @@ class Officers(Orderable):
 
 
 class ExecutiveCommitteePage(Page):
-    description = RichTextField()
+    description = RichTextField(null=True, blank=True)
 
     content_panels = [
         FieldPanel("title"),
@@ -44,11 +44,11 @@ class BylawArticle(Orderable):
     )
 
     name = models.CharField(max_length=100, null=False)
-    body = RichTextField()
+    body = RichTextField(null=True, blank=True)
 
 
 class BylawsPage(Page):
-    description = RichTextField()
+    description = RichTextField(null=True, blank=True)
 
     content_panels = [
         FieldPanel("title"),

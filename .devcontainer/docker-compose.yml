@@ -9,7 +9,9 @@ services:
       - ../..:/workspaces:cached
 
     command: sleep infinity
-
+    
+    environment:
+      - DJANGO_SECRET_KEY=asdf
     network_mode: service:db
  
   db:

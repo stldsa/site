@@ -4,37 +4,36 @@
 
 {% block body_class %}template-blogindexpage{% endblock %}
 {% block content %}
-    {% wagtailuserbar %}
+    <div class="col-lg-10">
+        <div class="bg-mode p-4">
 
-    {% for update in updates %}
-        <h1 class='col-md-8'>
-            What's New
-        </h1>
-        {% for story in update.stories.all %}
-            <div class="card bg-transparent border-0">
-                <div class="row g-3">
-                    <div class="col-4">
-                        <!-- Blog image -->
-                        {% image story.related_image max-500x300 class="rounded" alt="" %}
-                    </div>
-                    <div class="col">
-                        <!-- Blog caption -->
-                        {% if story.sponsoring_formation %}
-                            <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">
-                                {{ story.sponsoring_formation }}
-                            </a>
-                        {% endif %}
-                        <h2 class="h5">
-                            {{ story.title }}
-                        </h2>
-                        <div class="d-none d-sm-inline-block">
-                            <p class="mb-2">{{ story.description|richtext }}</p>
-                        <!-- BLog date -->
-                        <!-- <a class="small text-secondary" href="#!"> <i class="bi bi-calendar-date pe-1"></i> }}</a> -->
+            {% for update in updates %}
+                <h1 class='col-md-8'>
+                    What's New
+                </h1>
+            {% for story in update.stories.all %}
+                <div class="card bg-transparent border-0">
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <!-- Blog image -->
+                            {% image story.related_image max-500x300 class="rounded" alt="" %}
                         </div>
-                    </div>
-                    {% if story.related_event %}
-                        <div class='col-md-2'>
+                        <div class="col">
+                            <!-- Blog caption -->
+                            {% if story.sponsoring_formation %}
+                                <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">
+                                    {{ story.sponsoring_formation }}
+                                </a>
+                            {% endif %}
+                            <h2 class="h5">
+                            {{ story.title }}
+                            </h2>
+                            <div class="d-none d-sm-inline-block">
+                                <p class="mb-2">{{ story.description|richtext }}</p>
+                            </div>
+                        </div>
+                        {% if story.related_event %}
+                            <div class='col-md-2'>
                             <div class='card-body'>
                                 <h2>{{ story.related_event.start|date:"l" }}</h2>
                                 <h3 class="mb-2">{{ story.related_event.start|date:"M j" }}</h3>
@@ -43,13 +42,14 @@
                                     RSVP
                                 </a>
                             </div>
-                        </div>
-                    {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         </div>
     {% endfor %}
+    </div>
     <div class="row">
         <div class="col">
             {% if updates.has_previous %}

@@ -1,5 +1,4 @@
 """Django Settings"""
-import secrets
 
 import environ
 
@@ -265,7 +264,7 @@ ACTIONNETWORK_API_KEYS = {
     "labor": env("AN_LABOR_KEY"),
 }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-SECRET_KEY = env("DJANGO_SECRET_KEY", default=secrets.token_urlsafe())
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 LOCAL_SERVE_MEDIA_FILES = True
 STORAGES = {

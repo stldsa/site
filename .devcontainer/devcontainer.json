@@ -4,14 +4,12 @@
   "service": "dev",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/pdm:2": {},
-    "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
     "ghcr.io/audacioustux/devcontainers/bun:1": {},
     "ghcr.io/devcontainers-contrib/features/heroku-cli:1": {},
     "ghcr.io/devcontainers-contrib/features/act:1": {},
     "ghcr.io/schlich/cst-devcontainer-feature/container-structure-test:1": {}
   },
-  "postCreateCommand": "pdm install && pdm run python manage.py migrate && pdm run python manage.py loaddata users.json home_page.json events.json && pre-commit install",
+  "postCreateCommand": "python -m pip install . && python manage.py migrate && python manage.py loaddata seed.json && pre-commit install",
   "customizations": {
     "vscode": {
       "settings": {
@@ -26,7 +24,8 @@
           "editor.defaultFormatter": "charliermarsh.ruff"
         },
         "files.insertFinalNewline": true,
-        "editor.fontFamily": "'MesloLGS NF'"
+        "editor.fontFamily": "'MesloLGS NF'",
+        "evenBetterToml.schema.enabled": false
       },
       "extensions": [
         "ms-python.python",

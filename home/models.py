@@ -28,13 +28,14 @@ class HomePage(Page):
             .exclude(title__icontains="members only")
             .order_by("start")[:4]
         )
-        context["update"] = NewsPage.objects.live().latest("last_published_at")
+        if news := NewsPage.objects.live():
+            context["update"] = news.latest("last_published_at")
         return context
 
 
 class JoinPage(Page):
     max_count = 1
-    description = RichTextField(blank=False, null=True)
+    description = RichTextField(blank=True, null=True)
     form_html = models.TextField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
