@@ -59,7 +59,6 @@ THIRD_PARTY_APPS = [
     "django_sass",
     "django_extensions",
     "anymail",
-    "",
 ]
 
 LOCAL_APPS = [

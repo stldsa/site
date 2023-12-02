@@ -34,6 +34,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "phonenumber_field",
     "crispy_forms",
+    "cripsy_bootstrap5",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
