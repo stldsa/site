@@ -352,7 +352,7 @@ validators==0.22.0
     # via stl_dsa (pyproject.toml)
 virtualenv==20.24.6
     # via pre-commit
-wagtail==5.2
+wagtail==5.2.1
     # via stl_dsa (pyproject.toml)
 webencodings==0.5.1
     # via html5lib
