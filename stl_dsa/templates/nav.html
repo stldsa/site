@@ -1,23 +1,24 @@
 {% load static %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-around">
-              
+
     <a class="navbar-brand d-flex align-items-center" href="/">
         <div class="row">
             <div class="col-4 col-md-3">
-                <img class="shadow h-100 w-auto" style="max-width: none;" src="{% static 'images/FLAG_VERSION.svg' %}" alt="St Louis DSA">
+                <img class="shadow h-100 w-auto" style="max-width: none;" src="{% static 'images/FLAG_VERSION.svg' %}"
+                    alt="St Louis DSA">
             </div>
             <div class="col-8 col-md-9">
                 <span class="d-flex flex-column justify-content-center mx-2">
-                    
+
                     <h1 class="h4 h1-md" style="font-family:'Styrene B Black'; color:#241f20;">
                         St Louis
                     </h1>
-                    
+
                     <h2 class='h6 h2-md text-wrap' style="color:#241f20; font-family: Styrene B Bold">
                         Democratic Socialists of America
                     </h2>
-                    
+
                 </span>
             </div>
         </div>
@@ -25,7 +26,8 @@
 
     <ul class="d-flex flex-wrap align-items-center justify-content-center list-unstyled text-center">
         <li class="nav-item dropdown list-unstyled">
-            <button class="btn dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 About Us
             </button>
             <div class="dropdown-menu position-absolute">
@@ -37,36 +39,40 @@
             <a class="btn" href="/formations/">Formations</a>
         </li>
         <li class="nav-item">
-            <a class="btn " href="/updates/">Updates</a>
-        </li>
-        <li class="nav-item">
             <a class="btn" href="/events/">Events</a>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Store
-          </button>
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title mx-auto" id="exampleModalLabel">Entering the Merch Store</h5>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Store
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mx-auto" id="exampleModalLabel">Entering the Merch Store</h5>
+                        </div>
+                        <div class="modal-body">
+                            STL DSA's online merchandise store uses a third-party service called Bright Blue Ink to
+                            fulfill our merchandise orders. Please be aware that accounts and payment information
+                            entered at <i>store.stldsa.org</i> are maintained by the vendor and are completely separate
+                            from any accounts or payment information you have stored with the St. Louis DSA. If you have
+                            any questions about your account or payment information on <i>store.stldsa.org</i>, please
+                            contact Bright Blue Ink directly.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" class="close" aria-label="close"
+                                data-bs-dismiss="modal">Close</button>
+                            <a class="btn btn-primary" href="https://store.stldsa.org" target="_blank">Proceed</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  STL DSA's online merchandise store uses a third-party service called Bright Blue Ink to fulfill our merchandise orders. Please be aware that accounts and payment information entered at <i>store.stldsa.org</i> are maintained by the vendor and are completely separate from any accounts or payment information you have stored with the St. Louis DSA. If you have any questions about your account or payment information on <i>store.stldsa.org</i>, please contact Bright Blue Ink directly.
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" class="close" aria-label="close"  data-bs-dismiss="modal">Close</button>
-                  <a class="btn btn-primary" href="https://store.stldsa.org" target="_blank">Proceed</a>
-                </div>
-              </div>
             </div>
-          </div>
         </li>
     </ul>
     <div class="d-flex">
         <!-- <div> -->
-            <!-- <a href="https://facebook.com/STLDSA" target="_blank" rel="noopener noreferrer" style="text-decoration:none;border:0;width:36px;height:36px;padding:2px;margin:5px;color:#ffffff;border-radius:50%;background-color:#ec1f27;">
+        <!-- <a href="https://facebook.com/STLDSA" target="_blank" rel="noopener noreferrer" style="text-decoration:none;border:0;width:36px;height:36px;padding:2px;margin:5px;color:#ffffff;border-radius:50%;background-color:#ec1f27;">
                 <svg class="niftybutton-facebook" style="display:block;fill:currentColor" data-tag="fac" data-name="Facebook" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
                     <path d="M211.9 197.4h-36.7v59.9h36.7V433.1h70.5V256.5h49.2l5.2-59.1h-54.4c0 0 0-22.1 0-33.7 0-13.9 2.8-19.5 16.3-19.5 10.9 0 38.2 0 38.2 0V82.9c0 0-40.2 0-48.8 0 -52.5 0-76.1 23.1-76.1 67.3C211.9 188.8 211.9 197.4 211.9 197.4z">
                     </path>
@@ -90,18 +96,18 @@
                 </svg>
             </a> -->
         <!-- </div> -->
-        
+
         <a class="btn btn-primary mx-3 shadow" href="/join/">
             Join DSA
         </a>
         {% if user.is_authenticated %}
-            <a class="btn btn-primary mx-3 shadow" href="/myDSA/">
-                myDSA
-            </a>
+        <a class="btn btn-primary mx-3 shadow" href="/myDSA/">
+            myDSA
+        </a>
         {% else %}
-            <a class="btn btn-primary mx-3 shadow" href="/login/">
-                Login
-            </a>
+        <a class="btn btn-primary mx-3 shadow" href="/login/">
+            Login
+        </a>
         {% endif %}
     </div>
 
