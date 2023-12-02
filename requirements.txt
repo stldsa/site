@@ -26,6 +26,8 @@ botocore==1.32.1
     # via
     #   boto3
     #   s3transfer
+build==1.0.3
+    # via pip-tools
 cachetools==5.3.2
     # via google-auth
 certifi==2023.7.22
@@ -38,6 +40,8 @@ cfgv==3.4.0
     # via pre-commit
 charset-normalizer==3.3.2
     # via requests
+click==8.1.7
+    # via pip-tools
 cryptography==41.0.5
     # via
     #   django-anymail
@@ -199,6 +203,7 @@ openpyxl==3.1.2
     # via wagtail
 packaging==23.2
     # via
+    #   build
     #   gunicorn
     #   pytest
 phonenumbers==8.13.25
@@ -209,14 +214,14 @@ pillow==10.1.0
     #   wagtail
 pillow-heif==0.13.1
     # via willow
+pip-tools==7.3.0
+    # via stl_dsa (pyproject.toml)
 platformdirs==3.11.0
     # via
     #   pylint
     #   virtualenv
 pluggy==1.3.0
     # via pytest
-poetry-core==1.8.1
-    # via stl_dsa (pyproject.toml)
 polling2==0.5.0
     # via stl_dsa (pyproject.toml)
 pre-commit==3.5.0
@@ -243,6 +248,8 @@ pylint==2.17.7
     # via stl_dsa (pyproject.toml)
 pyparsing==3.1.1
     # via httplib2
+pyproject-hooks==1.0.0
+    # via build
 pytest==7.4.3
     # via
     #   pytest-django
@@ -345,6 +352,8 @@ webencodings==0.5.1
     # via html5lib
 werkzeug==3.0.1
     # via stl_dsa (pyproject.toml)
+wheel==0.42.0
+    # via pip-tools
 whitenoise==6.6.0
     # via stl_dsa (pyproject.toml)
 willow[heif]==1.6.2
@@ -355,4 +364,5 @@ wrapt==1.16.0
     # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:
+# pip
 # setuptools
