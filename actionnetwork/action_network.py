@@ -1,8 +1,9 @@
-import requests
 import logging
-from django.conf import settings
 from urllib.parse import urljoin
+
+import requests
 from django.apps import apps
+from django.conf import settings
 
 API_URL = "https://actionnetwork.org/api/v2/"
 people_URL = urljoin(API_URL, "people")
@@ -48,7 +49,6 @@ def save_event(event):
             "location": event["location"]["venue"],
             "address": " ".join(event["location"]["address_lines"]),
             "city": event["location"]["locality"],
-            "state": event["location"]["region"],
             "zip": event["location"]["postal_code"],
         },
     )
