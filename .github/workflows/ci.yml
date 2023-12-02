@@ -31,19 +31,16 @@ jobs:
         with:
           python-version-file: pyproject.toml
 
-      - name: Install pdm
-        run: curl -sSL https://pdm-project.org/install-pdm.py | python3 -
-
       - name: Load cached venv
-        id: cached-poetry-dependencies
+        id: cached-pip-dependencies
         uses: actions/cache@v3
         with:
           path: .venv
-          key: ${{ hashFiles('**/pdm.lock') }}
+          key: ${{ hashFiles('**/requirements.txt') }}
 
       - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        if: steps.cached-pip-dependencies.outputs.cache-hit != 'true'
         run: python -m pip install .
-          
+
       - name: Run tests
         run: pytest
