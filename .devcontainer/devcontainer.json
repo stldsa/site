@@ -12,6 +12,20 @@
   "postCreateCommand": "python -m pip install . && python manage.py migrate && python manage.py loaddata seed.json && pre-commit install",
   "customizations": {
     "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "eamodio.gitlens",
+        "GitHub.copilot",
+        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker",
+        "tamasfe.even-better-toml",
+        "GitHub.vscode-github-actions",
+        "ms-toolsai.jupyter",
+        "samuelcolvin.jinjahtml"
+      ],
       "settings": {
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,
@@ -26,21 +40,7 @@
         "files.insertFinalNewline": true,
         "editor.fontFamily": "'MesloLGS NF'",
         "evenBetterToml.schema.enabled": false
-      },
-      "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "charliermarsh.ruff",
-        "eamodio.gitlens",
-        "GitHub.copilot",
-        "esbenp.prettier-vscode",
-        "redhat.vscode-yaml",
-        "ms-azuretools.vscode-docker",
-        "tamasfe.even-better-toml",
-        "GitHub.vscode-github-actions",
-        "ms-toolsai.jupyter",
-        "samuelcolvin.jinjahtml"
-      ]
+      }
     }
   }
 }

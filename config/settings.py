@@ -251,17 +251,17 @@ REST_FRAMEWORK = {
 
 ACTIONNETWORK_API_KEYS = {
     "main": env("AN_CHAPTER_KEY", default=None),
-    "comms": env("AN_COMMS_KEY"),
-    "community": env("AN_COMMUNITY_KEY"),
-    "sns": env("AN_SNS_KEY"),
-    "electoral": env("AN_ELECTORAL_KEY"),
-    "tech": env("AN_TECH_KEY"),
-    "transit": env("AN_TRANSIT_KEY"),
-    "housing": env("AN_HOUSING_KEY"),
-    "northcounty": env("AN_NORTH_COUNTY_KEY"),
-    "afrosoc": env("AN_AFROSOC_KEY"),
-    "gnd": env("AN_GND_KEY"),
-    "labor": env("AN_LABOR_KEY"),
+    "comms": env("AN_COMMS_KEY", default=None),
+    "community": env("AN_COMMUNITY_KEY", default=None),
+    "sns": env("AN_SNS_KEY", default=None),
+    "electoral": env("AN_ELECTORAL_KEY", default=None),
+    "tech": env("AN_TECH_KEY", default=None),
+    "transit": env("AN_TRANSIT_KEY", default=None),
+    "housing": env("AN_HOUSING_KEY", default=None),
+    "northcounty": env("AN_NORTH_COUNTY_KEY", default=None),
+    "afrosoc": env("AN_AFROSOC_KEY", default=None),
+    "gnd": env("AN_GND_KEY", default=None),
+    "labor": env("AN_LABOR_KEY", default=None),
 }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 SECRET_KEY = env("DJANGO_SECRET_KEY")
