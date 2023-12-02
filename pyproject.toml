@@ -49,6 +49,7 @@ dependencies = [
     "django-ical>=1.9.2",
     "pre-commit>=3.5.0",
     "pip-tools>=7.3.0",
+    "crispy-bootstrap5>=2023.10",
 ]
 name = "stl_dsa"
 description = "A Django + Wagtail based website for the St Louis Chapter of DSA"

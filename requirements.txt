@@ -42,6 +42,8 @@ charset-normalizer==3.3.2
     # via requests
 click==8.1.7
     # via pip-tools
+crispy-bootstrap5==2023.10
+    # via stl_dsa (pyproject.toml)
 cryptography==41.0.5
     # via
     #   django-anymail
@@ -56,10 +58,12 @@ distlib==0.3.7
     # via virtualenv
 django==4.2.7
     # via
+    #   crispy-bootstrap5
     #   django-allauth
     #   django-anymail
     #   django-appconf
     #   django-browser-reload
+    #   django-crispy-forms
     #   django-extensions
     #   django-filter
     #   django-ical
@@ -88,8 +92,10 @@ django-cache-url==3.4.4
     # via stl_dsa (pyproject.toml)
 django-compressor==2.4.1
     # via stl_dsa (pyproject.toml)
-django-crispy-forms==1.14.0
-    # via stl_dsa (pyproject.toml)
+django-crispy-forms==2.1
+    # via
+    #   crispy-bootstrap5
+    #   stl_dsa (pyproject.toml)
 django-environ==0.11.2
     # via stl_dsa (pyproject.toml)
 django-extensions==3.2.3

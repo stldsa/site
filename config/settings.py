@@ -34,6 +34,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
+    "crispy_bootstrap5",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -58,6 +59,7 @@ THIRD_PARTY_APPS = [
     "django_sass",
     "django_extensions",
     "anymail",
+    "",
 ]
 
 LOCAL_APPS = [
@@ -293,3 +295,5 @@ CACHE_URL = env("CACHE_URL", default=None)
 
 # Remove after upgrade to Django 5.0
 FORM_RENDERER = "django.forms.renderers.DjangoDivFormRenderer"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
