@@ -27,7 +27,7 @@ class Person(models.Model):
 
 
 class CommitteePage(Page):
-    parent_page_types = ["CommitteesPage"]
+    parent_page_types = ["FormationsPage"]
 
     COMMITTEE = "CT"
     WORKING_GROUP = "WG"
@@ -38,7 +38,7 @@ class CommitteePage(Page):
         (CAUCUS, "Caucus"),
     ]
 
-    description = RichTextField()
+    description = RichTextField(null=True, blank=True)
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -47,19 +47,10 @@ class CommitteePage(Page):
         related_name="+",
     )
     formation_type = models.CharField(
-        max_length=2, choices=FORMATION_CHOICES, default=""
+        max_length=2, choices=FORMATION_CHOICES, default="", null=True, blank=True
     )
-    leader = models.ForeignKey(
-        Person,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="committee_leader",
-    )
-    leaders = models.ManyToManyField(User, blank=True)
-    email = models.EmailField()
-    people = models.ManyToManyField(Person, related_name="committee_member", blank=True)
     sign_up_form_endpoint = models.TextField(null=True, blank=True)
+    gcal_url = models.URLField(null=True, blank=True)
 
     search_fields = Page.search_fields + [index.SearchField("description")]
 
@@ -67,6 +58,7 @@ class CommitteePage(Page):
         FieldPanel("description"),
         FieldPanel("image"),
         FieldPanel("sign_up_form_endpoint"),
+        FieldPanel("gcal_url"),
     ]
 
     def get_context(self, request):
@@ -93,23 +85,8 @@ class CommitteePage(Page):
         verbose_name = "Formation"
 
 
-class CommitteesPage(Page):
-    subpage_types = ["CommitteePage"]
-    description = RichTextField(null=True, blank=True)
-
-    content_panels = Page.content_panels + [
-        FieldPanel("description"),
-    ]
-
-    def get_context(self, request):
-        context = super().get_context(request)
-        context["committees"] = self.objects.get_children().live().order_by("title")
-
-        return context
-
-
 class FormationsPage(Page):
-    subpage_types = ["CommitteesPage"]
+    subpage_types = ["CommitteePage"]
     description = RichTextField(null=True, blank=True)
 
     content_panels = Page.content_panels + [

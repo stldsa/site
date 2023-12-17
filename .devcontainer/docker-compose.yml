@@ -9,11 +9,11 @@ services:
       - ../..:/workspaces:cached
 
     command: sleep infinity
-    
+
     environment:
       - DJANGO_SECRET_KEY=asdf
     network_mode: service:db
- 
+
   db:
     image: postgres:latest
     restart: unless-stopped
@@ -23,9 +23,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: postgres
-  
-  cypress:
-    image: cypress/included
+
 
 
 volumes:

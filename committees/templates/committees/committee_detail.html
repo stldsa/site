@@ -6,10 +6,14 @@
 <div class='container'>
     <div class="row">
         <div class="col-sm">
-            <h4>Current Chair:</h4>
-            <p>{{ committee.leader.anonymous_name }} | {{ committee.leader.email }}</p>
+            {{ committee.leader.email }}</p>
             <h4>Description:</h4>
             <p>{{ committee.description }}</p>
+            <h4>
+                <a href="{{ committee.gcal_url }}"">
+                    Google Calendar
+                </a>
+            </h4>
         </div>
         <div class="col-sm">
             <h1>Placeholder</h1>

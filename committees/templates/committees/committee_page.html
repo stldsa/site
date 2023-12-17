@@ -10,9 +10,14 @@
                 <h2 class="card-header">{{ page }}</h2>
                 <div class="card-body">
                     <h3>Current Chair(s):</h3>
-                    <p>{{ page.leaders.anon_name }} | {{ page.email|urlize }}</p>
+                    {{ page.email|urlize }}</p>
                     <h3>Description:</h3>
                     <p>{{ page.description|richtext }}</p>
+                    <h4>
+                        <a href="{{ page.gcal_url }}"">
+                            Google Calendar
+                        </a>
+                    </h4>
                     {% if upcoming_events %}
                         <h3>Upcoming Events:</h3>
                         <div>
