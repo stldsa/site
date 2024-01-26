@@ -1,0 +1,9 @@
+{
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/gh-cli:1": {
+      "version": "1.0.12",
+      "resolved": "ghcr.io/devcontainers-contrib/features/gh-cli@sha256:69c6167df2b375983e0a26e343287cee12f5c3dd9114ee9808c0bb98f9ad81d0",
+      "integrity": "sha256:69c6167df2b375983e0a26e343287cee12f5c3dd9114ee9808c0bb98f9ad81d0"
+    }
+  }
+}
