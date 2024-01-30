@@ -8,7 +8,7 @@ env = environ.Env()
 DEBUG = env.bool("DJANGO_DEBUG", default=True)
 
 ROOT_DIR = environ.Path(__file__) - 2
-APPS_DIR = ROOT_DIR.path("stl_dsa")
+APPS_DIR = ROOT_DIR.path("stldsa")
 BASE_DIR = ROOT_DIR
 if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=True):
     env.read_env(str(ROOT_DIR.path(".env")))
@@ -62,7 +62,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "stl_dsa.users",
+    "stldsa.users",
     "events",
     "committees",
     "news",
@@ -71,7 +71,7 @@ LOCAL_APPS = [
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
-MIGRATION_MODULES = {"sites": "stl_dsa.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "stldsa.contrib.sites.migrations"}
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
@@ -143,7 +143,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "stl_dsa.utils.context_processors.settings_context",
+                "stldsa.utils.context_processors.settings_context",
                 "wagtail.contrib.settings.context_processors.settings",
             ],
         },
@@ -229,11 +229,11 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_ADAPTER = "stl_dsa.users.adapters.MyAccountAdapter"
-SOCIALACCOUNT_ADAPTER = "stl_dsa.users.adapters.SocialAccountAdapter"
+ACCOUNT_ADAPTER = "stldsa.users.adapters.MyAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "stldsa.users.adapters.SocialAccountAdapter"
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_FORMS = {"signup": "stl_dsa.users.forms.SignUpForm"}
+ACCOUNT_FORMS = {"signup": "stldsa.users.forms.SignUpForm"}
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "email"
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True

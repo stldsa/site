@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from stl_dsa.users.models import User
+from stldsa.users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):

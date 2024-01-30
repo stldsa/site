@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter, SimpleRouter
 from django.conf import settings
-from stl_dsa.users.api.views import UserViewSet
+from stldsa.users.api.views import UserViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()

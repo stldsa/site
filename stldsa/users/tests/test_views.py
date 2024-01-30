@@ -1,5 +1,5 @@
-from stl_dsa.users.views import UserUpdateView
-from stl_dsa.users.models import User
+from stldsa.users.views import UserUpdateView
+from stldsa.users.models import User
 from allauth.account.views import LoginView
 from django.contrib.auth.models import Group
 
@@ -62,7 +62,7 @@ def test_mydsa_authorized_as_member_success(client, django_user_model, mocker):
     user = django_user_model.objects.create_user(
         email="testuser@example.com", password="12345"
     )
-    mocker.patch("stl_dsa.users.models.User.is_member", return_value=True)
+    mocker.patch("stldsa.users.models.User.is_member", return_value=True)
     member = Group.objects.create(name="Members")
     user.groups.add(member)
     client.login(username="testuser@example.com", password="12345")

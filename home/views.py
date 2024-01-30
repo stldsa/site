@@ -1,6 +1,6 @@
 from home.forms import EmailSubmissionForm
 from django.views.generic.edit import FormView
-from stl_dsa.users.models import User
+from stldsa.users.models import User
 
 
 class EmailFormView(FormView):

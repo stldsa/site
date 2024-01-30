@@ -68,14 +68,14 @@ class Command(BaseCommand):
 
             NewsPage = apps.get_model("news.NewsPage")
 
-            placeholder = "stl_dsa/static/images/placeholders/400x250.png"
+            placeholder = "stldsa/static/images/placeholders/400x250.png"
             with Path(placeholder).open("rb") as f:
                 featured_image = Image.objects.create(
                     title=fake.sentence(),
                     file=ImageFile(f, name="400x250.png"),
                 )
 
-            placeholder_1800 = "stl_dsa/static/images/placeholders/1800x1800.png"
+            placeholder_1800 = "stldsa/static/images/placeholders/1800x1800.png"
             with Path(placeholder_1800).open("rb") as f:
                 related_image = Image.objects.create(
                     title=fake.sentence(),

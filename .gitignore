@@ -272,7 +272,7 @@ pip-selfcheck.json
 
 ### Project template
 
-stl_dsa/media/
+stldsa/media/
 
 .pytest_cache/
 
@@ -298,3 +298,9 @@ cypress/screenshots
 client_secret*.json
 token.json
 .pdm-python
+
+.tool-versions
+.python-version
+
+.local
+.rye

@@ -1,18 +1,66 @@
 {
-	"name": "Python 3",
-	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
-	"postCreateCommand": "curl -sSf https://rye-up.com/get | bash && echo 'source $HOME/.rye/env' >> ~/.bashrc",
-	"postAttachCommand": "/home/vscode/.rye/shims/rye sync",
-    "containerEnv": {
-        "RYE_INSTALL_OPTION": "--yes"
+    "name": "STL DSA (Python + Postgres)",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "dev",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "features": {
+        "ghcr.io/wustl-data/devcontainer-features/mise:1.0.2": {}
     },
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-python.python",
-				"github.vscode-github-actions",
-				"tamasfe.even-better-toml"
-			]
-		}
-	}
+    "containerEnv": {
+        "DJANGO_SECRET_KEY": "solidarityforever",
+        "DJANGO_SETTINGS_MODULE": "config.settings",
+        "MISE_PYTHON_VENV_AUTO_CREATE": "true",
+        "RYE_TOOLCHAIN": "/usr/local/bin/python",
+        "RYE_HOME": "${containerWorkspaceFolder}/.rye"
+    },
+    "remoteEnv": {
+        "PATH": "/usr/local/share/mise/shims:${containerEnv:PATH}"
+    },
+    "postCreateCommand": "./mise_activate.sh",
+    "postStartCommand": "mise use -y rye bun",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "github.vscode-github-actions",
+                "tamasfe.even-better-toml",
+                "ms-azuretools.vscode-docker"
+            ],
+            "settings": {
+                // Opens README when you open your dev container
+                "workbench.startupEditor": "readme",
+                // enables pytest in the VS Code UI
+                "python.testing.pytestArgs": [
+                    "tests"
+                ],
+                "python.testing.unittestEnabled": false,
+                "python.testing.pytestEnabled": true,
+                // tells VS Code where your virtual environment is
+                "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+                // type checking is usually off by default
+                "python.analysis.typeCheckingMode": "basic",
+                // this is most helpful on dev container startup when python extention loading can lag behind your shell opening
+                "python.terminal.activateEnvInCurrentTerminal": true,
+                // these settings are for Ruff
+                "editor.formatOnSave": true,
+                "[python]": {
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll.ruff": true,
+                        "source.organizeImports.ruff": true
+                    },
+                    "editor.defaultFormatter": "charliermarsh.ruff"
+                },
+                "notebook.formatOnSave.enabled": true,
+                "notebook.codeActionsOnSave": {
+                    "notebook.source.fixAll": true,
+                    "notebook.source.organizeImports": true
+                },
+                // this is for pre-commit linting
+                "files.insertFinalNewline": true,
+                // just a good setting
+                "editor.stickyScroll.enabled": true
+            }
+        }
+    }
 }

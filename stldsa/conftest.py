@@ -1,5 +1,5 @@
 import pytest
-from stl_dsa.users.views import UserUpdateView
+from stldsa.users.views import UserUpdateView
 
 
 @pytest.fixture
