@@ -36,6 +36,7 @@ dependencies = [
     "django-browser-reload>=1.12.0",
     "django-ical>=1.9.2",
     "crispy-bootstrap5>=2023.10",
+    "argon2-cffi>=23.1.0",
 ]
 name = "stldsa"
 description = "A Django + Wagtail based website for the St Louis Chapter of DSA"
