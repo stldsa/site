@@ -33,4 +33,4 @@ jobs:
           enable-cache: true
 
       - name: Run tests
-        run: rye run pytest
+        run: rye sync && rye run pytest
