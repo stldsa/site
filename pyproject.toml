@@ -73,4 +73,5 @@ dev-dependencies = [
     "pytest-django>=4.8.0",
     "responses>=0.24.1",
     "factory-boy>=3.3.0",
+    "pip-tools>=7.3.0",
 ]
