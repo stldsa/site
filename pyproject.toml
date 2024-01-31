@@ -38,6 +38,7 @@ dependencies = [
     "argon2-cffi>=23.1.0",
     "dj-notebook>=0.6.1",
     "ipykernel>=6.29.0",
+    "responses>=0.24.1",
 ]
 name = "stldsa"
 description = "A Django + Wagtail based website for the St Louis Chapter of DSA"
