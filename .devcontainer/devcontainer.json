@@ -1,5 +1,5 @@
 {
-    "name": "STL DSA (Python + Postgres)",
+    "name": "STL DSA (Python)",
     "image": "mcr.microsoft.com/devcontainers/python:3.11",
     "features": {
         "ghcr.io/wustl-data/devcontainer-features/mise:1.0.2": {}
@@ -21,7 +21,8 @@
                 "ms-python.python",
                 "github.vscode-github-actions",
                 "tamasfe.even-better-toml",
-                "ms-azuretools.vscode-docker"
+                "ms-azuretools.vscode-docker",
+                "ms-toolsai.jupyter"
             ],
             "settings": {
                 // Opens README when you open your dev container

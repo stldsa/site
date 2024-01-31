@@ -131,3 +131,7 @@ class ResourcesPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("resources"),
     ]
+
+
+class Formation(models.Model):
+    pass
