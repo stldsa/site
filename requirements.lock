@@ -77,7 +77,6 @@ pyasn1==0.5.1
 pyasn1-modules==0.3.0
 pycparser==2.21
 pyjwt==2.8.0
-pyopenssl==24.0.0
 pyparsing==3.1.1
 python-dateutil==2.8.2
 python3-openid==3.2.0
