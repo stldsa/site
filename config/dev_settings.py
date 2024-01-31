@@ -1,15 +1,11 @@
 """Django Settings"""
-
-import environ
-
-env = environ.Env()
-
+import os
+from pathlib import Path
 
 DEBUG = True
 
-ROOT_DIR = environ.Path(__file__) - 2
-APPS_DIR = ROOT_DIR.path("stldsa")
-BASE_DIR = ROOT_DIR
+ROOT_DIR = BASE_DIR = Path("/workspaces/site")
+APPS_DIR = ROOT_DIR / "stldsa"
 
 WAGTAIL_SITE_NAME = "St Louis DSA"
 TIME_ZONE = "America/Chicago"
@@ -110,9 +106,9 @@ MIDDLEWARE = [
 ]
 
 # STATIC
-STATIC_ROOT = str(BASE_DIR.path("staticfiles"))
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "/staticfiles/"
-STATICFILES_DIRS = [str(APPS_DIR.path("static"))]
+STATICFILES_DIRS = [APPS_DIR / "static"]
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
@@ -120,7 +116,7 @@ STATICFILES_FINDERS = [
 
 # MEDIA
 # ------------------------------------------------------------------------------
-MEDIA_ROOT = str(BASE_DIR.path("media"))
+MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "media/"
 
 # TEMPLATES
@@ -128,7 +124,7 @@ MEDIA_URL = "media/"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [str(APPS_DIR.path("templates"))],
+        "DIRS": [APPS_DIR / "templates"],
         "OPTIONS": {
             "loaders": [
                 "django.template.loaders.filesystem.Loader",
@@ -152,7 +148,7 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 # FIXTURES
 # ------------------------------------------------------------------------------
-FIXTURE_DIRS = (str(APPS_DIR.path("fixtures")),)
+FIXTURE_DIRS = (APPS_DIR / "fixtures",)
 
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -199,7 +195,7 @@ REST_FRAMEWORK = {
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 LOCAL_SERVE_MEDIA_FILES = True
 STORAGES = {
@@ -216,7 +212,6 @@ ALLOWED_HOSTS = ["*"]
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "db.sqlite3"}}
 
 WAGTAILADMIN_BASE_URL = "https://localhost:8000"
-CACHE_URL = None
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
