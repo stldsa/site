@@ -5,8 +5,8 @@
 {% block content %}
     <div class="col-lg-10">
         <div class="bg-mode p-4">
-            
-                
+
+
             {% wagtailuserbar %}
             <h1 class="h-4 mb-4">What's New</h1>
             <div class="card card-body">
@@ -68,16 +68,16 @@
                     </div>
                 </div>
                 <hr class="my-4">
-            <!-- 
+            <!--
                     </div>
                     <div class="row g-0 align-items-center">
                         {% if story.related_image %}
                             <div class="col-md-4">
                                 {% image story.related_image max-400x300 class="img-fluid rounded-start" %}
                             </div>
-                        {% endif %} 
+                        {% endif %}
                         <div class="col">
-                            
+
                             <div class='card-body'>
                                 <div class='card-text'>
                                     {{ story.description|richtext }}
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             -->
-            {% endfor %} 
+            {% endfor %}
             </div>
         </div>
     </div>

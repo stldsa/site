@@ -75,3 +75,7 @@ dev-dependencies = [
     "factory-boy>=3.3.0",
     "pip-tools>=7.3.0",
 ]
+
+[tool.rye.scripts]
+server = "python manage.py runserver_plus"
+migrations = "django-admin migrate"

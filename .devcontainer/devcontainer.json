@@ -1,15 +1,12 @@
 {
     "name": "STL DSA (Python + Postgres)",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "dev",
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "image": "mcr.microsoft.com/devcontainers/python:3.11",
     "features": {
         "ghcr.io/wustl-data/devcontainer-features/mise:1.0.2": {}
     },
     "containerEnv": {
         "DJANGO_SECRET_KEY": "solidarityforever",
-        "DJANGO_SETTINGS_MODULE": "config.settings",
-        "MISE_PYTHON_VENV_AUTO_CREATE": "true",
+        "DJANGO_SETTINGS_MODULE": "config.dev_settings",
         "RYE_TOOLCHAIN": "/usr/local/bin/python",
         "RYE_HOME": "${containerWorkspaceFolder}/.rye"
     },

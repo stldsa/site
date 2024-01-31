@@ -10,7 +10,7 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add('login', () => { 
+Cypress.Commands.add('login', () => {
     cy.request({
         method: 'POST',
         url: '/login/',

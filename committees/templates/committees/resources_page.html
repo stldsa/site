@@ -11,14 +11,14 @@
                 {% if block.block_type == 'resource_name' %}
                     <h2 class="accordion-header" id="heading{{ count }}">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ count }}" aria-expanded="false" aria-controls="collapse{{ count }}">
-                            
+
                         <section>{{ block.value }}</section>
                         </button>
                     </h2>
                 {% elif block.block_type == 'information' %}
                     <div id="collapse{{ count }}" class="accordion-collapse collapse" aria-labelledby="heading{{ count }}" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            {{ block.value }} 
+                            {{ block.value }}
                         </div>
                     </div>
                 {% endif %}

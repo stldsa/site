@@ -7,7 +7,7 @@ Welcome to the codebase for the St Louis DSA website! We hope this guide will ma
 
 ## Quickstart
 
-The quickest and easiest way to get plugged into our development environment is with VS Code Dev Containers. If you'd like to try out a different IDE, you may try either tunneling into the docker container created by `.devcontainer/docker-compose.yaml` or by installing the Python, Poetry, and Postgres dependencies yourself.  
+The quickest and easiest way to get plugged into our development environment is with VS Code Dev Containers. If you'd like to try out a different IDE, you may try either tunneling into the docker container created by `.devcontainer/docker-compose.yaml` or by installing the Python, Poetry, and Postgres dependencies yourself.
 
 ### Creating and developing in your Dev Container
 
@@ -19,14 +19,14 @@ After a few minutes, you will see a prompt for an email address. Enter any email
 Done. Press any key to close the terminal.
 ```
 
-Press any key and a new terminal shell will open. 
+Press any key and a new terminal shell will open.
 
 Run the following two commands to view a local copy of the site in your browser:
 
 #### Activate your Python virtual environment
 ```bash
 poetry shell
-``` 
+```
 
 #### Run the web server:
 ```bash
@@ -86,7 +86,7 @@ If you would like to contribute to this repository, a couple of helpful steps:
 
 ### Code formatting
 
-Use [Black](https://github.com/psf/black) in your IDE to automatically format your code according to Black's strict linting standards each time you save your code. Black automatically comes with the Python extension for VS Code and should come preconfigured according to the `.vscode` file that comes with this repo. 
+Use [Black](https://github.com/psf/black) in your IDE to automatically format your code according to Black's strict linting standards each time you save your code. Black automatically comes with the Python extension for VS Code and should come preconfigured according to the `.vscode` file that comes with this repo.
 
 > *Optional*: Install **pre-commit** to ensure your code is black-formatted before each of your commits (this should be redundant assuming you're already running Black in the first place):
 
@@ -94,13 +94,13 @@ Use [Black](https://github.com/psf/black) in your IDE to automatically format yo
 
 ### Working on branches
 
-Before you start work on an issue/feature, make sure your code base is up to date. 
+Before you start work on an issue/feature, make sure your code base is up to date.
 
 On the `main` branch:
 
     $ git pull
 
-If you are working off of a fork, make sure you have STL DSA's repo as a remote repo and pull from there, i.e. `git pull <remote>`. 
+If you are working off of a fork, make sure you have STL DSA's repo as a remote repo and pull from there, i.e. `git pull <remote>`.
 
 Now create a new branch and switch to it:
 

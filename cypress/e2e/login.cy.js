@@ -32,7 +32,7 @@ describe('/login', () => {
 })
 
 describe('Member Login', () => {
-    
+
     it ('logs in', () => {
         cy.visit('/login/')
         cy.get('input[name="username"]').type('member@example.com')

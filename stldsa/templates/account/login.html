@@ -10,7 +10,7 @@
     <p class="card-subtitle">Log into your myDSA account for your membership status and more!</p>
     {% get_providers as socialaccount_providers %}
 
-    
+
     <form class="login my-3 min-w-md" method="POST" action="{% url 'account_login' %}">
       <div class="flex flex-col">
         {% csrf_token %}
@@ -26,4 +26,3 @@
 </div>
 
 {% endblock %}
-

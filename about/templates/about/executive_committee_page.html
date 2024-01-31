@@ -11,9 +11,9 @@
             {% for position in page.executive_committee.all %}
                 <div class="align-items-center p-3">
                     <div class="align-items-center my-3 text-right">
-                        <h2 class="p-3">{{ position.get_position_display }}</h2>                    
+                        <h2 class="p-3">{{ position.get_position_display }}</h2>
                         <h3 class="p-3">{{ position.person }}</h3>
-                    </div>       
+                    </div>
                     <div>
                         {{ position.description }}
                     </div>
