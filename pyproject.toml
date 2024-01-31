@@ -26,7 +26,6 @@ dependencies = [
     "django-extensions>=3.2.3",
     "werkzeug>=3.0.1",
     "psycopg[binary]>=3.1.17",
-    "l18n>=2021.3",
     "django-taggit>=4.0.0",
     "pytz>=2023.3.post1",
     "google-auth>=2.23.4",
@@ -50,7 +49,7 @@ build-backend = "hatchling.build"
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra --disable-socket --no-migrations"
-DJANGO_SETTINGS_MODULE = "config.settings"
+DJANGO_SETTINGS_MODULE = "config.dev_settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 
 [tool.ruff]
