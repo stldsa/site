@@ -304,3 +304,6 @@ token.json
 
 .local
 .rye
+
+cert.crt
+cert.key

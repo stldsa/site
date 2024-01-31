@@ -37,6 +37,7 @@ dependencies = [
     "django-ical>=1.9.2",
     "crispy-bootstrap5>=2023.10",
     "argon2-cffi>=23.1.0",
+    "pyopenssl>=24.0.0",
 ]
 name = "stldsa"
 description = "A Django + Wagtail based website for the St Louis Chapter of DSA"
@@ -77,5 +78,5 @@ dev-dependencies = [
 ]
 
 [tool.rye.scripts]
-server = "python manage.py runserver_plus"
+server = "python manage.py runserver_plus --cert-file cert.crt"
 migrations = "django-admin migrate"

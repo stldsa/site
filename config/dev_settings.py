@@ -5,13 +5,11 @@ import environ
 env = environ.Env()
 
 
-DEBUG = env.bool("DJANGO_DEBUG", default=True)
+DEBUG = True
 
 ROOT_DIR = environ.Path(__file__) - 2
 APPS_DIR = ROOT_DIR.path("stldsa")
 BASE_DIR = ROOT_DIR
-if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=True):
-    env.read_env(str(ROOT_DIR.path(".env")))
 
 WAGTAIL_SITE_NAME = "St Louis DSA"
 TIME_ZONE = "America/Chicago"
@@ -158,52 +156,23 @@ FIXTURE_DIRS = (str(APPS_DIR.path("fixtures")),)
 
 # SECURITY
 # ------------------------------------------------------------------------------
-SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_HTTPONLY = True
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = env("DJANGO_X_FRAME_OPTIONS", default="DENY")
-SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT", default=False)
+SECURE_SSL_REDIRECT = True
 
 # EMAIL
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
-)
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_TIMEOUT = 5
-MAILGUN_API_KEY = env("MAILGUN_API_KEY", default=None)
-MAILGUN_DOMAIN = env("MAILGUN_DOMAIN", default=None)
-MAILGUN_PUBLIC_KEY = env("MAILGUN_PUBLIC_KEY", default=None)
-MAILGUN_SMTP_LOGIN = env("MAILGUN_SMTP_LOGIN", default=None)
-MAILGUN_SMTP_PASSWORD = env("MAILGUN_SMTP_PASSWORD", default=None)
-MAILGUN_SMTP_PORT = env("MAILGUN_SMTP_PORT", default=None)
-MAILGUN_SMTP_SERVER = env("MAILGUN_SMTP_SERVER", default=None)
-DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default="STL DSA <noreply@stldsa.org>"
-)
-SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
-EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[STL DSA]")
-
-# Anymail (Mailgun)
-# ------------------------------------------------------------------------------
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
-)
-
-
-ANYMAIL = {
-    "MAILGUN_API_KEY": env("MAILGUN_API_KEY", default=""),
-    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN", default=""),
-    "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
-}
-
+DEFAULT_FROM_EMAIL = "STL DSA <noreply@stldsa.org>"
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+EMAIL_SUBJECT_PREFIX = "[STL DSA]"
 
 # ADMIN
 # ------------------------------------------------------------------------------
-ADMIN_URL = env("DJANGO_ADMIN_URL", default="dj-admin/")
+ADMIN_URL = "dj-admin"
 
 # django-allauth
 # ------------------------------------------------------------------------------
-ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", default=True)
+ACCOUNT_ALLOW_REGISTRATION = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -229,47 +198,42 @@ REST_FRAMEWORK = {
     ),
 }
 
-ACTIONNETWORK_API_KEYS = {
-    "main": env("AN_CHAPTER_KEY", default=None),
-    "comms": env("AN_COMMS_KEY", default=None),
-    "community": env("AN_COMMUNITY_KEY", default=None),
-    "sns": env("AN_SNS_KEY", default=None),
-    "electoral": env("AN_ELECTORAL_KEY", default=None),
-    "tech": env("AN_TECH_KEY", default=None),
-    "transit": env("AN_TRANSIT_KEY", default=None),
-    "housing": env("AN_HOUSING_KEY", default=None),
-    "northcounty": env("AN_NORTH_COUNTY_KEY", default=None),
-    "afrosoc": env("AN_AFROSOC_KEY", default=None),
-    "gnd": env("AN_GND_KEY", default=None),
-    "labor": env("AN_LABOR_KEY", default=None),
-}
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 LOCAL_SERVE_MEDIA_FILES = True
 STORAGES = {
     "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
-        "OPTIONS": {
-            "bucket_name": env("AWS_STORAGE_BUCKET_NAME", default=None),
-            "access_key": env("AWS_ACCESS_KEY_ID", default=None),
-            "secret_key": env("AWS_SECRET_ACCESS_KEY", default=None),
-            "file_overwrite": False,
-        },
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "0.0.0.0", "127.0.0.1"])
+ALLOWED_HOSTS = ["*"]
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "db.sqlite3"}}
 
-WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL", default="https://localhost:8000")
-CACHE_URL = env("CACHE_URL", default=None)
+WAGTAILADMIN_BASE_URL = "https://localhost:8000"
+CACHE_URL = None
 
-# Remove after upgrade to Django 5.0
-FORM_RENDERER = "django.forms.renderers.DjangoDivFormRenderer"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+LOGGING = {
+    "version": 1,
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "werkzeug": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
+}
