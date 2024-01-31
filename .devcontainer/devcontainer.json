@@ -2,7 +2,10 @@
     "name": "STL DSA (Python)",
     "image": "mcr.microsoft.com/devcontainers/python:3.11",
     "features": {
-        "ghcr.io/wustl-data/devcontainer-features/mise:1.0.2": {}
+        "ghcr.io/wustl-data/devcontainer-features/mise:1.0.2": {},
+        "ghcr.io/dhoeric/features/google-cloud-cli:1": {
+            "installGkeGcloudAuthPlugin": true
+        }
     },
     "containerEnv": {
         "DJANGO_SECRET_KEY": "solidarityforever",

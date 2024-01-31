@@ -134,4 +134,4 @@ class ResourcesPage(Page):
 
 
 class Formation(models.Model):
-    pass
+    name = models.CharField(max_length=255)

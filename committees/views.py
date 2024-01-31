@@ -5,5 +5,9 @@ from committees.models import Formation
 class FormationViewSet(ModelViewSet):
     model = Formation
 
+    form_fields = ["name"]
 
-person_viewset = FormationViewSet("formation")  # defines /admin/person/ as the base URL
+
+formation_viewset = FormationViewSet(
+    "formation"
+)  # defines /admin/person/ as the base URL
