@@ -1,16 +1,17 @@
 """Django Settings"""
+import os
 
 import environ
 
 env = environ.Env()
 
 
-DEBUG = env.bool("DJANGO_DEBUG", default=True)
+DEBUG = env.bool("DJANGO_DEBUG")
 
 ROOT_DIR = environ.Path(__file__) - 2
 APPS_DIR = ROOT_DIR.path("stldsa")
 BASE_DIR = ROOT_DIR
-if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=True):
+if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE"):
     env.read_env(str(ROOT_DIR.path(".env")))
 
 WAGTAIL_SITE_NAME = "St Louis DSA"
@@ -161,45 +162,37 @@ FIXTURE_DIRS = (str(APPS_DIR.path("fixtures")),)
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = env("DJANGO_X_FRAME_OPTIONS", default="DENY")
-SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT", default=False)
+X_FRAME_OPTIONS = env("DJANGO_X_FRAME_OPTIONS")
+SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT")
 
 # EMAIL
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
-)
+EMAIL_BACKEND = os.getenv("DJANGO_EMAIL_BACKEND")
 EMAIL_TIMEOUT = 5
-MAILGUN_API_KEY = env("MAILGUN_API_KEY", default=None)
-MAILGUN_DOMAIN = env("MAILGUN_DOMAIN", default=None)
-MAILGUN_PUBLIC_KEY = env("MAILGUN_PUBLIC_KEY", default=None)
-MAILGUN_SMTP_LOGIN = env("MAILGUN_SMTP_LOGIN", default=None)
-MAILGUN_SMTP_PASSWORD = env("MAILGUN_SMTP_PASSWORD", default=None)
-MAILGUN_SMTP_PORT = env("MAILGUN_SMTP_PORT", default=None)
-MAILGUN_SMTP_SERVER = env("MAILGUN_SMTP_SERVER", default=None)
-DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default="STL DSA <noreply@stldsa.org>"
-)
-SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
-EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[STL DSA]")
+MAILGUN_PUBLIC_KEY = os.getenv("MAILGUN_PUBLIC_KEY")
+MAILGUN_SMTP_LOGIN = os.getenv("MAILGUN_SMTP_LOGIN")
+MAILGUN_SMTP_PASSWORD = os.getenv("MAILGUN_SMTP_PASSWORD")
+MAILGUN_SMTP_PORT = os.getenv("MAILGUN_SMTP_PORT")
+MAILGUN_SMTP_SERVER = os.getenv("MAILGUN_SMTP_SERVER")
+DEFAULT_FROM_EMAIL = os.getenv("DJANGO_DEFAULT_FROM_EMAIL")
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX")
 
 # Anymail (Mailgun)
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
-)
+EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND")
 
 
 ANYMAIL = {
-    "MAILGUN_API_KEY": env("MAILGUN_API_KEY", default=""),
-    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN", default=""),
-    "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
+    "MAILGUN_API_KEY": os.getenv("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": os.getenv("MAILGUN_DOMAIN"),
+    "MAILGUN_API_URL": os.getenv("MAILGUN_API_URL"),
 }
 
 
 # ADMIN
 # ------------------------------------------------------------------------------
-ADMIN_URL = env("DJANGO_ADMIN_URL", default="dj-admin/")
+ADMIN_URL = env("DJANGO_ADMIN_URL")
 
 # LOGGING
 # ------------------------------------------------------------------------------
@@ -224,7 +217,7 @@ LOGGING = {
 
 # django-allauth
 # ------------------------------------------------------------------------------
-ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", default=True)
+ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION")
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -251,18 +244,18 @@ REST_FRAMEWORK = {
 }
 
 ACTIONNETWORK_API_KEYS = {
-    "main": env("AN_CHAPTER_KEY", default=None),
-    "comms": env("AN_COMMS_KEY", default=None),
-    "community": env("AN_COMMUNITY_KEY", default=None),
-    "sns": env("AN_SNS_KEY", default=None),
-    "electoral": env("AN_ELECTORAL_KEY", default=None),
-    "tech": env("AN_TECH_KEY", default=None),
-    "transit": env("AN_TRANSIT_KEY", default=None),
-    "housing": env("AN_HOUSING_KEY", default=None),
-    "northcounty": env("AN_NORTH_COUNTY_KEY", default=None),
-    "afrosoc": env("AN_AFROSOC_KEY", default=None),
-    "gnd": env("AN_GND_KEY", default=None),
-    "labor": env("AN_LABOR_KEY", default=None),
+    "main": os.getenv("AN_CHAPTER_KEY"),
+    "comms": os.getenv("AN_COMMS_KEY"),
+    "community": os.getenv("AN_COMMUNITY_KEY"),
+    "sns": os.getenv("AN_SNS_KEY"),
+    "electoral": os.getenv("AN_ELECTORAL_KEY"),
+    "tech": os.getenv("AN_TECH_KEY"),
+    "transit": os.getenv("AN_TRANSIT_KEY"),
+    "housing": os.getenv("AN_HOUSING_KEY"),
+    "northcounty": os.getenv("AN_NORTH_COUNTY_KEY"),
+    "afrosoc": os.getenv("AN_AFROSOC_KEY"),
+    "gnd": os.getenv("AN_GND_KEY"),
+    "labor": os.getenv("AN_LABOR_KEY"),
 }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 SECRET_KEY = env("DJANGO_SECRET_KEY")
@@ -272,9 +265,9 @@ STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
-            "bucket_name": env("AWS_STORAGE_BUCKET_NAME", default=None),
-            "access_key": env("AWS_ACCESS_KEY_ID", default=None),
-            "secret_key": env("AWS_SECRET_ACCESS_KEY", default=None),
+            "bucket_name": os.getenv("AWS_STORAGE_BUCKET_NAME"),
+            "access_key": os.getenv("AWS_ACCESS_KEY_ID"),
+            "secret_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
             "file_overwrite": False,
         },
     },
@@ -283,16 +276,14 @@ STORAGES = {
     },
 }
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "0.0.0.0", "127.0.0.1"])
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 DATABASES = {
-    "default": env.db(default="postgres://postgres:postgres@localhost:5432/postgres")
+    "default": env.db()
 }
 
-WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL", default="https://localhost:8000")
-CACHE_URL = env("CACHE_URL", default=None)
+WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL")
+CACHE_URL = env("CACHE_URL")
 
-# Remove after upgrade to Django 5.0
-FORM_RENDERER = "django.forms.renderers.DjangoDivFormRenderer"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -304,3 +304,5 @@ token.json
 
 .local
 .rye
+
+*.sqlite3
