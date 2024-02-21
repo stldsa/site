@@ -60,6 +60,7 @@ THIRD_PARTY_APPS = [
     "django_sass",
     "django_extensions",
     "anymail",
+    "sslserver"
 ]
 
 LOCAL_APPS = [
@@ -157,13 +158,6 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 # ------------------------------------------------------------------------------
 FIXTURE_DIRS = (str(APPS_DIR.path("fixtures")),)
 
-# SECURITY
-# ------------------------------------------------------------------------------
-SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_HTTPONLY = True
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = env("DJANGO_X_FRAME_OPTIONS")
-SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT")
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -287,3 +281,7 @@ CACHE_URL = env("CACHE_URL")
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False

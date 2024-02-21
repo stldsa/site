@@ -11,19 +11,19 @@
         "DJANGO_SETTINGS_MODULE": "config.settings",
         "DJANGO_DEBUG": "true",
         "DJANGO_READ_DOT_ENV_FILE": "true",
-        "DJANGO_X_FRAME_OPTIONS": "DENY",
-        "DJANGO_SECURE_SSL_REDIRECT": "true",
         "DJANGO_EMAIL_BACKEND": "django.core.mail.backends.console.EmailBackend",
         "DJANGO_EMAIL_SUBJECT_PREFIX": "[STL DSA]",
         "DJANGO_ADMIN_URL": "dj-admin",
         "DATABASE_URL": "sqlite:///db.sqlite3",
-        "ALLOWED_HOSTS": "localhost,0.0.0.0,127.0.0.1",
+        "ALLOWED_HOSTS": "127.0.0.1,localhost",
         "DJANGO_ACCOUNT_ALLOW_REGISTRATION": "true",
         "WAGTAILADMIN_BASE_URL": "https://localhost:8000",
         "CACHE_URL": "locmemcache://",
         "MISE_PYTHON_VENV_AUTO_CREATE": "true",
         "RYE_TOOLCHAIN": "/usr/local/bin/python",
-        "RYE_HOME": "${containerWorkspaceFolder}/.rye"
+        "RYE_HOME": "${containerWorkspaceFolder}/.rye",
+        "DJANGO_X_FRAME_OPTIONS": "DENY",
+        "DJANGO_SECURE_SSL_REDIRECT": "false"
     },
     "remoteEnv": {
         "PATH": "/usr/local/share/mise/shims:${containerEnv:PATH}"
