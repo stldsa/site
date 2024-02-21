@@ -4,7 +4,9 @@
     "service": "dev",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "features": {
-        "ghcr.io/wustl-data/devcontainer-features/mise:1.0.2": {}
+        "ghcr.io/wustl-data/devcontainer-features/mise": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/schlich/devcontainer-features/rye:1.1.1": {}
     },
     "containerEnv": {
         "DJANGO_SECRET_KEY": "solidarityforever",
@@ -20,16 +22,12 @@
         "WAGTAILADMIN_BASE_URL": "https://localhost:8000",
         "CACHE_URL": "locmemcache://",
         "MISE_PYTHON_VENV_AUTO_CREATE": "true",
-        "RYE_TOOLCHAIN": "/usr/local/bin/python",
-        "RYE_HOME": "${containerWorkspaceFolder}/.rye",
         "DJANGO_X_FRAME_OPTIONS": "DENY",
         "DJANGO_SECURE_SSL_REDIRECT": "false"
     },
     "remoteEnv": {
         "PATH": "/usr/local/share/mise/shims:${containerEnv:PATH}"
     },
-    "postCreateCommand": "./mise_activate.sh",
-    "postStartCommand": "mise use -y rye bun",
     "customizations": {
         "vscode": {
             "extensions": [
