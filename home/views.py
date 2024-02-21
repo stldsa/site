@@ -1,5 +1,6 @@
 from home.forms import EmailSubmissionForm
 from django.views.generic.edit import FormView
+from django.views.generic.base import TemplateView
 from stldsa.users.models import User
 
 
@@ -16,3 +17,7 @@ class EmailFormView(FormView):
             if self.get_form_kwargs()["data"]["email"] in emails
             else "/signup/"
         )
+
+
+class HomePageView(TemplateView):
+    template_name = "home/home_page.html"

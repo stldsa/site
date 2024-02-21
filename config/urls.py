@@ -14,6 +14,7 @@ from actionnetwork import views
 
 
 urlpatterns = [
+    path("", include("home.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
     path("events/", include("events.urls")),
     path("myDSA/", include("stldsa.users.urls", namespace="users")),

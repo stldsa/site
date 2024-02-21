@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %} {% load static wagtailuserbar %}
 {% block content %}
 <div class="row">
   <div class="col">
@@ -6,8 +6,5 @@
   </div>
 </div>
 {% endblock %} {% block extra_js %}
-<script
-  type="module"
-  src="{% static 'js/bundled.js' %}"
-></script>
+<script type="module" src="{% static 'js/bundled.js' %}"></script>
 {% endblock %}
