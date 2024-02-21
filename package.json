@@ -1,17 +1,17 @@
 {
   "name": "stldsa",
   "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
   "dependencies": {
     "@fullcalendar/core": "^6.1.9",
     "@fullcalendar/daygrid": "^6.1.9",
     "@fullcalendar/list": "^6.1.9",
     "fullcalendar": "^6.1.9"
-  }
+  },
+  "optionalDependencies": {
+    "cypress": "^13.6.4"
+  },
+  "scripts": {
+    "test": "bun run cypress run"
+  },
+  "type": "module"
 }
