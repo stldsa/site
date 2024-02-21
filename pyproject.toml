@@ -37,6 +37,7 @@ dependencies = [
     "django-ical>=1.9.2",
     "crispy-bootstrap5>=2023.10",
     "argon2-cffi>=23.1.0",
+    "django-sslserver>=0.22",
 ]
 name = "stldsa"
 description = "A Django + Wagtail based website for the St Louis Chapter of DSA"
@@ -48,35 +49,29 @@ build-backend = "hatchling.build"
 
 
 [tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-ra --disable-socket --no-migrations"
+addopts = "-ra --disable-socket --no-migrations --import-mode=importlib"
 DJANGO_SETTINGS_MODULE = "config.settings"
-python_files = ["tests.py", "test_*.py", "*_tests.py"]
+
 
 [tool.ruff]
 line-length = 88
 fix = true
 exclude = ["migrations"]
-fixable = ["ALL"]
 
 [tool.rye]
 virtual = true
-managed = false
 dev-dependencies = [
-    "hatchling>=1.21.1",
     "ipython>=8.20.0",
     "pre-commit>=3.6.0",
     "pytest>=8.0.0",
     "pytest-mock>=3.12.0",
     "pytest-socket>=0.7.0",
-    "ruff>=0.1.15",
     "pytest-django>=4.8.0",
     "responses>=0.24.1",
     "factory-boy>=3.3.0",
-    "pip-tools>=7.3.0",
 ]
 
 [tool.rye.scripts]
-server = "django-admin runserver"
+server = "django-admin runserver_plus"
 makemigrations = "django-admin makemigrations"
 migrate = "django-admin migrate"
