@@ -1,4 +1,5 @@
 """Django Settings"""
+
 import environ
 
 env = environ.Env()
