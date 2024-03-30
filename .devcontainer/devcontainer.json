@@ -5,7 +5,10 @@
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "features": {
         "ghcr.io/schlich/devcontainer-features/rye": {},
-        "ghcr.io/devcontainers-contrib/features/pre-commit:2": {}
+        "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+        "ghcr.io/devcontainers-contrib/features/heroku-cli:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
     "postCreateCommand": "pre-commit install",
     "containerEnv": {
