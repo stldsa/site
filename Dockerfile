@@ -1,4 +1,4 @@
-FROM python:slim
+FROM heroku/python
 
 WORKDIR /app
 COPY pyproject.toml requirements.lock ./
