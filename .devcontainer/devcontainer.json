@@ -24,7 +24,7 @@
         "DATABASE_URL": "sqlite:///db.sqlite3",
         "DJANGO_ACCOUNT_ALLOW_REGISTRATION": "true",
         "WAGTAILADMIN_BASE_URL": "https://localhost:8000",
-        "CACHE_URL": "locmemcache://",
+        "CACHE_URL": "locmemcache://"
     },
     "customizations": {
         "vscode": {
