@@ -1,3 +1,3 @@
-release: python manage.py migrate
+release: django-admin migrate
 web: gunicorn config.wsgi:application
 
