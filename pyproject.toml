@@ -57,6 +57,8 @@ python_files = ["tests.py", "test_*.py", "*_tests.py"]
 line-length = 88
 fix = true
 exclude = ["migrations"]
+
+[tool.ruff.lint]
 fixable = ["ALL"]
 
 [tool.rye]
