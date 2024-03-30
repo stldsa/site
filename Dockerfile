@@ -2,7 +2,8 @@ FROM heroku/heroku:22
 
 WORKDIR /app
 COPY pyproject.toml requirements.lock ./
-ENV PYTHONDONTWRITEBYTECODE=1
-RUN curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash && rye sync --no-dev
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    RYE_HOME=/usr/local/lib/rye
+RUN curl -sSf https://rye-up.com/get | RYE_INSTALL_OPTION="--yes" bash && /usr/local/lib/rye/shims/rye sync --no-dev
 COPY src .
-CMD gunicorn config.wsgi:application
+CMD /usr/local/lib/rye/shims/rye gunicorn config.wsgi:application
