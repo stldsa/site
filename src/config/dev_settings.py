@@ -1,4 +1,5 @@
 """Django Settings"""
+
 import os
 
 import environ

@@ -1,4 +1,5 @@
 """Django Settings"""
+
 import os
 
 import environ
@@ -278,9 +279,7 @@ STORAGES = {
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
-DATABASES = {
-    "default": env.db()
-}
+DATABASES = {"default": env.db()}
 
 WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL")
 CACHE_URL = env("CACHE_URL")
