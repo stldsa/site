@@ -60,8 +60,6 @@ exclude = ["migrations"]
 fixable = ["ALL"]
 
 [tool.rye]
-virtual = true
-managed = false
 dev-dependencies = [
     "hatchling>=1.21.1",
     "ipython>=8.20.0",
@@ -77,6 +75,6 @@ dev-dependencies = [
 ]
 
 [tool.rye.scripts]
-server = "django-admin runserver"
+server = "django-admin runserver_plus"
 makemigrations = "django-admin makemigrations"
 migrate = "django-admin migrate"

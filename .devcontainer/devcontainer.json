@@ -4,11 +4,11 @@
     "service": "dev",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "features": {
-        "ghcr.io/wustl-data/devcontainer-features/mise:1.0.2": {}
+        "ghcr.io/schlich/devcontainer-features/rye": {}
     },
     "containerEnv": {
         "DJANGO_SECRET_KEY": "solidarityforever",
-        "DJANGO_SETTINGS_MODULE": "config.settings",
+        "DJANGO_SETTINGS_MODULE": "config.dev_settings",
         "DJANGO_DEBUG": "true",
         "DJANGO_READ_DOT_ENV_FILE": "true",
         "DJANGO_X_FRAME_OPTIONS": "DENY",
@@ -17,7 +17,6 @@
         "DJANGO_EMAIL_SUBJECT_PREFIX": "[STL DSA]",
         "DJANGO_ADMIN_URL": "dj-admin",
         "DATABASE_URL": "sqlite:///db.sqlite3",
-        "ALLOWED_HOSTS": "localhost,0.0.0.0,127.0.0.1",
         "DJANGO_ACCOUNT_ALLOW_REGISTRATION": "true",
         "WAGTAILADMIN_BASE_URL": "https://localhost:8000",
         "CACHE_URL": "locmemcache://",
@@ -28,8 +27,6 @@
     "remoteEnv": {
         "PATH": "/usr/local/share/mise/shims:${containerEnv:PATH}"
     },
-    "postCreateCommand": "./mise_activate.sh",
-    "postStartCommand": "mise use -y rye bun",
     "customizations": {
         "vscode": {
             "extensions": [

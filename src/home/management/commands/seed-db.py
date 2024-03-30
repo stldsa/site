@@ -12,7 +12,7 @@ from events.models import Event
 from home.models import HomePage, JoinPage
 from news.models import NewsIndexPage, InfoPage, NewsPageRelatedStory
 from about.models import ExecutiveCommitteePage, BylawsPage
-from committees.models import CommitteesPage, FormationsPage, CommitteePage
+from committees.models import FormationsPage, CommitteePage
 from django.contrib.auth.models import Group
 
 fake = Faker()
@@ -68,20 +68,6 @@ class Command(BaseCommand):
 
             NewsPage = apps.get_model("news.NewsPage")
 
-            placeholder = "stldsa/static/images/placeholders/400x250.png"
-            with Path(placeholder).open("rb") as f:
-                featured_image = Image.objects.create(
-                    title=fake.sentence(),
-                    file=ImageFile(f, name="400x250.png"),
-                )
-
-            placeholder_1800 = "stldsa/static/images/placeholders/1800x1800.png"
-            with Path(placeholder_1800).open("rb") as f:
-                related_image = Image.objects.create(
-                    title=fake.sentence(),
-                    file=ImageFile(f, name="1800x1800.png"),
-                )
-
             def add_news_page():
                 newspage = NewsPage(
                     title=fake.sentence(),
@@ -90,11 +76,9 @@ class Command(BaseCommand):
                         NewsPageRelatedStory(
                             title=fake.sentence(),
                             description=fake.paragraph(),
-                            related_image=related_image,
                         )
                         for _ in range(4)
                     ],
-                    featured_image=featured_image,
                 )
                 newsindexpage.add_child(instance=newspage)
 
@@ -105,20 +89,6 @@ class Command(BaseCommand):
                 title="Formations", description=fake.paragraphs()
             )
             homepage.add_child(instance=formations_page)
-
-            def add_committees_page(title):
-                committees_page = CommitteesPage(
-                    title=title, description=fake.paragraph()
-                )
-                formations_page.add_child(instance=committees_page)
-
-            for committee in ["Committees", "Working Groups", "Caucuses"]:
-                add_committees_page(committee)
-
-            priorities_page = CommitteesPage(
-                title="Priority Groups", description=fake.paragraph(), live=False
-            )
-            formations_page.add_child(instance=priorities_page)
 
             committees = {
                 "CT": [

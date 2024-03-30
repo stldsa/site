@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block content %}
+
+<div class="container px-4">
+  <div class="row align-items-top justify-content-between g-lg-5 pb-5">
+    <div class="flex flex-row md:flex-col"></div>
+    <div class="col-md-8">
+      <h2 class="text-left mb-2 py-4" style="font-family:'Styrene B Bold';">
+        Upcoming Events
+      </h2>
+      <div class="events-wrapper">
+        {% if events %}
+        {% for event in events %}
+        <div class="event-card">
+          <div class="event-card-content">
+            <p class="event-card-date">
+              <span>{{ event.start|date:"l, F" }}</span>
+              <span class="red-text">{{ event.start|date:"j" }}<sup>{{ event.start|date:"S" }}</sup></span>
+            </p>
+            <p class="event-card-title">{{ event.title }}</p>
+            {% if event.formation %}
+            <p class="event-card-formation">
+              {{ event.formation }}
+            </p>
+            {% endif %}
+          </div>
+          <a href="{{ event.url }}" class="event-card-link" aria-label="Respond to this event">
+            RSVP
+          </a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No upcoming events.</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md">
+      {% if not user.is_authenticated %}
+      <div class="bg-white shadow">
+        <link href='https://actionnetwork.org/css/style-embed-v3.css' rel='stylesheet' type='text/css' />
+        <script src='https://actionnetwork.org/widgets/v5/form/stldsa?format=js&source=widget'></script>
+        <div id='can-form-area-stldsa' style='width: 100%'>
+          <!-- this div is the target for HTML insertion -->
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+      {% else %}
+      <div class="p-3 bg-white rounded shadow">
+        <div class="text-wrap" style="font-family:'Styrene B Black';">
+          {{ page.highlighted_campaign }}
+        </div>
+        <p class="card-text mb-3">{{ page.highlighted_description|richtext }}</p>
+        <div class="d-flex justify-content-center">
+          <a class="card-link btn btn-primary shadow" href="{{ page.call_to_action }}">
+            I'm Interested
+          </a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
