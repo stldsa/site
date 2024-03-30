@@ -7,4 +7,4 @@ build:
 release: 
   image: web
   command: 
-   - /usr/local/lib/rye/shims/rye run django-admin migrate
+   - /usr/local/lib/rye/shims/rye sync && /usr/local/lib/rye/shims/rye run django-admin migrate
