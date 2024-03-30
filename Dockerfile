@@ -1,7 +1,7 @@
 FROM python:slim
 
 WORKDIR /app
-COPY requirements.lock ./
+COPY pyproject.toml requirements.lock ./
 RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -r requirements.lock
 
 COPY src .
