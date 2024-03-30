@@ -1,13 +1,10 @@
 import datetime
 import logging
-from pathlib import Path
 from faker import Faker
 from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
-from django.core.files.images import ImageFile
 from wagtail.models import Page, Site
-from wagtail.images.models import Image
 from events.models import Event
 from home.models import HomePage, JoinPage
 from news.models import NewsIndexPage, InfoPage, NewsPageRelatedStory
