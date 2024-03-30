@@ -3,7 +3,6 @@ requires-python = ">=3.11,<3.12"
 dependencies = [
     "Django>=5.0.0",
     "django-allauth>=0.58.2",
-    "django-crispy-forms>=1.14.0",
     "django-environ>=0.11.2",
     "whitenoise>=6.6.0",
     "djangorestframework>=3.14.0",
@@ -11,14 +10,12 @@ dependencies = [
     "django-anymail>=10.2",
     "gunicorn>=21.2.0",
     "django-redis>=4.12.1",
-    "requests<3.0.0,>=2.28.1",
     "django-cache-url>=3.2.3",
     "validators>=0.18.2",
     "django-compressor>=2.4.1",
     "django-phonenumber-field>=6.3.0",
     "phonenumbers>=8.12.51",
     "django-storages[s3]>=1.14.2",
-    "boto3>=1.28.82",
     "django-render-block>=0.9.1",
     "polling2>=0.5.0",
     "types-requests>=2.28.11.5",
@@ -26,11 +23,7 @@ dependencies = [
     "django-extensions>=3.2.3",
     "werkzeug>=3.0.1",
     "psycopg[binary]>=3.1.17",
-    "l18n>=2021.3",
-    "django-taggit>=4.0.0",
-    "pytz>=2023.3.post1",
     "google-auth>=2.23.4",
-    "google-auth-httplib2>=0.1.1",
     "google-api-python-client>=2.107.0",
     "google-auth-oauthlib>=1.1.0",
     "django-browser-reload>=1.12.0",
@@ -49,7 +42,7 @@ build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-ra --disable-socket --no-migrations"
+addopts = "-ra --disable-socket --no-migrations --import-mode=importlib"
 DJANGO_SETTINGS_MODULE = "config.settings"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 
@@ -80,3 +73,4 @@ dev-dependencies = [
 server = "django-admin runserver_plus"
 makemigrations = "django-admin makemigrations"
 migrate = "django-admin migrate"
+seed = "django-admin seed-db"

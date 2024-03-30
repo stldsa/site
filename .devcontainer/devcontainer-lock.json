@@ -1,5 +1,10 @@
 {
   "features": {
+    "ghcr.io/devcontainers-contrib/features/pre-commit:2": {
+      "version": "2.0.17",
+      "resolved": "ghcr.io/devcontainers-contrib/features/pre-commit@sha256:c18a7604e12b531e5a4e990c630e3f036d932903eb1e3b333e5c9e10a891e1a8",
+      "integrity": "sha256:c18a7604e12b531e5a4e990c630e3f036d932903eb1e3b333e5c9e10a891e1a8"
+    },
     "ghcr.io/devcontainers/features/common-utils": {
       "version": "2.4.2",
       "resolved": "ghcr.io/devcontainers/features/common-utils@sha256:bebfdcd6097a35506bf0f064a31e52ad4205467d9d7a226a688f51b851c88b65",

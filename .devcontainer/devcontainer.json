@@ -4,8 +4,10 @@
     "service": "dev",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "features": {
-        "ghcr.io/schlich/devcontainer-features/rye": {}
+        "ghcr.io/schlich/devcontainer-features/rye": {},
+        "ghcr.io/devcontainers-contrib/features/pre-commit:2": {}
     },
+    "postCreateCommand": "pre-commit install",
     "containerEnv": {
         "DJANGO_SECRET_KEY": "solidarityforever",
         "DJANGO_SETTINGS_MODULE": "config.dev_settings",
@@ -20,9 +22,6 @@
         "DJANGO_ACCOUNT_ALLOW_REGISTRATION": "true",
         "WAGTAILADMIN_BASE_URL": "https://localhost:8000",
         "CACHE_URL": "locmemcache://",
-        "MISE_PYTHON_VENV_AUTO_CREATE": "true",
-        "RYE_TOOLCHAIN": "/usr/local/bin/python",
-        "RYE_HOME": "${containerWorkspaceFolder}/.rye"
     },
     "remoteEnv": {
         "PATH": "/usr/local/share/mise/shims:${containerEnv:PATH}"
@@ -50,7 +49,7 @@
                 "python.analysis.typeCheckingMode": "basic",
                 // this is most helpful on dev container startup when python extention loading can lag behind your shell opening
                 "python.terminal.activateEnvInCurrentTerminal": true,
-                // these settings are for Ruff
+                // these settings are for Ruun ff
                 "editor.formatOnSave": true,
                 "[python]": {
                     "editor.formatOnSave": true,
