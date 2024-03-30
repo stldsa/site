@@ -1,5 +1,5 @@
 {
-    "name": "STL DSA (Python + Postgres)",
+    "name": "stldsa",
     "dockerComposeFile": "docker-compose.yml",
     "service": "dev",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -13,7 +13,7 @@
         "DJANGO_SETTINGS_MODULE": "config.dev_settings",
         "DJANGO_DEBUG": "true",
         "DJANGO_READ_DOT_ENV_FILE": "true",
-        "DJANGO_X_FRAME_OPTIONS": "DENY",
+        "DJANGO_X_FRAME_OPTIONS": "SAMEORIGIN",
         "DJANGO_SECURE_SSL_REDIRECT": "true",
         "DJANGO_EMAIL_BACKEND": "django.core.mail.backends.console.EmailBackend",
         "DJANGO_EMAIL_SUBJECT_PREFIX": "[STL DSA]",
@@ -23,50 +23,15 @@
         "WAGTAILADMIN_BASE_URL": "https://localhost:8000",
         "CACHE_URL": "locmemcache://",
     },
-    "remoteEnv": {
-        "PATH": "/usr/local/share/mise/shims:${containerEnv:PATH}"
-    },
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-python.python",
                 "github.vscode-github-actions",
-                "tamasfe.even-better-toml",
                 "ms-azuretools.vscode-docker"
             ],
             "settings": {
-                // Opens README when you open your dev container
                 "workbench.startupEditor": "readme",
-                // enables pytest in the VS Code UI
-                "python.testing.pytestArgs": [
-                    "tests"
-                ],
-                "python.testing.unittestEnabled": false,
-                "python.testing.pytestEnabled": true,
-                // tells VS Code where your virtual environment is
-                "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
-                // type checking is usually off by default
-                "python.analysis.typeCheckingMode": "basic",
-                // this is most helpful on dev container startup when python extention loading can lag behind your shell opening
-                "python.terminal.activateEnvInCurrentTerminal": true,
-                // these settings are for Ruun ff
-                "editor.formatOnSave": true,
-                "[python]": {
-                    "editor.formatOnSave": true,
-                    "editor.codeActionsOnSave": {
-                        "source.fixAll.ruff": true,
-                        "source.organizeImports.ruff": true
-                    },
-                    "editor.defaultFormatter": "charliermarsh.ruff"
-                },
-                "notebook.formatOnSave.enabled": true,
-                "notebook.codeActionsOnSave": {
-                    "notebook.source.fixAll": true,
-                    "notebook.source.organizeImports": true
-                },
-                // this is for pre-commit linting
                 "files.insertFinalNewline": true,
-                // just a good setting
                 "editor.stickyScroll.enabled": true
             }
         }
