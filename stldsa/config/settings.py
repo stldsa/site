@@ -7,13 +7,11 @@ import environ
 env = environ.Env()
 
 
-DEBUG = True
+DEBUG = env.bool("DJANGO_DEBUG")
 
 ROOT_DIR = environ.Path(__file__) - 2
 APPS_DIR = ROOT_DIR.path("stldsa")
 BASE_DIR = ROOT_DIR
-if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE"):
-    env.read_env(str(ROOT_DIR.path(".env")))
 
 WAGTAIL_SITE_NAME = "St Louis DSA"
 TIME_ZONE = "America/Chicago"
@@ -160,11 +158,11 @@ FIXTURE_DIRS = (str(APPS_DIR.path("fixtures")),)
 
 # SECURITY
 # ------------------------------------------------------------------------------
-# SESSION_COOKIE_HTTPONLY = False
-# CSRF_COOKIE_HTTPONLY = False
-# SECURE_BROWSER_XSS_FILTER = False
-# X_FRAME_OPTIONS = env("DJANGO_X_FRAME_OPTIONS")
-# SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = env("DJANGO_X_FRAME_OPTIONS")
+SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT")
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -277,7 +275,7 @@ STORAGES = {
     },
 }
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 DATABASES = {"default": env.db()}
 

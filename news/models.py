@@ -121,7 +121,6 @@ class InfoPage(Page):
         [("embed", blocks.RawHTMLBlock())],
         null=True,
         blank=True,
-        use_json_field=True,
     )
 
     search_fields = Page.search_fields + [
@@ -169,7 +168,6 @@ class DocumentPage(Page):
         ],
         null=True,
         blank=True,
-        use_json_field=True,
     )
 
     content_panels = Page.content_panels + [

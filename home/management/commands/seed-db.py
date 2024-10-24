@@ -135,7 +135,7 @@ class Command(BaseCommand):
             members = Group.objects.create(name="Members")
 
             member = User.objects.create(
-                username="member@example.com",
+                email="member@example.com",
                 password="member",
             )
 

@@ -7,13 +7,11 @@ import environ
 env = environ.Env()
 
 
-DEBUG = env.bool("DJANGO_DEBUG")
+DEBUG = True
 
 ROOT_DIR = environ.Path(__file__) - 2
 APPS_DIR = ROOT_DIR.path("stldsa")
 BASE_DIR = ROOT_DIR
-if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE"):
-    env.read_env(str(ROOT_DIR.path(".env")))
 
 WAGTAIL_SITE_NAME = "St Louis DSA"
 TIME_ZONE = "America/Chicago"
@@ -22,8 +20,8 @@ WAGTAIL_I18N_ENABLED = False
 USE_I18N = False
 USE_TZ = True
 LANGUAGE_CODE = "en"
-ROOT_URLCONF = "config.urls"
-WSGI_APPLICATION = "config.wsgi.application"
+ROOT_URLCONF = "stldsa.config.urls"
+WSGI_APPLICATION = "stldsa.config.wsgi.application"
 DJANGO_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -114,9 +112,8 @@ MIDDLEWARE = [
 ]
 
 # STATIC
-STATIC_ROOT = str(BASE_DIR.path("staticfiles"))
 STATIC_URL = "/staticfiles/"
-STATICFILES_DIRS = [str(APPS_DIR.path("static"))]
+STATICFILES_DIRS = [str(BASE_DIR.path("static"))]
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
@@ -160,40 +157,24 @@ FIXTURE_DIRS = (str(APPS_DIR.path("fixtures")),)
 
 # SECURITY
 # ------------------------------------------------------------------------------
-SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_HTTPONLY = True
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = env("DJANGO_X_FRAME_OPTIONS")
-SECURE_SSL_REDIRECT = env("DJANGO_SECURE_SSL_REDIRECT")
+# SESSION_COOKIE_HTTPONLY = False
+# CSRF_COOKIE_HTTPONLY = False
+# SECURE_BROWSER_XSS_FILTER = False
+# X_FRAME_OPTIONS = env("DJANGO_X_FRAME_OPTIONS")
+# SECURE_SSL_REDIRECT = False
 
 # EMAIL
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = os.getenv("DJANGO_EMAIL_BACKEND")
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_TIMEOUT = 5
-MAILGUN_PUBLIC_KEY = os.getenv("MAILGUN_PUBLIC_KEY")
-MAILGUN_SMTP_LOGIN = os.getenv("MAILGUN_SMTP_LOGIN")
-MAILGUN_SMTP_PASSWORD = os.getenv("MAILGUN_SMTP_PASSWORD")
-MAILGUN_SMTP_PORT = os.getenv("MAILGUN_SMTP_PORT")
-MAILGUN_SMTP_SERVER = os.getenv("MAILGUN_SMTP_SERVER")
-DEFAULT_FROM_EMAIL = os.getenv("DJANGO_DEFAULT_FROM_EMAIL")
+DEFAULT_FROM_EMAIL = "info@stldsa.com"
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
-EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX")
-
-# Anymail (Mailgun)
-# ------------------------------------------------------------------------------
-EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND")
-
-
-ANYMAIL = {
-    "MAILGUN_API_KEY": os.getenv("MAILGUN_API_KEY"),
-    "MAILGUN_SENDER_DOMAIN": os.getenv("MAILGUN_DOMAIN"),
-    "MAILGUN_API_URL": os.getenv("MAILGUN_API_URL"),
-}
+EMAIL_SUBJECT_PREFIX = "[STL DSA]"
 
 
 # ADMIN
 # ------------------------------------------------------------------------------
-ADMIN_URL = env("DJANGO_ADMIN_URL")
+ADMIN_URL = "admin"
 
 # LOGGING
 # ------------------------------------------------------------------------------
@@ -218,7 +199,7 @@ LOGGING = {
 
 # django-allauth
 # ------------------------------------------------------------------------------
-ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION")
+ACCOUNT_ALLOW_REGISTRATION = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -259,7 +240,7 @@ ACTIONNETWORK_API_KEYS = {
     "labor": os.getenv("AN_LABOR_KEY"),
 }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = "dev-secret-key"
 
 LOCAL_SERVE_MEDIA_FILES = True
 STORAGES = {
@@ -277,12 +258,17 @@ STORAGES = {
     },
 }
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
 
-DATABASES = {"default": env.db()}
 
-WAGTAILADMIN_BASE_URL = env("WAGTAILADMIN_BASE_URL")
-CACHE_URL = env("CACHE_URL")
+WAGTAILADMIN_BASE_URL = "wagtail-admin"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
+    }
+}

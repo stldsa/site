@@ -38,6 +38,7 @@ class CommitteePage(Page):
         (CAUCUS, "Caucus"),
     ]
 
+    email = models.EmailField(null=True, blank=True)
     description = RichTextField(null=True, blank=True)
     image = models.ForeignKey(
         "wagtailimages.Image",
@@ -126,7 +127,6 @@ class ResourcesPage(Page):
                 ),
             )
         ],
-        use_json_field=True,
     )
     content_panels = Page.content_panels + [
         FieldPanel("resources"),
